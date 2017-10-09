@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD-hitelesítő tanúsítványt |} Microsoft Docs"
-description: "Ez a cikk ismerteti a regisztrációs és az alkalmazás-hitelesítési tanúsítvány hitelesítő adatok használatát"
+title: "aaaCertificate hitelesítő adatokat az Azure AD |} Microsoft Docs"
+description: "Ez a cikk ismerteti, amelyek hello regisztrálása és az alkalmazás-hitelesítési tanúsítvány hitelesítő adatok használatát"
 services: active-directory
 documentationcenter: .net
 author: navyasric
@@ -15,19 +15,19 @@ ms.topic: article
 ms.date: 06/02/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 08bb5140bb35bbd120aaa506afeab8ad247f81e1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3508803112ac06268d553db86ab74812aa53e455
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="certificate-credentials-for-application-authentication"></a>Alkalmazás-hitelesítési tanúsítvány hitelesítő adatai
 
-Az Azure Active Directory lehetővé teszi, hogy az alkalmazás saját hitelesítő adatait a hitelesítéshez, például az OAuth 2.0 ügyfél hitelesítő adatok Grant flow és az On-meghatalmazásos folyamat.
-A hitelesítő adatok, használhat egy formátuma egy JSON webes Token(JWT) helyességi feltételt, amely az alkalmazás tulajdonosa a tanúsítvánnyal aláírt.
+Az Azure Active Directory lehetővé teszi, hogy egy alkalmazás toouse a saját hitelesítő adatok, például az OAuth 2.0 ügyfél hitelesítő adatok Grant flow hello és hello a-meghatalmazásos folyamat.
+A hitelesítő adatok, használhat egy formátuma egy JSON webes Token(JWT) helyességi feltétel hello alkalmazás birtokló a tanúsítvánnyal aláírt.
 
-## <a name="format-of-the-assertion"></a>A helyességi feltétel formátuma
-A helyességi feltétel kiszámításához, érdemes lehet a több valamelyikével [JSON Web Token](https://jwt.io/) szalagtárak a választott nyelven történik. A token által az információkat a következő:
+## <a name="format-of-hello-assertion"></a>Hello helyességi feltétel formátuma
+toocompute hello helyességi feltétel, érdemes toouse hello közül sok [JSON Web Token](https://jwt.io/) hello nyelvű tárak. hello információk hello token végzi a következő:
 
 #### <a name="header"></a>Fejléc
 
@@ -35,21 +35,21 @@ A helyességi feltétel kiszámításához, érdemes lehet a több valamelyikév
 | --- | --- | --- |
 | `alg` | Meg kell **RS256** |
 | `typ` | Meg kell **jwt-t** |
-| `x5t` | Az X.509 tanúsítvány SHA-1 ujjlenyomat kell lennie. |
+| `x5t` | Hello X.509 tanúsítvány SHA-1 ujjlenyomat kell lennie. |
 
 #### <a name="claims-payload"></a>Jogcímek (tartalom)
 
 | Paraméter |  Megjegyzés |
 | --- | --- | --- |
 | `aud` | A célközönség: Kell  **https://login.microsoftonline.com/*tenant_Id*  /oauth2/token ** |
-| `exp` | Lejárat dátuma: a dátum, amikor a jogkivonat érvényessége lejár. Az idő másodpercben 1970. január 1. a ki (1970-01-01T0:0:0Z) UTC, amíg a token érvényességi lejárati idejének.|
-| `iss` | Kibocsátó: a client_id (az ügyfélszolgáltatás alkalmazásazonosító) kell lennie. |
-| `jti` | GUID-ja: a JWT azonosító |
-| `nbf` | Hatálybalépési idő: az a dátum előtt, amely a token nem használható. Az idő másodpercben 1970. január 1. a ki (1970-01-01T0:0:0Z) UTC, amíg a token lett kiállítva. |
-| `sub` | Tulajdonos: megegyezik a `iss`, a client_id (az ügyfélszolgáltatás alkalmazásazonosító) kell lennie. |
+| `exp` | Lejárat dátuma: hello jogkivonat lejáratának hello dátum. hello idő egy jelenik meg azon másodpercek számát hello 1970. január 1. a (1970-01-01T0:0:0Z) UTC szerinti eléréséig hello idő hello token érvényességét.|
+| `iss` | Kibocsátó: hello client_id (hello ügyfélszolgáltatás alkalmazásazonosító) kell lennie. |
+| `jti` | GUID-ja: hello JWT azonosítója |
+| `nbf` | Hatálybalépési idő: hello dátuma előtt mely hello token nem használható. hello idő egy jelenik meg azon másodpercek számát hello 1970. január 1. a (1970-01-01T0:0:0Z) UTC amíg hello idő hello token lett kiállítva. |
+| `sub` | Tulajdonos: megegyezik a `iss`, hello client_id (hello ügyfélszolgáltatás alkalmazásazonosító) kell lennie. |
 
 #### <a name="signature"></a>Aláírás
-Az aláírás alkalmazása a tanúsítványt, a számított a [JSON Web Token RFC7519 meghatározása](https://tools.ietf.org/html/rfc7519)
+hello aláírás számított hello tanúsítvány alkalmazása a hello [JSON Web Token RFC7519 meghatározása](https://tools.ietf.org/html/rfc7519)
 
 ### <a name="example-of-a-decoded-jwt-assertion"></a>A dekódolt JWT helyességi feltétel – példa
 ```
@@ -73,22 +73,22 @@ Az aláírás alkalmazása a tanúsítványt, a számított a [JSON Web Token RF
 ```
 
 ### <a name="example-of-an-encoded-jwt-assertion"></a>Egy kódolt JWT helyességi feltétel – példa
-A következő karakterlánc kódolt helyességi feltétel példája. Gondosan tekintse meg a három pont (.) választja el szakasz figyelje meg.
-Az első szakaszban kódolja a fejlécet, a második, a tartalom, és az utolsó a tanúsítványokat az első két szakaszok tartalmának aláírással.
+a következő karakterlánc hello kódolt helyességi feltétel példája. Gondosan tekintse meg a három pont (.) választja el szakasz figyelje meg.
+első szakasz hello kódolja hello fejléc, hello második hello hasznos, és hello utolsó hello első két szakaszok tartalmának hello hello tanúsítványokat hello aláírással.
 ```
 "eyJhbGciOiJSUzI1NiIsIng1dCI6Imd4OHRHeXN5amNScUtqRlBuZDdSRnd2d1pJMCJ9.eyJhdWQiOiJodHRwczpcL1wvbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbVwvam1wcmlldXJob3RtYWlsLm9ubWljcm9zb2Z0LmNvbVwvb2F1dGgyXC90b2tlbiIsImV4cCI6MTQ4NDU5MzM0MSwiaXNzIjoiOTdlMGE1YjctZDc0NS00MGI2LTk0ZmUtNWY3N2QzNWM2ZTA1IiwianRpIjoiMjJiM2JiMjYtZTA0Ni00MmRmLTljOTYtNjVkYmQ3MmMxYzgxIiwibmJmIjoxNDg0NTkyNzQxLCJzdWIiOiI5N2UwYTViNy1kNzQ1LTQwYjYtOTRmZS01Zjc3ZDM1YzZlMDUifQ.
 Gh95kHCOEGq5E_ArMBbDXhwKR577scxYaoJ1P{a lot of characters here}KKJDEg"
 ```
 
 ### <a name="register-your-certificate-with-azure-ad"></a>A tanúsítvány regisztrálása az Azure AD-val
-A tanúsítvány hitelesítő adat társítandó az ügyfélalkalmazás Azure AD-ben, akkor az alkalmazás jegyzékében módosíthatók.
-Tanúsítvány céllal rendelkezik, kell számítási:
-- `$base64Thumbprint`, vagyis a base64 kódolás a tanúsítvány kivonata
-- `$base64Value`, vagyis a base64 kódolása nyers Tanúsítványadatok
+tooassociate hello tanúsítvány hitelesítő adatai az ügyfélalkalmazás hello Azure AD-ben, meg kell tooedit hello alkalmazás jegyzékében.
+Tanúsítvány céllal rendelkezik, toocompute kell:
+- `$base64Thumbprint`, amely hello, base64 kódolást hello tanúsítvány kivonata
+- `$base64Value`, amely hello, hello tanúsítványi nyers adatok base64 kódolása
 
-is meg kell adnia a kulcs az alkalmazásjegyzékben szereplő azonosító egy GUID (`$keyId`)
+Emellett szükség van egy GUID tooidentify hello kulcs hello alkalmazásjegyzékben tooprovide (`$keyId`)
 
-Az ügyfélalkalmazást Azure-alkalmazás regisztrációja, nyissa meg az alkalmazás jegyzékében, és cserélje le a *keyCredentials* tulajdonságot, amelyben az új tanúsítvány adatait a következő séma:
+Hello Azure-alkalmazás regisztrációja hello ügyfélalkalmazáshoz, nyissa meg az alkalmazásjegyzék hello, és cserélje le a hello *keyCredentials* tulajdonságot, amelyben az új tanúsítvány adatait a következő séma hello:
 ```
 "keyCredentials": [
     {
@@ -101,4 +101,4 @@ Az ügyfélalkalmazást Azure-alkalmazás regisztrációja, nyissa meg az alkalm
 ]
 ```
 
-Mentse a módosításokat az alkalmazás jegyzékében, és töltse fel az Azure AD. A keyCredentials tulajdonság többértékű, így előfordulhat, hogy több kulcskezelési több tanúsítványok feltöltése.
+Hello módosításokat toohello alkalmazásjegyzék mentéséhez, és töltse fel a tooAzure AD. hello keyCredentials tulajdonság többértékű, így előfordulhat, hogy több kulcskezelési több tanúsítványok feltöltése.

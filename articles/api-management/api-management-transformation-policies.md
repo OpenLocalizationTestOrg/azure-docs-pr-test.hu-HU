@@ -1,6 +1,6 @@
 ---
-title: "Az Azure API Management-átalakítási csoportházirendek |} Microsoft Docs"
-description: "További tudnivalók az Azure API Management használható átalakítási csoportházirendek."
+title: "az API Management-átalakítási csoportházirendek aaaAzure |} Microsoft Docs"
+description: "Hello átalakítási csoportházirendek használható az Azure API Management megismerése."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: c2bed904b82c569b28a6e00d0cc9b49107c148dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2891cc52d0017b717b3c12a98bc4941b5fd7ea78
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-transformation-policies"></a>Az API Management-átalakítási csoportházirendek
-Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek hello. Hozzáadása és házirendek konfigurálásával kapcsolatos tudnivalókat lásd: [házirendek az API Management](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="TransformationPolicies"></a>Átalakítási csoportházirendek  
   
--   [JSON átalakítása XML](api-management-transformation-policies.md#ConvertJSONtoXML) - konvertálja kérés vagy válasz body JSON formátumból az XML.  
+-   [Alakítsa át a JSON tooXML](api-management-transformation-policies.md#ConvertJSONtoXML) - konvertálja kérés vagy válasz JSON tooXML a body.  
   
--   [XML konvertálása JSON](api-management-transformation-policies.md#ConvertXMLtoJSON) - konvertálja kérés vagy válasz body az XML-JSON.  
+-   [Átalakítás XML tooJSON](api-management-transformation-policies.md#ConvertXMLtoJSON) - konvertálja kérés vagy válasz XML tooJSON a body.  
   
 -   [Keresés és csere törzsében karakterlánc](api-management-transformation-policies.md#Findandreplacestringinbody) - kérés vagy válasz karakterláncrész keresése, és lecseréli egy másik karakterláncrészletet.  
   
--   [URL-címek maszkolja a tartalom](api-management-transformation-policies.md#MaskURLSContent) -hivatkozások átírja (maszkok) a válaszban szereplő body, hogy azok az átjárón keresztül a megfelelő hivatkozásra mutat.  
+-   [A tartalom URL-címek maszkolnia](api-management-transformation-policies.md#MaskURLSContent) -átírja (maszkok) hivatkozások hello válaszul body, így a pontok toohello egyenértékű hivatkozás hello átjárón keresztül.  
   
--   [Állítsa be háttérszolgáltatás](api-management-transformation-policies.md#SetBackendService) -módosítja a háttérszolgáltatáshoz egy bejövő kérelemhez.  
+-   [Állítsa be háttérszolgáltatás](api-management-transformation-policies.md#SetBackendService) -hello háttérszolgáltatást egy bejövő kérelemhez változik.  
   
--   [Állítsa be a szervezet](api-management-transformation-policies.md#SetBody) -beállítja az üzenettörzs, a bejövő és kimenő kérelmek.  
+-   [Állítsa be a szervezet](api-management-transformation-policies.md#SetBody) – beállítja a bejövő és kimenő kérelmek hello az üzenet törzse.  
   
--   [Set HTTP-fejléc](api-management-transformation-policies.md#SetHTTPheader) - hozzárendel egy értéket egy meglévő válasz és/vagy a kérelem fejlécében vagy ad hozzá egy új válasz és/vagy a kérelem fejlécében.  
+-   [Set HTTP-fejléc](api-management-transformation-policies.md#SetHTTPheader) - hozzárendel egy érték tooan meglévő válasz és/vagy a kérelem fejlécében vagy ad hozzá egy új válasz és/vagy a kérelem fejlécében.  
   
 -   [Állítsa be a lekérdezési karakterlánc paraméter](api-management-transformation-policies.md#SetQueryStringParameter) - ad hozzá, értéke váltja fel, vagy törli a kérelem lekérdezési karakterláncot.  
   
--   [URL-cím újraírása](api-management-transformation-policies.md#RewriteURL) – a kérelem URL-címe nyilvános formájukban a várt érték a webszolgáltatás által az űrlap alakítja.  
+-   [URL-cím újraírása](api-management-transformation-policies.md#RewriteURL) -nyilvános űrlap toohello formájukban hello webszolgáltatás által várt a kérelem URL-cím alakítja.  
   
--   [Átalakítás XSLT használatával XML](api-management-transformation-policies.md#XSLTransform) -XSL-átalakítás alkalmazása XML-kérés vagy válasz törzsében.  
+-   [Átalakítás XSLT használatával XML](api-management-transformation-policies.md#XSLTransform) -egy XSL átalakítása tooXML hello kérés vagy válasz törzsében vonatkozik.  
   
-##  <a name="ConvertJSONtoXML"></a>JSON átalakítása XML  
- A `json-to-xml` házirend alakít egy kérés vagy válasz törzsében JSON formátumból XML.  
+##  <a name="ConvertJSONtoXML"></a>Alakítsa át a JSON tooXML  
+ Hello `json-to-xml` házirend kérés vagy válasz törzsében konvertálja a JSON tooXML.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -78,18 +78,18 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|alkalmazása|Az attribútum a következő értékek egyikére kell beállítani.<br /><br /> átalakítás - mindig - mindig érvényesek.<br />-tartalom típus-json - konvertálás csak akkor, ha a response Content-Type fejléc JSON jelenlétét jelzi.|Igen|N/A|  
-|Vegye figyelembe-elfogadja-fejléc|Az attribútum a következő értékek egyikére kell beállítani.<br /><br /> átalakítás - igaz - alkalmazni, amennyiben JSON kérelem Accept fejlécet.<br />-hamis - átalakítás mindig érvényesek.|Nem|Igaz|  
+|alkalmazása|hello attribútumot a következő értékek hello tooone kell beállítani.<br /><br /> átalakítás - mindig - mindig érvényesek.<br />-tartalom típus-json - konvertálás csak akkor, ha a response Content-Type fejléc JSON jelenlétét jelzi.|Igen|N/A|  
+|Vegye figyelembe-elfogadja-fejléc|hello attribútumot a következő értékek hello tooone kell beállítani.<br /><br /> átalakítás - igaz - alkalmazni, amennyiben JSON kérelem Accept fejlécet.<br />-hamis - átalakítás mindig érvényesek.|Nem|Igaz|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő, hiba  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
-##  <a name="ConvertXMLtoJSON"></a>XML konvertálása JSON  
- A `xml-to-json` házirend alakít egy kérés vagy válasz törzsének XML-fájljából JSON. Ez a házirend segítségével korszerűsítésére API-kat csak XML-háttérrendszer webszolgáltatások alapján.  
+##  <a name="ConvertXMLtoJSON"></a>XML-tooJSON átalakítása  
+ Hello `xml-to-json` házirend XML tooJSON kérés vagy válasz törzsében konvertál. Ez a házirend API-k alapján háttér csak XML-webszolgáltatások használt toomodernize lehet.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -121,24 +121,24 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|típusa|Az attribútum a következő értékek egyikére kell beállítani.<br /><br /> -javascript-barát – az átalakított JSON a JavaScript-fejlesztők számára egyszerű űrlap rendelkezik.<br />a konvertált JSON - közvetlen – az eredeti XML-dokumentum struktúra tükrözi.|Igen|N/A|  
-|alkalmazása|Az attribútum a következő értékek egyikére kell beállítani.<br /><br /> -mindig - átalakítás mindig.<br />-tartalom típus-xml - konvertálás csak akkor, ha a response Content-Type fejléc XML jelenlétét jelzi.|Igen|N/A|  
-|Vegye figyelembe-elfogadja-fejléc|Az attribútum a következő értékek egyikére kell beállítani.<br /><br /> átalakítás - igaz - alkalmazni, amennyiben XML Accept fejlécet kérés van szükség.<br />-hamis - átalakítás mindig érvényesek.|Nem|Igaz|  
+|típusa|hello attribútumot a következő értékek hello tooone kell beállítani.<br /><br /> -javascript-barát - hello alakítja át a JSON egy űrlap felhasználóbarát tooJavaScript fejlesztők rendelkezik.<br />-közvetlen – hello konvertált JSON tükrözi hello eredeti XML-dokumentum struktúra.|Igen|N/A|  
+|alkalmazása|hello attribútumot a következő értékek hello tooone kell beállítani.<br /><br /> -mindig - átalakítás mindig.<br />-tartalom típus-xml - konvertálás csak akkor, ha a response Content-Type fejléc XML jelenlétét jelzi.|Igen|N/A|  
+|Vegye figyelembe-elfogadja-fejléc|hello attribútumot a következő értékek hello tooone kell beállítani.<br /><br /> átalakítás - igaz - alkalmazni, amennyiben XML Accept fejlécet kérés van szükség.<br />-hamis - átalakítás mindig érvényesek.|Nem|Igaz|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő, hiba  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
 ##  <a name="Findandreplacestringinbody"></a>Keresés és csere törzsében karakterlánc  
- A `find-and-replace` házirend kérés vagy válasz karakterláncrész keresése, és lecseréli egy másik karakterláncrészletet.  
+ Hello `find-and-replace` házirend kérés vagy válasz karakterláncrész keresése, és lecseréli egy másik karakterláncrészletet.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
 ```xml  
-<find-and-replace from="what to replace" to="replacement" />  
+<find-and-replace from="what tooreplace" to="replacement" />  
 ```  
   
 ### <a name="example"></a>Példa  
@@ -157,21 +157,21 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|A|A keresendő karakterláncot.|Igen|N/A|  
-|erre:|A behelyettesítendő karakterláncot. Adja meg a nulla hosszúságú helyettesítő karakterláncok eltávolítása a keresési karakterláncot.|Igen|N/A|  
+|A|hello karakterlánc toosearch számára.|Igen|N/A|  
+|erre:|hello behelyettesítendő karakterláncot. Adjon meg egy nulla hosszúságú helyettesítő karakterlánc tooremove hello keresési karakterlánc.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
 ##  <a name="MaskURLSContent"></a>A tartalom maszk URL-címek  
- A `redirect-content-urls` házirend átírja a válasz törzsében (maszkok) hivatkozásokat úgy, hogy azok az átjárón keresztül a megfelelő hivatkozásra mutat. A kimenő szakaszban használatával újra írási válasz törzsében hivatkozások be az átjáró mutasson. A bejövő szakaszban lévő használhatók az ellenkezője.  
+ Hello `redirect-content-urls` házirend átírja hello válasz törzsében (maszkok) hivatkozásokat úgy, hogy azok pont toohello egyenértékű hivatkozás hello átjárón keresztül. A hello kimenő szakasz toore-írási válasz törzsében hivatkozások toomake őket pont toohello átjáró használatára. Hello használható bejövő ellentétes hatás szakasz.  
   
 > [!NOTE]
->  Ez a házirend nem változik, mint bármely térközkaraktert `Location` fejléceket. A fejléc értékei módosításához használja a [set-fejléc](api-management-transformation-policies.md#SetHTTPheader) házirend.  
+>  Ez a házirend nem változik, mint bármely térközkaraktert `Location` fejléceket. toochange fejléc értékei, használja a hello [set-fejléc](api-management-transformation-policies.md#SetHTTPheader) házirend.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -192,19 +192,19 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
 |az átirányítási-tartalom-URL-címek|A gyökérelem.|Igen|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
 ##  <a name="SetBackendService"></a>Háttér-szolgáltatás beállítása  
- Használja a `set-backend-service` olyan bejövő kérelemre átirányítása egy másik háttér, mint a megadott API-beállítások az adott műveletre vonatkozó házirendet. Ez a házirend a háttérrendszer alap URL-címe a bejövő kérelem a házirendben megadott módosításait.  
+ Használjon hello `set-backend-service` házirend tooredirect egy bejövő kérelem tooa különböző háttér, mint egy megadott hello API-beállítások az adott műveletre vonatkozó hello. Ez a házirend hello háttér szolgáltatás alap URL-CÍMÉT hello bejövő kérelem toohello hello házirendben megadott változik.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
 ```xml  
-<set-backend-service base-url="base URL of the backend service" />  
+<set-backend-service base-url="base URL of hello backend service" />  
 ```  
   
 ### <a name="example"></a>Példa  
@@ -227,13 +227,13 @@ Ez a témakör egy hivatkozást a következő API-felügyeleti házirendek. Hozz
     </outbound>  
 </policies>  
 ```  
-Ebben a példában a készlet háttér szolgáltatás házirend továbbítja a kérelmet a verzióértéket, mint a megadott API-ban egy másik háttérszolgáltatás a lekérdezési karakterláncban átadott alapján.
+Ez a példa hello a háttér-szolgáltatás szabály beállítása továbbítja a kérelmet hello lekérdezési karakterlánc tooa különböző háttérszolgáltatást hello egy meghatározott hello API mint az átadott hello verzióértéket alapján.
   
-Kezdetben a háttérrendszer szolgáltatás alap URL-címet a API-beállítások származik. Ezért a kérelem URL-címe `https://contoso.azure-api.net/api/partners/15?version=2013-05&subscription-key=abcdef` válik `http://contoso.com/api/10.4/partners/15?version=2013-05&subscription-key=abcdef` ahol `http://contoso.com/api/10.4/` a háttér szolgáltatás URL-cím megadott API-beállítások.  
+Kezdetben hello háttér alap URL-címe, amelyből származik hello API-beállítások. Ezért a kérelem URL-címe hello `https://contoso.azure-api.net/api/partners/15?version=2013-05&subscription-key=abcdef` válik `http://contoso.com/api/10.4/partners/15?version=2013-05&subscription-key=abcdef` ahol `http://contoso.com/api/10.4/` hello háttérkiszolgáló URL-címe a hello API-beállításaiban megadott.  
   
-Ha a [< válasszon\> ](api-management-advanced-policies.md#choose) alkalmazott házirend-utasítás a háttérrendszer szolgáltatás alap URL-címet módosíthatja újra közül csak az egyiket `http://contoso.com/api/8.2` vagy `http://contoso.com/api/9.1`, attól függően, a verzió kérelem lekérdezési paraméter értéke. Ha az érték például `"2013-15"` a végső kérelem URL-cím lesz `http://contoso.com/api/8.2/partners/15?version=2013-05&subscription-key=abcdef`.  
+Ha hello [< válasszon\> ](api-management-advanced-policies.md#choose) alkalmazott házirend-utasítás hello háttér szolgáltatás alap URL-címet módosíthatja újra vagy túl`http://contoso.com/api/8.2` vagy `http://contoso.com/api/9.1`hello hello verzió kérelem lekérdezési paraméter értéke attól függően, hogy. Például ha hello értéke `"2013-15"` hello végső kérelem URL-cím lesz `http://contoso.com/api/8.2/partners/15?version=2013-05&subscription-key=abcdef`.  
   
-Ha a kérelem átalakítása-e további kívánt, más [átalakítási csoportházirendek](api-management-transformation-policies.md#TransformationPolicies) is használható. Ahhoz például, hogy távolítsa el a version lekérdezési paramétert, most, hogy a kérelem verziót adott backend routedevent irányítása a [állítsa be a lekérdezési karakterlánc paraméter](api-management-transformation-policies.md#SetQueryStringParameter) házirend segítségével távolítsa el a most redundáns version attribútum.  
+Ha további hello kérelem átalakítása kívánt, más [átalakítási csoportházirendek](api-management-transformation-policies.md#TransformationPolicies) is használható. Például tooremove hello verzió lekérdezési paraméter most, hogy hello kérelem folyamatban van irányítva tooa verziót adott háttér hello [állítsa be a lekérdezési karakterlánc paraméter](api-management-transformation-policies.md#SetQueryStringParameter) házirend lehet használt tooremove hello most redundáns version attribútum.  
   
 ### <a name="example"></a>Példa  
   
@@ -247,7 +247,7 @@ Ha a kérelem átalakítása-e további kívánt, más [átalakítási csoporth�
     </outbound>  
 </policies>  
 ```  
-Ebben a példában a házirend továbbítja a kérelmet a service fabric háttér, használja a userId lekérdezési karakterláncot, mint a partíciós kulcs, és a partíció az elsődleges replika használatával.  
+A a példa hello házirend útvonalak hello kérelem tooa service fabric háttérbeli hello userId lekérdezési karakterlánc hello partíciós kulcs használatával, és segítségével hello hello partíció elsődleges másodpéldány.  
 
 ### <a name="elements"></a>Elemek  
   
@@ -260,33 +260,33 @@ Ebben a példában a házirend továbbítja a kérelmet a service fabric hátté
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
 |alap-URL-cím|Új háttér alap URL-címe.|Nem|N/A|  
-|háttér-azonosító|A háttér-hez irányítandó azonosítója.|Nem|N/A|  
-|ú partíciókulcs|Csak érvényes a háttérkiszolgálón a Service Fabric-szolgáltatás, és a "háttér-id" van megadva. Egy adott partícióra a névfeloldási szolgáltatást használ.|Nem|N/A|  
-|ú-replika-típusa|Csak érvényes a háttérkiszolgálón a Service Fabric-szolgáltatás, és a "háttér-id" van megadva. Szabályozza, hogy a kérelem el kell küldeni egy partíció elsődleges vagy másodlagos replikája. |Nem|N/A|    
-|ú-resolve-feltétel|Csak érvényes a Service Fabric-szolgáltatás esetén a háttér. A feltétel azonosítja a Service Fabric háttér hívása új megoldás meg kell ismételni van-e.|Nem|N/A|    
-|ú-példány-szolgáltatásnév|Csak érvényes a Service Fabric-szolgáltatás esetén a háttér. Lehetővé teszi, hogy futásidőben szolgáltatáspéldány módosítása. |Nem|N/A|    
+|háttér-azonosító|Hello háttér tooroute az azonosítója.|Nem|N/A|  
+|ú partíciókulcs|Csak érvényes hello háttér Service Fabric-szolgáltatás, és a "háttér-id" van megadva. Használt tooresolve egy adott partícióra hello name resolution szolgáltatást.|Nem|N/A|  
+|ú-replika-típusa|Csak érvényes hello háttér Service Fabric-szolgáltatás, és a "háttér-id" van megadva. Szabályozza, hogy hello kérelem toohello elsődleges vagy másodlagos replikáján partíció kell lépjen. |Nem|N/A|    
+|ú-resolve-feltétel|Csak érvényes hello háttér esetén a Service Fabric-szolgáltatás. A feltétel azonosítja Ha hello hívás tooService háló háttér rendelkezik új megoldás ismételni toobe.|Nem|N/A|    
+|ú-példány-szolgáltatásnév|Csak érvényes hello háttér esetén a Service Fabric-szolgáltatás. Lehetővé teszi, hogy toochange szolgáltatáspéldány futásidőben. |Nem|N/A|    
 
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, háttér  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
 ##  <a name="SetBody"></a>Set törzse  
- Használja a `set-body` házirend beállítása az üzenettörzs, a bejövő és kimenő kérelmek. Az üzenettörzs használható eléréséhez a `context.Request.Body` tulajdonság vagy a `context.Response.Body`, attól függően, hogy a házirend van-e a bejövő vagy kimenő szakaszban.  
+ Használjon hello `set-body` házirend tooset hello üzenettörzs a bejövő és kimenő kérelmek. tooaccess hello hello is használhatja az üzenet törzse `context.Request.Body` tulajdonság vagy hello `context.Response.Body`, attól függően, hogy hello házirend van hello bejövő vagy kimenő szakasz.  
   
 > [!IMPORTANT]
->  Vegye figyelembe, hogy az üzenet elérésekor alapértelmezés szerint body használatával `context.Request.Body` vagy `context.Response.Body`, az eredeti üzenettörzs elvész, és a szervezet vissza a kifejezésben vissza kell állítani. A szervezet tartalom megőrzése érdekében állítsa a `preserveContent` paramétert `true` az üzenet való hozzáféréskor. Ha `preserveContent` értéke `true` és egy másik szervezet által visszaadott a kifejezést, a visszaadott törzs szolgál.  
+>  Vegye figyelembe, hogy amikor hozzáfér alapértelmezés szerint hello üzenet törzsének használatával `context.Request.Body` vagy `context.Response.Body`, hello eredeti üzenet törzsének elvész, és vissza hello kifejezésben hello törzs vissza kell állítani. tartalom, toopreserve hello törzs hello beállítása `preserveContent` paraméter túl`true` üdvözlőüzenetére való hozzáféréskor. Ha `preserveContent` értéke túl`true` és egy másik szervezet által visszaadott hello kifejezés hello visszaadott törzs szolgál.  
 >   
->  Használata esetén vegye figyelembe a következőket kell figyelembe venni a `set-body` házirend.  
+>  Ne feledje hello használata esetén a következő szempontok hello `set-body` házirend.  
 >   
->  -   Használatakor a `set-body` házirend számára, nem kell telepítenie egy új vagy frissített törzs visszatérési `preserveContent` való `true` mert kifejezetten megadja az új üzenettörzs tartalmát.  
-> -   A bejövő feldolgozási válasz tartalmának megőrzi értelmetlen, mert még nincs válasz.  
-> -   Megőrzi a kérést a kimenő folyamat tartalmának értelmetlen mert elküldte a kérelmet már van a háttérrendszerhez ezen a ponton.  
+>  -   Hello használata `set-body` házirend tooreturn tooset nem szükséges új vagy frissített törzs `preserveContent` túl`true` mert kifejezetten megadja hello új üzenettörzs tartalmát.  
+> -   A válasz hello tartalom megőrzése hello bejövő folyamat értelmetlen, mert még nincs válasz.  
+> -   A kérelem tartalma hello megőrzése hello kimenő folyamat értelmetlen mert hello kérelem már elküldtek toohello háttér ezen a ponton.  
 > -   Ha ezt a házirendet használja, amikor nincs az üzenet törzse, például egy bejövő GET, a rendszer kivételt hoz létre.  
   
- További információkért lásd: a `context.Request.Body`, `context.Response.Body`, és a `IMessage` szakaszában a [környezeti változó](api-management-policy-expressions.md#ContextVariables) tábla.  
+ További információkért lásd: hello `context.Request.Body`, `context.Response.Body`, és hello `IMessage` hello részeiben [környezeti változó](api-management-policy-expressions.md#ContextVariables) tábla.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -302,7 +302,7 @@ Ebben a példában a házirend továbbítja a kérelmet a service fabric hátté
 <set-body>Hello world!</set-body>  
 ```  
   
-#### <a name="example-accessing-the-body-as-a-string-note-that-we-are-preserving-the-original-request-body-so-that-we-can-access-it-later-in-the-pipeline"></a>Példa a szervezet karakterláncként elérése. Vegye figyelembe, hogy az eredeti kérés törzsében, hogy a Microsoft-e hozzáférési engedélye a folyamat későbbi szakaszában vannak megőrzi.
+#### <a name="example-accessing-hello-body-as-a-string-note-that-we-are-preserving-hello-original-request-body-so-that-we-can-access-it-later-in-hello-pipeline"></a>Példa hello törzs karakterláncként elérése. Vegye figyelembe, hogy hello eredeti kérelemtörzset, hogy a Microsoft-e hozzáférési engedélye hello folyamat későbbi szakaszában vannak megőrzi.
   
 ```xml  
 <set-body>  
@@ -316,7 +316,7 @@ Ebben a példában a házirend továbbítja a kérelmet a service fabric hátté
 </set-body>  
 ```  
   
-#### <a name="example-accessing-the-body-as-a-jobject-note-that-since-we-are-not-reserving-the-original-request-body-accesing-it-later-in-the-pipeline-will-result-in-an-exception"></a>A példa egy JObject a szervezettől elérése. Vegye figyelembe, hogy azt nem az eredeti kérés törzsében, a folyamat későbbi szakaszában okoz kivétel egypéldányú lefoglalja mivel.  
+#### <a name="example-accessing-hello-body-as-a-jobject-note-that-since-we-are-not-reserving-hello-original-request-body-accesing-it-later-in-hello-pipeline-will-result-in-an-exception"></a>A példa egy JObject hello szervezettől elérése. Vegye figyelembe, hogy a beállítást, mivel jelenleg nem lefoglalja hello eredeti kérelemtörzset, egypéldányú hello folyamat későbbi szakaszában okoz kivételt.  
   
 ```xml  
 <set-body>   
@@ -332,10 +332,10 @@ Ebben a példában a házirend továbbítja a kérelmet a service fabric hátté
 ```  
   
 #### <a name="filter-response-based-on-product"></a>A termék szűrő választ  
- A példa bemutatja, hogyan hajthat végre a tartalom alapján történő szűrés adatelemek eltávolítása a válasz érkezett a háttérszolgáltatás használata esetén a `Starter` termék. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és a 34:30 előretekerés. Megtekinthet egy áttekintést 31:50 kezdjék [a sötét égbolt előrejelzési API](https://developer.forecast.io/) ebben a bemutatóban használt.  
+ Ez a példa bemutatja, hogyan tooperform tartalom alapján történő szűrés adatelemek eltávolítása hello választ kapott hello háttérszolgáltatást hello használatakor `Starter` termék. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és too34:30 előre. Áttekintést 31:50 toosee kezdjék [sötét égbolt előrejelzési API hello](https://developer.forecast.io/) ebben a bemutatóban használt.  
   
 ```xml  
-<!-- Copy this snippet into the outbound section to remove a number of data elements from the response received from the backend service based on the name of the api product -->  
+<!-- Copy this snippet into hello outbound section tooremove a number of data elements from hello response received from hello backend service based on hello name of hello api product -->  
 <choose>  
   <when condition="@(context.Response.StatusCode == 200 && context.Product.Name.Equals("Starter"))">  
     <set-body>@{  
@@ -351,17 +351,17 @@ Ebben a példában a házirend továbbítja a kérelmet a service fabric hátté
 ```  
 
 ### <a name="using-liquid-templates-with-set-body"></a>A készlet szövegtörzzsel folyékony sablonokkal 
-A `set-body` házirend beállítható úgy, hogy használja a [folyékony](https://shopify.github.io/liquid/basics/introduction/) templating nyelv transfom olyan kérésre vagy válaszra törzsét. Ez nagyon hatékony, ha az üzenet formátuma teljesen átalakításához szüksége lehet.
+Hello `set-body` házirend lehet konfigurált toouse hello [folyékony](https://shopify.github.io/liquid/basics/introduction/) templating nyelvi tootransfom hello törzsének olyan kérésre vagy válaszra. Ez nagyon hatékony, ha az üzenet toocompletely átalakítás hello formátumát szüksége lehet.
 
 > [!IMPORTANT]
-> Folyadék megvalósítása szerepel a `set-body` házirend úgy van konfigurálva, a "C# módban". Ez különösen fontos műveleteket, mint a szűrés során. Tegyük fel, dátum szűrő használata szükséges Pascal és nagybetűhasználatnak, valamint C# dátum formázás, például:
+> hello használt folyadék végrehajtásának hello `set-body` házirend úgy van konfigurálva, a "C# módban". Ez különösen fontos műveleteket, mint a szűrés során. Tegyük fel, a dátum szűrő használatához Pascal hello használata és nagybetűhasználatnak, valamint C# dátum formázás, például:
 >
 > {{body.foo.startDateTime| Dátum: "yyyyMMddTHH:mm:ddZ"}}
 
 > [!IMPORTANT]
-> Ahhoz, hogy megfelelően egy XML-törzsére folyékony sablonnal kötést létrehozni, használja a `set-header` házirend beállítása a Content-Type vagy application/xml, text/xml (vagy bármely típusú végződő + xml), egy JSON-törzsére, kell lennie az application/json, text/json (vagy bármilyen végződő + JSON-ban).
+> A sorrend toocorrectly bind tooan XML-törzsére hello folyékony sablonnal, használja a `set-header` házirend tooset Content-Type tooeither application/xml, text/xml (vagy bármely típusú végződő + xml); a JSON-törzsére értéke lehet az application/json, text/json (vagy bármilyen típusú befejezése a + json).
 
-#### <a name="convert-json-to-soap-using-a-liquid-template"></a>JSON átalakítása SOAP folyékony sablon használatával
+#### <a name="convert-json-toosoap-using-a-liquid-template"></a>Alakítsa át a JSON tooSOAP folyékony sablon használatával
 ```xml
 <set-body template="liquid">
     <soap:Envelope xmlns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -388,15 +388,15 @@ A `set-body` házirend beállítható úgy, hogy használja a [folyékony](https
   
 |Név|Leírás|Szükséges|  
 |----------|-----------------|--------------|  
-|set-szervezet|A gyökérelem. A szöveg vagy egy törzs visszaadó kifejezések tartalmaz.|Igen|  
+|set-szervezet|A gyökérelem. Hello szöveg vagy egy törzs visszaadó kifejezések tartalmaz.|Igen|  
 
 ### <a name="properties"></a>Tulajdonságok  
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|sablon|Segítségével módosíthatja, amely a szervezet szabály beállítása templating módját. Jelenleg az egyetlen támogatott érték:<br /><br />-folyékony - törzs-szabály beállítása fogja használni a folyékony templating motor |Nem|folyadék|  
+|sablon|Törzs szabály beállítása hello használt toochange hello templating módban fog futni. Jelenleg csak a támogatott hello érték a következő:<br /><br />-folyékony - hello beállítása törzs házirend hello folyékony templating motor fogja használni. |Nem|folyadék|  
 
-A kérelem és válasz adataihoz való hozzáférést, a folyékony sablon köthető egy környezeti objektum a következő tulajdonságokkal: <br />
+Hello kérelem-válasz információ eléréséhez, hello folyékony sablon az alábbi tulajdonságokkal hello köthető tooa környezeti objektumot: <br />
 <pre>context.
     Request.
         Url
@@ -437,22 +437,22 @@ OriginalUrl.
 
 
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
 ##  <a name="SetHTTPheader"></a>HTTP-fejléc beállítása  
- A `set-header` házirend hozzárendel egy értéket egy meglévő válasz és/vagy a kérelem fejlécében vagy ad hozzá egy új válasz és/vagy a kérelem fejlécében.  
+ Hello `set-header` házirendet hozzárendeli egy érték tooan meglévő válasz és/vagy a kérelem fejlécében vagy ad hozzá egy új válasz és/vagy a kérelem fejlécében.  
   
- A HTTP-fejlécek listáját szúr be a HTTP üzenet. Ha egy bejövő folyamat, ez a házirend a HTTP-fejléceket, a kérés átadódik a célként megadott szolgáltatás az állítja be. Ha egy kimenő folyamat, ez a házirend a HTTP-fejléceket, a válasz küldi el az átjáró ügyfél állítja be.  
+ A HTTP-fejlécek listáját szúr be a HTTP üzenet. Ha egy bejövő folyamat, ez a házirend hello HTTP-fejlécek átadott toohello célszolgáltatás hello kérelem állítja be. Ha egy kimenő folyamat, ez a házirend hello HTTP-fejlécek toohello átjáró ügyfél küldött hello választ állítja be.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
 ```xml  
 <set-header name="header name" exists-action="override | skip | append | delete">  
-    <value>value</value> <!--for multiple headers with the same name add additional value elements-->  
+    <value>value</value> <!--for multiple headers with hello same name add additional value elements-->  
 </set-header>  
 ```  
   
@@ -466,11 +466,11 @@ OriginalUrl.
 </set-header>  
 ```  
   
-#### <a name="forward-context-information-to-the-backend-service"></a>Környezet adatainak által a háttérszolgáltatáshoz továbbítsa  
- Ez a példa bemutatja, hogyan alkalmazni a házirendet, adja meg a környezet adatainak által a háttérszolgáltatáshoz API szinten. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és előretekerés 10:30. 12:10 nincs egy bemutatója művelet hívása a fejlesztői portálra, ahol láthatja a házirendet, a munkahelyi hálózatban.  
+#### <a name="forward-context-information-toohello-backend-service"></a>Környezeti információkat toohello háttérszolgáltatást továbbítsa  
+ Ez a példa bemutatja, hogyan hello API tooapply házirendje szinten toosupply környezetben információk toohello háttérszolgáltatáshoz. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és too10:30 előre. 12:10 nincs a művelet hívásának hello developer portálon, ahol láthatja a munkahelyi hello házirend bemutató.  
   
 ```xml  
-<!-- Copy this snippet into the inbound element to forward some context information, user id and the region the gateway is hosted in, to the backend service for logging or evaluation -->  
+<!-- Copy this snippet into hello inbound element tooforward some context information, user id and hello region hello gateway is hosted in, toohello backend service for logging or evaluation -->  
 <set-header name="x-request-context-data" exists-action="override">  
   <value>@(context.User.Id)</value>  
   <value>@(context.Deployment.Region)</value>  
@@ -484,30 +484,30 @@ OriginalUrl.
 |Név|Leírás|Szükséges|  
 |----------|-----------------|--------------|  
 |set-fejléc|A gyökérelem.|Igen|  
-|érték|Meghatározza azt az értéket, a fejléc kell beállítani. Ezzel a névvel több fejléc fel további `value` elemek.|Igen|  
+|érték|Megadja a hello fejléc toobe set hello értékét. Hello fejléc több azonos nevű vegye fel az további `value` elemek.|Igen|  
   
 ### <a name="properties"></a>Tulajdonságok  
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|létezik-e művelet|Megadja, milyen műveletet hajtson végre a fejléc már meg van adva. Ez az attribútum a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - lecseréli a meglévő fejléc értékének.<br />-skip – nem helyettesíti a meglévő-fejléc értékét.<br />-hozzáfűzése - az érték hozzáfűzi a meglévő állomásfejléc-érték.<br />-törlés - eltávolítja a fejlécet a kérelemből.<br /><br /> Ha beállítása `override` történő besorolásakor ugyanazzal a névvel több bejegyzést eredményez az összes bejegyzés (amely jelennek meg több alkalommal) megfelelően történő beállítása fejléc; csak a listában szereplő értékek be lesznek állítva az eredményt.|Nem|felülbírálás|  
-|név|A fejlécben állítható nevét adja meg.|Igen|N/A|  
+|létezik-e művelet|Milyen műveletet tootake határozza meg, amikor hello fejléc már meg van adva. Ez az attribútum hello a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - cserél hello értéke hello meglévő fejléc.<br />-skip – nem helyettesíti a hello meglévő állomásfejléc-érték.<br />-hozzáfűzése - hozzáfűzi hello érték toohello meglévő állomásfejléc-érték.<br />-törlés – hello kérelemből eltávolítja hello fejlécet.<br /><br /> Ha értéke túl`override` csak a listában szereplő értékek hello eredmény be lesznek állítva; a hello azonos nevű eredmények hello fejlécben set függően tooall bejegyzéseket tartalmaz, (amelyek jelennek meg több alkalommal) alatt történő besorolásakor több bejegyzést.|Nem|felülbírálás|  
+|név|Hello fejléc toobe készlet nevét adja meg.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő háttér,-hiba  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
 ##  <a name="SetQueryStringParameter"></a>Lekérdezési karakterlánc-paraméter beállítása  
- A `set-query-parameter` házirendnek, cserél értékét, vagy a törlések kérelem lekérdezési karakterláncot. Felelt meg a lekérdezés által a háttérszolgáltatáshoz nem kötelező várt paraméter használható, vagy soha nem szerepelnek a kérelmet.  
+ Hello `set-query-parameter` házirendnek, cserél értékét, vagy a törlések kérelem lekérdezési karakterláncot. Lehet használt toopass hello háttérszolgáltatást által várt lekérdezési paramétereket, amelyek választható vagy soha nem szerepelnek a hello kérelem.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
 ```xml  
 <set-query-parameter name="param name" exists-action="override | skip | append | delete">  
-    <value>value</value> <!--for multiple parameters with the same name add additional value elements-->  
+    <value>value</value> <!--for multiple parameters with hello same name add additional value elements-->  
 </set-query-parameter>  
 ```  
   
@@ -521,16 +521,16 @@ OriginalUrl.
   <parameter name="api-key" exists-action="skip">  
     <value>12345678901</value>  
   </parameter>  
-  <!-- for multiple parameters with the same name add additional value elements -->  
+  <!-- for multiple parameters with hello same name add additional value elements -->  
 </set-query-parameter>  
   
 ```  
   
-#### <a name="forward-context-information-to-the-backend-service"></a>Környezet adatainak által a háttérszolgáltatáshoz továbbítsa  
- Ez a példa bemutatja, hogyan alkalmazni a házirendet, adja meg a környezet adatainak által a háttérszolgáltatáshoz API szinten. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és előretekerés 10:30. 12:10 nincs egy bemutatója művelet hívása a fejlesztői portálra, ahol láthatja a házirendet, a munkahelyi hálózatban.  
+#### <a name="forward-context-information-toohello-backend-service"></a>Környezeti információkat toohello háttérszolgáltatást továbbítsa  
+ Ez a példa bemutatja, hogyan hello API tooapply házirendje szinten toosupply környezetben információk toohello háttérszolgáltatáshoz. A házirenddel és konfigurálása a bemutatója, lásd: [felhő fedik le a epizód 177: több API a felügyeleti funkcióinak Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) és too10:30 előre. 12:10 nincs a művelet hívásának hello developer portálon, ahol láthatja a munkahelyi hello házirend bemutató.  
   
 ```xml  
-<!-- Copy this snippet into the inbound element to forward a piece of context, product name in this example, to the backend service for logging or evaluation -->  
+<!-- Copy this snippet into hello inbound element tooforward a piece of context, product name in this example, toohello backend service for logging or evaluation -->  
 <set-query-parameter name="x-product-name" exists-action="override">  
   <value>@(context.Product.Name)</value>  
 </set-query-parameter>  
@@ -544,33 +544,33 @@ OriginalUrl.
 |Név|Leírás|Szükséges|  
 |----------|-----------------|--------------|  
 |a Set-lekérdezés-paraméter|A gyökérelem.|Igen|  
-|érték|Meghatározza azt az értéket, a lekérdezési paraméter kell beállítani. Ezzel a névvel több lekérdezésparamétereket fel további `value` elemek.|Igen|  
+|érték|Megadja a hello lekérdezés paraméterhalmaz toobe hello értékét. Több lekérdezés paramétereket hello ugyanazt a nevet adja hozzá további `value` elemek.|Igen|  
   
 ### <a name="properties"></a>Tulajdonságok  
   
 |Név|Leírás|Szükséges|Alapértelmezett|  
 |----------|-----------------|--------------|-------------|  
-|létezik-e művelet|Megadja, milyen műveletet hajtson végre a következő lekérdezésparaméter már meg van adva. Ez az attribútum a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - lecseréli a meglévő paraméter értékét.<br />-skip - függvény nem cseréli le a meglévő lekérdezési paraméter értéke.<br />-hozzáfűzése - az érték hozzáfűzi a meglévő lekérdezési paraméter értéke.<br />-törlés - eltávolítja a következő lekérdezésparaméter a kérelmet.<br /><br /> Ha beállítása `override` történő besorolásakor ugyanazzal a névvel több bejegyzés a következő lekérdezésparaméter összes bejegyzés (amely jelennek meg több alkalommal) megfelelően történő beállítása eredményez; csak a listában szereplő értékek be lesznek állítva az eredményt.|Nem|felülbírálás|  
-|név|Megadja annak a nevét, a lekérdezési paramétert kell beállítani.|Igen|N/A|  
+|létezik-e művelet|Milyen műveletet tootake határozza meg, amikor hello lekérdezési paraméter már meg van adva. Ez az attribútum hello a következő értékek egyikének kell lennie.<br /><br /> -felülbírálás - cserél hello hello meglévő paraméter értékét.<br />-skip - függvény nem cseréli le hello meglévő lekérdezési paraméter értéke.<br />-hozzáfűzése - hozzáfűzi hello érték toohello meglévő lekérdezési paraméter értéke.<br />-törlés - eltávolítása hello kérelem hello lekérdezési paraméter.<br /><br /> Ha értéke túl`override` csak a listában szereplő értékek hello eredmény be lesznek állítva; a hello azonos nevű eredmények hello lekérdezési paraméter beállítása függően tooall bejegyzéseket tartalmaz, (amelyek jelennek meg több alkalommal) alatt történő besorolásakor több bejegyzés.|Nem|felülbírálás|  
+|név|Hello lekérdezési paraméter toobe készlet nevét adja meg.|Igen|N/A|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, háttér  
   
 -   **Házirend hatókörök:** globális, termék, API-művelet  
   
 ##  <a name="RewriteURL"></a>URL-cím újraírása  
- A `rewrite-uri` házirend konvertálja a kérelem URL-CÍMÉT a nyilvános űrlapból az űrlapot, a webszolgáltatás által várt a következő példában látható módon.  
+ Hello `rewrite-uri` házirend a nyilvános űrlap toohello formájukban hello webszolgáltatás, amelyet várt alakítja a kérelem URL-CÍMÉT, ahogy az alábbi példa hello.  
   
 -   Nyilvános URL-`http://api.example.com/storenumber/ordernumber`  
   
 -   Kérelem URL-`http://api.example.com/v2/US/hardware/storenumber&ordernumber?City&State`  
   
- Ez a házirend használhatja emberi és/vagy a böngésző-barát URL-címet kell lennie alakítja át a webszolgáltatás által várt URL-cím formátumú. Ez a házirend csak kell alkalmazni, amikor az ilyen tiszta URL-címeket, a RESTful URL-címek, a felhasználóbarát URL-címek vagy a Keresőmotor-barát URL-címeket tisztán strukturális URL-címeket, nem tartalmazhat lekérdezési karakterláncot, és ehelyett tartalmaznak az csak az elérési útját az erőforrás (például egy másik URL-formátum Miután a rendszer és a szolgáltató). Ez gyakran történik esztétikai, a használhatóság és a keresőmotor (keresőmotor-Optimalizáláshoz) optimalizálási céllal.  
+ Ez a házirend használhatja emberi és/vagy a böngésző-barát URL-címet kell alakul hello webszolgáltatás által várt hello URL-cím formátumba. Ez a házirend csak kell alkalmazni, amikor egy másik URL-cím formátumban, például a tiszta URL-címeket, a RESTful URL-címeket, a felhasználóbarát URL-címek vagy a Keresőmotor-barát URL-címek, amelyek tisztán strukturális URL-címek, amely nem tartalmazhat lekérdezési karakterláncot, és helyette a hello csak hello elérési tartalmaz ilyen toobe az erőforrás (után hello séma és a hello szolgáltató). Ez gyakran történik esztétikai, a használhatóság és a keresőmotor (keresőmotor-Optimalizáláshoz) optimalizálási céllal.  
   
 > [!NOTE]
->  Csak a házirenddel lekérdezési karakterlánc paramétereket adhat hozzá. Extra Sablonparaméterek elérési útja nem adható hozzá az átírást URL-címben.  
+>  Csak a lekérdezési karakterlánc paraméterek hello házirend használatával adhat hozzá. További elérési Sablonparaméterek a hello újraírási URL-cím nem vehető fel.  
 
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -592,7 +592,7 @@ OriginalUrl.
 </policies>  
 ```  
 ```xml
-<!-- Assuming incoming request is /get?a=b&c=d and operation template is set to /get?a={b} -->
+<!-- Assuming incoming request is /get?a=b&c=d and operation template is set too/get?a={b} -->
 <policies>  
     <inbound>  
         <base />  
@@ -605,7 +605,7 @@ OriginalUrl.
 <!-- Resulting URL will be /put?c=d -->
 ```  
 ```xml
-<!-- Assuming incoming request is /get?a=b&c=d and operation template is set to /get?a={b} -->
+<!-- Assuming incoming request is /get?a=b&c=d and operation template is set too/get?a={b} -->
 <policies>  
     <inbound>  
         <base />  
@@ -628,18 +628,18 @@ OriginalUrl.
   
 |Attribútum|Leírás|Szükséges|Alapértelmezett|  
 |---------------|-----------------|--------------|-------------|  
-|sablon|A tényleges webes szolgáltatás URL-cím elé a lekérdezési karakterlánc paramétereket. Kifejezések használata esetén a teljes érték kifejezésnek kell lennie.|Igen|N/A|  
-|Másolás páratlan számú paraméterei|Megadja, hogy nincs jelen az eredeti URL-sablonban a bejövő kérelemben szereplő lekérdezési paraméterek kerülnek újbóli írása sablonban megadott URL-|Nem|Igaz|  
+|sablon|hello tényleges webes szolgáltatás URL-cím elé a lekérdezési karakterlánc paramétereket. Kifejezések használata esetén a hello egész értéknek kell lennie egy kifejezés.|Igen|N/A|  
+|Másolás páratlan számú paraméterei|Megadja, hogy a lekérdezés-paraméterek a hello bejövő kérelem nem található meg a hello eredeti URL-cím sablon kerülnek, toohello hello által megadott URL-cím újbóli írása sablon|Nem|Igaz|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő  
   
 -   **Házirend hatókörök:** termék, API-művelet  
   
 ##  <a name="XSLTransform"></a>Az XSLT-vel XML átalakítása  
- A `Transform XML using an XSLT` házirend XSL-átalakítás alkalmazása XML-kérés vagy válasz törzsében.  
+ Hello `Transform XML using an XSLT` házirend vonatkozik egy XSL átalakítása tooXML hello kérés vagy válasz törzsében.  
   
 ### <a name="policy-statement"></a>Házirendutasítás  
   
@@ -692,11 +692,11 @@ OriginalUrl.
 |Név|Leírás|Szükséges|  
 |----------|-----------------|--------------|  
 |XSL-átalakítás|A gyökérelem.|Igen|  
-|A paraméter|Adja meg a transzformáció bemeneti használt változókat használatával|Nem|  
-|XSL: stylesheet|Stíluslap gyökérelem. Minden elemek és attribútumok vannak meghatározva hajtsa végre a szabványos [XSLT-specifikációja](http://www.w3.org/TR/xslt)|Igen|  
+|A paraméter|Hello átalakító használt használt toodefine változók|Nem|  
+|XSL: stylesheet|Stíluslap gyökérelem. Minden elemek és attribútumok vannak meghatározva kövesse hello standard [XSLT-specifikációja](http://www.w3.org/TR/xslt)|Igen|  
   
 ### <a name="usage"></a>Használat  
- Ez a házirend használható a következő házirend [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Ez a házirend használható a következő házirend hello [szakaszok](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) és [hatókörök](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Házirend szakaszok:** bejövő, kimenő  
   

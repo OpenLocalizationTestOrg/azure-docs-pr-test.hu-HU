@@ -1,6 +1,6 @@
 ---
-title: "Bejelentkezés egy mélyhivatkozás használó alkalmazások problémák |} Microsoft Docs"
-description: "Alkalmazáshoz való hozzáférés az Azure AD mélyhivatkozás URL-címről kapcsolatos problémák elhárítása"
+title: "bejelentkezés az alkalmazást egy mélyhivatkozás tooan aaaProblems |} Microsoft Docs"
+description: "Hogyan alkalmazáshoz való hozzáférés az Azure AD mélyhivatkozás URL-címről tootroubleshoot problémák"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,253 +13,253 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 798015ab68afc65378cffc75afec9c7f91fc1926
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dc82410001ac05895cc0244c3a89ace71bcf01a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problems-signing-in-to-an-application-using-a-deeplink"></a>A mélyhivatkozási használó alkalmazások történő bejelentkezés problémák
+# <a name="problems-signing-in-tooan-application-using-a-deeplink"></a>Bejelentkezés az alkalmazást egy mélyhivatkozás tooan problémák
 
-A hozzáférési Panel egy webes portál, amely lehetővé teszi a felhasználó munkahelyi vagy iskolai fiókkal az Azure Active Directory (Azure AD) a megtekintése, és indítsa el a felhőalapú alkalmazások, hogy az Azure AD-rendszergazda engedélyezte őket hozzáférés annak. 
+hello hozzáférési Panel egy webes portál, amely lehetővé teszi a felhasználó munkahelyi vagy iskolai fiókkal az Azure Active Directory (Azure AD) tooview és kezdő felhőalapú alkalmazások, hogy hello Azure AD-rendszergazda rendelkezik hozzáféréssel őket. 
 
-Ezeket az alkalmazásokat úgy vannak konfigurálva, az Azure AD portálon a felhasználó nevében. Az alkalmazás megfelelően konfigurálva legyen, és a felhasználó vagy egy csoport, a felhasználó tagja a hozzáférési panelen az alkalmazást.
+Ezeket az alkalmazásokat úgy vannak konfigurálva, hello Azure AD portálon hello felhasználó nevében. hello alkalmazás megfelelően kell konfigurálni, és a hozzárendelt toohello felhasználó vagy csoport hello felhasználó tagja a hozzáférési Panel hello toosee hello alkalmazás.
 
-Mélyhivatkozással vagy a felhasználói hozzáférés URL-címei a felhasználók használhatják a jelszó-SSO alkalmazások közvetlenül elérje a böngészők URL-cím sávok hivatkozásokat. Nyissa meg ezt a hivatkozást, a felhasználók fognak automatikusan nélkül a hozzáférési panel először az alkalmazás aláírt. Ez az egyazon kapcsolat, amely felhasználói az Office 365 alkalmazásindító ezek az alkalmazások eléréséhez.
+Mélyhivatkozással vagy a felhasználói hozzáférés URL-címei a felhasználók használhatják a jelszó-SSO alkalmazások közvetlenül a böngészők URL-címről bar tooaccess hivatkozásokat. Toothis hivatkozás útvonalon, a felhasználók fognak automatikusan anélkül, hogy először a hozzáférési Panel toogo toohello hello alkalmazásba aláírva. Ez a hello felhasználók használó tooaccess az alkalmazások hello Office 365 alkalmazásindító ugyanazon kapcsolathoz.
 
-## <a name="general-issues-to-check-first"></a>Először ellenőrizze a általános problémák
+## <a name="general-issues-toocheck-first"></a>Általános problémák első toocheck
 
--   Győződjön meg arról, hogy a használatával egy **böngésző** , amely megfelel a hozzáférési Panel minimális követelményeinek.
+-   Győződjön meg arról, hogy a használatával egy **böngésző** , amely megfelel a hozzáférési Panel hello hello minimális követelményeinek.
 
--   Győződjön meg arról, hogy a felhasználó böngészőjéből az alkalmazás URL-CÍMÉT hozzáadta a **megbízható helyek**.
+-   Ellenőrizze, hogy hello böngésző hello alkalmazás tooits hello URL-CÍMÉT hozzáadta **megbízható helyek**.
 
--   Ellenőrizze, hogy az alkalmazás **konfigurált** megfelelően.
+-   Ellenőrizze, hogy toocheck hello alkalmazás **konfigurált** megfelelően.
 
--   Győződjön meg arról, hogy a felhasználói fiók **engedélyezett** a indított bejelentkezések.
+-   Ellenőrizze, hogy a hello felhasználói fiók **engedélyezett** a indított bejelentkezések.
 
--   Győződjön meg arról, hogy a felhasználói fiók **nincs zárolva.**
+-   Ellenőrizze, hogy a hello felhasználói fiók **nincs zárolva.**
 
--   Győződjön meg arról, hogy a felhasználó **nem lejárt vagy elfelejtett jelszó.**
+-   Győződjön meg arról, hogy hello felhasználói **nem lejárt vagy elfelejtett jelszó.**
 
 -   Győződjön meg arról, hogy **multi-factor Authentication** nem blokkolja a hozzáférést.
 
 -   Győződjön meg arról, hogy egy **feltételes hozzáférési házirend** vagy **Identity Protection** házirend nem blokkolja a hozzáférést.
 
--   Győződjön meg arról, hogy a felhasználó **hitelesítési kapcsolattartási adatai** esetén a multi-factor Authentication vagy feltételes hozzáférési házirendek kényszerítését dátum.
+-   Győződjön meg arról, hogy a felhasználó **hitelesítési kapcsolattartási adatai** működik-e toodate tooallow többtényezős hitelesítést vagy feltételes hozzáférési házirendek toobe lépnek érvénybe.
 
--   A győződjön meg arról is megpróbálja törlésével a böngésző cookie-kat, majd próbálkozzon újból bejelentkezni.
+-   Győződjön meg arról, hogy tooalso próbálkozzon a böngésző cookie-k törölje, majd próbálkozzon újra a toosign.
 
-## <a name="checking-the-deeplink"></a>A mélyhivatkozási ellenőrzése
+## <a name="checking-hello-deeplink"></a>Hello mélyhivatkozás ellenőrzése
 
-Ellenőrizze, hogy van-e a megfelelő mélyhivatkozás, kövesse az alábbi lépéseket:
+toocheck hello megfelelő mélyhivatkozás, akkor kövesse hello alábbi lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
+1.  Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-  * Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+  * Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-6.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
+6.  Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
 
-7.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+7.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-8.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+8.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-9.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+9.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-10. Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+10. Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-   * Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+   * Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-11. A mélyhivatkozási az ellenőrzés kívánt alkalmazás kiválasztása.
+11. Válassza ki a kívánt hello ellenőrzés hello mélyhivatkozás a hello alkalmazást.
 
-12. A címke található **felhasználói URL-CÍMEN**. Ön mélyhivatkozás URL-címet meg kell felelnie.
+12. Hello címke található **felhasználói URL-CÍMEN**. Ön mélyhivatkozás URL-címet meg kell felelnie.
 
-## <a name="how-to-install-the-access-panel-browser-extension"></a>A hozzáférési Panel bővítmény telepítése
+## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>Hogyan tooinstall hello hozzáférési Panel bővítmény
 
-A hozzáférési Panel bővítmény telepítéséhez kövesse az alábbi lépéseket:
+tooinstall hello hozzáférési Panel bővítmény, kövesse az alábbi hello lépéseket:
 
-1.  Nyissa meg a [hozzáférési Panel](https://myapps.microsoft.com) valamelyik támogatott böngészők és való bejelentkezést egy **felhasználói** az Azure AD-ben.
+1.  Nyissa meg hello [hozzáférési Panel](https://myapps.microsoft.com) valamelyik hello támogatott böngészők és való bejelentkezést egy **felhasználói** az Azure AD-ben.
 
-2.  Kattintson egy **jelszó-SSO alkalmazás** a hozzáférési panelen.
+2.  Kattintson egy **jelszó-SSO alkalmazás** a hozzáférési Panel hello.
 
-3.  Válassza ki a szoftver telepítéséhez megkérdezi **telepítés**.
+3.  Hello Rákérdezés azzal a kérdéssel tooinstall hello szoftver, válassza ki **telepítés**.
 
-4.  A böngésző alapján kell irányítani a letöltési hivatkozás. **Adja hozzá** az bővítményt, hogy a böngészőben.
+4.  A böngésző alapján kell irányított toohello letöltési hivatkozását. **Adja hozzá** hello bővítmény tooyour böngésző.
 
-5.  Ha a böngésző, válassza ki vagy **engedélyezése** vagy **engedélyezése** a bővítményt.
+5.  Ha a böngésző kéri, válassza ki a tooeither **engedélyezése** vagy **engedélyezése** hello bővítmény.
 
 6.  Korábban telepítve, **indítsa újra a** a böngésző-munkamenetet.
 
-7.  Jelentkezzen be a hozzáférési panelre, és tekintse meg, ha **indítása** a jelszó-egyszeri bejelentkezés alkalmazásokhoz
+7.  Jelentkezzen be a hozzáférési Panel hello, és tekintse meg, ha **indítása** a jelszó-egyszeri bejelentkezés alkalmazásokhoz
 
-Az alábbi közvetlen hivatkozások közül a Chrome és Firefox is letöltheti a bővítmény:
+Az alábbi hello közvetlen hivatkozások Chrome és Firefox is letöltheti hello bővítmény:
 
 -   [Chrome hozzáférési Panel bővítmény](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 -   [A Firefox hozzáférési Panel bővítmény](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-## <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Jelszó egyszeri bejelentkezés az Azure AD gyűjtemény alkalmazás konfigurálása
+## <a name="how-tooconfigure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Hogyan tooconfigure jelszó egyszeri bejelentkezés az Azure AD gyűjtemény alkalmazáshoz
 
-Egy alkalmazás kell az Azure AD-galériából konfigurálása:
+egy alkalmazás hello Azure AD-galériából tooconfigure kell:
 
--   [Alkalmazás hozzáadása az Azure AD-galériából](#add-an-application-from-the-Azure-AD-gallery)
+-   [Alkalmazás hozzáadása hello Azure AD-galériából](#add-an-application-from-the-Azure-AD-gallery)
 
--   [Állítsa be az alkalmazását jelszó egyszeri bejelentkezést.](#configure-the-application-for-password-single-sign-on)
+-   [Állítsa be hello alkalmazását jelszó egyszeri bejelentkezést.](#configure-the-application-for-password-single-sign-on)
 
-### <a name="add-an-application-from-the-azure-ad-gallery"></a>Alkalmazás hozzáadása az Azure AD-galériából
+### <a name="add-an-application-from-hello-azure-ad-gallery"></a>Alkalmazás hozzáadása hello Azure AD-galériából
 
-Hozzáadhat egy alkalmazást az Azure AD-gyűjteményből, kövesse az alábbi lépéseket:
+az alkalmazás a hello Azure AD-katalógusában, tooadd kövesse hello alábbi lépéseket:
 
-1.  Nyissa meg a [Azure Portal](https://portal.azure.com) , és jelentkezzen be egy **globális rendszergazda** vagy **társadminisztrátor**.
+1.  Megnyitás hello [Azure Portal](https://portal.azure.com) , és jelentkezzen be egy **globális rendszergazda** vagy **társadminisztrátor**.
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **Hozzáadás** gombra a jobb felső sarkában a **vállalati alkalmazások** panelen.
+5.  Kattintson a hello **hozzáadása** hello jobb felső sarokban lévő hello a gomb **vállalati alkalmazások** panelen.
 
-6.  Az a **adjon meg egy nevet** a szövegmező a **hozzáadása a gyűjteményből** területen írja be az alkalmazás nevét.
+6.  A hello **adjon meg egy nevet** hello a szövegmező **hello gyűjteményből Hozzáadás** szakaszban, hello alkalmazás hello nevét.
 
-7.  Válassza ki az alkalmazást, az egyszeri bejelentkezés konfigurálni szeretné.
+7.  Válassza ki a használni kívánt tooconfigure egyszeri bejelentkezés hello alkalmazást.
 
-8.  Ad hozzá az alkalmazást, mielőtt a nevét módosíthatja a **neve** szövegmező.
+8.  Hello alkalmazás hozzáadása előtt módosíthatja annak nevét a hello **neve** szövegmező.
 
-9.  Kattintson a **Hozzáadás** gombra, vegye fel az alkalmazást.
+9.  Kattintson a **Hozzáadás** tooadd hello alkalmazás gomb.
 
-Egy rövid időszak után el az alkalmazás konfigurációs panelen láthatók.
+Egy rövid időszak után kell képes toosee hello alkalmazás konfigurációs panelen.
 
-### <a name="configure-the-application-for-password-single-sign-on"></a>Állítsa be az alkalmazását jelszó egyszeri bejelentkezést.
+### <a name="configure-hello-application-for-password-single-sign-on"></a>Állítsa be hello alkalmazását jelszó egyszeri bejelentkezést.
 
-Egyszeri bejelentkezés egy alkalmazás konfigurálásához kövesse az alábbi lépéseket:
+tooconfigure egyszeri bejelentkezés egy alkalmazás kövesse az alábbi hello lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
+1.  Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-  * Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+  * Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-6.  Válassza ki az egyszeri bejelentkezés konfigurálni kívánt alkalmazást.
+6.  Válassza ki a kívánt tooconfigure egyszeri bejelentkezés hello alkalmazást.
 
-7.  Ha az alkalmazás betölt, kattintson a **egyszeri bejelentkezés** az alkalmazás bal oldali navigációs menüjében.
+7.  Ha hello alkalmazás betölt, kattintson a hello **egyszeri bejelentkezés** hello alkalmazás bal oldali navigációs menüjében.
 
-8.  Válassza ki a módot **jelszóalapú bejelentkezés.**
+8.  Jelölje be hello mód **jelszóalapú bejelentkezés.**
 
-9.  [Felhasználók hozzárendelése az alkalmazás](#how-to-assign-a-user-to-an-application-directly).
+9.  [Felhasználók hozzárendelése toohello alkalmazás](#how-to-assign-a-user-to-an-application-directly).
 
-10. Emellett is megadhatja a felhasználó nevében hitelesítő adatok a felhasználók a sorok kijelöléséhez és parancsával **frissítéséhez szükséges hitelesítő adatokat** , majd gépelje be a felhasználónevet és jelszót a felhasználók nevében. Ellenkező esetben megkérdezi a felhasználókat a hitelesítő adatok magukat az indítás után.
+10. Emellett is megadhatja hello felhasználó nevében hitelesítő adatok hello felhasználók hello sorát kiválasztásával, és kattintson a **frissítéséhez szükséges hitelesítő adatokat** és hello felhasználónév és jelszó megadásával hello felhasználók nevében. Ellenkező esetben a felhasználók fognak felszólító tooenter hello hitelesítő adatok magukat az indítás után.
 
-## <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>Jelszó egyszeri bejelentkezés nem galéria alkalmazások konfigurálása
+## <a name="how-tooconfigure-password-single-sign-on-for-a-non-gallery-application"></a>Hogyan tooconfigure jelszó egyszeri bejelentkezés egy nem galéria alkalmazáshoz
 
-Egy alkalmazás kell az Azure AD-galériából konfigurálása:
+egy alkalmazás hello Azure AD-galériából tooconfigure kell:
 
 -   [Nem galéria alkalmazás hozzáadása](#add-a-non-gallery-application)
 
--   [Állítsa be az alkalmazását jelszó egyszeri bejelentkezést.](#configure-the-application-for-password-single-sign-on)
+-   [Állítsa be hello alkalmazását jelszó egyszeri bejelentkezést.](#configure-the-application-for-password-single-sign-on)
 
 ### <a name="add-a-non-gallery-application"></a>Nem galéria alkalmazás hozzáadása
 
-Hozzáadhat egy alkalmazást az Azure AD-gyűjteményből, kövesse az alábbi lépéseket:
+az alkalmazás a hello Azure AD-katalógusában, tooadd kövesse hello alábbi lépéseket:
 
-1.  Nyissa meg a [Azure Portal](https://portal.azure.com) , és jelentkezzen be egy **globális rendszergazda** vagy **társadminisztrátor**.
+1.  Megnyitás hello [Azure Portal](https://portal.azure.com) , és jelentkezzen be egy **globális rendszergazda** vagy **társadminisztrátor**.
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **Hozzáadás** gombra a jobb felső sarkában a **vállalati alkalmazások** panelen.
+5.  Kattintson a hello **hozzáadása** hello jobb felső sarokban lévő hello a gomb **vállalati alkalmazások** panelen.
 
 6.  Kattintson a **nem-gyűjtemény alkalmazás.**
 
-7.  Adja meg az alkalmazás nevét a **neve** szövegmező. Válassza ki **hozzáadása.**
+7.  Adja meg az alkalmazás nevére hello hello **neve** szövegmező. Válassza ki **hozzáadása.**
 
-Egy rövid időszak után el az alkalmazás konfigurációs panelen láthatók.
+Egy rövid időszak után kell képes toosee hello alkalmazás konfigurációs panelen.
 
-### <a name="configure-the-application-for-password-single-sign-on"></a>Állítsa be az alkalmazását jelszó egyszeri bejelentkezést.
+### <a name="configure-hello-application-for-password-single-sign-on"></a>Állítsa be hello alkalmazását jelszó egyszeri bejelentkezést.
 
-Egyszeri bejelentkezés egy alkalmazás konfigurálásához kövesse az alábbi lépéseket:
+tooconfigure egyszeri bejelentkezés egy alkalmazás kövesse az alábbi hello lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
+1.  Nyitott hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazda** vagy **Co-rendszergazda segítségét.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-    1.  Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+    1.  Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-6.  Válassza ki az egyszeri bejelentkezés konfigurálni kívánt alkalmazást.
+6.  Válassza ki a kívánt tooconfigure egyszeri bejelentkezés hello alkalmazást.
 
-7.  Ha az alkalmazás betölt, kattintson a **egyszeri bejelentkezés** az alkalmazás bal oldali navigációs menüjében.
+7.  Ha hello alkalmazás betölt, kattintson a hello **egyszeri bejelentkezés** hello alkalmazás bal oldali navigációs menüjében.
 
-8.  Válassza ki a módot **jelszóalapú bejelentkezés.**
+8.  Jelölje be hello mód **jelszóalapú bejelentkezés.**
 
-9.  Adja meg a **bejelentkezési URL-cím**. Ez az URL-CÍMÉT ahol adja meg a felhasználók a felhasználónevével és jelszavával bejelentkezni. Győződjön meg arról, a mezők bejelentkezési URL-címen láthatók.
+9.  Adja meg a hello **bejelentkezési URL-cím**. Ez a hello URL-cím, ahol felhasználók adja meg a felhasználónevet és jelszót toosign a számára. Győződjön meg arról, mezők hello bejelentkezés láthatók hello URL-címen.
 
-10. Felhasználók hozzárendelése az alkalmazáshoz.
+10. Felhasználók hozzárendelése toohello alkalmazás.
 
-11. Emellett is megadhatja a felhasználó nevében hitelesítő adatok a felhasználók a sorok kijelöléséhez és parancsával **frissítéséhez szükséges hitelesítő adatokat** , majd gépelje be a felhasználónevet és jelszót a felhasználók nevében. Ellenkező esetben megkérdezi a felhasználókat a hitelesítő adatok magukat az indítás után.
+11. Emellett is megadhatja hello felhasználó nevében hitelesítő adatok hello felhasználók hello sorát kiválasztásával, és kattintson a **frissítéséhez szükséges hitelesítő adatokat** és hello felhasználónév és jelszó megadásával hello felhasználók nevében. Ellenkező esetben a felhasználók fognak felszólító tooenter hello hitelesítő adatok magukat az indítás után.
 
-## <a name="how-to-assign-a-user-to-an-application-directly"></a>A felhasználó közvetlenül egy alkalmazás hozzárendelése
+## <a name="how-tooassign-a-user-tooan-application-directly"></a>Hogyan tooassign közvetlenül egy felhasználói tooan alkalmazást
 
-Hozzárendelése egy vagy több felhasználó alkalmazás közvetlenül, kövesse az alábbi lépéseket:
+tooassign felhasználók tooan egy vagy több alkalmazás közvetlenül, kövesse az alábbi hello lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazdája.**
+1.  Nyissa meg hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be a egy **globális rendszergazdája.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-  * Ha azt szeretné, hogy itt megjelennek az alkalmazás nem látja, használja a **szűrő** vezérlő tetején a **összes alkalmazások listáját** és állítsa be a **megjelenítése** lehetőséggel **összes alkalmazást.**
+  * Ha hello alkalmazás jelenik itt meg nem látja, akkor hello **szűrő** hello hello tetején vezérlő **összes alkalmazások listáját** és set hello **megjelenítése** beállítás túl **Minden alkalmazást.**
 
-6.  Válassza ki szeretné osztani a felhasználót, hogy a listában az alkalmazást.
+6.  Válassza ki a kívánt felhasználó toofrom hello listáját tooassign hello alkalmazást.
 
-7.  Ha az alkalmazás betölt, kattintson **felhasználók és csoportok** az alkalmazás bal oldali navigációs menüjében.
+7.  Amikor hello alkalmazás betölt, kattintson a **felhasználók és csoportok** hello alkalmazás bal oldali navigációs menüjében.
 
-8.  Kattintson a **Hozzáadás** gombra kattint, a a **felhasználók és csoportok** nyissa meg a listában a **hozzáadása hozzárendelés** panelen.
+8.  Hello kattintson **Hozzáadás** gomb felett hello **felhasználók és csoportok** lista tooopen hello **hozzáadása hozzárendelés** panelen.
 
-9.  Kattintson a **felhasználók és csoportok** a választó a **hozzáadása hozzárendelés** panelen.
+9.  hello kattintson **felhasználók és csoportok** hello a választó **hozzáadása hozzárendelés** panelen.
 
-10. Írja be a **teljes név** vagy **e-mail cím** érdekli hozzárendelése a felhasználó a **Keresés név vagy e-mail cím alapján** keresőmezőbe.
+10. Hello típusának **teljes név** vagy **e-mail cím** érdekli hello való hozzárendelése hello felhasználó **Keresés név vagy e-mail cím alapján** keresőmezőbe.
 
-11. Vigye a **felhasználói** a listában, hogy láthatóvá váljon a **jelölőnégyzet**. A felhasználói profil fénykép vagy adja hozzá a felhasználót emblémát jelölőnégyzetét, kattintson a **kijelölt** listája.
+11. Hello rámutat **felhasználói** a hello lista tooreveal egy **jelölőnégyzet**. Kattintson a hello jelölőnégyzet következő toohello felhasználó profil fénykép vagy embléma tooadd a felhasználó toohello **kijelölt** listája.
 
-12. **Választható lehetőség:** Ha azt szeretné, hogy **egynél több felhasználó hozzáadása**, egy másik típus **teljes név** vagy **e-mail cím** be a **Keresés név vagy e-mail cím alapján** mező, és a jelölőnégyzet bejelölésével adja hozzá a felhasználót, hogy a **kijelölt** listája.
+12. **Választható lehetőség:** Ha túl szeretné**egynél több felhasználó hozzáadása**, egy másik típus **teljes név** vagy **e-mail cím** be hello **Keresés név e-mail cím vagy** keresési mezőbe, majd kattintson a hello jelölőnégyzet tooadd a felhasználó toohello **kijelölt** listája.
 
-13. Ha elkészült, válassza a felhasználók, kattintson a **válasszon** gombra kattintva vegye fel a listára a felhasználók és csoportok hozzá kell rendelni az alkalmazáshoz.
+13. Ha elkészült, válassza a felhasználók, kattintson a hello **válasszon** gomb tooadd őket felhasználók és csoportok toobe toohello listája toohello alkalmazás hozzárendelése.
 
-14. **Választható lehetőség:** kattintson a **Szerepkörválasztás** a választó a **hozzáadása hozzárendelés** hozzárendelése a kiválasztott felhasználói szerepkör kiválasztása panel.
+14. **Nem kötelező:** hello kattintson **Szerepkörválasztás** hello a választó **hozzáadása hozzárendelés** panel tooselect szerepkör tooassign toohello felhasználók kijelölt.
 
-15. Kattintson a **hozzárendelése** gombra kattintva a kijelölt felhasználók az alkalmazást.
+15. Kattintson a hello **hozzárendelése** gomb tooassign hello alkalmazás toohello kijelölt felhasználók.
 
-Rövid ideig a kijelölt felhasználók tudják elindítani ezeket az alkalmazásokat a hozzáférési Panel.
+Miután rövid időn belül, kijelölt hello felhasználók kell tudni toolaunch ezeket az alkalmazásokat hello a hozzáférési Panel.
 
-## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a>Ha ezek a hibaelhárítási lépéseket nem a hárítsa el a problémát. 
+## <a name="if-these-troubleshooting-steps-do-not-hello-resolve-hello-issue"></a>Ha a lépések nem hello oldja meg a hello problémát. 
 
-támogatási jegy megnyitása a következő információkat, ha rendelkezésre áll:
+Nyisson meg egy támogatási jegy hello ha rendelkezésre áll a következő információkat:
 
 -   Megfelelési hiba azonosítója
 
@@ -274,4 +274,4 @@ támogatási jegy megnyitása a következő információkat, ha rendelkezésre �
 -   Fiddler nyomkövetések
 
 ## <a name="next-steps"></a>Következő lépések
-[Adja meg az egyszeri bejelentkezés az alkalmazásokba a Proxy](active-directory-application-proxy-sso-using-kcd.md)
+[Adja meg az egyszeri bejelentkezés tooyour alkalmazások alkalmazásproxyval](active-directory-application-proxy-sso-using-kcd.md)

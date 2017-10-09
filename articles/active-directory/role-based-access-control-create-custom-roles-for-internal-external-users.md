@@ -1,5 +1,5 @@
 ---
-title: "Egyéni szerepköralapú hozzáférés-vezérlés szerepköröket hozhat létre, és rendelje hozzá a belső és külső felhasználók számára az Azure-ban |} Microsoft Docs"
+title: "egyéni szerepkörök aaaCreate a szerepköralapú hozzáférés-vezérlés, és rendelje hozzá a toointernal és a külső felhasználók az Azure-ban |} Microsoft Docs"
 description: "PowerShell és a parancssori felület használatával a belső és külső felhasználók számára létrehozott egyéni RBAC-szerepkörök hozzárendelése"
 services: active-directory
 documentationcenter: 
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/10/2017
 ms.author: a-crradu
-ms.openlocfilehash: d687f94bebfd0b6c1ec0690da798be5409640954
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 26793a66d6ca2f771338eed87d10ce2b3b431841
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 ## <a name="intro-on-role-based-access-control"></a>A szerepköralapú hozzáférés-vezérlés – bevezetés
 
-Szerepköralapú hozzáférés-vezérlés az Azure portál csak szolgáltatása: így tulajdonosai előfizetés részletes szerepkörök hozzárendelése más felhasználók akik kezelhetik a környezetükben meghatározott erőforrás-hatókörök.
+Szerepköralapú hozzáférés-vezérlés az Azure portál csak szolgáltatása: lehetővé előfizetés hello tulajdonosainak tooassign részletes szerepkörök tooother felügyelheti az adott erőforrás hatókörök a környezetükben.
 
-Az RBAC lehetővé teszi, hogy jobb biztonságkezelés nagy méretű szervezeteknek, és az SMB-khez működik-e külső közreműködő, szállítókkal és freelancers, amelyhez hozzá kell férniük az adott környezetben meghatározott erőforrás azonban nem feltétlenül a teljes infrastruktúra vagy bármely a számlázással kapcsolatos hatókörök. Az RBAC lehetővé teszi, hogy egy Azure-előfizetéssel rendelkező rugalmasan kezeli a rendszergazdai fiókot (szolgáltatás-rendszergazda szerepkörrel egy előfizetés szintjén), és több felhasználók meghívást az azonos előfizetésben, de bármilyen rendszergazdai jogosultságok nélkül működik az . Felügyeleti és számlázási szempontból az RBAC funkció bizonyul egy idő és a felügyeleti hatékony beállítása a különböző forgatókönyvekben Azure használatával.
+Szerepalapú lehetővé teszi, hogy jobb biztonságkezelés nagy méretű szervezeteknek, és az SMB-khez külső közreműködő, a szállítók vagy freelancers, amelyhez kell hozzáférhet a környezetben, de nem feltétlenül toohello teljes infrastruktúrát és bármely toospecific erőforrások használata a számlázással kapcsolatos hatókörök. Szerepalapú lehetővé teszi, hogy a hello rugalmasan hello rendszergazdai fiókot (szolgáltatás-rendszergazda szerepkörrel egy előfizetés szintjén) által kezelt egy Azure-előfizetéssel rendelkező és rendelkezik a több meghívott felhasználók toowork hello ugyanahhoz az előfizetéshez de minden felügyeleti jogosultságok az. Felügyeleti és számlázási szempontból hello RBAC szolgáltatás egy idő és a felügyeleti hatékony beállítása Azure használatával a különböző forgatókönyvekben bizonyítja toobe.
 
 ## <a name="prerequisites"></a>Előfeltételek
-Az RBAC használata az Azure környezetben van szükség:
+Az RBAC használatát hello Azure-környezetéhez szükséges:
 
-* Önálló rendelkezik Azure-előfizetés a felhasználóhoz rendelt tulajdonosa (előfizetés szerepkör)
-* Rendelkezik a tulajdonosi szerepkört, az Azure-előfizetés
-* Rendelkezik hozzáféréssel a [Azure-portálon](https://portal.azure.com)
-* Győződjön meg arról, hogy a következő erőforrás-szolgáltató regisztrálva a felhasználó az előfizetéshez: **Microsoft.Authorization**. Az erőforrás-szolgáltatók regisztrálásával kapcsolatos további információkért lásd: [Resource Manager szolgáltatók, régiók, API verziók és sémák](/azure-resource-manager/resource-manager-supported-services.md).
+* Önálló rendelkezik Azure-előfizetés hozzárendelt toohello felhasználó tulajdonosa (előfizetés szerepkör)
+* Hello tulajdonos szerepe hello Azure-előfizetéssel rendelkezik
+* Hozzáférés toohello rendelkezik [Azure-portálon](https://portal.azure.com)
+* Ellenőrizze, hogy a következő erőforrás-szolgáltató toohave hello hello felhasználói előfizetés regisztrálva: **Microsoft.Authorization**. Hogyan tooregister hello erőforrás-szolgáltató további információkért lásd: [Resource Manager szolgáltatók, régiók, API verziók és sémák](/azure-resource-manager/resource-manager-supported-services.md).
 
 > [!NOTE]
-> Office 365-előfizetéssel, vagy az Azure Active Directory-licencek (például: Azure Active Directory eléréséhez) kiosztott az Office 365 portálon nem minőségi az RBAC használata.
+> Office 365-előfizetéssel, vagy az Azure Active Directory-licencek (például: tooAzure Active Directory eléréséhez) kiosztott hello Office 365 portálon nem minőségi az RBAC használata.
 
 ## <a name="how-can-rbac-be-used"></a>Hogyan lehet használni az RBAC
-Az RBAC alkalmazni lehet az Azure-ban három különböző hatóköröket. A legalacsonyabb egy legmagasabb hatálya alá akkor a következők:
+Az RBAC alkalmazni lehet az Azure-ban három különböző hatóköröket. A hello legmagasabb hatókör toohello legalacsonyabb egyet akkor a következők:
 
 * Előfizetés (legmagasabb)
 * Erőforráscsoport
-* Erőforrás hatókör (a hozzáférési legalacsonyabb kínál az egyes Azure-erőforrás hatókör célként megadott engedélyeket)
+* Erőforrás hatókör (hello legalacsonyabb hozzáférési szint ajánlat célzott engedélyek tooan egyes Azure-erőforrás hatókör)
 
-## <a name="assign-rbac-roles-at-the-subscription-scope"></a>Az előfizetés hatókörből RBAC-szerepkörök hozzárendelése
+## <a name="assign-rbac-roles-at-hello-subscription-scope"></a>Hello előfizetés hatókörből RBAC-szerepkörök hozzárendelése
 Nincsenek két gyakori példán RBAC használja (de nem kizárólagosan):
 
-* Hogy a szervezetek a külső felhasználók (nem a rendszergazda felhasználó Azure Active Directory-bérlő része) meghívót, hogy bizonyos erőforrások vagy a teljes előfizetés kezelése
-* A felhasználók a szervezet (részét képezik a felhasználó Azure Active Directory-bérlő), de a különböző csapatok vagy csoportokat, amelyek a teljes előfizetés vagy egy bizonyos erőforráscsoportok vagy az erőforrás-hatókörök részletes hozzáférésre van szükségük belső használata a környezet
+* Külső felhasználók hello szervezetek (nem hello rendszergazdai jogú felhasználó Azure Active Directory-bérlő része) rendelkező meghívott toomanage, bizonyos erőforrások vagy hello teljes előfizetés
+* A felhasználók hello szervezet (részét képezik hello felhasználó Azure Active Directory-bérlő), de a különböző csapatok vagy csoportokat, amelyek részletes hozzáférésre van szükségük belső használata vagy toohello teljes előfizetés vagy toocertain erőforráscsoportok vagy az erőforrás hatóköröket a hello környezet
 
 ## <a name="grant-access-at-a-subscription-level-for-a-user-outside-of-azure-active-directory"></a>Hozzáférés egy felhasználó Azure Active Directory kívül egy előfizetés szintjén
-Az RBAC-szerepkörök csak akkor adhatók **tulajdonosok** az előfizetés ezért a rendszergazdai jogú felhasználó kell bejelentkeznie, amely rendelkezik-e előre szerepkörrel, vagy az Azure-előfizetés hozott létre egy felhasználónévvel.
+Az RBAC-szerepkörök csak akkor adhatók **tulajdonosok** hello előfizetés ezért hello rendszergazdai jogú felhasználó kell bejelentkeznie az előzetes szerepkörrel vagy hello Azure-előfizetést hozott létre egy felhasználónévvel.
 
-Az Azure-portálon után bejelentkezés rendszergazdaként, válassza ki "Előfizetések", és válassza a kívánt egy.
-![előfizetés panel az Azure-portálon](./media/role-based-access-control-create-custom-roles-for-internal-external-users/0.png) alapértelmezés szerint a rendszergazdai jogú felhasználó rendelkezik vásárolt Azure-előfizetést, ha a felhasználó fog megjelenni **Fiókadminisztrátor**, ez az előfizetés szerepkör alatt. Az Azure-előfizetés szerepkörök további részletekért lásd: [hozzáadása vagy módosítása, hogy az előfizetés vagy a szolgáltatások kezelése az Azure rendszergazdai szerepkörök](/billing/billing-add-change-azure-subscription-administrator.md).
+Hello Azure-portálon, a követően bejelentkezhet rendszergazdaként, válassza ki "Előfizetések" és a kiválasztott hello kívánt egyet.
+![előfizetés panel az Azure-portálon](./media/role-based-access-control-create-custom-roles-for-internal-external-users/0.png) alapértelmezés szerint ha hello rendszergazdai jogú felhasználó megvásárolta hello Azure-előfizetésre, hello felhasználói állapotúként jelenik meg **Fiókadminisztrátor**, a hello előfizetés szerepkör alatt. Hello Azure-előfizetés szerepkörök további részletekért lásd: [kezelése hello előfizetés vagy szolgáltatások hozzáadása vagy módosítása Azure-rendszergazdai szerepkörök](/billing/billing-add-change-azure-subscription-administrator.md).
 
-Ebben a példában a felhasználó a "alflanigan@outlook.com" van a **tulajdonos** az "Ingyenes" az aad-ben az előfizetéshez bérlői "Alapértelmezett bérlőt Azure". Mivel ez a felhasználó hozta létre a kezdeti Microsoft Account "Outlook" az Azure-előfizetés (Microsoft Account = Outlook, a működés közbeni stb.) az alapértelmezett tartomány nevét ennél a bérlőnél a hozzáadott összes többi felhasználó számára lesz **"@alflaniganuoutlook.onmicrosoft.com"**. Úgy lett kialakítva, a szintaxist, az új tartomány formátuma kiépítésekor a bérlő létrehozó felhasználó felhasználónevét és tartományát nevét, és vegye fel a bővítmény **". onmicrosoft.com"**.
-Ezenkívül felhasználók is jelentkezzen be a bérlő egy egyéni tartománynév hozzáadása, és azt az új bérlő ellenőrzése után. Az Azure Active Directory-bérlő egyéni tartománynév ellenőrzése a további részletekért lásd: [egyéni tartománynév hozzáadása a címtárhoz](/active-directory/active-directory-add-domain).
+Ebben a példában a felhasználó hello "alflanigan@outlook.com" hello van **tulajdonos** az "Ingyenes" hello hello aad-ben az előfizetéshez bérlői "Alapértelmezett bérlőt Azure". Mivel ez a felhasználó hello Azure-előfizetéssel rendelkező hello hello létrehozója kezdeti Microsoft Account "Outlook" (Microsoft Account = Outlook, a működés közbeni stb.) hello alapértelmezett tartomány nevét ennél a bérlőnél a hozzáadott összes többi felhasználó számára lesz **"@alflaniganuoutlook.onmicrosoft.com"**. Úgy lett kialakítva, hello szintaxis hello új tartomány által létrehozott hello bérlői és hozzáadását hello bővítmény hello felhasználó felhasználónevét és tartományát neve hello üzembe formátuma **". onmicrosoft.com"**.
+Ezenkívül felhasználók is jelentkezzen be egy egyéni tartománynevet hello bérlői hozzáadása és az új bérlő hello ellenőrzése után. Hogyan tooverify egy egyéni tartománynevet, Azure Active Directory-bérlő: vonatkozó részletes információért [adja hozzá ezeket az egyéni tartomány nevét tooyour](/active-directory/active-directory-add-domain).
 
-Ebben a példában a "Alapértelmezett bérlőt Azure" könyvtárban található csak azokat a felhasználókat, a tartomány nevét "@alflanigan.onmicrosoft.com".
+Ebben a példában hello "alapértelmezett bérlőt Azure" címtár csak a felhasználók hello tartománynévvel tartalmaz "@alflanigan.onmicrosoft.com".
 
-Az előfizetés kiválasztása után a rendszergazda felhasználó kattintson kell **hozzáférés-vezérlés (IAM)** , majd **új szerepkör hozzáadása**.
+Hello előfizetés kiválasztása után kattintson kell az hello rendszergazdai jogú felhasználó **hozzáférés-vezérlés (IAM)** , majd **új szerepkör hozzáadása**.
 
 
 
@@ -75,15 +75,15 @@ Az előfizetés kiválasztása után a rendszergazda felhasználó kattintson ke
 
 ![Új felhasználó hozzáadása a hozzáférés-vezérlési IAM funkciója Azure-portálon](./media/role-based-access-control-create-custom-roles-for-internal-external-users/2.png)
 
-A következő lépés, hogy válassza ki hozzá kell rendelni a szerepkört és a felhasználó, akinek a Szerepalapú szerepkör rendeli hozzá. Az a **szerepkör** legördülő menüjében a rendszergazdai jogú felhasználó számára megjelenített csak a beépített RBAC szerepkörök, amelyek elérhetők az Azure-ban. Részletesebb ismereteket szeretnének elsajátítani a minden egyes szerepkör és a hozzárendelhető hatókörök, lásd: [átruházásához hozzáférés-vezérlés beépített szerepkörök](/active-directory/role-based-access-built-in-roles.md).
+hello következő lépésre tooselect hello szerepkör toobe hozzárendelt és hello felhasználó, akinek hello RBAC szerepkör rendeli hozzá. A hello **szerepkör** legördülő menü hello rendszergazdai jogú felhasználó számára megjelenített csak hello beépített RBAC szerepkörök, amelyek elérhetők az Azure-ban. Részletesebb ismereteket szeretnének elsajátítani a minden egyes szerepkör és a hozzárendelhető hatókörök, lásd: [átruházásához hozzáférés-vezérlés beépített szerepkörök](/active-directory/role-based-access-built-in-roles.md).
 
-A rendszergazdai jogú felhasználó majd hozzá kell a külső felhasználó e-mail címe. A várt működése a külső felhasználó számára nem jelenik meg a meglévő bérlő. Után a külső felhasználó kérték, ő lesz látható a **előfizetések > hozzáférés-vezérlés (IAM)** az aktuális felhasználókkal, amely már hozzá vannak rendelve az RBAC szerepkört az előfizetés hatókörben.
-
-
+hello rendszergazdai jogú felhasználó majd kell hello külső felhasználó tooadd hello e-mail címét. hello várt viselkedés hello külső felhasználói toonot belül megjelennek a hello meglévő bérlő számára. Után hello külső felhasználói kérték, ő lesz látható a **előfizetések > hozzáférés-vezérlés (IAM)** már hozzá vannak rendelve egy Szerepalapú szerepkör hello előfizetési hatókört, amely minden hello aktuális felhasználókkal.
 
 
 
-![engedélyek hozzáadása új RBAC-szerepkör](./media/role-based-access-control-create-custom-roles-for-internal-external-users/3.png)
+
+
+![engedélyek toonew RBAC-szerepkör hozzáadása](./media/role-based-access-control-create-custom-roles-for-internal-external-users/3.png)
 
 
 
@@ -91,10 +91,10 @@ A rendszergazdai jogú felhasználó majd hozzá kell a külső felhasználó e-
 
 ![előfizetés szintjén RBAC-szerepkörök listája](./media/role-based-access-control-create-custom-roles-for-internal-external-users/4.png)
 
-A felhasználó "chessercarlton@gmail.com" kell meghívott egy **tulajdonos** az "Ingyenes" előfizetés. Meghívást, követően a külső felhasználó kap egy e-mailes megerősítés egy aktiválási hivatkozást tartalmazó.
+hello felhasználói "chessercarlton@gmail.com" meghívott toobe lett egy **tulajdonos** hello "Ingyenes" előfizetés esetében. Hello meghívót küld, miután hello külső felhasználó kap egy e-mailes megerősítés egy aktiválási hivatkozást tartalmazó.
 ![e-mailek meghívó RBAC-szerepkör](./media/role-based-access-control-create-custom-roles-for-internal-external-users/5.png)
 
-Folyamatban a szervezeten kívül, az új felhasználó nem rendelkezik meglévő attribútuma "Alapértelmezett bérlőt Azure" könyvtárban. Azok a rendszer létrehozza, miután a külső felhasználó hozzájárult rögzítsen a rendszer a könyvtárban, amely az előfizetéshez, amely rendelt szerepkör.
+Külső toohello szervezet folyamatban, hello új felhasználó nem rendelkezik meglévő attribútuma hello "Alapértelmezett bérlőt Azure" könyvtárban. Miután hello külső felhasználói hozzájárulás toobe hello előfizetéshez, amely rendelt szerepkör hello directory rögzített adott létrejön.
 
 
 
@@ -102,7 +102,7 @@ Folyamatban a szervezeten kívül, az új felhasználó nem rendelkezik meglév�
 
 ![meghívót e-mailt az RBAC-szerepkör](./media/role-based-access-control-create-custom-roles-for-internal-external-users/6.png)
 
-A külső felhasználó azt mutatja be az Azure Active Directory-bérlő mostantól külső felhasználóként, és ez az Azure portálon, és a klasszikus portálon tekintheti meg.
+hello Azure Active Directory-bérlő mostantól külső felhasználóként hello külső felhasználó látható, és ez hello Azure-portál és a klasszikus portálon hello lehet megtekinteni.
 
 
 
@@ -116,47 +116,47 @@ A külső felhasználó azt mutatja be az Azure Active Directory-bérlő mostant
 
 ![felhasználók panel az azure active Directoryval a klasszikus Azure portálon](./media/role-based-access-control-create-custom-roles-for-internal-external-users/8.png)
 
-Az a **felhasználók** mindkét portálok a külső felhasználók felismeri a nézet:
+A hello **felhasználók** mindkét portálok hello külső felhasználók nézet felismeri:
 
-* A különböző ikon írja be az Azure-portálon
-* A különböző sourcing pont a klasszikus portál
+* hello más ikon típusának hello Azure-portálon
+* hello különböző forrás pont hello klasszikus portál
 
-Azonban biztosítása **tulajdonos** vagy **közreműködő** a külső felhasználók elérését a **előfizetés** hatókörét, nem engedélyezi a hozzáférést a rendszergazda felhasználó könyvtárába, kivéve, ha a **Globális rendszergazda** lehetővé teszi. A felhasználói tulajdonságokat a **felhasználótípust** két közös paramétert tartalmaz **tag** és **vendég** azonosítható legyen. Egy tag a felhasználó, amely a címtárban regisztrálva van, míg a Vendég egy meghívót, hogy a könyvtár külső forrásból származó felhasználói. További információkért lásd: [hogyan Azure Active Directory rendszergazdák hozzá B2B együttműködés felhasználók](/active-directory/active-directory-b2b-admin-add-users).
+Azonban biztosítása **tulajdonos** vagy **közreműködő** hozzáférés felhasználói tooan-külső hello **előfizetés** hatókörét, nem engedélyezi a hello hozzáférés toohello rendszergazda felhasználó mappájába, Ha hello **globális rendszergazda** lehetővé teszi. Hello felhasználói tulajdonságokat, a hello **felhasználótípust** két közös paramétert tartalmaz **tag** és **vendég** azonosítható legyen. A tagja a felhasználó, amely hello könyvtárban regisztrálva van, míg a Vendég a meghívott felhasználó toohello directory külső forrásból. További információkért lásd: [hogyan Azure Active Directory rendszergazdák hozzá B2B együttműködés felhasználók](/active-directory/active-directory-b2b-admin-add-users).
 
 > [!NOTE]
-> Győződjön meg arról, hogy a portál a hitelesítő adatok megadása után, a külső felhasználó kiválasztja a megfelelő könyvtárban való bejelentkezéshez. Azonos is van a több könyvtárak eléréséhez és az Azure-portálon jobb felső felhasználónév kattintva válassza ki vagy az egyik és a felhasználónak a legördülő listából válassza ki a megfelelő könyvtár.
+> Győződjön meg arról, hogy után hello hitelesítő adatok megadása hello portálon, hello külső felhasználó hello megfelelő directory toosign a választ. hello ugyanahhoz a felhasználóhoz is hozzáférés toomultiple könyvtárai és is hello felhasználónév a hello Azure-portálon jobb oldalán felső hello kattintva válassza ki bármelyik egyik és válassza hello megfelelő directory hello legördülő listából.
 
-A Vendég a címtárban, miközben a külső felhasználó kezelheti az Azure-előfizetéshez tartozó összes erőforrást, de a könyvtár nem hozzáférhető.
-
-
+A Vendég hello könyvtárban, miközben hello külső felhasználó hello Azure-előfizetéshez tartozó összes erőforrást is kezelheti, de hello könyvtár nem hozzáférhető.
 
 
 
-![az azure active Directoryval az Azure-portálhoz korlátozott hozzáférés](./media/role-based-access-control-create-custom-roles-for-internal-external-users/9.png)
 
-Az Azure Active Directory és az Azure-előfizetés nem rendelkezik egy szülő-gyermek kapcsolat, például a más Azure-erőforrások (például: virtuális gépek, virtuális hálózatok, a webalkalmazások, tárolási stb.) az Azure-előfizetéssel rendelkezik. Minden az utóbbi létrehozott, kezelt és fizetni az Azure-előfizetéssel, míg az Azure-előfizetések az Azure-címtár való hozzáférés kezelése. További részletekért lásd: [hogyan egy Azure-előfizetéshez az Azure AD kapcsolódó](/active-directory/active-directory-how-subscriptions-associated-directory).
 
-Az összes a beépített RBAC szerepkörből **tulajdonos** és **közreműködő** minden erőforrásoknak a környezetben, a különbség a teljes felügyeleti hozzáférést nyújtanak, előfordulhat, hogy egy közreműködői nem hozható létre, majd új RBAC-szerepkörök törlése . A beépített szerepkörök, például **virtuális gép közreműködő** csak az erőforrásokat, függetlenül attól, hogy a név által jelzett összes felügyeleti hozzáférést nyújtanak a **erőforráscsoport** történő létrehozásuk alatt.
+![hozzáférés tiltott tooazure active-directory Azure-portálon](./media/role-based-access-control-create-custom-roles-for-internal-external-users/9.png)
 
-A beépített RBAC szerepe hozzárendelése **virtuális gép közreműködő** egy előfizetés szintjén azt jelenti, hogy a felhasználó a szerepét:
+Az Azure Active Directory és az Azure-előfizetés nem rendelkezik egy szülő-gyermek kapcsolat, például a más Azure-erőforrások (például: virtuális gépek, virtuális hálózatok, a webalkalmazások, tárolási stb.) az Azure-előfizetéssel rendelkezik. Ez utóbbi összes hello létrehozott, felügyelt, és amíg Azure-előfizetés használt toomanage hello hozzáférés tooan Azure-címtár az Azure-előfizetés számlázva. További részletekért lásd: [hogyan Azure-előfizetés, kapcsolódó tooAzure AD](/active-directory/active-directory-how-subscriptions-associated-directory).
 
-* Megtekintheti az összes virtuális gép függetlenül azok telepítési dátumát és az erőforráscsoportok részét képezik
-* A virtuális gépek összes felügyeleti hozzáféréssel rendelkezik az előfizetéshez
-* Az előfizetést nem lehet megtekinteni, bármilyen más típusú erőforrások
+Az összes hello beépített RBAC szerepkörből **tulajdonos** és **közreműködő** kínálnak a teljes felügyeleti hozzáférés tooall erőforrások hello környezetben, hello különbség folyamatban, amely egy közreműködői nem hozható létre, és új törlése Az RBAC-szerepkörök. hello más beépített szerepkörök, például **virtuális gép közreműködő** összes felügyeleti hozzáférés csak a megjelölt hello neve, függetlenül attól, hello toohello erőforrásokat kínálnak **erőforráscsoport** azok létrehozása .
+
+Hozzárendelése hello beépített RBAC szerepe **virtuális gép közreműködő** egy előfizetés szintjén azt jelenti, hogy hello felhasználó lehet hozzárendelve hello szerepkör:
+
+* Megtekintheti az összes virtuális gép függetlenül azok telepítési dátumát és hello erőforráscsoportok részét képezik
+* Összes felügyeleti hozzáférés toohello virtuális gépe van, a hello előfizetés
+* Nem lehet megtekinteni, bármilyen más típusú erőforrások hello az előfizetéshez
 * A módosításokat a számlázási szempontjából nem tud működni.
 
 > [!NOTE]
-> Az RBAC alatt az Azure portál csak szolgáltatásai, azt nem adja meg a klasszikus portál eléréséhez.
+> Az RBAC alatt az Azure portál csak szolgáltatásai, azt nem adja meg hozzáférés toohello klasszikus portálon.
 
-## <a name="assign-a-built-in-rbac-role-to-an-external-user"></a>Beépített RBAC szerepkör hozzárendelése egy külső felhasználó
-A különböző esetén ez a vizsgálat, a külső felhasználó a "alflanigan@gmail.com" meg van adva egy **virtuális gép közreműködő**.
+## <a name="assign-a-built-in-rbac-role-tooan-external-user"></a>Beépített RBAC szerepkör tooan külső felhasználó hozzárendelése
+Ez a vizsgálat a különböző forgatókönyvek esetében a külső felhasználó hello "alflanigan@gmail.com" meg van adva egy **virtuális gép közreműködő**.
 
 
 
 
 ![virtuális gép közreműködő beépített szerepkör](./media/role-based-access-control-create-custom-roles-for-internal-external-users/11.png)
 
-A normál beépített szerephez a külső felhasználó működése áttekinthetők és felügyelhetők a csak virtuális gépek és a szomszédos erőforrás-kezelő csak szükséges erőforrások telepítése közben. Úgy lett kialakítva, a korlátozott szerepkörök ajánlat csak a saját Azure-portálon létrehozott levelező erőforrásokhoz való hozzáférés, attól függetlenül történik néhány továbbra is telepíthető a klasszikus portálon (például: virtuális gépek).
+hello ezek normál viselkedése a külső felhasználó beépített szerepkörrel rendelkező toosee, és csak a virtuális gépek és a szomszédos erőforrás-kezelő csak szükséges erőforrások másikban kezelése. Úgy lett kialakítva, a korlátozott szerepkörök kínálnak hozzáférés csak tootheir levelező erőforrások hello Azure-portálon létrehozott, attól függetlenül történik néhány továbbra is telepíthető a hello, valamint a klasszikus portálon (például: virtuális gépek).
 
 
 
@@ -164,16 +164,16 @@ A normál beépített szerephez a külső felhasználó működése áttekinthet
 
 ![virtuális gép közreműködői szerepkör áttekintése azure-portálon](./media/role-based-access-control-create-custom-roles-for-internal-external-users/12.png)
 
-## <a name="grant-access-at-a-subscription-level-for-a-user-in-the-same-directory"></a>Hozzáférés egy felhasználó ugyanabban a könyvtárban egy előfizetés szintjén
-A folyamat megegyezik a külső felhasználók hozzáadása, mind a felügyelet szempontjából megadását a Szerepalapú szerepkör, valamint a felhasználói hozzáférést megkapják a szerepkörhöz. Itt különbség, hogy a meghívott felhasználók nem kapják meg minden e-mailek meghívókat, a bejelentkezés után az előfizetésen belüli összes erőforrás hatókör az irányítópult elérhető lesz.
+## <a name="grant-access-at-a-subscription-level-for-a-user-in-hello-same-directory"></a>Azonos hello felhasználójának előfizetés szintű hozzáférés GRANT könyvtár
+hello folyamata azonos tooadding külső felhasználó, mind hello admin perspektíva támogatást nyújtó hello RBAC szerepkör, valamint a hozzáférés toohello szerepkör engedély hello felhasználó. hello itt különbség, hogy hello meghívott felhasználó nem kap minden e-mailek meghívókat, a bejelentkezés után minden hello erőforrás hatókör hello előfizetésen belül hello irányítópult elérhető lesz.
 
-## <a name="assign-rbac-roles-at-the-resource-group-scope"></a>Az erőforrás csoport hatókörű RBAC-szerepkörök hozzárendelése
-Hozzárendelése a Szerepalapú szerepet egy **erőforráscsoport** hatókörben van egy azonos folyamata hozzárendelése a szerepkört az előfizetés szintjén mindkét típusú felhasználók – külső vagy belső (könyvtárába része). A felhasználók, amelyek az RBAC-szerepkör, hogy tekintse meg a környezetben csak az erőforráscsoport van hozzájuk rendelve való hozzáférést a **erőforráscsoportok** ikon az Azure portálon.
+## <a name="assign-rbac-roles-at-hello-resource-group-scope"></a>Hello erőforrás csoport hatókörű RBAC-szerepkörök hozzárendelése
+Hozzárendelése egy Szerepalapú szerepkör a(z) egy **erőforráscsoport** hatókörben van egy azonos folyamata hello előfizetés szintjén, a felhasználók – külső vagy belső mindkét típusú hello szerepkör hozzárendelése (hello része könyvtárába). hello hello RBAC szerepkörhöz hozzárendelt felhasználók csak a környezetükben toosee hello erőforráscsoportban van hozzájuk rendelve hozzáférés a hello **erőforráscsoportok** hello Azure-portálon ikonra.
 
-## <a name="assign-rbac-roles-at-the-resource-scope"></a>Az erőforrás-hatókörben RBAC-szerepkörök hozzárendelése
-Hozzárendelése az Azure-erőforrás hatókörre RBAC szerepet van egy azonos folyamata hozzárendelése a szerepkört az előfizetés szintjén vagy az erőforráscsoport szintjén, a következő mindkét forgatókönyvet ugyanabban a munkafolyamatban. Ebben az esetben a felhasználók, amelyek az RBAC-szerepkör csak akkor hozzárendelt hozzáférés, vagy elemek látható a **összes erőforrás** lapon vagy közvetlenül az irányítópulton.
+## <a name="assign-rbac-roles-at-hello-resource-scope"></a>Hello erőforrás hatókörből RBAC-szerepkörök hozzárendelése
+Az Azure erőforrás-hatókörben egy Szerepalapú szerepkör hozzárendelése hello előfizetés szintjén vagy hello erőforráscsoport szintjén hello szerepkör hozzárendelése egy azonos folyamata, a következő hello azonos mindkét forgatókönyvet munkafolyamata. Ebben az esetben hello hello RBAC szerepkörhöz hozzárendelt értesülhet, hogy azok hozzárendelt hozzáférés, vagy a hello csak hello elemek **összes erőforrás** lapon vagy közvetlenül az irányítópulton.
 
-Az RBAC egyaránt erőforrás csoporthatókör vagy erőforrás hatókör fontos eleme a felhasználók számára, ügyeljen arra, hogy jelentkezzen be a megfelelő könyvtárban van.
+Az RBAC egyaránt erőforrás csoporthatókör vagy erőforrás hatókör fontos eleme hello felhasználók toomake toohello meg arról, hogy toosign-a megfelelő könyvtárban van.
 
 
 
@@ -182,9 +182,9 @@ Az RBAC egyaránt erőforrás csoporthatókör vagy erőforrás hatókör fontos
 ![Directory bejelentkezés az Azure-portálon](./media/role-based-access-control-create-custom-roles-for-internal-external-users/13.png)
 
 ## <a name="assign-rbac-roles-for-an-azure-active-directory-group"></a>Egy Azure Active Directory csoport RBAC-szerepkörök hozzárendelése
-Az RBAC használata az Azure-ban három különböző hatóköröket, minden helyzet kezeléséhez, a központi telepítését és a különböző erőforrások felügyelete személyes előfizetés kezelése igénye nélkül hozzárendelt felhasználóként jogosultság kínálnak. Attól függetlenül történik az RBAC szerepkör tartozik előfizetés, erőforráscsoporthoz vagy erőforrás hatókör, az összes az erőforrásokat a hozzárendelt felhasználók által létrehozott további a számlázása alatt, ahol a felhasználók rendelkeznek-e a hozzáférést egy Azure-előfizetéssel. Ezzel a módszerrel számlázási a teljes Azure-előfizetéshez rendszergazdai jogosultságokkal rendelkező felhasználók rendelkezik teljes áttekintése a felhasználás, függetlenül az erőforrások kezel.
+Az RBAC használata a következő három különböző hatókörök hello Azure-ajánlat hello jogosultság kezelése, a központi telepítését és a különböző erőforrások felügyelete nélkül hello hozzárendelt felhasználóként az összes hello forgatókönyv kell a személyes előfizetés kezelésére. Függetlenül attól, hogy hello RBAC szerepkör tartozik előfizetés, erőforráscsoporthoz vagy erőforrás-hatókör, tovább hello hozzárendelt felhasználók által létrehozott összes hello erőforrások számlázása a hello egy Azure-előfizetéssel ahol hello felhasználók férhetnek hozzá. Ezzel a módszerrel hello számlázási a teljes Azure-előfizetéshez rendszergazdai jogosultságokkal rendelkező felhasználók rendelkezik teljes áttekintése hello fogyasztás, függetlenül attól, hogy a kezelő hello erőforrásokat.
 
-Nagyobb szervezeteknek figyelembe véve, hogy a felhasználót a rendszergazda hozzáférést szeretne biztosítani a részletes csoportok vagy részlegek teljes, nem különállóan minden felhasználónak, így annak eldöntéséhez, hogy a terv az Active Directory-csoportok esetében ugyanúgy alkalmazható RBAC-szerepkörök Ez különösen idő és a felügyeleti hatékony lehetőség. Ebben a példában mutatja be a **közreműködő** szerepkört az előfizetés szintjén a bérlő csoportok egyikéhez bővült.
+Nagyobb szervezetek számára az RBAC-szerepkörök alkalmazhatók a hello annak eldöntéséhez, hogy a hello perspektíva hello rendszergazda felhasználó Active Directory-csoportok ugyanúgy toogrant hello részletes hozzáférést igényel a csapatok vagy teljes, nem különállóan minden felhasználó részlegei, így annak eldöntéséhez, hogy ez rendkívül idő és a felügyeleti hatékony lehetőség. tooillustrate ezt a példát, hello **közreműködő** szerepkör hozzá lett adva a hello csoportok tooone hello bérlői hello előfizetés szintjén.
 
 
 
@@ -194,16 +194,16 @@ Nagyobb szervezeteknek figyelembe véve, hogy a felhasználót a rendszergazda h
 
 Ezek a csoportok üzembe helyezve, és csak az Azure Active Directoryban felügyelni biztonsági csoportokat.
 
-## <a name="create-a-custom-rbac-role-to-open-support-requests-using-powershell"></a>Nyissa meg a támogatási kérelmek PowerShell használatával történő egyéni RBAC szerepkör létrehozása
-A beépített RBAC-szerepkörök az Azure-ban rendelkezésre álló gondoskodjon arról, hogy bizonyos jogosultsági szintek a környezetben elérhető erőforrások alapján. Azonban ezek a szerepkörök egyike a rendszergazdai jogú felhasználó saját igényeinek megfelelően, ha nincs a beállítás a egyéni RBAC-szerepkörök létrehozásával még jobban hozzáférés korlátozásához.
+## <a name="create-a-custom-rbac-role-tooopen-support-requests-using-powershell"></a>Hozzon létre egyéni RBAC szerepkör tooopen támogatási kérelmek PowerShell használatával
+hello beépített RBAC szerepkörök az Azure-ban rendelkezésre álló gondoskodjon arról, hogy bizonyos jogosultsági szintek hello a hello környezetben elérhető erőforrások alapján. Azonban ezek a szerepkörök egyike hello rendszergazdai jogú felhasználó saját igényeinek megfelelően, ha nincs hello beállítás toolimit hozzáférés még több egyéni RBAC-szerepkörök létrehozásával.
 
-Egyéni RBAC-szerepkörök létrehozásához egy beépített szerep, szerkesztheti, majd importálja vissza a környezetben. A letöltés és a szerepkör feltöltése felügyelt PowerShell vagy a parancssori felület használatával.
+Egyéni RBAC-szerepkörök létrehozásához szükséges tootake egy beépített szerepkör, szerkesztheti, majd importálja vissza hello környezetben. hello letöltése és a feltöltés hello szerepkör kezelése a PowerShell vagy a parancssori felület.
 
-Fontos megismerni az előfeltételeket részletes hozzáférést biztosíthat az előfizetés szintjén és is lehetővé teszi a meghívott felhasználó rugalmasan megnyitása támogatási kérelmek létrehozása egy egyéni biztonsági szerepkört.
+Fontos toounderstand hello Előfeltételek létre egy egyéni biztonsági szerepkört is, hogy a támogatási kérelmek megnyitása hello meghívott felhasználó hello rugalmasságát és részletes hozzáférést hello előfizetés szintjén.
 
-Ehhez a példához a beépített szerepkör **olvasó** engedélyezése a felhasználó a lehetőség a támogatási kérelmek megnyitása testreszabása lehetővé teszi a felhasználók elérését a erőforrás hatókörök megtekintése, de nem szerkesztheti azokat, vagy hozzon létre újakat.
+A példa hello beépített szerepkör **olvasó** amely lehetővé teszi a felhasználók hozzáférési tooview összes hello erőforrás hatóköröket azonban nem tooedit őket, vagy hozzon létre újakat lett testre szabott tooallow hello felhasználói hello lehetőség a támogatási kérelmek megnyitása.
 
-Az első műveletet exportáló a **olvasó** emelt jogosultsági szintű rendszergazdaként futtatott szerepkör kell PowerShell leforgása alatt elvégezhetők.
+első művelet hello exportáló hello **olvasó** emelt jogosultsági szintű rendszergazdaként futtatott szerepkör igények toobe PowerShell befejeződött.
 
 ```
 Login-AzureRMAccount
@@ -220,7 +220,7 @@ Get-AzureRMRoleDefinition -Name "Reader" | ConvertTo-Json | Out-File C:\rbacrole
 
 ![Az olvasó RBAC szerepkör PowerShell képernyőképe](./media/role-based-access-control-create-custom-roles-for-internal-external-users/15.png)
 
-Majd, vissza kell fejteni a JSON-sablon a szerepkör.
+Majd tooextract hello JSON-sablon hello szerepkör van szüksége.
 
 
 
@@ -230,44 +230,44 @@ Majd, vissza kell fejteni a JSON-sablon a szerepkör.
 
 Egy tipikus RBAC szerepkör áll kívül három fő szakasz **műveletek**, **NotActions** és **AssignableScopes**.
 
-Az a **művelet** című szakaszában felsorolt összes engedélyezett műveletek ehhez a szerepkörhöz. Fontos megérteni, hogy minden műveletet olyan erőforrás-szolgáltató van hozzárendelve. Ebben az esetben a támogatási jegyek létrehozásának képességét a **Microsoft.Support** szerepelnie kell az erőforrás-szolgáltató.
+A hello **művelet** szakaszban felsorolt összes hello a szerepkörhöz tartozó engedélyezett műveletek. Minden egyes művelethez hozzárendelt erőforrás-szolgáltató fontos toounderstand. Ebben az esetben a támogatási jegyeket hello létrehozására vonatkozó **Microsoft.Support** szerepelnie kell az erőforrás-szolgáltató.
 
-Ahhoz, hogy összes az erőforrás-szolgáltató elérhető és az előfizetéshez regisztrált, használhatja a PowerShell.
+toobe képes toosee összes hello érhető el, és az előfizetéshez regisztrált erőforrás-szolgáltató, a PowerShell segítségével.
 ```
 Get-AzureRMResourceProvider
 
 ```
-Ezenkívül ellenőrizheti az összes elérhető PowerShell parancsmagjainak az erőforrás-szolgáltatók kezelése.
+Ezenkívül ellenőrizheti a hello összes hello elérhető PowerShell parancsmagok toomanage hello erőforrás-szolgáltató.
     ![Az erőforrás-szolgáltató management PowerShell képernyőképe](./media/role-based-access-control-create-custom-roles-for-internal-external-users/17.png)
 
-Az adott RBAC-szerepkörök a műveletek korlátozása, erőforrás-szolgáltatók szakaszban felsorolt **NotActions**.
-Utolsó akkor kötelező, hogy a Szerepalapú szerepkör tartalmazza a explicit előfizetési azonosítók felhasználási. Az előfizetési azonosítók alatt a **AssignableScopes**, ellenkező esetben azt nem használhatók az előfizetésében szerepkört importálni.
+egy adott RBAC-szerepkör erőforrás-szolgáltatók hello szakaszban felsorolt műveleteket hello összes toorestrict **NotActions**.
+Utolsó akkor kötelező hello RBAC szerepkörhöz hello explicit előfizetési azonosítók felhasználási tartalmazza. hello előfizetési azonosítók a hello **AssignableScopes**, egyéb, nem engedélyezett tooimport hello szerepkör az előfizetésben.
 
-Után létrehozása és testreszabása az RBAC-szerepkör, importálandók kell biztonsági másolatot a környezet.
+Létrehozása és testreszabása hello RBAC szerepkör, után toobe importált hátsó hello környezet szükséges.
 
 ```
 New-AzureRMRoleDefinition -InputFile "C:\rbacrole2.json"
 
 ```
 
-Ebben a példában a Szerepalapú szerepkörhöz tartozó egyéni neve "Olvasó támogatási jegyek hozzáférési szint" a felhasználó az előfizetéshez mindent megtekinthetnek és nyissa meg a támogatási kérelmek.
+Ebben a példában a Szerepalapú szerepkör hello egyéni nevét "Olvasó támogatási jegyek hozzáférési szint" lehetővé tevő hello felhasználói tooview mindent hello előfizetés, és tooopen támogatási kérelmeket.
 
 > [!NOTE]
-> A támogatási kérelmek nyitó művelet engedélyezése csak két beépített RBAC szerep **tulajdonos** és **közreműködő**. A felhasználó megnyithatja a támogatási kérelmek ő szerepkört kell hozzárendelni egy Szerepalapú csak az előfizetési hatókört, mert összes támogatási kérelmek létrehozása az Azure-előfizetés alapján.
+> hello a támogatási kérelmek nyitó hello művelet engedélyezése csak két beépített RBAC szerepkörök vannak **tulajdonos** és **közreműködő**. Egy felhasználói toobe képes tooopen támogatási kérelmek ő szerepkört kell hozzárendelni egy Szerepalapú csak hatókörben hello előfizetés, mert minden támogatási kérelmek létrehozása az Azure-előfizetés alapján.
 
-Az új egyéni szerepkör van rendelve egy felhasználó, az ugyanabban a könyvtárban.
-
-
-
-
-
-![az Azure portálon importálni egyéni RBAC szerepkör képernyőképe](./media/role-based-access-control-create-custom-roles-for-internal-external-users/18.png)
+Az új egyéni szerepkör van hozzárendelve a hello tooan felhasználói ugyanabban a könyvtárban.
 
 
 
 
 
-![Képernyőkép a egyéni importált RBAC szerepkör hozzárendelése felhasználói ugyanabban a könyvtárban](./media/role-based-access-control-create-custom-roles-for-internal-external-users/19.png)
+![képernyőfelvétel a hello Azure-portálon az importált egyéni RBAC szerepkör](./media/role-based-access-control-create-custom-roles-for-internal-external-users/18.png)
+
+
+
+
+
+![Képernyőkép a hozzárendelése egyéni importált RBAC szerepkör toouser hello az ugyanabban a könyvtárban](./media/role-based-access-control-create-custom-roles-for-internal-external-users/19.png)
 
 
 
@@ -275,7 +275,7 @@ Az új egyéni szerepkör van rendelve egy felhasználó, az ugyanabban a könyv
 
 ![egyéni importált RBAC szerepkör engedélyeinek képernyőképe](./media/role-based-access-control-create-custom-roles-for-internal-external-users/20.png)
 
-A példa további részletes hogy az egyéni RBAC szerepkör határain hangsúlyozzák az alábbiak szerint:
+hello példa lett további részletes tooemphasize hello korlátok egyéni RBAC-szerepkörhöz az alábbiak szerint:
 * Új támogatási kérelmek hozhat létre.
 * Nem hozható létre új erőforrás hatókörök (például: virtuális gép)
 * Nem hozható létre új erőforrás-csoportok
@@ -290,20 +290,20 @@ A példa további részletes hogy az egyéni RBAC szerepkör határain hangsúly
 
 
 
-![nem sikerült létrehozni a virtuális gépek egyéni RBAC szerepkör képernyőképe](./media/role-based-access-control-create-custom-roles-for-internal-external-users/22.png)
+![Képernyőkép a Szerepalapú egyéni szerepkör nem tudja toocreate virtuális gépek](./media/role-based-access-control-create-custom-roles-for-internal-external-users/22.png)
 
 
 
 
 
-![nem sikerült létrehozni az új RGs egyéni RBAC szerepkör képernyőképe](./media/role-based-access-control-create-custom-roles-for-internal-external-users/23.png)
+![Képernyőkép a Szerepalapú egyéni szerepkör nem tudja toocreate új RGs](./media/role-based-access-control-create-custom-roles-for-internal-external-users/23.png)
 
-## <a name="create-a-custom-rbac-role-to-open-support-requests-using-azure-cli"></a>Nyissa meg a támogatási kérelmek Azure parancssori felület használatával történő egyéni RBAC szerepkör létrehozása
-A Mac és a PowerShell való hozzáférés nélkül fut, az Azure parancssori felület módja a nyissa meg.
+## <a name="create-a-custom-rbac-role-tooopen-support-requests-using-azure-cli"></a>Hozzon létre egy egyéni RBAC szerepkör tooopen támogatási kérelmek Azure parancssori felület használatával
+Mac számítógépen, és anélkül, hogy hozzáférési tooPowerShell fut, az Azure parancssori felület hello módon toogo.
 
-Egy egyéni biztonsági szerepkört létrehozásának a lépései megegyeznek, CLI-vel a szerepkör nem tölti le a JSON-sablon, de a a parancssori Felülettel megtekinthetők kivételével.
+hello lépéseket toocreate egy egyéni biztonsági szerepkört, hello egyedüli kivétel, hogy parancssori felület használatával hello szerepkör nem lehet letölteni egy JSON-sablon, de megtekinthetők az hello CLI hello.
 
-Ehhez a példához I választotta, a beépített szerepkör **biztonsági mentés olvasó**.
+Ehhez a példához I hello beépített szerepkör a kiválasztott **biztonsági mentés olvasó**.
 
 ```
 
@@ -317,7 +317,7 @@ azure role show "backup reader" --json
 
 ![Parancssori felület Képernyőkép a biztonsági mentési olvasó szerepkört megjelenítése](./media/role-based-access-control-create-custom-roles-for-internal-external-users/24.png)
 
-A szerepkör a Visual Studio módosítása után a tulajdonságokat a JSON-sablon másolása a **Microsoft.Support** erőforrás-szolgáltató hozzá lett adva a **műveletek** részek, hogy a felhasználó megnyithatja támogatása kérelmek, miközben továbbra is a mentési tárolók olvasójának lehet. Újra kell hozzáadnia az előfizetés-azonosító, amelyeken ezt a szerepkört kell használni a rendszer a **AssignableScopes** szakasz.
+A Visual Studio hello szerepkör módosítása hello tulajdonságokat a JSON-sablon másolása után hello **Microsoft.Support** erőforrás-szolgáltató hozzá lett adva hello **műveletek** , hogy a felhasználó megnyithatja részek támogatási kérelmek toobe hello mentési tárolók olvasójának folytatása közben. Újra szükség tooadd hello előfizetés-azonosító amelyeken ezt a szerepkört kell használni a hello **AssignableScopes** szakasz.
 
 ```
 
@@ -331,7 +331,7 @@ azure role create --inputfile <path>
 
 ![Egyéni RBAC szerepkör importálása CLI képernyőképe](./media/role-based-access-control-create-custom-roles-for-internal-external-users/25.png)
 
-Az új szerepkör már elérhető az Azure portálon, és a hozzárendeléseket folyamat megegyezik az előző példához hasonlóan.
+hello új szerepkör most hello Azure-portálon elérhető és hello hozzárendeléseket folyamat van hello ugyanaz, mint hello előző példák.
 
 
 
@@ -339,7 +339,7 @@ Az új szerepkör már elérhető az Azure portálon, és a hozzárendeléseket 
 
 ![Az Azure portál Képernyőkép a CLI 1.0 használatával létrehozott egyéni RBAC szerepkör](./media/role-based-access-control-create-custom-roles-for-internal-external-users/26.png)
 
-A legújabb Build 2017 frissítésétől az Azure-felhő rendszerhéj általánosan elérhető. Azure Cloud rendszerhéj egészíti ki IDE és az Azure portálon. Ezzel a szolgáltatással hitelesítése és Azure-ban üzemeltetett egy webböngésző-alapú rendszerhéj kap, és használhatja a számítógépen telepített parancssori felület helyett.
+Hello frissítésétől legújabb Build 2017, hello Azure Cloud rendszerhéj általánosan elérhető. Azure Cloud rendszerhéj egy a komplemens számnak tooIDE és hello Azure portálon. Ezzel a szolgáltatással hitelesítése és Azure-ban üzemeltetett egy webböngésző-alapú rendszerhéj kap, és használhatja a számítógépen telepített parancssori felület helyett.
 
 
 

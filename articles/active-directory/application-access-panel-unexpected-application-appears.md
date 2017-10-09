@@ -1,6 +1,6 @@
 ---
-title: "Alkalmazások megjelenésének a hozzáférési panel |} Microsoft Docs"
-description: "Ezért az alkalmazás jelenik-e meg a hozzáférési panelen hibaelhárítása"
+title: "aaaHow alkalmazások jelennek meg a hozzáférési panel hello |} Microsoft Docs"
+description: "Ezért az alkalmazás jelenik-e meg a hozzáférési Panel hello hibaelhárítása"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,129 +14,129 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviewr: japere
-ms.openlocfilehash: f8ccf2cf66b49940bc7f2b9f4764020efc04838e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 14ee732c4ed5260cba878e949cf9d90877aee67e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-applications-appear-on-the-access-panel"></a>Alkalmazások megjelenésének a hozzáférési panel
+# <a name="how-applications-appear-on-hello-access-panel"></a>Alkalmazások megjelenésének hello hozzáférési panel
 
-A hozzáférési Panel egy webes portál, amely lehetővé teszi a felhasználó munkahelyi vagy iskolai fiókkal az Azure Active Directory (Azure AD) a megtekintése, és indítsa el a felhőalapú alkalmazások, hogy az Azure AD-rendszergazda engedélyezte őket hozzáférés annak. Ezeket az alkalmazásokat úgy vannak konfigurálva, az Azure AD portálon a felhasználó nevében. A rendszergazda közvetlenül hozhat létre az alkalmazás a felhasználó vagy csoport számára a felhasználó, ami azt eredményezi, az alkalmazás a felhasználó hozzáférési Panel szereplő.
+hello hozzáférési Panel egy webes portál, amely lehetővé teszi a felhasználó munkahelyi vagy iskolai fiókkal az Azure Active Directory (Azure AD) tooview és kezdő felhőalapú alkalmazások, hogy hello Azure AD-rendszergazda rendelkezik hozzáféréssel őket. Ezeket az alkalmazásokat úgy vannak konfigurálva, hello Azure AD portálon hello felhasználó nevében. Üdvözöljük a rendszergazdákat hello toohello Alkalmazásfelhasználó közvetlenül vagy egy felhasználó része hello felhasználói hozzáférési Panel szereplő hello alkalmazás eredményezve tooa csoportot hozhat létre.
 
-## <a name="general-issues-to-check-first"></a>Először ellenőrizze a általános problémák
+## <a name="general-issues-toocheck-first"></a>Általános problémák első toocheck
 
--   Ha egy alkalmazás imént eltávolították a felhasználót vagy csoportot, a felhasználó tagja, próbáljon meg bejelentkezni és újra a felhasználó hozzáférési panelre néhány perc múlva megjelenítéséhez, ha a rendszer eltávolítja az alkalmazást.
+-   Ha az alkalmazás csak el lett távolítva a felhasználó vagy csoport hello felhasználó tagja, próbálja toosign bejövő és kimenő adatforgalma újra hello felhasználói hozzáférési panelre után néhány perc toosee hello alkalmazás eltávolításakor.
 
--   Ha a licenc csak felhasználó vagy csoport, a felhasználó nem tagja ennek eltarthat egy ideig, attól függően, hogy méretét és összetettségét, el kell végezni a változásokat a csoport el lett távolítva. Lehetővé teszi további idő előtt jelentkezik be a hozzáférési Panel.
+-   A licenc csak el lett távolítva a felhasználó vagy csoport hello felhasználó esetén tagja ennek attól függően, hogy hello méretét és összetettségét hello csoportot a végzett módosítások toobe hosszú ideig is eltarthat. Lehetővé teszi további alkalommal jelentkezik be a hozzáférési Panel hello előtt.
 
-## <a name="problems-related-to-assigning-applications-to-users"></a>Felhasználók hozzárendelése kapcsolatos problémák
+## <a name="problems-related-tooassigning-applications-toousers"></a>Problémák kapcsolódó tooassigning alkalmazások toousers
 
-Egy felhasználó lehet annak, hogy egy alkalmazás a hozzáférési Panel a mert azok volt korábban hozzárendelt. Az alábbiakban néhány ellenőrizze módjai:
+Egy felhasználó lehet annak, hogy egy alkalmazás a hozzáférési Panel a mert azok már korábban kiosztott tooit. Az alábbiakban néhány módon toocheck:
 
--   [Ellenőrizze, hogy ha a felhasználó hozzá van rendelve az alkalmazáshoz](#check-if-a-user-is-assigned-to-the-application)
+-   [Ellenőrizze, hogy ha a felhasználó hozzá van rendelve toohello alkalmazás](#check-if-a-user-is-assigned-to-the-application)
 
--   [Annak ellenőrzése, hogy a felhasználó a licenc, az alkalmazással kapcsolatos](#check-if-a-user-is-under-a-license-related-to-the-application)
+-   [Annak ellenőrzése, hogy egy felhasználó egy licenc kapcsolódó toohello alkalmazás](#check-if-a-user-is-under-a-license-related-to-the-application)
 
 
-### <a name="check-if-a-user-is-assigned-to-the-application"></a>Ellenőrizze, hogy ha a felhasználó hozzá van rendelve az alkalmazáshoz
+### <a name="check-if-a-user-is-assigned-toohello-application"></a>Ellenőrizze, hogy ha a felhasználó hozzá van rendelve toohello alkalmazás
 
-Ellenőrizze, hogy ha a felhasználó hozzá van rendelve az alkalmazást, kövesse az alábbi lépéseket:
+toocheck a felhasználó hozzá van rendelve a toohello alkalmazást, kövesse az hello alábbi lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazdája.**
+1.  Nyissa meg hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be a egy **globális rendszergazdája.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **vállalati alkalmazások** az Azure Active Directory bal oldali navigációs menüjében.
+4.  Kattintson a **vállalati alkalmazások** hello Azure Active Directory bal oldali navigációs menüjében.
 
-5.  Kattintson a **összes alkalmazás** az alkalmazások listájának megtekintéséhez.
+5.  Kattintson a **összes alkalmazás** tooview az alkalmazások listáját.
 
-6.  **Keresési** a szóban forgó alkalmazás nevét.
+6.  **Keresési** a szóban forgó hello alkalmazás hello nevét.
 
 7.  Kattintson a **felhasználók és csoportok**.
 
-8.  Ellenőrizze, hogy ha a felhasználó hozzá van rendelve az alkalmazáshoz.
+8.  Ellenőrizze a toosee, ha a felhasználó a toohello alkalmazás hozzá van rendelve.
 
-  * Ha a felhasználó eltávolítja az alkalmazásból **sorára kattintson** a felhasználó, és válassza ki **törlése**.
+  * Ha azt szeretné, hogy tooremove hello felhasználói hello alkalmazásból **hello sorban kattintson** hello felhasználó, és válassza a **törlése**.
 
-### <a name="check-if-a-user-is-under-a-license-related-to-the-application"></a>Annak ellenőrzése, hogy a felhasználó a licenc, az alkalmazással kapcsolatos
+### <a name="check-if-a-user-is-under-a-license-related-toohello-application"></a>Annak ellenőrzése, hogy egy felhasználó egy licenc kapcsolódó toohello alkalmazás
 
-A felhasználó licenc-hozzárendeléseket ellenőrzéséhez kövesse az alábbi lépéseket:
+toocheck a felhasználó hozzárendelt licencek, hajtsa végre hello alábbi lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazdája.**
+1.  Nyissa meg hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be a egy **globális rendszergazdája.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **felhasználók és csoportok** a navigációs menü.
+4.  Kattintson a **felhasználók és csoportok** hello navigációs menüjében.
 
 5.  Kattintson a **minden felhasználó**.
 
-6.  **Keresési** érdekli, felhasználó és **sorára kattintson** kiválasztásához.
+6.  **Keresési** hello felhasználó érdekli, és **hello sorban kattintson** tooselect.
 
-7.  Kattintson a **licencek** megtekintéséhez, amely licencek, a felhasználó jelenleg hozzá van rendelve.
+7.  Kattintson a **licencek** toosee licencek hello felhasználóhoz van rendelve.
 
-   * Ha a felhasználó hozzá van rendelve egy Office licenc a engedélyezése első fél Office-alkalmazásokat jelennek meg a felhasználó hozzáférési Panel.
+   * Hello felhasználó van hozzárendelve, tooan Office-licencet az első fél Office alkalmazások tooappear ezzel engedélyezi a felhasználó hozzáférési Panel hello.
 
-## <a name="problems-related-to-assigning-applications-to-groups"></a>Csoportok alkalmazásoké kapcsolatos problémák
+## <a name="problems-related-tooassigning-applications-toogroups"></a>Problémák kapcsolódó tooassigning alkalmazások toogroups
 
-Egy felhasználó lehet annak, hogy egy alkalmazás a hozzáférési Panel a mert, amelyet az alkalmazáshoz rendelt csoportba. Az alábbiakban néhány ellenőrizze módjai:
+Egy felhasználó lehet annak, hogy egy alkalmazás a hozzáférési Panel a mert hello alkalmazás rendelt csoportba. Az alábbiakban néhány módon toocheck:
 
 -   [A felhasználói csoporttagság ellenőrzése](#check-a-users-group-memberships)
 
--   [Annak ellenőrzése, hogy egy felhasználó egy licencet rendelt csoport tagja](#check-if-a-user-is-a-member-of-a-group-assigned-to-a-license)
+-   [Ellenőrizze, hogy a felhasználó tagja egy csoportnak tooa licenc hozzárendelése](#check-if-a-user-is-a-member-of-a-group-assigned-to-a-license)
 
 ### <a name="check-a-users-group-memberships"></a>A felhasználói csoporttagság ellenőrzése
 
-Ellenőrizze a csoport tagságát, kövesse az alábbi lépéseket:
+toocheck egy csoport tagságát, hajtsa végre hello alábbi lépéseket:
 
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazdája.**
+1.  Nyissa meg hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be a egy **globális rendszergazdája.**
 
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
 
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
 
-4.  Kattintson a **felhasználók és csoportok** a navigációs menü.
-
-5.  Kattintson a **minden felhasználó**.
-
-6.  **Keresési** érdekli, felhasználó és **sorára kattintson** kiválasztásához.
-
-7.  Kattintson a **csoportok.**
-
-8.  Ellenőrizze, hogy a felhasználók egy csoportjának az alkalmazás része.
-
-   * Ha a felhasználó a csoportból eltávolítani kívánt **sorára kattintson** a csoport- és select tulajdonosával.
-
-### <a name="check-if-a-user-is-a-member-of-a-group-assigned-to-a-license"></a>Annak ellenőrzése, hogy egy felhasználó egy licencet rendelt csoport tagja
-
-1.  Nyissa meg a [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be egy **globális rendszergazdája.**
-
-2.  Nyissa meg a **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** a fő bal oldali navigációs menü alján.
-
-3.  Írja be a **"Azure Active Directory**" a szűrő keresési mezőbe, és válasszon a **Azure Active Directory** elemet.
-
-4.  Kattintson a **felhasználók és csoportok** a navigációs menü.
+4.  Kattintson a **felhasználók és csoportok** hello navigációs menüjében.
 
 5.  Kattintson a **minden felhasználó**.
 
-6.  **Keresési** érdekli, felhasználó és **sorára kattintson** kiválasztásához.
+6.  **Keresési** hello felhasználó érdekli, és **hello sorban kattintson** tooselect.
 
 7.  Kattintson a **csoportok.**
 
-8.  egy adott csoport sorára kattintson.
+8.  Toosee ellenőrizze, hogy a felhasználók egy csoportjának toohello alkalmazás részét.
 
-9.  Kattintson a **licencek** megtekintéséhez, amely licencek, a csoport van rendelve.
+   * Ha azt szeretné, hogy tooremove hello felhasználói hello csoportból **hello sorban kattintson** hello csoport, és válassza a törlés.
 
-  * Ha a csoport egy Office-licencet, ezzel lehetővé teheti a bizonyos első fél Office alkalmazások jelennek meg a felhasználó hozzáférési Panel van hozzárendelve.
+### <a name="check-if-a-user-is-a-member-of-a-group-assigned-tooa-license"></a>Ellenőrizze, hogy a felhasználó tagja egy csoportnak tooa licenc hozzárendelése
+
+1.  Nyissa meg hello [ **Azure Portal** ](https://portal.azure.com/) , és jelentkezzen be a egy **globális rendszergazdája.**
+
+2.  Nyissa meg hello **Azure Active Directory-bővítmény** kattintva **további szolgáltatások** hello fő bal oldali navigációs menü hello alján.
+
+3.  Írja be a **"Azure Active Directory**" hello szűrő keresési mezőbe, és válassza hello **Azure Active Directory** elemet.
+
+4.  Kattintson a **felhasználók és csoportok** hello navigációs menüjében.
+
+5.  Kattintson a **minden felhasználó**.
+
+6.  **Keresési** hello felhasználó érdekli, és **hello sorban kattintson** tooselect.
+
+7.  Kattintson a **csoportok.**
+
+8.  Kattintson egy meghatározott csoport hello sorát.
+
+9.  Kattintson a **licencek** melyik licencek hello csoporthoz rendelt tooit toosee.
+
+  * Ha hello csoport hozzárendelt tooan Office-licencet ezzel előfordulhat, hogy engedélyezi bizonyos első fél Office alkalmazások tooappear hello felhasználói hozzáférési panelen.
 
 
-## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a>Ha ezek a hibaelhárítási lépéseket nem a hárítsa el a problémát
+## <a name="if-these-troubleshooting-steps-do-not-hello-resolve-hello-issue"></a>Ha a lépések nem hello hello probléma megoldásához.
 
-támogatási jegy megnyitása a következő információkat, ha rendelkezésre áll:
+Nyisson meg egy támogatási jegy hello ha rendelkezésre áll a következő információkat:
 
 -   Megfelelési hiba azonosítója
 

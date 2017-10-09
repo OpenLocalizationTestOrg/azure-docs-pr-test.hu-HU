@@ -1,6 +1,6 @@
 ---
-title: Az Azure API Management sablonok lapon |} Microsoft Docs
-description: "Ismerje meg, hogyan szabhatja testre a sablonok használatával az Azure API Management portál lapjai fejlesztői tartalmát."
+title: az Azure API Management aaaPage sablonok |} Microsoft Docs
+description: "Ismerje meg, hogyan toocustomize hello fejlesztői sablonok használatával az Azure API Management portál lapjai tartalmát."
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 7f9ef37a694bce786b6acaa428df83f0cb23c2dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84bd971ad4bcacfdd36c2ebbe05b16063f2a547b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="page-templates-in-azure-api-management"></a>Az Azure API Management sablonokat
-Az Azure API Management lehetővé teszi a tartalom developer portálon lapok használatával konfigurálhatja a tartalom-sablonok testreszabása. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és az Ön által választott szerkesztőben, mint [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), konfigurálja a tartalmat, a lapok, ahogyan szeretné ezeket a sablonokat használ nagy rugalmasságot biztosítanak.  
+Az Azure API Management biztosít, akkor hello képességét toocustomize hello fejlesztői portál lapok használatával konfigurálhatja a tartalom-sablonok tartalmának. Használatával [DotLiquid](http://dotliquidmarkup.org/) szintaxisát és hello szerkesztő az Ön által választott, például a [tervezőknek DotLiquid](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), és a megadott készlete honosított [karakterlánc-erőforrások](api-management-template-resources.md#strings), [ A betűkép-erőforrások](api-management-template-resources.md#glyphs), és [vezérlők lapon](api-management-page-controls.md), rugalmas lehetőségeket biztosítanak tooconfigure hello hello lapok tartalmát rendelkezik, ezeket a sablonokat igényei szerint.  
   
- Ebben a szakaszban a sablonok lehetővé teszik testre szabhatja a bejelentkezést, bejelentkezési tartalma fel, és a lap nem található a lapok a fejlesztői portálján.  
+ hello sablonok ebben a szakaszban segítségével toocustomize hello tartalma hello bejelentkezés, jelentkezzen be, és a lap nem található a lapok hello fejlesztői portálján.  
   
 -   [bejelentkezés](#SignIn)  
   
@@ -32,10 +32,10 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 -   [A lap nem található](#PageNotFound)  
   
 > [!NOTE]
->  Minta alapértelmezett sablonok az alábbi dokumentáció szerepelnek, de folyamatos fejlesztéseket miatt változhat. Megtekintheti az élő alapértelmezett sablonok a fejlesztői portálra nyissa meg a kívánt egyéni sablonokat. A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  Minta alapértelmezett sablonok a következő dokumentáció hello szerepelnek, de tulajdonos toochange toocontinuous fejlesztései miatt. Navigáljon a szükséges toohello egyéni sablonok hello élő alapértelmezett sablonok a hello fejlesztői portálján tekintheti meg. A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="SignIn"></a>bejelentkezés  
- A **bejelentkezés** sablon lehetővé teszi a bejelentkezési oldal a fejlesztői portálra testreszabását.  
+ Hello **bejelentkezés** sablon teszi toocustomize hello bejelentkezési oldal hello developer portálon.  
   
  ![Jelentkezzen be az oldal](./media/api-management-page-templates/APIM-Sign-In-Page-Developer-Portal-Templates.png "APIM bejelentkezési oldal fejlesztői portál sablonok")  
   
@@ -96,7 +96,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- Ez a sablon lehet, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).  
+ Ez a sablon lehet, hogy használja a hello következő [vezérlők lapon](api-management-page-controls.md).  
   
 -   [Basic-bejelentkezés](api-management-page-controls.md#basic-signin)  
   
@@ -134,7 +134,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="SignUp"></a>feliratkozni  
- A **regisztráljon** sablon lehetővé teszi a bejelentkezési oldal a fejlesztői portálra testreszabását.  
+ Hello **regisztráljon** sablon teszi toocustomize hello bejelentkezési oldal hello developer portálon.  
   
  ![Regisztrációs oldalra](./media/api-management-page-templates/APIM-Sign-Up-Page-Developer-Portal-Templates.png "APIM bejelentkezési oldal Developer-portál sablonok")  
   
@@ -155,7 +155,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ### <a name="controls"></a>Vezérlők  
- Ez a sablon lehet, hogy használja a következő [vezérlők lapon](api-management-page-controls.md).  
+ Ez a sablon lehet, hogy használja a hello következő [vezérlők lapon](api-management-page-controls.md).  
   
 -   [-előfizetés](api-management-page-controls.md#sign-up)  
   
@@ -182,7 +182,7 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```  
   
 ##  <a name="PageNotFound"></a>A lap nem található  
- A **oldal nem található** sablon teszi lehetővé testre szabhatja a lapot oldal nem található a fejlesztői portálján.  
+ Hello **oldal nem található** sablon lehetővé teszi, hogy Ön toocustomize hello oldal nem található oldal hello developer portálon.  
   
  ![Nem található az oldal](./media/api-management-page-templates/APIM-Not-Found-Page-Developer-Portal-Templates.png "APIM nem található oldal fejlesztői portál sablonok")  
   
@@ -225,11 +225,11 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
   
 |Tulajdonság|Típus|Leírás|  
 |--------------|----------|-----------------|  
-|referenceCode|Karakterlánc|A kód jön létre, ha ezen a lapon jelent meg, egy belső hiba miatt.|  
-|Hibakód|Karakterlánc|A kód jön létre, ha ezen a lapon jelent meg, egy belső hiba miatt.|  
-|emailBody|Karakterlánc|Az e-mail törzsének jön létre, ha ezen a lapon jelent meg, egy belső hiba miatt.|  
-|requestedUrl|Karakterlánc|Ha a lap nem található a kért URL-CÍMÉT.|  
-|referrerUrl|Karakterlánc|A kért URL-címre hivatkozó URL.|  
+|referenceCode|Karakterlánc|A kód jön létre, ha egy belső hiba eredménye hello meg ezen a lapon.|  
+|Hibakód|Karakterlánc|A kód jön létre, ha egy belső hiba eredménye hello meg ezen a lapon.|  
+|emailBody|Karakterlánc|Az e-mail törzsének jön létre, ha egy belső hiba eredménye hello meg ezen a lapon.|  
+|requestedUrl|Karakterlánc|hello kért URL-cím amikor hello oldal nem található.|  
+|referrerUrl|Karakterlánc|hello hivatkozó URL-cím toohello kért URL-CÍMÉT.|  
   
 ### <a name="sample-template-data"></a>Mintaadatokat sablon  
   
@@ -244,4 +244,4 @@ Az Azure API Management lehetővé teszi a tartalom developer portálon lapok ha
 ```
 
 ## <a name="next-steps"></a>Következő lépések
-A sablonok használatának kapcsolatos további információkért lásd: [hogyan szabhatja testre a sablonok segítségével az API Management fejlesztői portálján](api-management-developer-portal-templates.md).
+A sablonok használatának kapcsolatos további információkért lásd: [hogyan toocustomize hello API Management fejlesztői portálján sablonokkal](api-management-developer-portal-templates.md).

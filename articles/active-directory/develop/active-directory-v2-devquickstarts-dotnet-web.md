@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD v2.0 .NET web app bejelentkezési első lépések |} Microsoft Docs"
-description: "Hogyan hozhat létre egy .NET MVC webalkalmazás, mely aláírja a felhasználók be mindkét személyes Microsoft-Account és a munkahelyi vagy iskolai fiókját."
+title: "aaaAzure AD v2.0 .NET web app bejelentkezési első lépések |} Microsoft Docs"
+description: "Hogyan toobuild .NET MVC webes alkalmazás, amely bejelentkezik felhasználók mindkét személyes Microsoft Account és munkahelyi vagy iskolai fiókját."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,45 +15,45 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: ba5bdf7daba6086b70aec54ebe25d4445fa708c3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 241e9c90bd752fbecc3696ce4f1bed3f9772189d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-net-mvc-web-app"></a>Bejelentkezés hozzáadása egy .NET MVC webalkalmazás
-A v2.0-végponttal támogatja a személyes Microsoft-fiókot is a webes alkalmazásokhoz való hitelesítés és a munkahelyi vagy iskolai fiókok gyorsan is hozzáadhat.  Az ASP.NET web apps Ez elvégezhető a .NET-keretrendszer 4.5 része a Microsoft OWIN köztes használatával.
+# <a name="add-sign-in-tooan-net-mvc-web-app"></a>Bejelentkezési tooan .NET MVC webalkalmazás hozzáadása
+Hello v2.0-végponttal gyorsan hitelesítési tooyour webalkalmazások támogatja a személyes Microsoft-fiókot is, valamint a munkahelyi vagy iskolai fiókokat is hozzáadhat.  Az ASP.NET web apps Ez elvégezhető a .NET-keretrendszer 4.5 része a Microsoft OWIN köztes használatával.
 
 > [!NOTE]
-> Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják a v2.0-végponttól.  Annak meghatározásához, ha a v2.0-végponttal kell használnia, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
+> Nem minden Azure Active Directory forgatókönyvek és funkciók támogatják hello v2.0-végponttól.  toodetermine használatát hello v2.0-végpontra, olvassa el [v2.0 korlátozások](active-directory-v2-limitations.md).
 >
 >
 
- Itt azt fogja létrehozni egy webes alkalmazás OWIN beléptetni a felhasználót, a felhasználói információkat jelenítsen meg, és jelentkezzen ki az alkalmazásból a felhasználó által.
+ Itt azt fogja hozza létre egy webes alkalmazás megjelenítési az OWIN toosign hello felhasználói használó hello felhasználói adatait, és bejelentkezési hello felhasználói hello alkalmazásból.
 
 ## <a name="download"></a>Letöltés
-Az oktatóanyag kódjának [karbantartása a GitHubon történik](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).  Követéséhez is [töltse le az alkalmazás vázát egy .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) vagy klónozza a vázat:
+az oktatóanyag kódjának hello kezelt [a Githubon](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).  toofollow mellett, akkor [töltse le a .zip hello alkalmazás vázát](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) vagy a Klónozás hello vázat:
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
-A kész alkalmazásról, valamint az oktatóanyag végén valósul meg.
+hello végén, valamint az oktatóanyag befejezése hello app valósul meg.
 
 ## <a name="register-an-app"></a>Alkalmazás regisztrálása
 Hozzon létre egy új alkalmazást [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), vagy kövesse az alábbi [részletes lépéseket](active-directory-v2-app-registration.md).  Győződjön meg arról, hogy:
 
-* Másolja le a **alkalmazásazonosító** be az alkalmazáshoz hozzárendelt szüksége lehet rájuk hamarosan.
-* Adja hozzá a **webes** platform az alkalmazásra vonatkozóan.
-* Adja meg a megfelelő **átirányítási URI-**. Az Azure ad Szolgáltatásba, ahol hitelesítési válaszok legyenek irányítva – ehhez az oktatóanyaghoz az alapértelmezett érték jelzi az átirányítási uri `https://localhost:44326/`.
+* Másolja le hello **alkalmazásazonosító** tooyour app hozzárendelve, szüksége lehet rájuk hamarosan.
+* Adja hozzá a hello **webes** platform az alkalmazásra vonatkozóan.
+* Adja meg a megfelelő hello **átirányítási URI-**. hello átirányítási uri azt jelzi, ha hitelesítési válaszok legyenek irányítva – hello ebben az oktatóanyagban alapértelmezés szerint AD tooAzure `https://localhost:44326/`.
 
 ## <a name="install--configure-owin-authentication"></a>Telepítse és konfigurálja az OWIN hitelesítést
-Itt konfigurálását végezzük el az OWIN közbenső szoftvert az OpenID Connect hitelesítési protokoll használatára.  OWIN be- és kijelentkezési kérések kiállítása, a felhasználói munkamenet kezelésére, és többek között a felhasználó adatai használható.
+Itt konfigurálását végezzük el hello OWIN köztes toouse hello OpenID Connect hitelesítési protokoll.  OWIN kell használt tooissue be- és kijelentkezési kérések, hello felhasználói munkamenet kezeli, és többek között a hello felhasználó adatainak beolvasása.
 
-1. Első lépésként nyissa meg a `web.config` fájlt a projekt gyökérkönyvtárában, és adja meg az alkalmazás konfigurációs értékeit a `<appSettings>` szakasz.
+1. toobegin, nyissa meg hello `web.config` hello projekt gyökerében hello fájlt, és adja meg az alkalmazás konfigurációs értékeit hello `<appSettings>` szakasz.
 
-  * A `ida:ClientId` van a **alkalmazásazonosító** az alkalmazáshoz a regisztrációs portálon rendelt.
-  * A `ida:RedirectUri` van a **átirányítási Uri-** a portálon megadott.
+  * Hello `ida:ClientId` hello van **alkalmazásazonosító** tooyour app hello regisztrációs portálon rendelt.
+  * Hello `ida:RedirectUri` hello van **átirányítási Uri-** hello portálon megadott.
 
-2. Ezt követően az OWIN köztes NuGet-csomagok hozzáadása a projekthez, a Csomagkezelő konzol használatával.
+2. Ezután adja hozzá a hello OWIN köztes NuGet csomagjainak toohello projekt hello Csomagkezelő konzol használatával.
 
         ```
         PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
@@ -61,8 +61,8 @@ Itt konfigurálását végezzük el az OWIN közbenső szoftvert az OpenID Conne
         PM> Install-Package Microsoft.Owin.Host.SystemWeb
         ```  
 
-3. Adja hozzá a "OWIN indítási osztály" a projekt neve `Startup.cs` jobb kattintson a projektre--> **Hozzáadás** --> **új elem** --> "OWIN" keresése.  Az OWIN közbenső szoftver meghívja a `Configuration(...)` metódust az alkalmazás indulásakor.
-4. Módosítsa az osztálydeklaráció való `public partial class Startup` -azt korábban már megvalósított Ez az osztály tartozik, egy másik fájlban.  Az a `Configuration(...)` metódus hívása ConfigureAuth(...) hitelesítés a webalkalmazás beállítása legyen  
+3. Az "OWIN indítási osztály" toohello projektet nevezik Hozzáadás `Startup.cs` jobb hello projektben kattintson--> **Hozzáadás** --> **új elem** --> "OWIN" keresése.  hello OWIN köztes által aktivált hello `Configuration(...)` módszer az alkalmazás indításakor.
+4. Hello osztálydeklaráció túl módosítása`public partial class Startup` -azt korábban már megvalósított Ez az osztály tartozik, egy másik fájlban.  A hello `Configuration(...)` módszert, győződjön meg a hívás tooConfigureAuth(...) tooset hitelesítés a webalkalmazás  
 
         ```C#
         [assembly: OwinStartup(typeof(Startup))]
@@ -79,7 +79,7 @@ Itt konfigurálását végezzük el az OWIN közbenső szoftvert az OpenID Conne
         }
         ```
 
-5. Nyissa meg a fájlt `App_Start\Startup.Auth.cs` és megvalósítását a `ConfigureAuth(...)` metódust.  Megadja a paraméterek `OpenIdConnectAuthenticationOptions` koordináták az alkalmazás az Azure AD kommunikálni fog szolgálni.  Biztosítani kell a Cookie-hitelesítés beállítása – az OpenID Connect köztes alatt a magában foglalja az cookie-kat használ.
+5. Nyissa meg hello fájl `App_Start\Startup.Auth.cs` és valósíthatnak meg hello `ConfigureAuth(...)` metódust.  Megadja a paraméterek hello `OpenIdConnectAuthenticationOptions` erre a célra az Azure ad alkalmazás toocommunicate koordinátáit.  Azt is el kell készíteni, hitelesítési cookie-k tooset – hello OpenID Connect köztes hello magában foglalja az alatta lévő cookie-kat használ.
 
         ```C#
         public void ConfigureAuth(IAppBuilder app)
@@ -91,9 +91,9 @@ Itt konfigurálását végezzük el az OWIN közbenső szoftvert az OpenID Conne
                              app.UseOpenIdConnectAuthentication(
                                      new OpenIdConnectAuthenticationOptions
                                      {
-                                             // The `Authority` represents the v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
-                                             // The `Scope` describes the permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
-                                             // In a real application you could use issuer validation for additional checks, like making sure the user's organization has signed up for your app, for instance.
+                                             // hello `Authority` represents hello v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
+                                             // hello `Scope` describes hello permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
+                                             // In a real application you could use issuer validation for additional checks, like making sure hello user's organization has signed up for your app, for instance.
         
                                              ClientId = clientId,
                                              Authority = String.Format(CultureInfo.InvariantCulture, aadInstance, "common", "/v2.0"),
@@ -114,9 +114,9 @@ Itt konfigurálását végezzük el az OWIN közbenső szoftvert az OpenID Conne
         ```
 
 ## <a name="send-authentication-requests"></a>Hitelesítési kérések küldése
-Az alkalmazás megfelelően van konfigurálva az OpenID Connect hitelesítési protokoll használatával a v2.0-végponttal való kommunikációhoz.  OWIN rendelkezik végrehajtott összes hitelesítési üzenetek létrehozásával, ellenőrzése az Azure ad-jogkivonatok és karbantartása a felhasználói munkamenet ugly részletes megvagyunk.  Most már kell biztosítani a felhasználóknak a be-és kijelentkezés úgy.
+Az alkalmazás már megfelelően konfigurált toocommunicate hello v2.0-végponttal hello OpenID Connect hitelesítési protokoll használatával.  OWIN rendelkezik végrehajtott összes hitelesítési üzenetek létrehozásával, ellenőrzése az Azure ad-jogkivonatok és karbantartásáról a felhasználói munkamenet ugly részleteit hello megvagyunk.  Hogy továbbra is van toogive a felhasználók egy a módon toosign és kijelentkezett.
 
-- Használhatja a tartományvezérlőket, hogy a felhasználó bejelentkezik egy bizonyos lap elérése előtt kötelező címkék engedélyezik.  Nyissa meg `Controllers\HomeController.cs`, és adja hozzá a `[Authorize]` címke a jogi tudnivalók megjelenítése Névjegy vezérlőhöz.
+- Használható címkék engedélyezik a tartományvezérlők toorequire az, hogy a felhasználó jelentkezik be egy bizonyos lap elérése előtt.  Nyissa meg `Controllers\HomeController.cs`, és adja hozzá a hello `[Authorize]` toohello vezérlő vonatkozó címke.
         
         ```C#
         [Authorize]
@@ -125,7 +125,7 @@ Az alkalmazás megfelelően van konfigurálva az OpenID Connect hitelesítési p
           ...
         ```
 
-- OWIN segítségével közvetlenül kiadni a kód a érkező hitelesítési kéréseket.  Nyissa meg `Controllers\AccountController.cs`.  A SignIn() és SignOut() műveletek adja a challenge OpenID Connect és kijelentkezési kérések ki.
+- OWIN toodirectly probléma a érkező hitelesítési kéréseket a kód is használható.  Nyissa meg `Controllers\AccountController.cs`.  Hello SignIn() és SignOut() műveleteket adja a challenge OpenID Connect és kijelentkezési kérések ki.
 
         ```C#
         public void SignIn()
@@ -137,7 +137,7 @@ Az alkalmazás megfelelően van konfigurálva az OpenID Connect hitelesítési p
             }
         }
         
-        // BUGBUG: Ending a session with the v2.0 endpoint is not yet supported.  Here, we just end the session with the web app.  
+        // BUGBUG: Ending a session with hello v2.0 endpoint is not yet supported.  Here, we just end hello session with hello web app.  
         public void SignOut()
         {
             // Send an OpenID Connect sign-out request.
@@ -146,7 +146,7 @@ Az alkalmazás megfelelően van konfigurálva az OpenID Connect hitelesítési p
         }
         ```
 
-- Most, nyissa meg a `Views\Shared\_LoginPartial.cshtml`.  Ez az amelyen megjelenítése a felhasználónak az alkalmazás be- és kijelentkezési hivatkozások, és nyomtassa ki a nézetben a felhasználó nevét.
+- Most, nyissa meg a `Views\Shared\_LoginPartial.cshtml`.  Ez az amelyen hello felhasználói megjelenítése az alkalmazáshoz be- és kijelentkezési hivatkozásokat, és nyomtassa ki hello felhasználónév nézetben.
 
         ```HTML
         @if (Request.IsAuthenticated)
@@ -155,7 +155,7 @@ Az alkalmazás megfelelően van konfigurálva az OpenID Connect hitelesítési p
                 <ul class="nav navbar-nav navbar-right">
                     <li class="navbar-text">
         
-                        @*The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves.*@
+                        @*hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves.*@
         
                         Hello, @(System.Security.Claims.ClaimsPrincipal.Current.FindFirst("preferred_username").Value)!
                     </li>
@@ -174,9 +174,9 @@ Az alkalmazás megfelelően van konfigurálva az OpenID Connect hitelesítési p
         ```
 
 ## <a name="display-user-information"></a>Felhasználói adatok megjelenítése
-Az OpenID Connect felhasználók hitelesítésekor a v2.0-végpontra egy id_token az alkalmazást, a jogcímeket vagy helyességi feltételek a felhasználóról tartalmaz adja vissza.  Ezeket a jogcímeket segítségével szabja személyre az alkalmazást:
+Az OpenID Connect felhasználók hitelesítésekor hello v2.0-végponttal, amely tartalmazza a jogcímeket vagy helyességi feltételek hello felhasználóról id_token toohello alkalmazás adja vissza.  A jogcímek toopersonalize az alkalmazás használhatja:
 
-- Nyissa meg az `Controllers\HomeController.cs` fájlt.  A felhasználói jogcímek, a vezérlők keresztül érheti el a `ClaimsPrincipal.Current` rendszerbiztonsági objektumot.
+- Nyissa meg hello `Controllers\HomeController.cs` fájlt.  A tartományvezérlők keresztül hello keresztül elérhető hello felhasználói jogcímek `ClaimsPrincipal.Current` rendszerbiztonsági objektumot.
 
         ```C#
         [Authorize]
@@ -184,14 +184,14 @@ Az OpenID Connect felhasználók hitelesítésekor a v2.0-végpontra egy id_toke
         {
             ViewBag.Name = ClaimsPrincipal.Current.FindFirst("name").Value;
         
-            // The object ID claim will only be emitted for work or school accounts at this time.
+            // hello object ID claim will only be emitted for work or school accounts at this time.
             Claim oid = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier");
             ViewBag.ObjectId = oid == null ? string.Empty : oid.Value;
         
-            // The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves
+            // hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves
             ViewBag.Username = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
         
-            // The subject or nameidentifier claim can be used to uniquely identify the user
+            // hello subject or nameidentifier claim can be used toouniquely identify hello user
             ViewBag.Subject = ClaimsPrincipal.Current.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
         
             return View();
@@ -199,21 +199,21 @@ Az OpenID Connect felhasználók hitelesítésekor a v2.0-végpontra egy id_toke
         ```
 
 ## <a name="run"></a>Futtassa a következőt:
-Végül felépítéséhez és az alkalmazás futtatása!   Jelentkezzen be személyes Microsoft-Account vagy a munkahelyi vagy iskolai fiókkal, és figyelje meg, hogyan jelenik meg a felső navigációs sáv a felhasználó identitását.  Most már rendelkezik egy webalkalmazást, amely képes hitelesíteni a személyes és munkahelyi vagy iskolai fiókkal rendelkező felhasználók iparági szabványos protokollok használatával biztonságossá.
+Végül felépítéséhez és az alkalmazás futtatása!   Jelentkezzen be személyes Microsoft-Account vagy a munkahelyi vagy iskolai fiókkal, és figyelje meg, hogyan hello felhasználói identitás hello felső navigációs sáv megjelenik.  Most már rendelkezik egy webalkalmazást, amely képes hitelesíteni a személyes és munkahelyi vagy iskolai fiókkal rendelkező felhasználók iparági szabványos protokollok használatával biztonságossá.
 
-Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként [is letöltheti a .zip Itt](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip), vagy a Githubból is klónozhatja:
+Referenciaként hello befejeződött (a konfigurációs értékek nélkül) minta [is letöltheti a .zip Itt](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip), vagy a Githubból is klónozhatja:
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
 ## <a name="next-steps"></a>Következő lépések
-Ön most már továbbléphet az összetettebb témákra.  Előfordulhat, hogy ki szeretné próbálni:
+Ön most már továbbléphet az összetettebb témákra.  Érdemes lehet tootry:
 
-[A Web API-t biztonságossá a a v2.0-végpontra >>](active-directory-devquickstarts-webapi-dotnet.md)
+[A Web API-t hello hello v2.0-végponttól biztonságos >>](active-directory-devquickstarts-webapi-dotnet.md)
 
 További forrásokért tekintse meg:
 
-* [A v2.0 – útmutató fejlesztőknek >>](active-directory-appmodel-v2-overview.md)
+* [hello v2.0 – útmutató fejlesztőknek >>](active-directory-appmodel-v2-overview.md)
 * [StackOverflow "azure-active-directory" címke >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
 ## <a name="get-security-updates-for-our-products"></a>Biztonsági frissítések termékeinkhez
-Javasoljuk, hogy kérjen értesítést a bekövetkező biztonsági incidensekről. Látogasson el [erre a lapra](https://technet.microsoft.com/security/dd252948), és fizessen elő a biztonsági tanácsadói riasztásokra.
+Javasoljuk, tooget értesítést a bekövetkező biztonsági incidensekről ellátogatva [ezen a lapon](https://technet.microsoft.com/security/dd252948) és előfizetés tooSecurity tanácsadói riasztásokra.

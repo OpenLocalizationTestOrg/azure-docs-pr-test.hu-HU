@@ -1,6 +1,6 @@
 ---
-title: "Ismerkedés az Azure AD .NET |} Microsoft Docs"
-description: "Hogyan hozható létre a .NET Windows asztali alkalmazás, amely integrálható az Azure ad-val jelentkezzen be, és meghívja az Azure AD API-k OAuth protokollt használó védett."
+title: "első lépések aaaAzure AD .NET |} Microsoft Docs"
+description: "Hogyan toobuild egy .NET Windows asztali alkalmazás, amely integrálható a bejelentkezéshez az Azure AD és az Azure AD védett OAuth protokollt használó API-k."
 services: active-directory
 documentationcenter: .net
 author: jmprieur
@@ -15,64 +15,64 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 7a252e0e5243c7b7489373845531cb913ca1f6aa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c09b358f24c7bfb371b34cf72ca48c0a45042f5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-azure-ad-into-a-windows-desktop-wpf-app"></a>Az Azure AD integrálása Windows asztali WPF-alkalmazások
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Ha az asztali alkalmazások, az Azure AD segítségével egyszerű és magától értetődő, hogy a felhasználókat az Active Directory-fiókok hitelesítéséhez.  Emellett lehetővé teszi az alkalmazás minden webes API-t az Azure AD, például az Office 365 API-k vagy az Azure API által védett biztonságosan felhasználását.
+Ha az asztali alkalmazások, az Azure AD teszi egyszerű és magától értetődő, az Ön tooauthenticate a felhasználókat az Active Directory-fiókokat.  Emellett lehetővé teszi az alkalmazás toosecurely használatához minden webes API-t az Azure AD által védett, például Office 365 API-k hello vagy hello Azure API.
 
-A .NET natív ügyfelek esetében a védett erőforrások eléréséhez szükséges az Azure AD az Active Directory Authentication Library, vagy az adal-t biztosít.  ADAL meg azzal a céllal életben megkönnyíti a hozzáférési jogkivonatok lekérésére, ha az alkalmazásban.  Annak bemutatásához, milyen könnyű van, itt azt fogja összeállíthat egy .NET WPF feladatlista alkalmazást, amely:
+A .NET natív ügyfelek számára, amelyek tooaccess védett erőforrások az Azure AD hello Active Directory Authentication Library vagy adal-t biztosít.  ADAL meg azzal a céllal életben toomake megkönnyítik az alkalmazás tooget hozzáférési jogkivonatok.  toodemonstrate milyen könnyű van, itt azt kell egy .NET WPF feladatlista alkalmazás létrehozása, amely:
 
-* Lekérdezi hozzáférési jogkivonatok hívásakor az Azure AD Graph API segítségével a [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
+* Lekérdezi hozzáférési jogkivonatainak hello segítségével a hello Azure AD Graph API felület meghívásakor [OAuth 2.0 hitelesítési protokoll](https://msdn.microsoft.com/library/azure/dn645545.aspx).
 * Egy könyvtárat a felhasználók egy adott aliasnév keres.
 * Kimenő felhasználók jeleket.
 
-A teljes működő alkalmazás létrehozásához szüksége:
+toobuild hello teljes működő alkalmazást kell:
 
 1. Az alkalmazás regisztrálása az Azure ad-val.
 2. Telepítése és konfigurálása adal-t.
-3. Adal-t használó tokenek lekérni az Azure AD.
+3. Használja az Azure AD ADAL tooget jogkivonatokat.
 
-A kezdéshez [töltse le az alkalmazás vázat](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/skeleton.zip) vagy [töltse le az elkészült mintát](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip).  Biztosítani kell, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő.  Ha még nem rendelkezik a bérlő [beszerzéséről egy](active-directory-howto-tenant.md).
+elindult, tooget [hello app vázat letöltése](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/skeleton.zip) vagy [letöltése befejeződött hello minta](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip).  Biztosítani kell, amelyben felhasználók létrehozása és egy alkalmazás regisztrálása az Azure AD-bérlő.  Ha még nem rendelkezik a bérlő [megtudhatja, hogyan egy tooget](active-directory-howto-tenant.md).
 
-## <a name="1-register-the-directorysearcher-application"></a>1. A DirectorySearcher alkalmazás regisztrálása
-Ahhoz, hogy az alkalmazás a jogkivonatok lekérésére, először regisztrálja az Azure AD-bérlőben, és adja meg azt az Azure AD Graph API hozzáférése:
+## <a name="1-register-hello-directorysearcher-application"></a>1. Hello DirectorySearcher alkalmazás regisztrálása
+tooenable a tooget alkalmazási jogkivonatok, először tooregister azt az Azure ad bérlői, és biztosítson számára engedély tooaccess hello Azure AD Graph API:
 
-1. Jelentkezzen be az [Azure Portalra](https://portal.azure.com).
-2. A felső eszköztáron kattintson a fiókhoz, majd a a **Directory** menüben válassza ki az Active Directory-bérlőt, ahová be szeretné-e az alkalmazás regisztrálásához.
-3. Kattintson a **több szolgáltatások** a bal oldali navigációs válassza **Azure Active Directory**.
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com).
+2. Hello felső sávon, kattintson a fiókjában, és a hello **Directory** menüben válassza ki, hol kívánja tooregister, az alkalmazás hello Active Directory-bérlő.
+3. Kattintson a **több szolgáltatások** a bal oldali navigációs hello, és válassza a **Azure Active Directory**.
 4. Kattintson a **App regisztrációk** válassza **Hozzáadás**.
-5. Kövesse az utasításokat, és hozzon létre egy új **natív ügyfélalkalmazás**.
-  * A **neve** az alkalmazás ismerteti az alkalmazást a végfelhasználók számára
-  * A **átirányítási Uri-** protokollt és a karakterlánc kombinációját, amely az Azure AD vissza a token válaszokat fogja használni.  Adja meg például egy adott értéket az alkalmazás `http://DirectorySearcher`.
-6. Miután végrehajtotta a regisztráció, AAD fogja hozzárendelni az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszokban lévő, másolja az alkalmazás oldalról.
-7. Az a **beállítások** lapon, válassza ki **szükséges engedélyek** válassza **Hozzáadás**. Válassza ki a **Microsoft Graph** az API-t, és adja hozzá a **címtáradatok olvasása** engedélyt a **delegált engedélyek**.  Ez lehetővé teszi az alkalmazás lekérdezése a Graph API-t a felhasználók számára.
+5. Hello utasításokat követve, és hozzon létre egy új **natív ügyfélalkalmazás**.
+  * Hello **neve** hello az alkalmazás ismerteti, az alkalmazás tooend-felhasználók
+  * Hello **átirányítási Uri-** protokollt és a karakterlánc kombinációját, hogy az Azure AD tooreturn token válaszokat fogja használni.  Adjon meg egy értéket adott tooyour alkalmazást, pl. `http://DirectorySearcher`.
+6. Miután végrehajtotta a regisztráció, AAD fogja hozzárendelni az alkalmazás egy egyedi azonosítót.  Ez az érték kell a következő szakaszok hello, ezért másolja hello alkalmazás oldalról.
+7. A hello **beállítások** lapon, válassza ki **szükséges engedélyek** válassza **Hozzáadás**. Jelölje be hello **Microsoft Graph** , hello API, és adja hozzá a hello **címtáradatok olvasása** engedélyt a **delegált engedélyek**.  Ez lehetővé teszi az alkalmazás tooquery hello Graph API a felhasználók számára.
 
 ## <a name="2-install--configure-adal"></a>2. Telepítése és konfigurálása adal-t
-Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapcsolódó kód írása.  Ahhoz, hogy az adal-t tudjanak kommunikálni az Azure AD meg kell biztosítania, bizonyos információkat az alkalmazás regisztrációját.
+Most, hogy az Azure AD-alkalmazás, telepítse az adal-t, és az identitás-kapcsolódó kód írása.  Ahhoz, hogy képes toocommunicate ADAL toobe az Azure AD-val, tooprovide kell azt bizonyos információkat az alkalmazás regisztrációját.
 
-* Kezdje az adal-t ad hozzá a DirectorySearcher projekt a Csomagkezelő konzol használatával.
+* Első lépésként hozzáadása ADAL toohello DirectorySearcher projekt hello Csomagkezelő konzol használatával.
 
 ```
 PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
 ```
 
-* A DirectorySearcher projektben nyissa meg a `app.config`.  Cserélje le az értékeket az elemek a `<appSettings>` szakaszban az Azure portált megadott értékeknek megfelelően.  A kód minden alkalommal ADAL hivatkozik ezeket az értékeket.
-  * A `ida:Tenant` a tartományt az Azure AD-bérlőn, pl.: contoso.onmicrosoft.com
-  * A `ida:ClientId` ClientID-azonosítóját az alkalmazás a portálról másolt van.
-  * A `ida:RedirectUri` van az átirányítási URL-cím regisztrálta a portálon.
+* Hello DirectorySearcher projektben nyissa meg `app.config`.  Cserélje le a hello értékek hello hello elemeinek `<appSettings>` szakasz tooreflect hello értékei a bemenő hello Azure portálon.  A kód minden alkalommal ADAL hivatkozik ezeket az értékeket.
+  * Hello `ida:Tenant` hello tartománya, akkor az Azure AD-bérlőn, pl.: contoso.onmicrosoft.com
+  * Hello `ida:ClientId` hello clientId hello portálról másolta az alkalmazás van.
+  * Hello `ida:RedirectUri` hello van regisztrált hello portál URL-címének átirányítása.
 
-## <a name="3----use-adal-to-get-tokens-from-aad"></a>3.    Adal-t használó tokenek lekérése az aad-ben
-Az alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen meghívja `authContext.AcquireTokenAsync(...)`, és a többi adal-t.  
+## <a name="3----use-adal-tooget-tokens-from-aad"></a>3.    Használja az ADAL tooGet jogkivonatok az aad-ben
+hello alapelv ADAL mögött, hogy a hozzáférési tokent kell, ha egyszerűen meghívja `authContext.AcquireTokenAsync(...)`, és ADAL rest hello.  
 
-* Az a `DirectorySearcher` projektben nyissa meg `MainWindow.xaml.cs` , és keresse meg a `MainWindow()` metódust.  Az első lépés az, hogy az alkalmazás inicializálása `AuthenticationContext` -ADAL tartozó elsődleges osztály.  Ez az adott át adal-t a koordináták kommunikálni az Azure AD, és mondja el, akkor jogkivonatok gyorsítótárazásának kell.
+* A hello `DirectorySearcher` projektben nyissa meg `MainWindow.xaml.cs` , és keresse meg a hello `MainWindow()` metódust.  első lépés hello tooinitialize van az alkalmazás `AuthenticationContext` -ADAL tartozó elsődleges osztály.  Ez az adott át ADAL hello koordinátát kell toocommunicate az Azure ad-val, és mondja el, hogyan toocache jogkivonatokat.
 
 ```C#
 public MainWindow()
@@ -85,19 +85,19 @@ public MainWindow()
 }
 ```
 
-* Keresse meg a `Search(...)` metódus, amely akkor kell meghívni, amikor a felhasználó cliks a "Search" gombra az alkalmazás felhasználói felületén.  Ez a módszer az Azure AD Graph API lekérdezéshez GET kérés teszi a felhasználók számára, amelyek egyszerű felhasználónév a megadott keresési kifejezés kezdődik.  Ahhoz, hogy a Graph API lekérdezni, meg kell adnia egy access_token a, de a `Authorization` fejlécet a kérelem - ezt az adal-t honnan.
+* Keresse meg hello `Search(...)` metódus, amely fog kell meghívni, ha hello felhasználói cliks hello hello alkalmazás felhasználói felületén a "Search" gombra.  Ez a módszer egy GET kérelmet toohello Azure AD Graph API tooquery teszi a felhasználók számára, akiknek UPN keresőkifejezéssel megadott hello kezdődik.  Rendelés tooquery hello Graph API-val, a tooinclude egy access_token a hello szükség van, de `Authorization` hello fejlécének kérelem - Ez az adal-t honnan.
 
 ```C#
 private async void Search(object sender, RoutedEventArgs e)
 {
-    // Validate the Input String
+    // Validate hello Input String
     if (string.IsNullOrEmpty(SearchText.Text))
     {
-        MessageBox.Show("Please enter a value for the To Do item name");
+        MessageBox.Show("Please enter a value for hello tooDo item name");
         return;
     }
 
-    // Get an Access Token for the Graph API
+    // Get an Access Token for hello Graph API
     AuthenticationResult result = null;
     try
     {
@@ -107,7 +107,7 @@ private async void Search(object sender, RoutedEventArgs e)
     }
     catch (AdalException ex)
     {
-        // An unexpected error occurred, or user canceled the sign in.
+        // An unexpected error occurred, or user canceled hello sign in.
         if (ex.ErrorCode != "access_denied")
             MessageBox.Show(ex.Message);
 
@@ -117,26 +117,26 @@ private async void Search(object sender, RoutedEventArgs e)
     ...
 }
 ```
-* Ha az alkalmazás kísérel meg jogkivonat meghívásával `AcquireTokenAsync(...)`, ADAL megkísérli jogkivonat vissza a felhasználói hitelesítő adatok kérése nélkül.  ADAL határozza meg, hogy a felhasználó bejelentkezhet a szolgáltatáshitelesítést egy token kell-e, ha azt fogja bejelentkezési párbeszédablakot jelenít meg, a felhasználói hitelesítő adatok összegyűjtése és térjen vissza a sikeres hitelesítés esetén egy token.  Ha nem lehet visszaadni a jogkivonatot a bármilyen okból adal-t, akkor kivételhibát egy `AdalException`.
-* Figyelje meg, hogy a `AuthenticationResult` objektum tartalmaz egy `UserInfo` objektum, amely segítségével az alkalmazás esetleg adatokat gyűjteni.  Az a DirectorySearcher `UserInfo` segítségével testre szabhatja az alkalmazás Kezelőfelületén a felhasználói azonosítóval.
-* Amikor a felhasználó a "Sign Out" gombra kattint, annak érdekében, hogy a következő hívást szeretnénk `AcquireTokenAsync(...)` ekkor megkérdezi a felhasználót, hogy jelentkezzen be.  Ez az adal-t, az egyszerű módon, ha a token gyorsítótár kiürítése:
+* Ha az alkalmazás kísérel meg jogkivonat meghívásával `AcquireTokenAsync(...)`, ADAL megpróbál tooreturn jogkivonat hello felhasználói hitelesítő adatok kérése nélkül.  Ha ADAL hello felhasználó van szüksége a tooget jogkivonat toosign, azt fogja megjelenítési bejelentkezési hello felhasználói hitelesítő adatok összegyűjtése, térjen vissza a sikeres hitelesítés esetén egy token.  Ha az adal TÁRAT nem tooreturn jogkivonat bármilyen okból, akkor kivételhibát egy `AdalException`.
+* Figyelje meg, hogy hello `AuthenticationResult` objektum tartalmaz egy `UserInfo` objektum, amely lehet például az alkalmazás esetleg használt toocollect információ.  A hello DirectorySearcher `UserInfo` használt toocustomize hello alkalmazás Kezelőfelületén hello felhasználói azonosítóval van.
+* Amikor hello felhasználó hello "Kijelentkezés" gombra kattint, szeretnénk, hogy a következő hívás túl hello tooensure`AcquireTokenAsync(...)` hello felhasználói toosign a felhasználói jóváhagyást kér.  Ez az adal-t, az egyszerű módon, ha hello token gyorsítótár kiürítése:
 
 ```C#
 private void SignOut(object sender = null, RoutedEventArgs args = null)
 {
-    // Clear the token cache
+    // Clear hello token cache
     authContext.TokenCache.Clear();
 
     ...
 }
 ```
 
-* Azonban ha a felhasználó nem a "Sign Out" gombra kattintva érdemes a felhasználói munkamenetet a következő alkalommal futtatja a DirectorySearcher a karbantartása.  Az alkalmazás indításakor ellenőrizze az adal-t a jogkivonatok gyorsítótárát, vagy egy meglévő jogkivonatot, és ennek megfelelően frissíti a felhasználói felületen.  Az a `CheckForCachedToken()` módszer, egy másik hívás `AcquireTokenAsync(...)`, ezúttal benyújtása a `PromptBehavior.Never` paraméter.  `PromptBehavior.Never`adal-t jelzi, hogy a felhasználói bejelentkezés nem kéri, és ADAL helyette kell kivételt jelez, ha nem adja vissza egy token.
+* Azonban ha hello felhasználói nem hello "Kijelentkezés" gombra kattintva célszerű toomaintain hello felhasználói munkamenetet a hello hello DirectorySearcher következő futtatásakor.  Hello alkalmazás indításakor ADAL által jogkivonatok gyorsítótárát egy meglévő jogkivonat esetében ellenőrizze, és ennek megfelelően frissülnek hello felhasználói felületén.  A hello `CheckForCachedToken()` módszer, egy másik hívás túl`AcquireTokenAsync(...)`, ezúttal hello benyújtása `PromptBehavior.Never` paraméter.  `PromptBehavior.Never`jelzi az adal-t hello felhasználói bejelentkezés nem kéri, és ADAL helyette kivételt kell előidéznie nem tooreturn esetén egy token.
 
 ```C#
 public async void CheckForCachedToken() 
 {
-    // As the application starts, try to get an access token without prompting the user.  If one exists, show the user as signed in.
+    // As hello application starts, try tooget an access token without prompting hello user.  If one exists, show hello user as signed in.
     AuthenticationResult result = null;
     try
     {
@@ -150,21 +150,21 @@ public async void CheckForCachedToken()
             MessageBox.Show(ex.Message);
         }
 
-        // If user interaction is required, proceed to main page without singing the user in.
+        // If user interaction is required, proceed toomain page without singing hello user in.
         return;
     }
 
-    // A valid token is in the cache
+    // A valid token is in hello cache
     SignOutButton.Visibility = Visibility.Visible;
     UserNameLabel.Content = result.UserInfo.DisplayableId;
 }
 ```
 
-Gratulálunk! Most már rendelkezik működő .NET WPF-alkalmazás, amely képes a felhasználók hitelesítésére, biztonságosan hívja az OAuth 2.0 használatával webes API-k, és a felhasználóval kapcsolatos alapvető információk.  Ha még nem tette meg, most már az egyes felhasználóival a bérlő feltölti idő.  Futtassa a DirectorySearcher alkalmazást, és jelentkezzen be valamelyik azoknak a felhasználóknak.  Az egyszerű Felhasználónevük alapján más felhasználók kereséséhez.  Zárja be az alkalmazást, és futtassa újból.  Figyelje meg, hogyan az ügyfél helye változatlan marad.  Jelentkezzen ki, és jelentkezzen be egy másik felhasználó.
+Gratulálunk! Ön most .NET WPF-alkalmazás, amely rendelkezik hello képességét tooauthenticate felhasználók, biztonságosan hívja a webes API-k, az OAuth 2.0 verziót használja, és működik alapszintű hello felhasználó adatainak beolvasása.  Ha még nem tette meg, most az hello idő toopopulate a bérlő az egyes felhasználók.  Futtassa a DirectorySearcher alkalmazást, és jelentkezzen be valamelyik azoknak a felhasználóknak.  Az egyszerű Felhasználónevük alapján más felhasználók kereséséhez.  Hello-alkalmazások bezárása, és futtassa újból.  Figyelje meg, hogyan hello felhasználói munkamenet nem módosulnak.  Jelentkezzen ki, és jelentkezzen be egy másik felhasználó.
 
-Az adal TÁRAT megkönnyíti, hogy átfogó mindezeket a közös identitás funkciókat az alkalmazásba.  Ez gondoskodik a dirty munkát meg - gyorsítótár kezelése, az OAuth-protokoll támogatása, a felhasználó egy bejelentkezési felhasználói felület, lejárt jogkivonatokat, és több frissítése a bemutató.  Biztosan tudni, hogy szüksége egy egyetlen API-hívással `authContext.AcquireTokenAsync(...)`.
+ADAL teszi, hogy könnyen tooincorporate mindezeket a funkciókat az alkalmazásba közös identitás.  Azt gondoskodik az összes hello dirty munkahelyi meg - gyorsítótár kezelése, az OAuth-protokoll támogatása, bemutató hello felhasználó egy bejelentkezési felhasználói felület, lejárt jogkivonatokat, és több frissítése a.  Valóban tooknow szüksége egy egyetlen API-hívással `authContext.AcquireTokenAsync(...)`.
 
-Az elkészült mintát (a konfigurációs értékek nélkül) referenciaként biztosított [Itt](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip).  Most már továbbléphet további helyzeteket is.  Előfordulhat, hogy ki szeretné próbálni:
+Megadott befejeződött hello mintát (a konfigurációs értékek nélkül) referenciaként [Itt](https://github.com/AzureADQuickStarts/NativeClient-DotNet/archive/complete.zip).  Most már továbbléphet tooadditional forgatókönyvek.  Érdemes lehet tootry:
 
 [.NET webes API-k, az Azure ad-vel biztonságos >>](active-directory-devquickstarts-webapi-dotnet.md)
 

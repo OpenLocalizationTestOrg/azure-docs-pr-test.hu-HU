@@ -1,6 +1,6 @@
 ---
-title: "Az Azure AD alkalmazás Proxy távoli asztal közzététele |} Microsoft Docs"
-description: "Alapvető tudnivalók az Azure AD-alkalmazásproxy összekötők ismerteti."
+title: "Távoli asztal a Azure AD alkalmazás-Proxy aaaPublish |} Microsoft Docs"
+description: "Az Azure AD-alkalmazásproxy összekötők hello alapjairól ismerteti."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -16,77 +16,77 @@ ms.date: 06/11/2017
 ms.author: kgremban
 ms.custom: it-pro
 ms.reviewer: harshja
-ms.openlocfilehash: 785bb4f893cf6861ef3b090d99780fd9b6b08c0e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1174161d0b5ef1157c334970f00ef4f0702a9545
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-remote-desktop-with-azure-ad-application-proxy"></a>Az Azure AD alkalmazásproxy távoli asztal közzététele
 
-Ez a cikk bemutatja, hogyan telepítheti a távoli asztali szolgáltatások (RDS) a Proxy, hogy a távoli felhasználók továbbra is produktív munkavégzést adhat.
+Ez a cikk ismerteti hogyan toodeploy távoli asztali szolgáltatások (RDS) a Proxy, hogy a távoli felhasználók továbbra is lehetnek hatékonyan dolgozhatnak.
 
-Ez a cikk a célközönség van:
-- Aktuális az Azure AD-alkalmazásproxyval oldható felhasználók nyújtanak további alkalmazásokat a végfelhasználók számára annak érdekében, hogy a távoli asztali szolgáltatások használatával a helyszíni alkalmazások közzététele.
-- Aktuális távoli asztali szolgáltatások felhasználói szeretné csökkenteni a támadási felületet, illetve azok központi telepítésének az Azure AD-alkalmazásproxy használatával. Ebben a forgatókönyvben biztosít a kétlépéses ellenőrzést, és a feltételes hozzáférés-vezérlést korlátozott számú RDS
+hello készült célközönségét a cikkben:
+- Aktuális Azure AD alkalmazásproxy felhasználóknak, akik toooffer további alkalmazások tootheir végfelhasználók által a távoli asztali szolgáltatások használatával a helyszíni alkalmazások közzététele.
+- Aktuális távoli asztali szolgáltatások felhasználói tooreduce hello támadási felületét, illetve azok központi telepítésének szeretné, hogy az Azure AD-alkalmazásproxy használatával. Ebben a forgatókönyvben a kétlépéses ellenőrzést korlátozott számú biztosít, és a feltételes hozzáférés-vezérlés tooRDS.
 
-## <a name="how-application-proxy-fits-in-the-standard-rds-deployment"></a>Hogyan alkalmazásproxy beleilleszkedik a normál távoli asztali szolgáltatások telepítése
+## <a name="how-application-proxy-fits-in-hello-standard-rds-deployment"></a>Hogyan alkalmazásproxy beleilleszkedik hello normál távoli asztali szolgáltatások telepítése
 
-A szabványos távoli asztali szolgáltatások telepítése különböző távoli asztal szerepkör-szolgáltatások a Windows Server rendszert futtató tartalmazza. Megnézi a [távoli asztali szolgáltatások architektúrája](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture), több központi telepítési lehetőség áll rendelkezésre. A leginkább szembetűnő különbségének a [távoli asztali szolgáltatások telepítése az Azure AD alkalmazásproxy](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture) (az alábbi ábrán is látható), és a más központi telepítési beállításokat, hogy rendelkezik-e az összekötő szolgáltatást futtató kiszolgálón az állandó kimenő kapcsolat az alkalmazásproxy-forgatókönyv. Más központi hagyja nyitva bejövő kapcsolatok terheléselosztó keresztül.
+A szabványos távoli asztali szolgáltatások telepítése különböző távoli asztal szerepkör-szolgáltatások a Windows Server rendszert futtató tartalmazza. Hello megnézi [távoli asztali szolgáltatások architektúrája](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture), több központi telepítési lehetőség áll rendelkezésre. hello leginkább szembetűnő különbségének hello [távoli asztali szolgáltatások telepítése az Azure AD alkalmazásproxy](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/desktop-hosting-logical-architecture) (hello a következő ábrán látható), és hello egyéb telepítési lehetőségekért hello alkalmazásproxy forgatókönyv kimenő állandó rendelkezik hello összekötő szolgáltatást futtató hello kiszolgáló közötti kapcsolat. Más központi hagyja nyitva bejövő kapcsolatok terheléselosztó keresztül.
 
-![Alkalmazásproxy helyezkedik el, a távoli asztali szolgáltatások virtuális gép és a nyilvános internet közötti](./media/application-proxy-publish-remote-desktop/rds-with-app-proxy.png)
+![Alkalmazás Proxy található közötti távoli asztali szolgáltatások VM hello és nyilvános internet hello](./media/application-proxy-publish-remote-desktop/rds-with-app-proxy.png)
 
-Egy távoli asztali szolgáltatások telepítése esetén a távoli asztali webes szerepkör és a távoli asztali átjáró szerepkör futtatásához, internetre irányuló gépeken. Ezeket a végpontokat érhetők el a következő okok miatt:
-- Távoli asztali webes biztosít a felhasználó egy nyilvános végpontot, jelentkezzen be, és tekintse meg a különböző helyszíni alkalmazásokhoz és asztali számítógépek eléréséhez. Egy erőforrás választja, akkor egy RDP-kapcsolat jön létre, a natív alkalmazással az operációs rendszer.
-- A képbe távoli asztali átjáró elérhető lesz, ha egy felhasználó elindítja a távoli ASZTAL kapcsolaton keresztül. A távoli asztali átjáró az interneten keresztül érkező titkosított RDP-forgalmát kezeli, és a következőkből fordítja le a helyi kiszolgálóra, amely a felhasználó csatlakozik. Ebben a forgatókönyvben a távoli asztali átjáró fogadja a forgalmat az Azure AD-alkalmazásproxy származik.
+Egy távoli asztali szolgáltatások hello távoli asztali webes szerepkör és a távoli asztali átjáró szerepkör hello futnak internetre gépeken. Ezeket a végpontokat a következő okok miatt hello érhetők el:
+- Távoli asztali webes biztosít hello felhasználói egy nyilvános végpontot toosign a, és a nézet hello különböző a helyszíni alkalmazások és asztali számítógépek eléréséhez. Erőforrás választja, akkor egy RDP-kapcsolat jön létre, az operációs rendszer hello található hello natív alkalmazás használatával.
+- Távoli asztali átjáró hello képbe elérhető lesz, ha egy felhasználó elindítja hello RDP-kapcsolatokat. hello távoli asztali átjáró Titkosított hello hello interneten keresztül érkező RDP-forgalmát kezeli, és csatlakozik a helyi kiszolgáló, amely a felhasználó hello toohello fordítja le azt. Ebben a forgatókönyvben a távoli asztali átjáró fogadja hello forgalom hello hello Azure AD alkalmazásproxy származik.
 
 >[!TIP]
->Ha még nem telepített távoli asztali szolgáltatások előtt, vagy megkezdése előtt további információra van szüksége, megtudhatja, hogyan [zökkenőmentesen telepíteni a távoli asztali szolgáltatások az Azure Resource Manager és az Azure piactér](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/rds-in-azure).
+>Ha még nem telepített távoli asztali szolgáltatások előtt, vagy megkezdése előtt további információra van szüksége, megtudhatja, hogyan túl[zökkenőmentesen telepíteni a távoli asztali szolgáltatások az Azure Resource Manager és az Azure piactér](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/rds-in-azure).
 
 ## <a name="requirements"></a>Követelmények
 
-- A távoli asztali webes és a távoli asztali átjáró végpontok ugyanazon a számítógépen, valamint egy közös legfelső szintű helyen kell lennie. Távoli asztali webes és a távoli asztali átjáró teszi közzé, egyetlen alkalmazásként, tehát az egy egyszeri bejelentkezéses felhasználói élmény biztosítása a két alkalmazás között.
+- Mindkét hello távoli asztali webes és a végpontokat kell lennie a távoli asztali átjáró hello ugyanaz a számítógép, és egy közös gyökérközzétevővel. Távoli asztali webes és a távoli asztali átjáró teszi közzé, egyetlen alkalmazásként, tehát az egy egyszeri bejelentkezéses felhasználói élmény biztosítása hello a két alkalmazás között.
 
 - Ön már rendelkezik [központilag telepített távoli asztali szolgáltatások](https://technet.microsoft.com/windows-server-docs/compute/remote-desktop-services/rds-in-azure), és [engedélyezve van az alkalmazásproxy](active-directory-application-proxy-enable.md).
 
-- Ez a forgatókönyv azt feltételezi, hogy a végfelhasználók nyissa meg az Internet Explorer keresztül a Windows 7 vagy Windows 10 asztali gépek, a távoli asztali weblap keresztül csatlakozó. Ha más operációs rendszerek támogatásához van szüksége, tekintse meg [támogatja az egyéb ügyfél-konfiguráció](#support-for-other-client-configurations).
+- Ebben a forgatókönyvben azt feltételezi, hogy a végfelhasználók a Windows 7 vagy Windows 10-asztalok hello távoli asztali weblapon keresztül csatlakozó ki halad át az Internet Explorer. Ha szüksége toosupport más operációs rendszerekkel, tekintse meg [más ügyfél-konfigurációs támogatása](#support-for-other-client-configurations).
 
   >[!NOTE]
   >Windows 10 létrehozó frissítése jelenleg nem támogatott.
 
-- Az Internet Explorer a távoli asztali szolgáltatások ActiveX-bővítmény engedélyezéséhez.
+- Az Internet Explorer engedélyezze a hello távoli asztali szolgáltatások ActiveX bővítmény.
 
-## <a name="deploy-the-joint-rds-and-application-proxy-scenario"></a>A közös távoli asztali szolgáltatások és a Proxy forgatókönyv telepítése
+## <a name="deploy-hello-joint-rds-and-application-proxy-scenario"></a>Hello közös távoli asztali szolgáltatások és a Proxy forgatókönyv telepítése
 
-Miután beállította a távoli asztali szolgáltatások és a környezet az Azure AD alkalmazásproxy, kövesse a két megoldás kombinálhatók. Ezeket a lépéseket ismerteti a webalkalmazás számára is elérhető távoli asztali szolgáltatások végpontokat (a távoli asztali webes és a távoli asztali átjáró) közzététele alkalmazásokként és majd irányítja a forgalmat a proxyn keresztül történő Ugrás a távoli asztali szolgáltatások segítségével.
+Miután beállította a távoli asztali szolgáltatások és a környezet az Azure AD alkalmazásproxy, kövesse a hello lépéseket toocombine hello két megoldásokat. Ezeket a lépéseket ismerteti alkalmazásokként hello két webes elérhető távoli asztali szolgáltatások végpontot (a távoli asztali webes és a távoli asztali átjáró) közzététele, és majd irányítja a forgalmat a proxyn keresztül történő a távoli asztali szolgáltatások toogo keresztül.
 
-### <a name="publish-the-rd-host-endpoint"></a>A távoli asztali állomás végpont közzététele
+### <a name="publish-hello-rd-host-endpoint"></a>Hello távoli asztali állomás végpont közzététele
 
-1. [Alkalmazásproxy új alkalmazás közzététele](application-proxy-publish-azure-portal.md) a következő értékekkel:
-   - Belső URL-címe: https://\<rdhost\>.com /, ahol \<rdhost\> , amely a távoli asztali webes és a távoli asztali átjáró közös gyökere.
-   - Külső URL-címe: Ez a mező automatikusan feltöltődik értékkel az alkalmazás neve alapján, de módosíthatja azt. A felhasználók kerül az URL-cím RDS elérésekor
+1. [Alkalmazásproxy új alkalmazás közzététele](application-proxy-publish-azure-portal.md) a hello a következő értékeket:
+   - Belső URL-címe: https://\<rdhost\>.com /, ahol \<rdhost\> hello közös gyökér, amely a távoli asztali webes és a távoli asztali átjáró.
+   - Külső URL-címe: Ez a mező automatikusan feltöltődik értékkel hello alkalmazás hello neve alapján, de módosíthatja azt. A felhasználók toothis URL-cím kerül RDS elérésekor
    - Előhitelesítési módszer: az Azure Active Directory
    - URL-cím fejlécek lefordítani: nincs
-2. Felhasználók hozzárendelése a távoli asztali közzétett alkalmazást. Ellenőrizze, hogy minden hozzáférhetnek a távoli asztali szolgáltatások, túl.
-3. Hagyja meg az egyszeri bejelentkezési módszer alkalmazására vonatkozó **az Azure AD az egyszeri bejelentkezés le van tiltva**. A felhasználó felkérést egyszer az Azure AD és a távoli asztali webes egyszer hitelesítéséhez, de rendelkezik egyszeri bejelentkezéshez a távoli asztali átjáró.
-4. Ugrás a **Azure Active Directory** > **App regisztrációk** > *az alkalmazás* > **beállítások**.
-5. Válassza ki **tulajdonságok** , és frissítse a **kezdőlapot URL-cím** mező úgy, hogy a távoli asztali webes végpontjának mutasson (például a https://\<rdhost\>.com/RDWeb).
+2. Felhasználók hozzárendelése toohello közzétett távoli asztali alkalmazás. Ellenőrizze, hogy minden rendelkeznek-e hozzáférési tooRDS túl.
+3. Hello egyszeri bejelentkezés módszer hello alkalmazásra, amely hagyja **az Azure AD az egyszeri bejelentkezés le van tiltva**. A felhasználó felkérést kap tooauthenticate után tooAzure AD, és egyszer tooRD webes, de rendelkezik egyszeri bejelentkezéshez tooRD átjáró.
+4. Nyissa meg túl**Azure Active Directory** > **App regisztrációk** > *az alkalmazás* > **Beállítások**.
+5. Válassza ki **tulajdonságok** és frissítés hello **kezdőlapot URL-cím** mező toopoint tooyour távoli asztali webes végpontjának (például a https://\<rdhost\>.com/RDWeb).
 
-### <a name="direct-rds-traffic-to-application-proxy"></a>Alkalmazásproxy közvetlen RDS-forgalom
+### <a name="direct-rds-traffic-tooapplication-proxy"></a>Közvetlen távoli asztali szolgáltatások forgalom tooApplication Proxy
 
-A távoli asztali szolgáltatások környezetbe rendszergazdaként csatlakozhat, és módosítsa a távoli asztali átjárókiszolgáló neve a telepítéshez. Ez biztosítja, hogy kapcsolatok nyissa meg az Azure AD alkalmazásproxy segítségével.
+Csatlakozás toohello távoli asztali szolgáltatások környezetbe rendszergazdaként, és módosítsa a hello távoli asztali átjárókiszolgáló neve hello központi telepítéshez. Ez biztosítja, hogy a kapcsolatok végighaladnia hello Azure AD alkalmazásproxy.
 
-1. Csatlakozzon a távoli asztali szolgáltatások kiszolgálója a távoli asztali Kapcsolatszervező szerepkör.
+1. Csatlakozás toohello RDS kiszolgáló hello távoli asztali Kapcsolatszervező szerepkör futtatásához.
 2. Indítsa el **Kiszolgálókezelő**.
-3. Válassza ki **távoli asztali szolgáltatások** a bal oldali ablaktáblán.
+3. Válassza ki **távoli asztali szolgáltatások** hello hello bal oldali ablaktábláján.
 4. Válassza ki **áttekintése**.
-5. A telepítési áttekintés részben jelölje ki a legördülő menüből, és válassza **központi telepítési tulajdonságok szerkesztése**.
-6. A távoli asztali átjáró lapon módosítsa a **kiszolgálónév** mezőjét, amely a távoli asztali állomás végpont alkalmazásproxy a külső URL-címet.
-7. Módosítsa a **bejelentkezési használata** mezőről **jelszó-hitelesítés**.
+5. Hello telepítési áttekintés szakaszban, a hello legördülő menüben válassza ki, és válassza a **központi telepítési tulajdonságok szerkesztése**.
+6. Hello távoli asztali átjáró lapon módosítsa hello **kiszolgálónév** mező toohello külső URL-címet, amely a távoli asztali hello állomás végpont az alkalmazásproxy.
+7. Változás hello **bejelentkezési használata** túl mezőben**jelszó-hitelesítés**.
 
   ![A távoli asztali szolgáltatások telepítési tulajdonságok képernyő](./media/application-proxy-publish-remote-desktop/rds-deployment-properties.png)
 
-8. Gyűjtemény futtassa a következő parancsot. Cserélje le  *\<yourcollectionname\>*  és  *\<proxyfrontendurl\>*  a saját adataival. Ez a parancs lehetővé teszi, hogy az egyszeri bejelentkezés a távoli asztali webes és a távoli asztali átjáró között, és optimalizálja a teljesítmény:
+8. Minden gyűjtemény, futtassa a következő parancs hello. Cserélje le  *\<yourcollectionname\>*  és  *\<proxyfrontendurl\>*  a saját adataival. Ez a parancs lehetővé teszi, hogy az egyszeri bejelentkezés a távoli asztali webes és a távoli asztali átjáró között, és optimalizálja a teljesítmény:
 
    ```
    Set-RDSessionCollectionConfiguration -CollectionName "<yourcollectionname>" -CustomRdpProperty "pre-authentication server address:s:<proxyfrontendurl>`nrequire pre-authentication:i:1"
@@ -97,38 +97,38 @@ A távoli asztali szolgáltatások környezetbe rendszergazdaként csatlakozhat,
    Set-RDSessionCollectionConfiguration -CollectionName "QuickSessionCollection" -CustomRdpProperty "pre-authentication server address:s:https://gateway.contoso.msappproxy.net/`nrequire pre-authentication:i:1"
    ```
 
-9. Ellenőrizze az egyéni RDP-tulajdonságok módosítása, valamint a gyűjtemény RDWeb a letöltött RDP-fájl tartalmának megtekintése, futtassa a következő parancsot:
+9. tooverify hello módosítása hello egyéni RDP tulajdonságait, valamint a hello RDP fájl tartalmának megjelenítése, amely ehhez a gyűjteményhez, futtassa a következő parancs hello RDWeb portálról letöltve:
     ```
     (get-wmiobject -Namespace root\cimv2\terminalservices -Class Win32_RDCentralPublishedRemoteDesktop).RDPFileContents
     ```
 
-Most, hogy a távoli asztal konfigurálását, az Azure AD-alkalmazásproxy RDS internetre részeként átvette A nyilvános internet felé néző végpontok eltávolíthatja a távoli asztali webes és a távoli asztali átjáró gépeken.
+Most, hogy a távoli asztal konfigurálását, az Azure AD-alkalmazásproxy hello RDS részeként internetre átvette Eltávolíthatja a távoli asztali webes és a távoli asztali átjáró gépek más nyilvános internet felé néző végpontok hello.
 
-## <a name="test-the-scenario"></a>A forgatókönyv teszteléséhez
+## <a name="test-hello-scenario"></a>Hello tesztkörnyezet
 
-Tesztelje a forgatókönyvet, és az Internet Explorer, a Windows 7 vagy 10 számítógépen.
+Tesztelje az Internet Explorer, a Windows 7 vagy 10 számítógépen hello forgatókönyvet.
 
-1. Nyissa meg a külső URL-cím beállítása, vagy az alkalmazás keresése a [MyApps panel](https://myapps.microsoft.com).
-2. A rendszer felkéri az Azure Active Directory hitelesítéséhez. Olyan fiókot, amelyet az alkalmazáshoz rendelt használjon.
-3. A rendszer felkéri a távoli asztali webes hitelesítés.
-4. Ha a távoli asztali szolgáltatások hitelesítés sikeres, válassza ki a asztali vagy a kívánt alkalmazás, és megkezdi a munkát.
+1. Nyissa meg toohello külső URL-címet állít be, vagy az alkalmazás található hello [MyApps panel](https://myapps.microsoft.com).
+2. Az Active Directory tooauthenticate tooAzure kell adnia. Használjon toohello alkalmazás rendelt fiókot.
+3. Webes tooauthenticate tooRD kell adnia.
+4. Amikor a távoli asztali szolgáltatások hitelesítés sikeres, választhatja a hello asztali vagy alkalmazást, és megkezdheti a munkát.
 
 ## <a name="support-for-other-client-configurations"></a>Az egyéb ügyfél-konfiguráció támogatása
 
-A cikkben ismertetett konfigurálása a Windows 7-es vagy 10, amelyek az Internet Explorer és a távoli asztali szolgáltatások ActiveX-bővítmény a felhasználók számára. Ha szeretné, azonban támogathatja a más operációs rendszerek és a böngészők. A különbség az Ön által használt hitelesítési módszert.
+a cikkben ismertetett hello konfiguráció esetén a Windows 7 vagy 10, az Internet Explorer és a távoli asztali szolgáltatások ActiveX-bővítmény hello felhasználók. Ha szeretné, azonban támogathatja a más operációs rendszerek és a böngészők. hello különbség a hello hitelesítési módszere.
 
 | Hitelesítési módszer | Támogatott ügyfél-konfigurációja |
 | --------------------- | ------------------------------ |
 | Előhitelesítés során    | Windows 7/10 Internet Explorer + a távoli asztali szolgáltatások ActiveX bővítmény használatával |
-| PASSTHROUGH | Bármely más operációs rendszer, amely támogatja a Microsoft távoli asztal alkalmazás |
+| PASSTHROUGH | Bármely más operációs rendszer, amely támogatja a Microsoft távoli asztal alkalmazás hello |
 
-Az előhitelesítési folyamat kínál a közvetlenül csatlakoztatott adatfolyam-nál több biztonsági szempontból előnyökkel járhat. Az előhitelesítés a helyszíni erőforrások kihasználhatja az Azure AD hitelesítési szolgáltatások, mint az egyszeri bejelentkezés, a feltételes hozzáférés és a kétlépéses ellenőrzést. Akkor is győződjön meg arról, hogy csak hitelesített forgalom éri el a hálózaton.
+hello előhitelesítési folyamat előnyökkel további biztonsági mint hello áthaladás folyamata. Az előhitelesítés a helyszíni erőforrások kihasználhatja az Azure AD hitelesítési szolgáltatások, mint az egyszeri bejelentkezés, a feltételes hozzáférés és a kétlépéses ellenőrzést. Akkor is győződjön meg arról, hogy csak hitelesített forgalom éri el a hálózaton.
 
-Áteresztő hitelesítés használatára van ebben a cikkben ismertetett lépéseket csak két módosításai:
-1. A [közzététel a távoli asztali állomás végpont](#publish-the-rd-host-endpoint) 1. lépés:, a előhitelesítési módszer beállítása **csatlakoztatott**.
-2. A [alkalmazásproxy-forgalom közvetlen távoli asztali szolgáltatások](#direct-rds-traffic-to-application-proxy), hagyja ki teljesen a 8. lépés.
+toouse hitelesítést, hogy csak két módosítások toohello lépéseket ebben a cikkben felsorolt:
+1. A [hello távoli asztali állomás végpont közzététele](#publish-the-rd-host-endpoint) 1. lépés:, állítsa be a hello előhitelesítési módszer túl**csatlakoztatott**.
+2. A [közvetlen távoli asztali szolgáltatások forgalom tooApplication Proxy](#direct-rds-traffic-to-application-proxy), hagyja ki teljesen a 8. lépés.
 
 ## <a name="next-steps"></a>Következő lépések
 
-[Az Azure AD alkalmazásproxy SharePoint távoli hozzáférés engedélyezése](application-proxy-enable-remote-access-sharepoint.md)  
+[Távelérés tooSharePoint az Azure AD alkalmazásproxy engedélyezése](application-proxy-enable-remote-access-sharepoint.md)  
 [Biztonsági szempontok az alkalmazások az Azure AD-alkalmazásproxy használatával távelérése](application-proxy-security-considerations.md)

@@ -1,5 +1,5 @@
 ---
-title: "SaaS App integrációs oktatóanyagok használható az Azure ad-val |} Microsoft Docs"
+title: "aaaSaaS App integrációs oktatóanyagok használható az Azure ad-val |} Microsoft Docs"
 description: "Azure Active Directory egyszeri bejelentkezéshez-integráció konfigurálása a szolgáltatásalkalmazások, harmadik féltől származó szoftverek számos."
 services: active-directory
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.date: 06/21/2017
 ms.author: joflore
 ms.custom: it-pro
 ms.reviewer: jeedes
-ms.openlocfilehash: 5bedead730e0538c4cad464a9aee7f97a5a8c3ef
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d99ec50ac2db52ab0f8547b2caaac19fd3a5a0d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="saas-application-integration-with-azure-active-directory"></a>SaaS alkalmazások integrálása az Azure Active Directoryval
 
-Segítségével integrálja a felhő-kompatibilis [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) alkalmazásokat az Azure Active Directoryval, fejlesztettük oktatóprogramot kínál, amelyek konfigurációs lépésre gyűjteménye.
+toohelp integrálja a felhő-kompatibilis [(SaaS)](https://azure.microsoft.com/overview/what-is-saas/) alkalmazásokat az Azure Active Directoryval, fejlesztettük oktatóprogramot kínál, amelyek konfigurációs lépésre gyűjteménye.
 
-Ha tudunk felhasználói üzembe helyezési útmutató, egy felhasználó üzembe helyezéséhez, a jobb oldali oszlopban, az alkalmazás oktatóanyag melletti oktatóanyag vannak megadva.
+Ha tudunk felhasználói üzembe helyezési útmutató, az oktatóanyag a felhasználók átadásához hello jobb oldali oszlopban, tovább toohello oktatóanyag vannak megadva.
 
-Törölték az Azure AD-be előre integrált Szolgáltatottszoftver-alkalmazásoknál átfogó listáját lásd: a [Active Directory Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps).
+Hello átfogó listáját, hogy törölték az Azure AD-be előre integrált Szolgáltatottszoftver-alkalmazásoknál, lásd: hello [Active Directory Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps).
 
 ## <a name="saas-tutorials"></a>SaaS oktatóprogramok
 
@@ -68,7 +68,7 @@ Törölték az Azure AD-be előre integrált Szolgáltatottszoftver-alkalmazáso
 | ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-autotaskworkplace-tutorial.png)| [Autotask](active-directory-saas-autotaskworkplace-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/SaaSApp_BambooHR.png)| [HR bambusz](active-directory-saas-bamboo-hr-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/saasapp_bambubysproutsocial.png)| [Bambu esetében társadalombiztosítási által](active-directory-saas-bambubysproutsocial-tutorial.md)|
-| ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [A felhőben BC](active-directory-saas-bcinthecloud-tutorial.md)
+| ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-bcinthecloud-tutorial.png)| [A felhő hello BC](active-directory-saas-bcinthecloud-tutorial.md)
 | ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-beeline-tutorial.png)| [BeeLine](active-directory-saas-beeline-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-benefithub-tutorial.png)| [BenefitHub](active-directory-saas-benefithub-tutorial.md)
 | ![embléma](./media/active-directory-saas-tutorial-list/SaaSApp_Benefitssolver.png)| [Benefitsolver](active-directory-saas-benefitsolver-tutorial.md)|
@@ -349,7 +349,7 @@ Törölték az Azure AD-be előre integrált Szolgáltatottszoftver-alkalmazáso
 | ![embléma](./media/active-directory-saas-tutorial-list/saasapp_teamphoria.png)| [Teamphoria](active-directory-saas-teamphoria-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/SaaSApp_TeamSeer.png)| [TeamSeer](active-directory-saas-teamseer-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/SaaSApp_Teamwork.png)| [Alkották](active-directory-saas-teamwork-tutorial.md)
-| ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [A finanszírozási portál](active-directory-saas-thefundingportal-tutorial.md)|
+| ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-thefundingportal-tutorial.png)| [hello finanszírozás portál](active-directory-saas-thefundingportal-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-thirdlight-tutorial.png)| [ThirdLight](active-directory-saas-thirdlight-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-thoughtworks-mingle-tutorial.png)| [Thoughtworks Mingle](active-directory-saas-thoughtworks-mingle-tutorial.md)|
 | ![embléma](./media/active-directory-saas-tutorial-list/active-directory-saas-thousandeyes-tutorial.png)| [ThousandEyes](active-directory-saas-thousandeyes-tutorial.md)|
@@ -403,4 +403,4 @@ Törölték az Azure AD-be előre integrált Szolgáltatottszoftver-alkalmazáso
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)
-* [SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz](active-directory-saas-tutorial-list.md)

@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect: Frissítés a DirSyncről | Microsoft Docs"
-description: "Tudja meg, hogyan frissíthet a DirSync szolgáltatásról az Azure AD Connect szolgáltatásra. Ez a cikk a DirSync szolgáltatásról az Azure AD Connect szolgáltatásra való frissítés lépéseit ismerteti."
+description: "Megtudhatja, hogyan tooupgrade a DirSync tooAzure AD Connect. Ez a cikk a frissítés a DirSync tooAzure AD Connect hello lépéseit írja le."
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 7049af4567947d3d799a38c5a3940ba25a2c0f18
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 05572af410698deaa1392c8837bfcb749efc69e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-upgrade-from-dirsync"></a>Azure AD Connect: Frissítés a DirSync szolgáltatásról
-Az Azure AD Connect a DirSync utóda. A DirSync szolgáltatásról való frissítés lehetőségeit találja meg ebben a témakörben. Ezek lépések nem használhatóak az Azure AD Connect másik kiadásáról vagy az Azure AD Syncről való frissítéshez.
+Az Azure AD Connect hello követő tooDirSync. Ez a témakör a frissítés a Dirsync szolgáltatásról hello lehetőségeit találja. Ezek lépések nem használhatóak az Azure AD Connect másik kiadásáról vagy az Azure AD Syncről való frissítéshez.
 
-Mielőtt elkezdené telepíteni az Azure AD Connect szolgáltatást, bizonyosodjon meg róla, hogy [letöltötte az Azure AD Connectet](http://go.microsoft.com/fwlink/?LinkId=615771), és elvégezte az [Azure AD Connect: Hardware and prerequisites](active-directory-aadconnect-prerequisites.md) (Azure AD Connect: hardver és előfeltételek) témakörben leírt lépéseket. Különösen, ha a következőkről kíván olvasni, mivel ezek a területek különböznek a DirSynctől:
+Az Azure AD Connect telepítése előtt győződjön meg arról, hogy túl[töltse le az Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) és teljes hello előzetesen szükséges lépések [az Azure AD Connect: hardver és előfeltételek](active-directory-aadconnect-prerequisites.md). Különösen kívánt tooread kapcsolatos hello következő, mivel ezek a területek nem ugyanaz a Dirsync szolgáltatásról:
 
-* A .Net és a PowerShell szükséges verziója. A kiszolgálón újabb verzióknak kell lenniük, mint amelyek a DirSynchez szükségesek.
-* A proxyiszolgáló konfigurálása. A frissítés előtt konfigurálnia kell ezt a beállítást, ha proxykiszolgálóval csatlakozik az internethez. A DirSnyc mindig a telepítést végző felhasználóhoz konfigurált proxykiszolgálót használta, de az Azure AD Connect ehelyett a gép beállításait használja.
-* Az URL-eket a proxykiszolgálón keresztül kell megnyitni. A DirSync által is támogatott alapszintű forgatókönyvekben a követelmények ugyanezek. Ha az Azure AD Connectben található új szolgáltatások valamelyikét szeretné használni, néhány új URL címet kell megnyitnia.
+* hello .net és a PowerShell verziója szükséges. Újabb verziókra szükséges toobe hello kiszolgálóra DirSync szükség.
+* hello proxykiszolgáló-konfigurációt. Ha a proxy server tooreach hello internet, ezt a beállítást kell megadni, mielőtt frissít. A DirSync mindig használja azt hello felhasználóhoz beállított hello proxykiszolgáló, de az Azure AD Connect által használt számítógép-beállítások helyett.
+* Nyissa meg a hello URL-címek szükséges toobe hello proxykiszolgálót. Alapszintű forgatókönyvek esetén is támogatja a DirSync azokra hello követelményei, hello azonos. Ha azt szeretné, toouse hello az Azure AD Connect található új szolgáltatások egyikét sem, néhány új URL-címeket kell megnyitni.
 
 > [!NOTE]
-> Miután engedélyezte, hogy az új Azure AD Connect-kiszolgáló szinkronizálni kezdje a változásokat az Azure AD szolgáltatásba, nem térhet vissza a DirSync vagy Azure AD Sync használatához. Az Azure AD Connectről a régebbi ügyfelekre (például DirSync vagy Azure AD Sync) való visszatérés nem támogatott, és problémákat, például adatvesztést okozhat az Azure AD-ben.
+> Miután engedélyezte az új Azure AD Connect kiszolgáló toostart szinkronizálási módosítások tooAzure AD, meg kell állítja vissza a DirSync vagy az Azure AD Sync toousing. Többek között a DirSync és Azure AD Sync az Azure AD Connect toolegacy ügyfelek alacsonyabb verziójúra változtatása nem támogatott, és az Azure ad-ben például adatvesztés tooissues vezethet.
 
 Ha nem a DirSync szolgáltatásról frissít, tekintse meg az egyéb forgatókönyvek [vonatkozó dokumentációját](#related-documentation).
 
 ## <a name="upgrade-from-dirsync"></a>Frissítés a DirSync szolgáltatásról
-A DirSync jelenleg aktív üzemelő példányától függően több lehetőség is létezik a frissítésre. Ha a várt frissítési idő kevesebb mint három óra, akkor a helyben történő frissítés javasolt. Ha a várt frissítési idő több mint három óra, akkor a párhuzamos üzembe helyezés javasolt egy másik kiszolgálón. A becslések szerint 50 000-nél több objektum esetén a frissítés több mint három órát vesz igénybe.
+Attól függően, hogy a DirSync jelenleg aktív üzemelő hello frissítés különböző lehetőségek közül. Ha hello várt frissítési idő kevesebb mint három órán keresztül, hello ajánljuk, helybeni frissítés toodo. Ha hello várt frissítési idő több mint három órán, hello ajánljuk, toodo párhuzamos üzembe helyezést egy másik kiszolgálón. A becslések, hogy ha több mint 50 000 objektummal rendelkezik tart a több mint három órán keresztül toodo hello frissítését.
 
 | Forgatókönyv |
 | --- | --- |
@@ -43,18 +43,18 @@ A DirSync jelenleg aktív üzemelő példányától függően több lehetőség 
 | [Párhuzamos üzembe helyezés](#parallel-deployment) |
 
 > [!NOTE]
-> Amikor a DirSync szolgáltatásról az Azure AD Connect szolgáltatásra frissít, ne telepítse a DirSyncet a frissítés előtt. Az Azure AD Connect beolvassa és áttelepíti a konfigurációt a DirSyncről, és eltávolítja azt a kiszolgáló vizsgálatát követően.
+> Ha azt tervezi, hogy a DirSync tooAzure AD tooupgrade csatlakozás, a dirsyncet hello frissítés előtt. Az Azure AD Connect beolvassa és hello konfiguráció áttelepítése a Dirsync szolgáltatásról és hello kiszolgáló ellenőrzése után távolítsa el.
 
 **Frissítés helyben**  
-A varázsló mutatja a frissítés befejeztének várható idejét. Ez a becslés azon a feltételezésen alapul, hogy egy 50 000 objektumot (felhasználókat, névjegyeket és csoportokat) tartalmazó adatbázis frissítése három órát vesz igénybe. Ha az adatbázis 50 000-nél kevesebb objektumot tartalmaz, az Azure AD Connect helyben történő frissítést javasol. Ha a folytatást választja, az aktuális beállítások automatikusan alkalmazva lesznek a frissítés folyamán, és a kiszolgáló automatikusan folytatja az aktív szinkronizálást.
+hello várható ideje toocomplete hello frissítés hello varázsló jelenik meg. Ez a becslés azon három óra toocomplete 50 000 objektumot (felhasználók, partnerek és csoportok) adatbázis frissítés azt veszi hello feltevésen alapulnak. Ha hello az adatbázis-objektumok száma kisebb, mint 50 000, majd az Azure AD Connect azt javasolja, hogy egy frissítés. Ha úgy dönt, hogy a toocontinue, az aktuális beállítások automatikusan alkalmazza a frissítés során, és a kiszolgáló automatikusan folytatja az aktív szinkronizálást.
 
-Amennyiben konfiguráció-áttelepítést és párhuzamos üzembe helyezést kíván végezni, felülbírálhatja a helyben történő frissítésre tett javaslatot. Például ez remek alkalom lehet arra, hogy frissítse a hardvert és az operációs rendszert. További információért lásd a [párhuzamos üzembe helyezés](#parallel-deployment) szakaszt.
+Ha szeretné, hogy toodo konfiguráció-áttelepítést és párhuzamos üzembe helyezést, majd felülbírálhatja hello helyben történő frissítésre tett javaslatot. Például eltarthat hello lehetőség toorefresh hello hardverre és operációs rendszerre. További információkért lásd: hello [párhuzamos üzembe helyezés](#parallel-deployment) szakasz.
 
 **Párhuzamos üzembe helyezés**  
-Ha 50 000-nél több objektummal rendelkezik, párhuzamos üzembe helyezés ajánlott. Ezt az üzembehelyezési módszert választva a felhasználók nem tapasztalnak semmilyen késedelmet a rendszer működésében. Az Azure AD Connect telepítés megkísérli megbecsülni a frissítés hátralévő idejét, azonban amennyiben már végzett korábban is DirSync-frissítést, saját tapasztalatai alapján valószínűleg jobb becsléseket adhat.
+Ha 50 000-nél több objektummal rendelkezik, párhuzamos üzembe helyezés ajánlott. Ezt az üzembehelyezési módszert választva a felhasználók nem tapasztalnak semmilyen késedelmet a rendszer működésében. hello Azure AD Connect telepítés megkísérli tooestimate hello állásidő hello frissítésre, de ha a korábbi hello végzett korábban is DirSync, saját tapasztalatai alapján valószínűleg toobe hello ajánlott útmutatója.
 
-### <a name="supported-dirsync-configurations-to-be-upgraded"></a>Támogatott frissíthető DirSync-konfigurációk
-A frissített DirSync az alábbi konfigurációmódosításokat támogatja:
+### <a name="supported-dirsync-configurations-toobe-upgraded"></a>A DirSync-konfiguráció támogatott toobe frissítése
+a következő konfigurációs módosításainak hello a frissített DirSync támogatottak:
 
 * Tartományok és szervezeti egységek szűrése
 * Másik azonosító (UPN)
@@ -62,21 +62,21 @@ A frissített DirSync az alábbi konfigurációmódosításokat támogatja:
 * Erdők/tartományok és az Azure AD beállítási
 * Szűrés felhasználói attribútumok alapján
 
-Az alábbi módosítás nem frissíthető. Amennyiben rendelkezik ezzel a konfigurációval, a frissítés blokkolva lesz:
+Módosítsa a következő hello nem frissíthető. Ha ezt a konfigurációt, hello frissítés blokkolva van:
 
 * Nem támogatott DirSync-módosítások, például eltávolított attribútumok, vagy egyedi bővítmény-DLL használata
 
 ![Frissítés blokkolva](./media/active-directory-aadconnect-dirsync-upgrade-get-started/analysisblocked.png)
 
-Ezekben az esetekben az ajánlott megoldás egy új Azure AD Connect kiszolgáló telepítése [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode), és a régi DirSync és az új Azure AD Connect konfiguráció ellenőrzése. Alkalmazza újra az összes módosítást egyéni konfiguráció használatával az [Azure AD Connect Sync custom configuration](active-directory-aadconnectsync-whatis.md) (Azure AD Connect szinkronizálása egyéni konfigurációval) szakaszban foglaltak szerint.
+Ezekben az esetekben hello ajánljuk, tooinstall egy új Azure AD Connect kiszolgáló [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode) , és ellenőrizze hello régi DirSync és az új Azure AD Connect konfigurálása. Alkalmazza újra az összes módosítást egyéni konfiguráció használatával az [Azure AD Connect Sync custom configuration](active-directory-aadconnectsync-whatis.md) (Azure AD Connect szinkronizálása egyéni konfigurációval) szakaszban foglaltak szerint.
 
-A DirSync által a szolgáltatásfiókokhoz használt jelszavak nem kérhetőek le, és nem lesznek áttelepítve. A jelszavak vissza lesznek állítva a frissítés során.
+a hello szolgáltatás fiókjainak a DirSync által használt hello jelszavakat nem lehet beolvasni, és nem települnek át. Ezek a jelszavak alaphelyzetbe állnak az hello frissítés során.
 
-### <a name="high-level-steps-for-upgrading-from-dirsync-to-azure-ad-connect"></a>A DirSync szolgáltatásról az Azure AD Connect szolgáltatásra való frissítés magas szintű lépései
-1. Üdvözli az Azure AD Connect
+### <a name="high-level-steps-for-upgrading-from-dirsync-tooazure-ad-connect"></a>AD Connect a DirSync tooAzure frissítés magas szintű lépései
+1. Üdvözli a tooAzure AD Connect
 2. Az aktuális DirSync-konfiguráció elemzése
 3. Az Azure AD globális rendszergazdai jelszavának begyűjtése
-4. Egy vállalati rendszergazdai fiók hitelesítő adatainak begyűjtése (csak az Azure AD Connect telepítése során való használatra)
+4. Egy vállalati rendszergazdai fiók hitelesítő adatainak begyűjtése (csak az Azure AD Connect hello telepítésekor használt)
 5. Az Azure AD Connect telepítése
    * A DirSync eltávolítása (vagy ideiglenes letiltása)
    * Az Azure AD Connect telepítése
@@ -88,131 +88,131 @@ További lépések végrehajtása szükséges, ha:
 * 50 000-nél több objektummal rendelkezik a szinkronizálás hatókörében
 
 ## <a name="in-place-upgrade"></a>Frissítés helyben
-1. Indítsa el az Azure AD Connect telepítőt (MSI).
-2. Tekintse át és fogadja el a licencfeltételeket és az adatvédelmi nyilatkozatot.  
-   ![Üdvözli az Azure AD](./media/active-directory-aadconnect-dirsync-upgrade-get-started/Welcome.png)
-3. Kattintson a Tovább gombra a meglévő DirSync telepítés elemzésének indításához.  
+1. Indítsa el a hello Azure AD Connect telepítőt (MSI).
+2. Tekintse át, és fogadja el a toolicense feltételeit és az adatvédelmi nyilatkozatot.  
+   ![Üdvözli a tooAzure AD](./media/active-directory-aadconnect-dirsync-upgrade-get-started/Welcome.png)
+3. Kattintson a meglévő DirSync telepítés elemzésének következő toobegin.  
    ![A meglévő Directory Sync telepítés elemzése](./media/active-directory-aadconnect-dirsync-upgrade-get-started/Analyze.png)
-4. Az elemzés végeztével a rendszer ajánlásokat tesz a következő lépésekre.  
-   * Ha SQL Server Expresst használ, és kevesebb mint 50 000 objektummal rendelkezik, a következő képernyő jelenik meg:  
-     ![Elemzés befejezve, készen áll a frissítésre a DirSyncről](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisReady.png)
+4. Hello elemzés befejezése után hogyan hello ajánlott megtekintéséhez tooproceed.  
+   * Ha SQL Server Expresst használ, és kisebb, mint 50 000 objektummal rendelkezik, a következő képernyő hello jelenik meg:  
+     ![Elemzés befejezve, készen áll a tooupgrade a Dirsync szolgáltatásról](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisReady.png)
    * Ha teljes SQL Servert használ a DirSynchez, ehelyett a következő képernyő jelenik meg:  
-     ![Elemzés befejezve, készen áll a frissítésre a DirSyncről](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisReadyFullSQL.png)  
-     A DirSync által használt meglévő SQL Server adatbázis-kiszolgálóra vonatkozó információk megjelennek. Amennyiben szükséges, végezze el a megfelelő módosításokat. A telepítés folytatásához kattintson a **Next** (Tovább) gombra.
+     ![Elemzés befejezve, készen áll a tooupgrade a Dirsync szolgáltatásról](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisReadyFullSQL.png)  
+     hello hello meglévő SQL Server adatbázis-kiszolgáló DirSync által használt kapcsolatos információk. Amennyiben szükséges, végezze el a megfelelő módosításokat. Kattintson a **következő** toocontinue hello telepítését.
    * Ha 50 000-nél több objektummal rendelkezik, ehelyett a következő képernyő jelenik meg:  
-     ![Elemzés befejezve, készen áll a frissítésre a DirSyncről](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisRecommendParallel.png)  
-     Amennyiben helyben történő frissítést kíván végezni, kattintson a jelölőnégyzetre az üzenet mellett: **Continue upgrading DirSync on this computer** (A DirSync frissítésének folytatása ezen a számítógépen).
-     Amennyiben inkább [párhuzamos üzembe helyezést](#parallel-deployment) kíván végrehajtani, exportálnia kell a DirSync konfigurációs beállításait, majd áttelepítenie azokat az új kiszolgálóra.
-5. Adja meg a fiók jelszavát, amellyel jelenleg az Azure AD szolgáltatáshoz csatlakozik. Azt a fiókot kell használnia, amelyet jelenleg a DirSync használ.  
+     ![Elemzés befejezve, készen áll a tooupgrade a Dirsync szolgáltatásról](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisRecommendParallel.png)  
+     tooproceed egy helybeni frissítést, kattintson a jelölőnégyzet következő toothis üdvözlőüzenetére: **folytassa a DirSync frissítését ezen a számítógépen.**
+     toodo egy [párhuzamos üzembe helyezés](#parallel-deployment) ehelyett hello DirSync konfigurációs beállítások exportálása, és helyezze át hello konfigurációs toohello új kiszolgálót.
+5. Jelenleg használt tooconnect tooAzure AD hello fióknak hello jelszót adjon meg. Ez a DirSync által jelenleg használt hello-fióknak kell lennie.  
    ![Adja meg Azure AD hitelesítő adatait](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ConnectToAzureAD.png)  
    Ha hibaüzenetet kap, és problémák adódnak a kapcsolódással, tekintse meg a [Troubleshoot connectivity problems](active-directory-aadconnect-troubleshoot-connectivity.md) (Kapcsolati problémák elhárítása) szakaszt.
 6. Adjon meg egy vállalati rendszergazdai fiókot az Active Directory szolgáltatáshoz.  
    ![Adja meg ADDS hitelesítő adatait](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ConnectToADDS.png)
-7. Készen áll a konfigurálására. Amikor az **Upgrade** (Frissítés) gombra kattint, megtörténik a DirSync eltávolítása, az Azure AD Connect konfigurálása és a szinkronizálás indítása.  
-   ![Konfigurálásra kész](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ReadyToConfigure.png)
-8. Miután a telepítés befejeződött, jelentkezzen ki majd ismét be a Windowsba, mielőtt a Synchronization Service Managert (Szinkronizálási szolgáltatás kezelőjét) vagy a Synchronization Rule Editort (Szinkronizálási szabályok szerkesztőjét) használná, vagy bármely egyéb konfigurációmódosítást próbálna végrehajtani.
+7. Most már készen áll a tooconfigure. Amikor az **Upgrade** (Frissítés) gombra kattint, megtörténik a DirSync eltávolítása, az Azure AD Connect konfigurálása és a szinkronizálás indítása.  
+   ![Készen áll a tooconfigure](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ReadyToConfigure.png)
+8. Miután hello telepítés befejeződött, jelentkezzen ki, és jelentkezzen be újra tooWindows, mielőtt a Synchronization Service Managert, szinkronizálási szabály szerkesztő, vagy próbálja toomake konfigurációs módosításokat.
 
 ## <a name="parallel-deployment"></a>Párhuzamos üzembe helyezés
-### <a name="export-the-dirsync-configuration"></a>DirSync-konfiguráció exportálása
+### <a name="export-hello-dirsync-configuration"></a>Hello DirSync-konfiguráció exportálása
 **Párhuzamos üzembe helyezés 50 000-nél több objektum esetén**
 
-Ha 50 000-nél több objektummal rendelkezik, az Azure AD Connect telepítés párhuzamos üzembe helyezést javasol.
+Ha 50 000-nél több objektummal rendelkezik, majd hello Azure AD Connect telepítés azt javasolja, hogy a párhuzamos üzembe helyezést.
 
-A következőhöz hasonló képernyő jelenik meg:  
+Egy hasonló toohello alábbi képernyő jelenik meg:  
 ![Elemzés befejeződött](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AnalysisRecommendParallel.png)
 
-Amennyiben párhuzamos üzembe helyezést kíván végrehajtani, az alábbi lépéseket kell végrehajtania:
+Ha azt szeretné, hogy a párhuzamos üzembe helyezést tooproceed, kell tooperform hello a következő lépéseket:
 
-* Kattintson az **Export settings** (Beállítások exportálása) gombra. Ha az Azure AD Connectet egy különálló kiszolgálón telepíti, ezek a beállítások át lesznek telepítve a jelenlegi DirSyncből az új Azure AD Connect-telepítésre.
+* Kattintson a hello **beállítások exportálása** gombra. Ha az Azure AD Connect különálló kiszolgálóra telepíti, ezeket a beállításokat az aktuális DirSync tooyour új Azure AD Connect telepítés települnek át.
 
-Miután a beállítások exportálása sikeresen megtörtént, kiléphet az Azure AD Connect varázslóból a DirSync kiszolgálón. Lépjen tovább a következő lépésre [az Azure AD Connect különálló kiszolgálóra telepítéséhez](#installation-of-azure-ad-connect-on-separate-server)
+Ha a beállítások exportálása sikeresen megtörtént, kiléphet hello Azure AD Connect varázsló hello DirSync kiszolgálón. Folytassa a hello következő túl[Azure AD Connect telepítése különálló kiszolgálóra](#installation-of-azure-ad-connect-on-separate-server)
 
 **Párhuzamos üzembe helyezés 50 000-nél kevesebb objektummal**
 
-Ha 50 000-nél kevesebb objektummal rendelkezik, azonban mégis párhuzamos üzembe helyezést kíván végrehajtani, tegye a következőket:
+Ha 50 000-nél kevesebb objektummal rendelkezik, de továbbra is toodo párhuzamos üzembe helyezést, majd hello a következő:
 
-1. Futtassa az Azure AD Connect telepítőt (MSI).
-2. Amikor megjelenik a **Welcome to Azure AD Connect** (Üdvözli az Azure AD Connect) képernyő, lépjen ki a telepítővarázslóból az „X” gombra kattintva az ablak jobb felső sarkában.
+1. Futtassa a hello Azure AD Connect telepítőt (MSI).
+2. Amikor megjelenik a hello **üdvözlő tooAzure AD Connect** képernyőn, kilépési hello telepítővarázsló hello jobb felső sarkában hello ablak hello "X" elemre kattintva.
 3. Nyisson meg egy parancssort.
-4. Az Azure AD Connect telepítési helyéről (alapértelmezett hely: C:\Program Files\Microsoft Azure Active Directory Connect) hajtsa végre a következő parancsot: `AzureADConnect.exe /ForceExport`.
-5. Kattintson az **Export settings** (Beállítások exportálása) gombra. Ha az Azure AD Connectet egy különálló kiszolgálón telepíti, ezek a beállítások át lesznek telepítve a jelenlegi DirSyncből az új Azure AD Connect-telepítésre.
+4. A hello telepítési a helyet az Azure AD Connect (alapértelmezett: C:\Program Files\Microsoft Azure Active Directory Connect) hajtsa végre a következő parancs hello: `AzureADConnect.exe /ForceExport`.
+5. Kattintson a hello **beállítások exportálása** gombra. Ha az Azure AD Connect különálló kiszolgálóra telepíti, ezeket a beállításokat az aktuális DirSync tooyour új Azure AD Connect telepítés települnek át.
 
 ![Elemzés befejeződött](./media/active-directory-aadconnect-dirsync-upgrade-get-started/forceexport.png)
 
-Miután a beállítások exportálása sikeresen megtörtént, kiléphet az Azure AD Connect varázslóból a DirSync kiszolgálón. Lépjen tovább a következő lépésre [az Azure AD Connect különálló kiszolgálóra telepítéséhez](#installation-of-azure-ad-connect-on-separate-server).
+Ha a beállítások exportálása sikeresen megtörtént, kiléphet hello Azure AD Connect varázsló hello DirSync kiszolgálón. Folytassa a hello következő túl[Azure AD Connect telepítése különálló kiszolgálóra](#installation-of-azure-ad-connect-on-separate-server).
 
 ### <a name="install-azure-ad-connect-on-separate-server"></a>Az Azure AD Connect telepítése különálló kiszolgálóra
-Ha az Azure AD Connectet egy új kiszolgálón telepíti, a rendszer feltételezi, hogy az Azure AD Connect tiszta telepítését kívánja végrehajtani. Mivel a DirSync-konfigurációt szeretné alkalmazni, néhány további lépést is végre kell hajtania:
+Az Azure AD Connect egy új kiszolgálóra történő telepítésekor hello feltételezése, amelyet az tooperform az Azure AD Connect tiszta telepítését. Hiszen toouse hello DirSync-konfiguráció, van néhány további lépést tootake:
 
-1. Futtassa az Azure AD Connect telepítőt (MSI).
-2. Amikor megjelenik a **Welcome to Azure AD Connect** (Üdvözli az Azure AD Connect) képernyő, lépjen ki a telepítővarázslóból az „X” gombra kattintva az ablak jobb felső sarkában.
+1. Futtassa a hello Azure AD Connect telepítőt (MSI).
+2. Amikor megjelenik a hello **üdvözlő tooAzure AD Connect** képernyőn, kilépési hello telepítővarázsló hello jobb felső sarkában hello ablak hello "X" elemre kattintva.
 3. Nyisson meg egy parancssort.
-4. Az Azure AD Connect telepítési helyéről (alapértelmezett hely: C:\Program Files\Microsoft Azure Active Directory Connect) hajtsa végre a következő parancsot: `AzureADConnect.exe /migrate`.
-   Az Azure AD Connect telepítővarázslója elindul, és a következő képernyőt jeleníti meg:  
+4. A hello telepítési a helyet az Azure AD Connect (alapértelmezett: C:\Program Files\Microsoft Azure Active Directory Connect) hajtsa végre a következő parancs hello: `AzureADConnect.exe /migrate`.
+   hello Azure AD Connect telepítővarázsló elindul, és megjeleníti a következő képernyő hello:  
    ![Adja meg Azure AD hitelesítő adatait](./media/active-directory-aadconnect-dirsync-upgrade-get-started/ImportSettings.png)
-5. Válassza ki a DirSync-telepítésből exportált beállítási fájlt.
+5. Válassza ki a DirSync-telepítésből exportált beállításfájl hello.
 6. Konfigurálja az esetleges speciális beállításokat, beleértve a következőket:
    * Egyedi telepítési helyet adhat meg az Azure AD Connect számára.
-   * Megadhatja az SQL Server egy meglévő példányát (alapértelmezett beállítás: az Azure AD Connect telepíti az SQL Server 2012 Expresst). Ne használja ugyanazt az adatbázispéldányt, mint a DirSync kiszolgáló.
-   * Megadhat az SQL Serverhez való csatlakozáshoz használt szolgáltatásfiókot (ha az SQL Server adatbázis távoli, a fióknak tartományi szolgáltatásfióknak kell lennie).
+   * Megadhatja az SQL Server egy meglévő példányát (alapértelmezett beállítás: az Azure AD Connect telepíti az SQL Server 2012 Expresst). Ne használjon hello ugyanazt az adatbázispéldányt a DirSync-kiszolgálóval.
+   * Szolgáltatásfiók használja a tooconnect tooSQL Server (ha az SQL Server adatbázis távoli akkor ennek a fióknak tartományi szolgáltatásfióknak kell lennie).
      Ezek a beállítások láthatók ezen a képernyőn:  
      ![Adja meg Azure AD hitelesítő adatait](./media/active-directory-aadconnect-dirsync-upgrade-get-started/advancedsettings.png)
 7. Kattintson a **Tovább** gombra.
-8. A **Ready to configure** (Konfigurálásra kész) oldalon hagyja a **Start the synchronization process as soon as the configuration completes** (Szinkronizálási folyamat indítása a konfiguráció befejeztével) beállítást bejelölve. A kiszolgáló [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode) van, így a módosítások nem lesznek exportálva az Azure AD-be.
+8. A hello **készen tooconfigure** lapján hello hagyja **hello szinkronizálási folyamat indítása, amint hello konfigurálás befejeződik** be van jelölve. hello kiszolgáló jelenleg a [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode) így a módosításokat nem exportált tooAzure AD.
 9. Kattintson az **Install** (Telepítés) gombra.
-10. Miután a telepítés befejeződött, jelentkezzen ki majd ismét be a Windowsba, mielőtt a Synchronization Service Managert (Szinkronizálási szolgáltatás kezelőjét) vagy a Synchronization Rule Editort (Szinkronizálási szabályok szerkesztőjét) használná, vagy bármely egyéb konfigurációmódosítást próbálna végrehajtani.
+10. Miután hello telepítés befejeződött, jelentkezzen ki, és jelentkezzen be újra tooWindows, mielőtt a Synchronization Service Managert, szinkronizálási szabály szerkesztő, vagy próbálja toomake konfigurációs módosításokat.
 
 > [!NOTE]
-> Megkezdődik a szinkronizálás a Windows Server Active Directory és az Azure Active Directory között, a módosítások azonban nem lesznek exportálva az Azure AD-be. Egy időben csupán egyetlen szinkronizálási eszköz exportálhat aktívan módosításokat. Ezt az állapotot nevezzük [átmeneti módnak](active-directory-aadconnectsync-operations.md#staging-mode).
+> Windows Server Active Directory és az Azure Active Directory közötti szinkronizálás kezdődik, de nem végez módosítást exportált tooAzure AD. Egy időben csupán egyetlen szinkronizálási eszköz exportálhat aktívan módosításokat. Ezt az állapotot nevezzük [átmeneti módnak](active-directory-aadconnectsync-operations.md#staging-mode).
 
-### <a name="verify-that-azure-ad-connect-is-ready-to-begin-synchronization"></a>Ellenőrizze, hogy az Azure AD Connect készen áll a szinkronizálás megkezdésére
-Annak ellenőrzéséhez, hogy az Azure AD Connect kész-e átvenni a DirSync feladatait, meg kell nyitnia a **Synchronization Service Managert** (Szinkronizálási szolgáltatás kezelője) a Start menü **Azure AD Connect** csoportjában.
+### <a name="verify-that-azure-ad-connect-is-ready-toobegin-synchronization"></a>Győződjön meg arról, hogy az Azure AD Connect készen toobegin szinkronizálás
+tooopen szüksége, amely az Azure AD Connect a Dirsync szolgáltatásról keresztül készen tootake tooverify, **Synchronization Service Managert** hello csoport **az Azure AD Connect** hello start menüből.
 
-Az alkalmazásban lépjen az **Operations** (Műveletek) lapra. Ezen a lapon győződjön meg róla, hogy a következő műveletek végre lettek hajtva:
+Hello alkalmazásban nyissa meg toohello **műveletek** fülre. Ezen a lapon erősítse meg, hogy a következő műveletek hello befejeződött:
 
-* Importálás az AD Connectoron
-* Importálás az Azure AD Connectoron
-* Teljes szinkronizálás az AD Connectoron
-* Teljes szinkronizálás az Azure AD Connectoron
+* Importálhatja a hello AD Connectoron
+* Importálhatja a hello Azure AD Connectoron
+* Teljes szinkronizálás az hello AD Connectoron
+* Teljes szinkronizálás az Azure AD-összekötő hello
 
 ![Importálás és szinkronizálás befejezve](./media/active-directory-aadconnect-dirsync-upgrade-get-started/importsynccompleted.png)
 
-Tekintse át ezeknek a műveleteknek az eredményét, és győződjön meg róla, hogy nincsenek hibák.
+Tekintse át ezeket a műveleteket hello eredményt, és győződjön meg arról, nincsenek hibák.
 
-Ha meg kívánja tekinteni és vizsgálni az Azure AD szolgáltatásba exportálni szándékolt módosításokat, olvassa el, hogy ellenőrizhető a konfiguráció az [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode). Hajtsa végre a szükséges módosításokat, amíg semmi váratlant nem lát már.
+Ha szeretné, hogy toosee, és vizsgálja meg az exportált toobe tooAzure AD kapcsolatos, hello módosításokat, majd beolvassa hogyan tooverify hello konfigurációja [átmeneti módban](active-directory-aadconnectsync-operations.md#staging-mode). Hajtsa végre a szükséges módosításokat, amíg semmi váratlant nem lát már.
 
-Akkor áll készen a DirSyncről Azure AD-re váltásra, ha végrehajtotta ezeket a lépéseket, és elégedett az eredménnyel.
+A DirSync tooAzure AD, ha elvégezte ezeket a lépéseket, és nem gond hello eredménnyel készen tooswitch áll.
 
 ### <a name="uninstall-dirsync-old-server"></a>A DirSync eltávolítása (régi kiszolgáló)
 * A **Programok és szolgáltatások** felületen keresse meg a **Windows Azure Active Directory sync tool** eszközt
 * Távolítsa el a **Windows Azure Active Directory sync tool** eszközt
-* Az eszköz eltávolítása akár 15 percet is igénybe vehet.
+* hello eltávolítása is igénybe vehet fel too15 perc toocomplete.
 
-Ha később szeretné eltávolítani a DirSyncet, ideiglenesen leállíthatja a kiszolgálót vagy letilthatja a szolgáltatást. Ha hiba lép fel, ez a módszer lehetővé teszi az ismételt engedélyezését. Azonban nem valószínű, hogy a következő lépés hibával ér véget, ezért erre feltehetőleg nem lesz szükség.
+DirSync toouninstall később tetszés szerint átmenetileg hello kiszolgáló leállítása vagy letiltása hello szolgáltatást. Ha valamilyen hiba, ez a módszer lehetővé teszi toore engedélyezése azt. Azonban nem valószínű, hogy hello tovább lépés sikertelen lesz, ezért ennek kell nem lehet szükség.
 
-A DirSync eltávolítása vagy letiltása után nem marad aktív kiszolgáló, amely exportálna az Azure AD-be. Végre kell hajtania a következő lépést az Azure AD Connect engedélyezéséhez, még mielőtt folytatódna a helyszíni Active Directory módosításainak szinkronizálása az Azure AD-be.
+A DirSync eltávolítása, vagy le van tiltva nincs aktív kiszolgáló tooAzure AD exportálása. hello tovább lépés tooenable az Azure AD Connect előbb kell befejeződnie a helyszíni Active Directoryban módosításokat továbbra is szinkronizálja toobe tooAzure AD.
 
 ### <a name="enable-azure-ad-connect-new-server"></a>Az Azure AD Connect engedélyezése (új kiszolgáló)
-A telepítést követően az Azure AD Connect újraindításával további konfigurációmódosításokat hajthat végre. Indítsa el az **Azure AD Connectet** a Start menüből vagy a parancsikonnal az asztalról. Győződjön meg róla, hogy nem a telepítő MSI-t próbálja ismét futtatni.
+A telepítés után újból megnyitni az Azure AD connect lesz toomake további konfigurációmódosításokat lehetővé teszik. Start **az Azure AD Connect** hello start menüből vagy a hello hello asztali parancsikonjára. Ellenőrizze, hogy nem próbálja meg toorun hello telepítő MSI-t újra.
 
-A következőnek kell megjelennie:  
+Hello következő kell megjelennie:  
 ![További feladatok](./media/active-directory-aadconnect-dirsync-upgrade-get-started/AdditionalTasks.png)
 
 * Válassza a **Configure staging mode** (Átmeneti mód konfigurálása) lehetőséget.
-* Kapcsolja ki az átmeneti módot az **Enabled staging mode** (Átmeneti mód engedélyezve) jelölőnégyzet jelölésének törlésével.
+* Kapcsolja ki az átmeneti eszközhitelesítést hello által **az átmeneti környezetű üzemmód engedélyezve** jelölőnégyzetet.
 
 ![Adja meg Azure AD hitelesítő adatait](./media/active-directory-aadconnect-dirsync-upgrade-get-started/configurestaging.png)
 
-* Kattintson a **Next** (Tovább) gombra
-* A jóváhagyást kérő lapon kattintson az **Install** (Telepítés) gombra.
+* Kattintson a hello **következő** gomb
+* A hello megerősítési oldalán kattintson a hello **telepítése** gombra.
 
-Mostantól az Azure AD Connect az aktív kiszolgáló, és nem szabad visszaváltania a meglévő DirSync-kiszolgáló használatára.
+Az Azure AD Connect jelenleg az aktív kiszolgáló, és meg nem vált vissza toousing a meglévő DirSync kiszolgáló.
 
 ## <a name="next-steps"></a>Következő lépések
-Miután az Azure AD Connect telepítése megtörtént, [ellenőrizheti a telepítést, és hozzárendelheti a licenceket](active-directory-aadconnect-whats-next.md).
+Most, hogy az Azure AD Connect telepítése is [hello telepítésének ellenőrzése és licencek hozzárendelése](active-directory-aadconnect-whats-next.md).
 
-Ismerkedjen meg a következő, a telepítéssel engedélyezett új szolgáltatásokkal: az [Automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md), a [Véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md) és az [Azure AD Connect Health](../connect-health/active-directory-aadconnect-health-sync.md).
+További információk, amelyek hello telepítéssel engedélyezett új szolgáltatásokkal: [automatikus frissítés](active-directory-aadconnect-feature-automatic-upgrade.md), [véletlen törlések megakadályozása](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md), és [az Azure AD Connect Health](../connect-health/active-directory-aadconnect-health-sync.md).
 
-Ismerje meg részletesebben a következő általános témaköröket: [az ütemező és a szinkronizálási események indítása](active-directory-aadconnectsync-feature-scheduler.md).
+Tudjon meg többet a következő általános témaköröket: [Feladatütemező, és hogyan tootrigger szinkronizálása](active-directory-aadconnectsync-feature-scheduler.md).
 
 További információ: [Helyszíni identitások integrálása az Azure Active Directoryval](active-directory-aadconnect.md).

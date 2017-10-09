@@ -1,5 +1,5 @@
 ---
-title: "Az Azure AD v2 ASP.NET webalkalmazás-kiszolgáló kezdeti lépések - Config |} Microsoft Docs"
+title: "aaaAzure AD v2 ASP.NET Web Server bevezetés - Config |} Microsoft Docs"
 description: "A Microsoft bejelentkezés végrehajtási egy ASP.NET-megoldás a hagyományos böngészőalapú webalkalmazás a szabványos OpenID Connect"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,24 +15,24 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 8a1650a65e7980f4a13fa4edc7918b0099bb5464
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: badc47e131290a56a507592f944a0fc7093260a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="configure-your-aspnet-web-app-with-the-applications-registration-information"></a>Az alkalmazás regisztrációs adatokat az ASP.NET webalkalmazás konfigurálása
+## <a name="configure-your-aspnet-web-app-with-hello-applications-registration-information"></a>Konfigurálja az ASP.NET webalkalmazás hello alkalmazás regisztrációs adatai
 
-Ebben a lépésben konfigurálása az SSL használatát a projekthez, és az SSL URL-cím segítségével konfigurálhatja az alkalmazás regisztrációs adatokat. Ezt követően az alkalmazás hozzáadása "a megoldás a adatainak *web.config*.
+Ebben a lépésben a projekt toouse SSL konfigurálása, és az alkalmazás regisztrációs adatokat hello SSL URL-cím tooconfigure használhatja. Ezt követően hello alkalmazás hozzáadása "regisztrációs információ tooyour megoldás a *web.config*.
 
-1.  A Megoldáskezelőben, válassza ki a projektet, és tekintse meg a `Properties` (Ha nem látja a Tulajdonságok ablak az F4) ablak
-2.  Változás `SSL Enabled` számára`True`
-3.  Másolja az értéket `SSL URL` fent és illessze be a `Redirect URL` Ez a lap tetején mezőben, majd kattintson az *frissítés*:<br/><br/>![Projekt tulajdonságai](media/active-directory-serversidewebapp-aspnetwebappowin-configure/vsprojectproperties.png)<br />
-4.  Adja hozzá a következő `web.config` szakaszban legfelső mappában található fájl `configuration\appSettings`:
+1.  A Megoldáskezelőben, válassza ki a hello projekt, és nézze meg hello `Properties` (Ha nem látja a Tulajdonságok ablak az F4) ablak
+2.  Változás `SSL Enabled` túl`True`
+3.  Másolja a hello értéket `SSL URL` fent és beillesztheti hello `Redirect URL` hello oldal tetején lévő mezőbe, majd kattintson az *frissítés*:<br/><br/>![Projekt tulajdonságai](media/active-directory-serversidewebapp-aspnetwebappowin-configure/vsprojectproperties.png)<br />
+4.  Adja hozzá a hello következő `web.config` szakaszban legfelső mappában található fájl `configuration\appSettings`:
 
 ```xml
-<add key="ClientId" value="[Enter the application Id here]" />
-<add key="RedirectUri" value="[Enter the Redirect URL here]" />
+<add key="ClientId" value="[Enter hello application Id here]" />
+<add key="RedirectUri" value="[Enter hello Redirect URL here]" />
 <add key="Tenant" value="common" />
 <add key="Authority" value="https://login.microsoftonline.com/{0}/v2.0" /> 
 ```

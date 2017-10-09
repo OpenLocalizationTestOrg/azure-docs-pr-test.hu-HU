@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: billmath
-ms.openlocfilehash: d34ccd40082edbe036d963ad548bff648119bdd4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ffcebee572a9ba2840e81250651dea45599d65d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-pass-through-authentication-technical-deep-dive"></a>Az Azure Active Directory átmenő hitelesítést: Műszaki részletes bemutatója
 
@@ -27,28 +27,28 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="how-does-azure-active-directory-pass-through-authentication-work"></a>Hogyan működik az Azure Active Directory átmenő hitelesítést?
 
-Amikor egy felhasználó próbál bejelentkezni az Azure Active Directory (Azure AD) által védett alkalmazáshoz, és az áteresztő hitelesítés engedélyezve van a bérlő, a következő lépések következnek:
+Következő lépések fordulhat elő, amikor a felhasználó toosign megpróbál az Azure Active Directory (Azure AD) által védett alkalmazáshoz, és ha átmenő hitelesítés engedélyezve van a hello bérlői hello:
 
-1. A felhasználó megpróbál hozzáférni az alkalmazáshoz (például az Outlook Web App - https://outlook.office365.com/owa/).
-2. Ha a felhasználó nem jelentkezett, a felhasználót a rendszer átirányítja az Azure AD bejelentkezési oldalára.
-3. A felhasználó felhasználónevét és jelszavát köt az Azure AD bejelentkezési oldal, és a "Bejelentkezés" gombra kattint.
-4. Az Azure Active Directory, a bejelentkezési kérelem fogadása helyez el a felhasználónevet és jelszót (a nyilvános kulccsal titkosított) várólista.
-5. Egy helyszíni áteresztő hitelesítési ügynök a várólistára kimenő hívást, és lekéri a felhasználónév és a titkosított jelszót.
-6. Az ügynök visszafejti a jelszót a titkos kulccsal.
-7. Az ügynök szerint hitelesíti a felhasználónevet és jelszót normál Windows API-k (hasonló eljárást, amely Active Directory összevonási szolgáltatások által használttól) Active Directoryban. A felhasználónév vagy a helyszíni alapértelmezett felhasználónév lehet (általában `userPrincipalName`) vagy az Azure AD Connect konfigurált egy másik attribútum (úgynevezett `Alternate ID`).
-8. A helyszíni Active Directory tartományvezérlőn (DC) ezután kiértékeli a kérelmet, és a megfelelő választ ad vissza (sikeres, sikertelen, a jelszó lejárt, vagy felhasználói zárolása) ügynökkel.
-9. Az ügynök visszaadó ezt a választ az Azure AD vissza.
-10. Az Azure AD a válasz kiértékeli, és válaszol-e a felhasználó megfelelő – például azt vagy a felhasználó jelentkezik be azonnal, vagy kérelmeket a multi-factor Authentication (MFA).
-11. Ha a felhasználói bejelentkezés sikeres, a felhasználó nem tud hozzáférni az alkalmazáshoz.
+1. hello felhasználó megpróbál tooaccess egy alkalmazás (például az Outlook Web App - hello https://outlook.office365.com/owa/).
+2. Hello felhasználó már nem jelentkezett be, ha a hello felhasználó átirányított toohello az Azure AD bejelentkezési oldalára.
+3. hello felhasználó felhasználónevét és jelszavát köt hello Azure AD bejelentkezési oldalára, és hello "Bejelentkezés" gombra kattint.
+4. Az Azure Active Directory, a hello bejelentkezési kérelem fogadása hello felhasználónevét és jelszavát (nyilvános kulccsal titkosított) helyez egy üzenetsort.
+5. A helyszíni áteresztő hitelesítés ügynök lehetővé teszi egy kimenő hívás toohello várólistát, és beolvassa a hello felhasználónévvel és jelszóval titkosított.
+6. hello ügynök visszafejti hello jelszót a titkos kulccsal.
+7. hello ügynök szerint hitelesíti hello felhasználónév és jelszó használatával normál Windows API-k (egy hasonló mechanizmus toowhat szolgál az Active Directory összevonási szolgáltatások) Active Directoryban. hello felhasználónév lehet vagy hello helyszíni alapértelmezett felhasználónév (általában `userPrincipalName`) vagy az Azure AD Connect konfigurált egy másik attribútum (úgynevezett `Alternate ID`).
+8. hello a helyszíni Active Directory tartományvezérlőn (DC), majd hello kérelem kiértékeli, és értéket ad vissza megfelelő választ hello (sikeres, sikertelen, a jelszó lejárt, vagy felhasználói zárolása) toohello ügynök.
+9. hello ügynök, pedig ez választ AD vissza tooAzure adja vissza.
+10. Az Azure AD hello választ ad meg, és szükség szerint toohello felhasználói válaszol – például azt vagy hello felhasználó jelentkezik be azonnal, vagy kérelmeket a multi-factor Authentication (MFA).
+11. Hello felhasználói bejelentkezés sikeres, hello felhasználói akkor tudja tooaccess hello alkalmazás.
 
-A következő ábra összetevőit és a lépéseit mutatja be.
+hello alábbi ábrán látható összes hello összetevők és hello lépéseit.
 
-![Áteresztő hitelesítés](./media/active-directory-aadconnect-pass-through-authentication/pta2.png)
+![Átmenő hitelesítés](./media/active-directory-aadconnect-pass-through-authentication/pta2.png)
 
 ## <a name="next-steps"></a>Következő lépések
 - [**Aktuális korlátozások** ](active-directory-aadconnect-pass-through-authentication-current-limitations.md) – Ez a funkció jelenleg előzetes verzió. Ismerje meg, melyik forgatókönyvek is támogatottak, és melyek nem.
 - [**Gyors üzembe helyezési** ](active-directory-aadconnect-pass-through-authentication-quick-start.md) - létrehozásához, és fut az Azure AD áteresztő hitelesítés.
-- [**Gyakran ismételt kérdések** ](active-directory-aadconnect-pass-through-authentication-faq.md) -gyakran feltett kérdésekre adott válaszokat.
-- [**Hibaelhárítás** ](active-directory-aadconnect-troubleshoot-pass-through-authentication.md) -Útmutató: a szolgáltatással kapcsolatos gyakori problémák megoldása.
+- [**Gyakran ismételt kérdések** ](active-directory-aadconnect-pass-through-authentication-faq.md) -kérdések toofrequently válaszol.
+- [**Hibaelhárítás** ](active-directory-aadconnect-troubleshoot-pass-through-authentication.md) -megtudhatja, hogyan tooresolve közös hello szolgáltatást érintő problémákat.
 - [**Az Azure AD zökkenőmentes SSO** ](active-directory-aadconnect-sso.md) -további információ a kiegészítő funkció.
 - [**UserVoice** ](https://feedback.azure.com/forums/169401-azure-active-directory/category/160611-directory-synchronization-aad-connect) – új funkciókérések tárolásához.

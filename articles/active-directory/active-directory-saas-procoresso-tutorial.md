@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Procore SSO |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Procore SSO között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Procore SSO között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,112 +13,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/07/2017
 ms.author: jeedes
-ms.openlocfilehash: 042a41eaa6bb21670b4c12068f1b017222f64b99
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb918617f18ba3f44ddde469e6fc411977752f15
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-procore-sso"></a>Oktatóanyag: Azure Active Directoryval integrált Procore egyszeri bejelentkezés
 
-Ebben az oktatóanyagban elsajátíthatja Procore SSO integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Procore egyszeri bejelentkezés az Azure Active Directoryval (Azure AD).
 
-Procore SSO integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Procore SSO integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a Procore SSO hozzáféréssel rendelkező Azure AD-ben
-- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a Procore SSO (egyszeri bejelentkezés)
-- Kezelheti a fiókokat, egy központi helyen – az Azure felügyeleti portálon
+- Megadhatja a hozzáférés tooProcore SSO rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooProcore egyszeri Bejelentkezést (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure felügyeleti portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 <!--## Overview
 
-To enable single sign-on with Procore SSO, it must be configured to use Azure Active Directory as an identity provider. This guide provides information and tips on how to perform this configuration in Procore SSO.
+tooenable single sign-on with Procore SSO, it must be configured toouse Azure Active Directory as an identity provider. This guide provides information and tips on how tooperform this configuration in Procore SSO.
 
 >[!Note]: 
->This embedded guide is brand new in the new Azure portal, and we’d love to hear your thoughts. Use the Feedback ? button at the top of the portal to provide feedback. The older guide for using the [Azure classic portal](https://manage.windowsazure.com) to configure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
+>This embedded guide is brand new in hello new Azure portal, and we’d love toohear your thoughts. Use hello Feedback ? button at hello top of hello portal tooprovide feedback. hello older guide for using hello [Azure classic portal](https://manage.windowsazure.com) tooconfigure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD-integrációs konfigurálásához Procore egyszeri bejelentkezési modellel, a következőkre van szükség:
+tooconfigure Procore egyszeri bejelentkezés az Azure AD integrálása, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
 - Egy Procore SSO egyszeri bejelentkezés engedélyezve van az előfizetésben
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, ha ez nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből Procore SSO hozzáadása
+1. Hello gyűjteményből Procore SSO hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-procore-sso-from-the-gallery"></a>A gyűjteményből Procore SSO hozzáadása
-Az Azure AD integrálása a Procore SSO konfigurálásához kell hozzáadnia Procore SSO a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-procore-sso-from-hello-gallery"></a>Hello gyűjteményből Procore SSO hozzáadása
+tooconfigure hello integrációja Procore egyszeri bejelentkezés az Azure AD-be, meg kell tooadd Procore SSO hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből Procore SSO hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd Procore SSO hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure felügyeleti portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure felügyeleti portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Kattintson a **Hozzáadás** gombra a párbeszédpanel tetején.
+3. Kattintson a **Hozzáadás** hello párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **Procore SSO**.
+4. Hello keresési mezőbe, írja be a **Procore SSO**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-procoresso-tutorial/tutorial_procoresso_search.png)
 
-5. Az eredmények panelen válassza ki a **Procore SSO**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza a **Procore SSO**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-procoresso-tutorial/tutorial_procoresso_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD az egyszeri bejelentkezés Procore SSO "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Procore SSO a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Procore SSO közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Procore SSO tooa felhasználói az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Procore SSO közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Ez a hivatkozás kapcsolat létesíti értéket rendeli az **felhasználónév** értékeként Azure AD-ben a **felhasználónév** Procore SSO a.
+Ez a hivatkozás kapcsolat létesíti hello hello értékkel **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** a Procore egyszeri Bejelentkezést.
 
-Az Azure AD az egyszeri bejelentkezés Procore egyszeri bejelentkezési modellel tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés Procore SSO-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Procore SSO tesztfelhasználó létrehozása](#creating-a-procore-sso-test-user)**  - való egy megfelelője a Britta Simon Procore SSO, amely csatolva van rá, hogy az Azure AD ábrázolása.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Procore SSO tesztfelhasználó létrehozása](#creating-a-procore-sso-test-user)**  -toohave Britta Simon Procore egyszeri Bejelentkezést, amelyek az Azure AD csatolt toohello ábrázolása rá, hogy az egy megfelelője.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Procore SSO-alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel hello Azure felügyeleti portálon, és konfigurálása egyszeri bejelentkezéshez az Procore SSO-alkalmazásban.
 
-**Konfigurálja az Azure AD az egyszeri bejelentkezés Procore egyszeri bejelentkezési modellel, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezés Procore egyszeri bejelentkezési modellel, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure felügyeleti portálján a a **Procore SSO** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Hello Azure felügyeleti portálon, a hello **Procore SSO** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** a engedélyezése az egyszeri bejelentkezéshez.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable az egyszeri bejelentkezés.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/tutorial_procoresso_samlbase.png)
 
-3. Az a **Procore SSO-tartomány és az URL-címek** szakaszban, a felhasználó nem rendelkezik, az alkalmazás már előre integrálva van az Azure-ral bármely lépések végrehajtásához.
+3. A hello **Procore SSO-tartomány és az URL-címek** területen hello felhasználó nem rendelkezik tooperform olyan lépéseket, hello alkalmazás már előre integrálva van az Azure-ral.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/tutorial_procoresso_url.png)
 
-4. Az a **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse az XML-fájlt a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **metaadatainak XML-kódja** , és mentse a hello XML-fájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/tutorial_procoresso_certificate.png) 
 
@@ -126,123 +126,123 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/tutorial_general_400.png)
 
-6. A a **Procore SSO konfigurációs** kattintson **Procore SSO konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+6. A hello **Procore SSO konfigurációs** kattintson **Procore SSO konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML Entitásazonosító és SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/tutorial_procoresso_configure.png) 
 
-7. Egyszeri bejelentkezés konfigurálása **Procore SSO** ügyféloldali, jelentkezzen be rendszergazdaként a procore vállalati webhely.
+7. tooconfigure egyszeri bejelentkezést a **Procore SSO** oldalon, a bejelentkezési tooyour procore vállalati hely rendszergazdaként.
 
-8. Az eszközkészlet legördülő le, kattintson a **Admin** az SSO beállításai oldal megnyitásához.
+8. Lefelé hello eszközkészlet legördülő menüből, kattintson a **Admin** tooopen hello egyszeri bejelentkezési beállítások lapon.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/procore_tool_admin.png)
 
-9. Illessze be az értékeket a mezőkbe, lásd az alábbi-
+9. Beillesztés hello értékek hello mezőiben lásd az alábbi-
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/procore_setting_admin.png)    
 
-    a. Az a **egyszeri bejelentkezési kibocsátó URL-cím** mezőbe illessze be az SAML-entitás azonosítója az Azure-portálon átmásolva.
+    a. A hello **egyszeri bejelentkezési kibocsátó URL-cím** mezőbe illessze be a hello SAML Entitásazonosító átmásolva hello Azure-portálon.
 
-    b. Az a **SAML bejelentkezési cél URL-cím** mezőbe illessze be az Azure-portálon átmásolva a SAML-alapú egyszeri bejelentkezési URL-címe.
+    b. A hello **SAML bejelentkezési cél URL-cím** mezőbe illessze be a hello SAML-alapú egyszeri bejelentkezési URL-címe átmásolva hello Azure-portálon.
 
-    c. Most nyissa meg a **metaadatainak XML-kódja** újabb Azure-portálról letöltött, és másolja a tanúsítvány nevű címkében **x.509**. Illessze be a másolt érték a **egyszeri bejelentkezés x509 tanúsítvány** mezőbe.
+    c. Most nyissa meg a hello **metaadatainak XML-kódja** hello Azure-portál és a példány hello tanúsítvány nevű hello címkében fent letöltött **x.509**. Beillesztés hello értéket másol a hello **egyszeri bejelentkezés x509 tanúsítvány** mezőbe.
 
 10. Kattintson a **módosítások mentése**.
 
-11. Után ezeket a beállításokat, akkor el kell küldenie a **tartománynév** (pl. **contoso.com**) keresztül, amely jelentkezik be a Procore a [Procore támogatási csoport](https://support.procore.com/) és azok aktiválódik összevont egyszeri Bejelentkezéses ehhez a tartományhoz.
+11. Után ezek a beállítások toosend hello kell **tartománynév** (pl. **contoso.com**) keresztül, amely jelentkezik be Procore toohello [Procore támogatási csoport](https://support.procore.com/) és össze lesz aktiválja az összevont egyszeri Bejelentkezéses ehhez a tartományhoz.
 
 <!--### Next steps
 
-To ensure users can sign-in to Procore SSO after it has been configured to use Azure Active Directory, review the following tasks and topics:
+tooensure users can sign-in tooProcore SSO after it has been configured toouse Azure Active Directory, review hello following tasks and topics:
 
-- User accounts must be pre-provisioned into Procore SSO prior to sign-in. To set this up, see Provisioning.
+- User accounts must be pre-provisioned into Procore SSO prior toosign-in. tooset this up, see Provisioning.
  
-- Users must be assigned access to Procore SSO in Azure AD to sign-in. To assign users, see Users.
+- Users must be assigned access tooProcore SSO in Azure AD toosign-in. tooassign users, see Users.
  
-- To configure access polices for Procore SSO users, see Access Policies.
+- tooconfigure access polices for Procore SSO users, see Access Policies.
  
-- For additional information on deploying single sign-on to users, see [this article](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
+- For additional information on deploying single sign-on toousers, see [this article](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure felügyeleti portálján Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate tesztfelhasználó Britta Simon nevű hello Azure felügyeleti portálon.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure Management portal**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure Management portal**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-procoresso-tutorial/create_aaduser_01.png) 
 
-2. Ugrás a **felhasználók és csoportok** kattintson **minden felhasználó** azon felhasználók listájának megjelenítéséhez.
+2. Nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó** toodisplay hello azoknak a felhasználóknak.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-procoresso-tutorial/create_aaduser_02.png) 
 
-3. Kattintson a párbeszédpanel tetején **Hozzáadás** megnyitásához a **felhasználói** párbeszédpanel.
+3. Hello párbeszédpanel hello tetején kattintson **Hozzáadás** tooopen hello **felhasználói** párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-procoresso-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-procoresso-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-procore-sso-test-user"></a>Procore SSO tesztfelhasználó létrehozása
 
-Kérjük, kövesse a következő lépések végrehajtásával Procore tesztfelhasználó létrehozása az oldalon.
+Az oldalon hajtsa végre a lépéseket toocreate Procore tesztfelhasználó alatt hello.
 
-1. Rendszergazdaként a procore vállalati webhelyre való bejelentkezés.  
+1. Bejelentkezési tooyour procore vállalati hely rendszergazdaként.  
 
-2. Az eszközkészlet legördülő le, kattintson a **Directory** a vállalati címtár lap megnyitásához.
+2. Lefelé hello eszközkészlet legördülő menüből, kattintson a **Directory** tooopen hello vállalati könyvtár lapon.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/Procore_sso_directory.png)
 
-3. Kattintson a **hozzáadása egy személy** a képernyőt, és írja be a beállítást hajtsa végre a következő beállítások -
+3. Kattintson a **hozzáadása egy személy** tooopen hello űrlap lehetőséget, majd adja meg hajtsa végre a következő beállítások -
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/Procore_user_add.png)
 
-    a. Az a **Utónév** szövegmezőhöz típus felhasználó utónevét például **Britta**.
+    a. A hello **Utónév** szövegmezőhöz típus felhasználó utónevét például **Britta**.
 
-    b. Az a **Vezetéknév** szövegmező, például típus felhasználó vezetékneve **Simon**.
+    b. A hello **Vezetéknév** szövegmező, például típus felhasználó vezetékneve **Simon**.
 
-    c. Az a **E-mail cím** szövegmezőhöz típusa a felhasználó e-mail címét, például  **BrittaSimon@contoso.com** .
+    c. A hello **E-mail cím** szövegmezőhöz típusa a felhasználó e-mail címét, például  **BrittaSimon@contoso.com** .
 
     d. Válassza ki **engedély sablon** , **engedély sablon alkalmazása később**.
 
     e. Kattintson a **Create** (Létrehozás) gombra.
 
-4. Ellenőrizze, és frissítse az újonnan hozzáadott ismerős részleteit.
+4. Ellenőrizze, és frissítése a hello részletek hello újonnan hozzáadott forduljon.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/Procore_user_check.png)
 
-5. Kattintson a **mentése és küldése Invitiation** (ha szükséges egy összehíváshoz mail keresztül) vagy **mentése** (Mentés közvetlenül) a felhasználói regisztráció befejezéséhez.
+5. Kattintson a **mentése és küldése Invitiation** (ha szükséges egy összehíváshoz mail keresztül) vagy **mentése** (közvetlenül mentése) toocomplete hello felhasználói regisztráció.
     
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/Procore_user_save.png)    
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított saját hozzáférés Procore SSO Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés saját hozzáférés tooProcore SSO megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése Procore SSO, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooProcore SSO, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure felügyeleti portálra, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. Hello Azure felügyeleti portálján, nyissa meg a hello alkalmazások megtekintése, majd toohello könyvtár nézetben keresse meg, és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **Procore SSO**.
+2. Hello alkalmazások listában válassza ki a **Procore SSO**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-procoresso-tutorial/tutorial_procoresso_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -250,7 +250,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított saját hozzáf
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -258,13 +258,13 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított saját hozzáf
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha azt szeretné, az egyszeri bejelentkezés beállításainak ellenőrzéséhez nyissa meg a hozzáférési Panel. A hozzáférési Panel kapcsolatos további tudnivalókért lásd: [a hozzáférési Panel bemutatása](https://msdn.microsoft.com/library/dn308586). Ha a hozzáférési panelen Procore SSO csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Procore SSO alkalmazáshoz.
+Ha azt szeretné, az egyszeri bejelentkezés beállításainak ellenőrzéséhez nyissa meg a hozzáférési Panel. A hozzáférési Panel kapcsolatos további tudnivalókért lásd: [a hozzáférési Panel bemutatása](https://msdn.microsoft.com/library/dn308586). Ha a hozzáférési Panel hello hello Procore SSO csempe gombra kattint, automatikusan bejelentkezett tooyour Procore SSO alkalmazás szerezheti be.
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Önkiszolgáló alkalmazás-hozzáférés és a delegált felügyelet az Azure Active Directoryval |} Microsoft Docs"
-description: "Ez a cikk ismerteti, hogyan önkiszolgáló alkalmazás-hozzáférés és a delegált felügyelet az Azure Active Directoryban."
+title: "aaaSelf-service alkalmazás-hozzáférés és a delegált felügyelet az Azure Active Directoryval |} Microsoft Docs"
+description: "Ez a cikk ismerteti, hogyan férnek hozzá az tooenable önkiszolgáló alkalmazás és a delegált felügyelet az Azure Active Directoryban."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,90 +16,90 @@ ms.date: 07/26/2017
 ms.author: curtand
 ms.reviewer: asmalser
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 7872d5229cdc053bfb9dc8ddba01785b0f8e5a9a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 90bec3bd71796f22a782929b028db0d18c3aa1c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="self-service-application-access-and-delegated-management-with-azure-active-directory"></a>Önkiszolgáló alkalmazás-hozzáférés és a delegált felügyelet az Azure Active Directoryval
-Egy általános forgatókönyv a vállalati informatikai önkiszolgálói képességeit engedélyezése a végfelhasználók számára. A felhasználók, a nagy mennyiségű alkalmazások és a hozzáférés biztosítása döntések best-informed személy sok nem lehet a directory-rendszergazda. Gyakran a legjobb személy döntse el, hogy ki férhet hozzá a kérelmet, de egy más meghatalmazott rendszergazda. Azonban a felhasználó, aki használja az alkalmazást, és a felhasználó tudja, mit kell végezhető el a feladatot.
+Egy általános forgatókönyv a vállalati informatikai önkiszolgálói képességeit engedélyezése a végfelhasználók számára. Felhasználók, az alkalmazások és hello személy, aki best-informed toomake hozzáférés nagy mennyiségű biztosítani döntések nem lehet hello directory rendszergazdája. Gyakran hello legjobb személy toodecide ki férhet hozzá a kérelmet, de egy más meghatalmazott rendszergazda. Azonban hello felhasználó, aki hello alkalmazást használja, és hello felhasználó tudja, hogy mit toobe képes toodo munkájukhoz van szükségük.
 
 > [!IMPORTANT]
-> A Microsoft javasolja, hogy az Azure Portalon található [Azure AD felügyeleti központból](https://aad.portal.azure.com) kezelje az Azure AD-t az ebben a cikkben javasolt klasszikus Azure portál helyett. 
+> A Microsoft azt javasolja, hogy a hello használata az Azure AD kezelése [az Azure AD felügyeleti központban](https://aad.portal.azure.com) hello az Azure portál használata helyett hello hivatkozott ebben a cikkben a klasszikus Azure portálon. 
 
 Önkiszolgáló alkalmazás-hozzáférés csak a [Azure Active Directory Premium](https://azure.microsoft.com/trial/get-started-active-directory/) P1 és P2 licencelési, amelyek lehetővé teszik a címtárban:
 
-* Lehetővé teszi a felhasználók kattintva kérhet hozzáférést az "Beolvasása további alkalmazások" mozaikra használó alkalmazások a [Azure AD hozzáférési Panel](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)
+* Használja a "Get további alkalmazások" tooapplications csempére hello felhasználók toorequest hozzáférés engedélyezése [Azure AD hozzáférési Panel](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)
 * Mely alkalmazások használói kérhetnek való hozzáférés beállítása
-* Függetlenül attól, egy jóváhagyásra szükség a felhasználók saját maguk rendelhető az alkalmazáshoz való hozzáférés beállítása
-* Állítsa ki kell a kérelem jóváhagyása és minden egyes alkalmazás-hozzáférés kezelése
+* Függetlenül attól, jóváhagyásának szükség a felhasználók toobe képes tooself hozzárendelése access tooan alkalmazás beállítása
+* Állítsa ki kell hello kérelmek jóváhagyása és minden egyes alkalmazás-hozzáférés kezelése
 
-Ezt a képességet az összes előre integrált támogatott ma és összevont, jelszóalapú vagy egyetlen támogató egyéni alkalmazások bejelentkezés a a [Azure Active Directory alkalmazáskatalógusában](https://azure.microsoft.com/marketplace/active-directory/all/), beleértve az alkalmazások, például a Salesforce, Dropbox, Google Apps, és több.
+Ez a funkció minden előzetesen beépített és egyéni alkalmazás, amely támogatja az összevont vagy a jelszó-alapú egyszeri bejelentkezést hello támogatott Ma [Azure Active Directory alkalmazáskatalógusában](https://azure.microsoft.com/marketplace/active-directory/all/), beleértve az alkalmazások, például a Salesforce, Dropbox, Google Apps, és több.
 Ez a cikk ismerteti, hogyan:
 
 * A végfelhasználók számára, beleértve a nem kötelező jóváhagyási munkafolyamat konfigurálása az önkiszolgáló alkalmazás-hozzáférés konfigurálása 
-* A legmegfelelőbb a szervezet dolgozói számára adott alkalmazásokra vonatkozó hozzáférés-kezelés delegálása, és lehetővé teszi az Azure AD hozzáférési panel hozzáférési kérelmek jóváhagyása, közvetlenül a kijelölt felhasználók hozzáférés hozzárendelése és (opcionálisan) a hitelesítő adatok beállítására használható Ha jelszóalapú egyszeri bejelentkezésre van beállítva alkalmazás-hozzáférés
+* Bizonyos alkalmazások toohello legmegfelelőbb a szervezet dolgozói, hozzáférés-kezelés delegálása és toouse hello Azure AD hozzáférési panel tooapprove hozzáférési kérelmek lehetővé teszi, közvetlenül tooselected felhasználók az hozzáférés hozzárendelése vagy (opcionális) beállítása Ha jelszóalapú egyszeri bejelentkezésre van beállítva alkalmazás-hozzáférési hitelesítő adatok
 
 ## <a name="configuring-self-service-application-access"></a>Önkiszolgáló alkalmazás-hozzáférés konfigurálása
-Önkiszolgáló alkalmazás-hozzáférés engedélyezése és konfigurálása, melyik alkalmazások is hozzáadhatók, illetve a végfelhasználók által kért kövesse ezeket az utasításokat.
+tooenable önkiszolgáló alkalmazás-hozzáférés és mely alkalmazások lehet hozzáadni, vagy a végfelhasználók által kért kövesse ezeket az utasításokat.
 
-1. Jelentkezzen be a [a klasszikus Azure portálon](https://manage.windowsazure.com/).
+1. Jelentkezzen be a hello [a klasszikus Azure portálon](https://manage.windowsazure.com/).
 
-2.   Az a **Active Directory** területen válassza ki azt a címtárat, majd válassza ki a **alkalmazások** fülre. 
+2.   A hello **Active Directory** területen válassza ki azt a címtárat, majd válassza ki a hello **alkalmazások** fülre. 
 
-3. Válassza ki a **Hozzáadás** gombra, és a gyűjtemény kapcsoló használatával válassza ki, és hozzáadhat egy alkalmazást.
+3. Jelölje be hello **Hozzáadás** gombra és hello gyűjtemény beállítás tooselect használja, és hozzáadhat egy alkalmazást.
 
-4. Az alkalmazás hozzáadása után fog kapni olyan alkalmazás első lépéseinek oldala. Kattintson a **konfigurálása egyszeri bejelentkezéshez**, válassza ki a kívánt egyszeri bejelentkezés módot, és a konfiguráció mentéséhez. 
+4. Az alkalmazás hozzáadása után fog kapni olyan hello alkalmazás gyors kezdés lapon. Kattintson a **konfigurálása egyszeri bejelentkezéshez**hello kívánt egyszeri bejelentkezés mód kiválasztása és hello konfigurációjának mentéséhez. 
 
-5. Ezután válassza ki a **konfigurálása** fülre. Ahhoz, hogy a felhasználók számára hozzáférést kér az Azure AD hozzáférési panel ehhez az alkalmazáshoz, állítsa be **önkiszolgáló alkalmazás-hozzáférés engedélyezése** való **Igen**.
+5. Ezután válassza ki a hello **konfigurálása** külön-külön tooenable felhasználók toorequest hozzáférés toothis alkalmazásából hello Azure AD hozzáférési panel, állítsa be **önkiszolgáló alkalmazás-hozzáférés engedélyezése** túl**Igen**.
   
   ![][1]
 
-6. Igény szerint állítsa be a hozzáférési kérelem jóváhagyási munkafolyamat, állítsa **hozzáférés biztosítása előtt jóvá kell hagyni** való **Igen**. Egy vagy több jóváhagyó választható használatával, majd a **jóváhagyóknak** gombra.
+6. toooptionally konfigurálhatja a hozzáférési kérelem jóváhagyási munkafolyamat beállítása **hozzáférés biztosítása előtt jóvá kell hagyni** túl**Igen**. Ezután egy vagy több jóváhagyó hello kiválasztható **jóváhagyóknak** gombra.
 
-  Jóváhagyó lehet minden olyan felhasználó, a szervezet az Azure AD-fiókot, és lehet, a licencelési fiók felelős, vagy bármely más üzleti folyamat a szervezet megköveteli az alkalmazások való hozzáférés biztosítása előtt. A jóváhagyó is lehet a csoport tulajdonosa egy vagy több megosztott csoportok, és rendelhet hozzá a felhasználók ezeket a csoportokat számukra egy megosztott fiókkal való hozzáférésének egyik. 
+  Jóváhagyó lehet bármely felhasználó hello szervezet az Azure AD-fiókkal, és lehet felelős fiók kiépítése, licencelési, vagy bármely más üzleti folyamat a szervezet megköveteli tooan app hozzáférés megadása előtt. hello jóváhagyó hello csoporttulajdonos egy vagy több megosztott csoportok, és rendelhet hozzá hello felhasználók tooone ezen csoportok toogive őket érhetnek el egy megosztott fiókkal, még akkor is lehet. 
 
-  Ha nincsenek jóváhagyásra szükség, majd azonnal a felhasználónál az alkalmazás az Azure AD hozzáférési panel hozzá. Ha az alkalmazás beállítva fel az [automatikus felhasználólétesítés](active-directory-saas-app-provisioning.md), vagy be van állítva ["felhasználó által kezelt" jelszó SSO mód](active-directory-appssoaccess-whatis.md#password-based-single-sign-on), a felhasználó már rendelkezik egy felhasználói fiókot, és a jelszó ismerete.
+  Ha nincsenek jóváhagyásra szükség, majd azonnal felhasználónál hello alkalmazáshoz hozzáadott tootheir az Azure AD hozzáférési panel. Ha hello alkalmazás beállítva fel az [automatikus felhasználólétesítés](active-directory-saas-app-provisioning.md), vagy be van állítva ["felhasználó által kezelt" jelszó SSO mód](active-directory-appssoaccess-whatis.md#password-based-single-sign-on), hello felhasználó már rendelkezik egy felhasználói fiókot, és hello jelszó ismerete.
 
-7. Ha az alkalmazás konfigurációja használja a jelszó-alapú egyszeri bejelentkezést, akkor egy beállítást a használatának engedélyezése minden felhasználó nevében egyszeri bejelentkezési hitelesítő adatok beállítása a jóváhagyó érhető el. További információkért lásd [kezelési meghatalmazott](#delegated-application-access-management).
+7. Ha az alkalmazás hello konfigurált toouse jelszó-alapú egyszeri bejelentkezést, majd a beállítás a hello jóváhagyó engedélyezése minden felhasználó nevében tooset hello egyszeri bejelentkezési hitelesítő adatok érhető el. További információkért lásd: hello szakasz a [kezelési meghatalmazott](#delegated-application-access-management).
 
-8. Végezetül a **a Self-Assigned felhasználók** tárolja az adott vagy az alkalmazáshoz hozzáféréssel rendelkező felhasználók csoport nevét jeleníti meg. A hozzáférés jóváhagyó a csoport tulajdonosa lesz. Ha látható a csoportnév nem létezik, akkor automatikusan létrejön. Opcionálisan a csoport nevét állítható be egy meglévő csoport nevét.
+8. Végezetül hello **a Self-Assigned felhasználók** mutat be hello hello csoport, amely használt toostore hello felhasználók nyújtott vagy hozzárendelt hozzáférés toohello alkalmazás nevét. hello hozzáférés jóváhagyó csoport hello tulajdonosa lesz. Ha látható hello csoportnév nem létezik, akkor automatikusan létrejön. Opcionálisan hello csoportnév állíthat be egy meglévő csoport toohello neve.
 
-9. A konfiguráció mentéséhez kattintson **mentése** a képernyő alján. Most már a felhasználók a hozzáférés kéréséhez ennek az alkalmazásnak a hozzáférési panelen igényelheti is.
+9. toosave hello konfigurációs, kattintson a **mentése** üdvözlő képernyőt hello alján. A felhasználók most már toorequest hozzáférés toothis alkalmazásából hello hozzáférési panel el.
 
-10. Próbálja meg a végfelhasználói élményt, jelentkezzen be a szervezet Azure AD hozzáférési panel https://myapps.microsoft.com, lehetőség szerint másik fiókkal, amely nem az alkalmazás jóváhagyó. 
+10. tootry hello végfelhasználói élményt, jelentkezzen be a szervezet az Azure AD hozzáférési panelre a https://myapps.microsoft.com, lehetőség szerint másik fiókkal, amely nem az alkalmazás jóváhagyó. 
 
-11. Az a **alkalmazások** lapra, majd a **további alkalmazások beszerzése** csempére. Ez a csempe sablongalériából összes, amelyeken engedélyezve van az önkiszolgáló alkalmazás hozzáférése a könyvtárban, a Keresés és szűrés a bal oldali app kategória szerint képes alkalmazást jeleníti meg. 
+11. A hello **alkalmazások** lapra, majd hello **további alkalmazások első** csempére. Ez a csempe hello alkalmazások, amelyeken engedélyezve van hello a könyvtárban, hello képességét toosearch és szűrő a app kategória hello bal oldali önkiszolgáló alkalmazások elérésére vonatkozó összes gyűjteményt jeleníti meg. 
 
-12. A folyamat elindít egy kattint. Ha nincs jóváhagyási folyamat szükség, akkor az alkalmazás azonnal megjelenik a a **alkalmazások** után egy rövid megerősítő lapon. Ha jóváhagyásra szükség, majd megjelenik egy párbeszédpanel, ezzel jelezve, és a jóváhagyó egy e-mailt küld. Be kell jelentkeznie a hozzáférési panelre nem jóváhagyó, hogy a folyamat.
+12. Hello lekérő folyamat elindít egy kattint. Ha nincs jóváhagyási folyamat szükség, akkor hello alkalmazás azonnal megjelenik a hello **alkalmazások** után egy rövid megerősítő lapon. Ha jóváhagyásra szükség, majd megjelenik egy párbeszédpanel, ezzel jelezve, és egy e-mailt küld toohello jóváhagyóknak. Be kell jelentkeznie a hello hozzáférési panel egy nem jóváhagyó toosee, a folyamat.
 
-13. Az e-mailt irányítja a jóváhagyó jelentkezzen be az Azure AD hozzáférési panel, és hagyja jóvá a kérést. A felhasználónál, amennyiben elfogadja a kérelmet (és a jóváhagyó által végrehajtott semmilyen különleges folyamatot adhat meg), az alkalmazás csoportban jelennek meg azok **alkalmazások** lap, ahol bejelentkeznének bele.
+13. hello e-mail hello jóváhagyó toosign vezeti be hello Azure AD hozzáférési panel és hello kérés jóváhagyása. Miután hello kérelem jóváhagyása (és adhat meg semmilyen különleges folyamatot hello jóváhagyó által végrehajtott), hello felhasználónál hello alkalmazás csoportban jelennek meg azok **alkalmazások** lap, ahol bejelentkeznének bele.
 
 ## <a name="delegated-application-access-management"></a>Delegált alkalmazáshozzáférés-kezeléshez
-Az alkalmazás hozzáférési jóváhagyó lehet jóváhagyása vagy megtagadja a hozzáférést a szóban forgó alkalmazás leginkább megfelelő személy, aki a szervezet bármely felhasználója. A felhasználói fiók kiépítése, felelős licencelési, vagy más üzleti folyamat a szervezet megköveteli az alkalmazásához való hozzáférést megelőzően.
+Az alkalmazás hozzáférési jóváhagyó hello leginkább megfelelő személy tooapprove, aki a szervezet bármely felhasználója vagy megtagadja a hozzáférést toohello alkalmazást a szóban forgó. A felhasználói fiók kiépítése, felelős licencelési, vagy más üzleti folyamat a szervezet megköveteli tooan app hozzáférés megadása előtt.
 
-A fent leírt önkiszolgáló alkalmazás-hozzáférés konfigurálásakor bármely alkalmazás hozzárendelése jóváhagyóknak lásd további **alkalmazások kezelése** csempe az Azure AD hozzáférési panel, amely azt is, hogy mely alkalmazások a a rendszergazda hozzáférést. Az alkalmazásra kattintva megnyílik számos lehetőség közül választhat a képernyőn látható.
+A fent leírt önkiszolgáló alkalmazás-hozzáférés konfigurálásakor bármely alkalmazás hozzárendelése jóváhagyóknak lásd további **alkalmazások kezelése** csempe az hello Azure AD hozzáférési panel, amely azt is, hogy mely alkalmazások hello szolgáltatás rendszergazdája számára. Az alkalmazásra kattintva megnyílik számos lehetőség közül választhat a képernyőn látható.
 
 ![][2]
 
 ### <a name="approve-requests"></a>Kérelmek jóváhagyása
-A **kérelmek jóváhagyása** csempe lehetővé teszi, hogy a jóváhagyóknak minden függőben lévő jóváhagyások alkalmazást jellemző megjelenítéséhez, és átirányítja a felhasználókat a jóváhagyások lapra, ahol a kérelmek is erősíthető vagy tagadható meg. A jóváhagyó automatikus e-mailek is kap, amikor kérést hoz létre, amely arra utasítja őket Mi a teendő.
+Hello **kérelmek jóváhagyása** csempe lehetővé teszi, hogy a jóváhagyóknak toosee minden függőben lévő jóváhagyások adott toothat alkalmazást, és átirányítja a toohello jóváhagyások lapon ahol hello kérelmek erősíthető vagy tagadható meg. hello jóváhagyó automatikus e-mailek is kap, amikor kérést hoz létre, amely milyen toodo utasítja őket.
 
 ### <a name="add-users"></a>Felhasználók hozzáadása
-A **felhasználó hozzáadása** csempe lehetővé teszi, hogy a közvetlenül kijelölt felhasználónak hozzáférést biztosít az alkalmazás a jóváhagyóknak. Ez a csempe kattint, a jóváhagyó látja, egy párbeszédpanelen megtekintéséhez és kereséséhez a könyvtárban lévő felhasználók számára lehetővé teszi. Egy felhasználó eredmények hozzáadása az alkalmazásban, az adott felhasználó az Azure AD hozzáférési panelek vagy az Office 365 látható. Ha bármely manuális felhasználói létesítésének folyamatát kell használnia szükség, az alkalmazást, mielőtt a felhasználó nem jelentkezhet be, majd a jóváhagyó végre kell hajtania ezt a folyamatot hozzáférés engedélyezése előtt.  
+Hello **felhasználó hozzáadása** csempe lehetővé teszi, hogy jóváhagyóknak toodirectly grant kijelölt felhasználók access toohello alkalmazást. Ez a csempe kattint, hello jóváhagyó látja, egy párbeszédpanelen lehetővé teszi, hogy azok tooview, majd keresse meg a felhasználók a könyvtárban. Egy felhasználó eredmények hozzáadása az adott felhasználó az Azure AD hozzáférési panelek vagy az Office 365 látható hello alkalmazásban. Ha bármely manuális felhasználói létesítésének folyamatát kell használnia kell, mielőtt hello felhasználó hello alkalmazás képes toosign a, akkor hello jóváhagyó végre kell hajtania ezt a folyamatot hozzáférés engedélyezése előtt.  
 
 ### <a name="manage-users"></a>Felhasználók kezelése
-A **felhasználók kezelése** csempe lehetővé teszi, hogy a jóváhagyóknak közvetlenül frissítéséhez, vagy távolítsa el, mely felhasználók férhetnek hozzá az alkalmazást. 
+Hello **felhasználók kezelése** csempe lehetővé teszi a jóváhagyóknak toodirectly frissítés, vagy távolítsa el, mely felhasználók férhessenek toohello alkalmazás. 
 
 ### <a name="configure-password-sso-credentials-if-applicable"></a>Jelszó egyszeri bejelentkezési hitelesítő adatok beállítása (ha van ilyen)
-A **konfigurálása** csempe csak akkor is látható, ha az alkalmazás konfigurálása által a rendszergazdát, hogy a jelszó-alapú egyszeri bejelentkezéshez használja, és a rendszergazda adott a jóváhagyó meg jelszó egyszeri bejelentkezési hitelesítő adatokat, lásd korábban. Kiválasztásakor, a jóváhagyó találkozik hogyan továbbítja a hitelesítő adatok hozzárendeli a felhasználók számos lehetőség közül választhat:
+Hello **konfigurálása** csempe csak akkor jelenik meg, ha hello alkalmazás informatikai rendszergazda toouse jelszó-alapú egyszeri bejelentkezést hello lett konfigurálva, és hogy a hello rendszergazda adott hello jóváhagyó hello képességét tooset jelszó egyszeri bejelentkezési hitelesítő adatok korábban leírt. Kiválasztásakor hello jóváhagyó találkozik számos lehetőség közül választhat a hogyan hello hitelesítő adatok propagált tooassigned felhasználók:
 
 ![][3]
 
-* **Felhasználók jelentkezzen be a saját jelszavukat** – ebben a módban a hozzárendelt felhasználók tudják, mit a felhasználónevek és jelszavak az alkalmazáshoz, és meg kell őket az első bejelentkezés során az alkalmazáshoz. A forgatókönyv megfelel-e a jelszó SSO esetben ha a [felhasználók kezelhetik a hitelesítő adatok](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
-* **Felhasználók automatikusan bejelentkeztetjük külön fiókokkal, amelyek kezelhető** – ebben a módban a hozzárendelt a felhasználóknak nem kell adja meg, vagy tudni alkalmazásspecifikus hitelesítő adataikat, ha az alkalmazás aláírása. Ehelyett a jóváhagyó hitelesítő adatok beállítása az egyes felhasználók hozzáférés hozzárendelése után a **felhasználó hozzáadása** csempére. A felhasználó a hozzáférési panel vagy Office 365 alkalmazásra kattint, automatikusan megtörténik a jóváhagyó által beállított hitelesítő adatok segítségével. A forgatókönyv megfelel-e a jelszó SSO esetben ha a [rendszergazdák hitelesítő adatok kezelése](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
-* **Felhasználók egyetlen fiókkal, amely a kezelhető automatikusan bejelentkeztetjük** -egy különleges esetben, ebben az esetben célszerű használni, ha az összes hozzárendelt felhasználó hozzáférést egy megosztott fiókkal. A funkció a leggyakrabban használt használati eset közösségi alkalmazásokkal, amikor egy szervezet egyetlen "Vállalati" fiókkal rendelkezik, és a frissítések ezekhez a fiókokhoz kell több felhasználó van. A forgatókönyv is megfelel a jelszó SSO esetben ha a [rendszergazdák hitelesítő adatok kezelése](active-directory-appssoaccess-whatis.md#password-based-single-sign-on). Ez a beállítás kiválasztása után azonban a jóváhagyó egyetlen közös fiók megadhatja a felhasználónevet és jelszót kéri. Ezt követően az összes hozzárendelt felhasználó jelentkezik be ezt a fiókot használja, ha az Azure AD hozzáférési panel vagy Office 365 alkalmazásra kattint.
+* **Felhasználók jelentkezzen be a saját jelszavukat** – ebben a módban hello hozzárendelt felhasználók tudják, mit a felhasználónevek és jelszavak hello alkalmazáshoz, és rákérdezéses tooenter első bejelentkezés toohello jogosította őket. hello forgatókönyv megfelel-e toohello jelszó SSO esetben ha hello [felhasználók kezelhetik a hitelesítő adatok](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
+* **Felhasználók automatikusan bejelentkeztetjük külön fiókokkal, amelyek kezelhető** – ebben a módban hello hozzárendelt felhasználók nem szükséges tooenter és alkalmazás-specifikus hitelesítő adataikkal tudja hello alkalmazásba aláírásakor. Ehelyett hello jóváhagyó hello hitelesítő adatok beállítása az egyes felhasználók hello hozzáférés hozzárendelése után **felhasználó hozzáadása** csempére. A hozzáférési panel vagy az Office 365 hello alkalmazás hello felhasználó kattint, automatikusan aláírt hello jóváhagyó által beállított hello hitelesítő adataival. hello forgatókönyv megfelel-e toohello jelszó SSO esetben ha hello [rendszergazdák hitelesítő adatok kezelése](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
+* **Felhasználók egyetlen fiókkal, amely a kezelhető automatikusan bejelentkeztetjük** -egy különleges esetben, ebben az esetben megfelelő toouse Ha az összes hozzárendelt felhasználók toobe hozzáférést egyetlen megosztott fiókkal. Ez a szolgáltatás hello leggyakoribb használati eset közösségi alkalmazásokkal, ahol a szervezet egyetlen "Vállalati" fiókkal rendelkezik, és több felhasználó toomake frissítések toothat fiókra van szükség van. hello forgatókönyv szintén megfelelő toohello jelszó SSO esetben ha hello [rendszergazdák hitelesítő adatok kezelése](active-directory-appssoaccess-whatis.md#password-based-single-sign-on). Ez a beállítás kiválasztása után azonban hello jóváhagyó lesz felszólító tooenter hello felhasználónév és jelszó hello egyetlen megosztott fiók. Ezt követően az összes hozzárendelt felhasználó jelentkezik be ezt a fiókot használja, az Office 365 vagy az Azure AD hozzáférési panel hello alkalmazásra kattintva.
 
 ## <a name="additional-resources"></a>További források
 * [Az Azure Active Directory segítségével végzett alkalmazásfelügyeletre vonatkozó cikkek jegyzéke](active-directory-apps-index.md)

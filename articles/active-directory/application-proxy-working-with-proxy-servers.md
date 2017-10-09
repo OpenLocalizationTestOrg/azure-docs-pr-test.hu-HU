@@ -1,6 +1,6 @@
 ---
-title: "Munka a meglévő helyszíni proxykiszolgálókra és az Azure AD |} Microsoft Docs"
-description: "Bemutatja, hogyan adhat az meglévő helyszíni proxy kiszolgálóhoz."
+title: "a meglévő aaaWork helyi proxykiszolgálót és az Azure AD |} Microsoft Docs"
+description: "Ismerteti, hogyan toowork a meglévő helyszíni proxykiszolgálókat."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -13,43 +13,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: kgremban
-ms.openlocfilehash: bdca442755507c4ffe8d43692c5b7f2aa3a746f3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7f8cec4f676f99bead5211bcbcf23056bd7f211f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="work-with-existing-on-premises-proxy-servers"></a>A meglévő helyszíni proxykiszolgálókkal működik
 
-Ez a cikk ismerteti, hogyan konfigurálja az Azure Active Directory (Azure AD) alkalmazásproxy összekötőket az kimenőproxy-kiszolgálóhoz. Az ügyfelek számára hálózati környezetekben, ahol a meglévő proxyk szolgál.
+Ez a cikk azt ismerteti, hogyan tooconfigure Azure Active Directory (Azure AD) alkalmazásproxy összekötők toowork kimenőproxy-kiszolgálókkal. Az ügyfelek számára hálózati környezetekben, ahol a meglévő proxyk szolgál.
 
 Először fő központi telepítési forgatókönyvek alapján:
-* Konfigurálja az összekötőket a helyszíni kimenő proxyk kihagyásához.
-* Konfigurálja az összekötőket egy kimenő proxy használatát az Azure AD-alkalmazásproxy eléréséhez.
+* Összekötők toobypass konfigurálása a helyszíni kimenő proxyk.
+* Egy kimenő proxy tooaccess Azure AD alkalmazásproxy összekötők toouse konfigurálása.
 
 Összekötők működésével kapcsolatos további információkért lásd: [megértéséhez Azure AD-alkalmazásproxy összekötők](application-proxy-understand-connectors.md).
 
-## <a name="configure-the-outbound-proxy"></a>A kimenő proxy konfigurálása
+## <a name="configure-hello-outbound-proxy"></a>Hello kimenő proxy konfigurálása
 
-Ha egy kimenő proxy a környezetben, fiók használatával a megfelelő engedélyekkel a kimenő proxy konfigurálása. A telepítő a telepítés tesz a felhasználó környezetében fut, mert a konfiguráció ellenőrizheti a Microsoft Edge vagy egy másik böngészőben.
+Ha egy kimenő proxy a környezetben, a megfelelő engedélyek tooconfigure hello kimenő proxy olyan fiókot használjon. Hello telepítő hello hello tesz hello telepítés a felhasználó környezetében fut, mert a Microsoft Edge vagy egy másik böngészőben ellenőrizheti hello beállításait.
 
-A Proxybeállítások konfigurálása a Microsoft Edge:
+tooconfigure hello proxybeállításai Microsoft Edge:
 
-1. Ugrás **beállítások** > **nézet speciális beállítások** > **nyissa meg a proxybeállítások** > **manuálisProxytelepítése**.
-2. Állítsa be **proxykiszolgálót használni** való **a**, jelölje be a **nem használni a proxykiszolgálót a helyi (intranetes) címek** jelölőnégyzetet, majd módosítsa a címet és portot a helyi megfelelően proxykiszolgáló.
-3. Töltse ki a szükséges proxybeállításokat.
+1. Nyissa meg túl**beállítások** > **speciális beállítások megjelenítése** > **nyissa meg a proxybeállítások** > **manuális Proxy telepítése** .
+2. Állítsa be **proxykiszolgálót használni** túl**a**, jelölje be hello **ne használjon hello proxykiszolgáló helyi (intranetes) címek** jelölőnégyzetet, majd a módosítás hello cím és port tooreflect a helyi proxykiszolgálóra.
+3. Töltse ki hello szükséges proxybeállításokat.
 
    ![A proxykiszolgáló beállításai párbeszédpanel](./media/application-proxy-working-with-proxy-servers/proxy-bypass-local-addresses.png)
 
 ## <a name="bypass-outbound-proxies"></a>Kimenő proxyk figyelmen kívül hagyása
 
-Összekötők rendelkezik az operációs rendszer alapösszetevőt kimenő kérelmeket. Ezeket az összetevőket automatikusan megpróbálja megkeresni a proxykiszolgálót a hálózaton. Webes Proxy automatikus felderítését a lekérdezés (WPA), akkor használja, ha engedélyezve van a környezetben.
+Összekötők rendelkezik az operációs rendszer alapösszetevőt kimenő kérelmeket. Ezeket az összetevőket automatikusan megpróbál toolocate hello hálózat proxykiszolgálót. Webes Proxy automatikus felderítését a lekérdezés (WPA), ha engedélyezve van a hello környezet használata.
 
-Az operációs rendszer összetevőit megpróbálja megkeresni a proxykiszolgáló wpad.domainsuffix a DNS-címkeresést elvégzésével. Ha így megoldódik, a DNS-ben, HTTP-kérelem majd történik wpad.dat IP-címét. A kérelem válik a proxy konfigurációs parancsprogramja a környezetben. Az összekötő jelöljön ki egy kimenő proxy használja ezt a parancsfájlt. Azonban összekötő forgalom előfordulhat, hogy még nem halad át, a proxy szükség további konfigurációs beállítások miatt.
+hello operációs rendszer összetevőit toolocate proxykiszolgáló wpad.domainsuffix a DNS-címkeresést elvégzésével történt kísérlet. Ha így megoldódik, a DNS-ben, egy HTTP majd kérelem toohello IP-címe wpad.dat. A kérelem lesz hello proxy konfigurációs parancsprogramja a környezetben. hello összekötő a parancsfájl tooselect egy kimenő proxykiszolgálót használ. Azonban összekötő forgalom előfordulhat, hogy még nem halad át, hello proxy szükség további konfigurációs beállítások miatt.
 
-Beállíthatja, hogy az összekötő a helyszíni proxy győződjön meg arról, hogy használ-e közvetlen kapcsolat az Azure-szolgáltatásokhoz való kihagyásához. Ezt a módszert javasoljuk (Ha a hálózati házirend lehetővé teszi, hogy az), mert az azt jelenti, hogy rendelkezik-e egy kisebb konfigurációs fenntartásához.
+Konfigurálhatja a helyszíni proxy tooensure használt közvetlen kapcsolat toohello Azure hello összekötő toobypass szolgáltatások. Ezt a módszert javasoljuk (Ha a hálózati házirend lehetővé teszi, hogy az), mert az azt jelenti, hogy rendelkezik-e egy kisebb konfigurációs toomaintain.
 
-Tiltsa le az összekötő kimenő proxy használatát, a C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config fájl szerkesztésével, és adja hozzá a *System.NET névtérbeli* látható a fenti szakaszban:
+toodisable kimenőproxy használati hello összekötő hello C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config fájl szerkesztésével, és adja hozzá a hello *System.NET névtérbeli* látható a fenti szakasz :
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -65,25 +65,25 @@ Tiltsa le az összekötő kimenő proxy használatát, a C:\Program Files\Micros
   </appSettings>
 </configuration>
 ```
-Győződjön meg arról, hogy az összekötő frissítési szolgáltatást is megkerüli a proxy, egy hasonló módosítást a ApplicationProxyConnectorUpdaterService.exe.config fájl helye: C:\Program Files\Microsoft AAD App Proxy Connector Frissítőjének.
+tooensure, hogy hello összekötő frissítési szolgáltatást is megkerüli hello proxy, hogy hasonló módosítása toohello ApplicationProxyConnectorUpdaterService.exe.config fájl helye: C:\Program Files\Microsoft AAD App Proxy Connector Frissítőjének.
 
-Ügyeljen arra, hogy készítsen másolatot az eredeti fájlok abban az esetben meg kell visszaállítania az alapértelmezett .config kiterjesztésű fájlokat.
+Hello eredeti fájlok másolatait meg arról, hogy toomake lennie, ha toorevert toohello alapértelmezett .config kiterjesztésű fájlokban van szüksége.
 
-## <a name="use-the-outbound-proxy-server"></a>A kimenő proxykiszolgáló használata
+## <a name="use-hello-outbound-proxy-server"></a>Hello kimenő proxykiszolgáló használata
 
-Egyes környezetekben megkövetelése minden kimenő forgalom haladhat végig az kimenő proxy, kivételhiba jelentkezése nélkül. Ennek eredményeképpen a proxy megkerülése lehetőség nem érhető el.
+Egyes környezetekben megkövetelése minden kimenő forgalom toogo keresztül kimenő, kivételhiba jelentkezése nélkül. Ennek eredményeképpen hello proxy megkerülése lehetőség nem érhető el.
 
-Nyissa meg a kimenő proxy connector forgalmat is konfigurálhatja, az alábbi ábrán látható módon:
+Hello összekötő forgalom toogo hello kimenő proxyn keresztül is konfigurálhatja, ahogy az ábra a következő hello:
 
- ![Egy kimenő proxyn keresztül történő Ugrás az Azure AD-alkalmazásproxy-összekötő forgalom konfigurálása](./media/application-proxy-working-with-proxy-servers/configure-proxy-settings.png)
+ ![Konfigurálása az összekötő forgalom toogo keresztül egy kimenő proxy tooAzure AD alkalmazásproxy](./media/application-proxy-working-with-proxy-servers/configure-proxy-settings.png)
 
-Miatt, amelyek csak a kimenő forgalom, nincs szükség a tűzfalon keresztüli bejövő hozzáférés konfigurálásához.
+Ennek eredményeképpen, hogy csak a kimenő forgalom, nincs nincs szükség tooconfigure hozzáférés a tűzfalon keresztüli bejövő.
 
-### <a name="step-1-configure-the-connector-and-related-services-to-go-through-the-outbound-proxy"></a>1. lépés: Az összekötő és a kapcsolódó szolgáltatások haladhat végig a kimenő proxy konfigurálása
+### <a name="step-1-configure-hello-connector-and-related-services-toogo-through-hello-outbound-proxy"></a>1. lépés: Hello-összekötő konfigurálása, és a kapcsolódó szolgáltatások toogo hello kimenő proxyn keresztül
 
-Korábban vonatkozik, ha WPAD engedélyezve a környezetben, és megfelelően konfigurálva, az összekötő automatikusan a kimenő proxykiszolgáló felderítése, és megkísérli használni azt. Azonban explicit módon konfigurálhatja az összekötő egy kimenő proxy végrehajtania.
+Vonatkozik korábban, ha a WPAD hello környezetben engedélyezve van, és megfelelő konfigurálása, mint a hello connector automatikusan észleli az hello kimenőproxy kiszolgáló, és megpróbál toouse azt. Azonban explicit módon konfigurálhatja hello összekötő toogo egy kimenő proxyn keresztül.
 
-Ehhez az szükséges, módosítsa a C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config fájlt, és adja hozzá a *System.NET névtérbeli* látható a fenti szakaszban. Változás *proxyserver:8080* a helyi proxykiszolgáló nevét vagy IP-cím és a portot, amelyet figyeli az megfelelően.
+toodo tehát hello C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config fájl szerkesztésével, és adja hozzá a hello *System.NET névtérbeli* látható a fenti szakaszban. Változás *proxyserver:8080* a helyi proxykiszolgáló nevét vagy IP-cím és hello porton figyeli a tooreflect.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -102,124 +102,124 @@ Ehhez az szükséges, módosítsa a C:\Program Files\Microsoft AAD App Proxy Con
 </configuration>
 ```
 
-Ezután konfigurálja a Connector frissítési szolgáltatást által hasonló módosítást végez a fájl helye: C:\Program Files\Microsoft AAD App Proxy Connector Updater\ApplicationProxyConnectorUpdaterService.exe.config proxy használatára.
+Ezután konfigurálja a hello összekötő Frissítőjének toouse hello szolgáltatásproxy azáltal, hogy a hasonló módosítása toohello fájl helye: C:\Program Files\Microsoft AAD App Proxy Connector Updater\ApplicationProxyConnectorUpdaterService.exe.config.
 
-### <a name="step-2-configure-the-proxy-to-allow-traffic-from-the-connector-and-related-services-to-flow-through"></a>2. lépés: Az összekötő és a kapcsolódó szolgáltatások keresztül érkező forgalmat engedélyezi a proxy konfigurálása
+### <a name="step-2-configure-hello-proxy-tooallow-traffic-from-hello-connector-and-related-services-tooflow-through"></a>2. lépés: Hello proxy tooallow forgalom hello összekötő és a kapcsolódó szolgáltatások tooflow keresztül konfigurálása
 
-Négy szempontot kell figyelembe venni a kimenő proxynál:
+Jelenleg hello kimenőproxy négy szempontok tooconsider:
 * Proxy kimenő szabályok
 * A proxy hitelesítése
 * Proxy portok
 * SSL-ellenőrzést
 
 #### <a name="proxy-outbound-rules"></a>Proxy kimenő szabályok
-Az összekötő szolgáltatás hozzáférés a következő végpontok hozzáférés engedélyezése:
+A következő hozzáférést összekötő-szolgáltatás végpontjainak hozzáférés toohello engedélyezése:
 
 * *. msappproxy.net
 * *. servicebus.windows.net
 
-A kezdeti regisztráció a következő végpontok hozzáférés engedélyezése:
+A kezdeti regisztráció a következő végpontok hozzáférés toohello engedélyezése:
 
 * login.windows.net
 * login.microsoftonline.com
 
-Ha nem engedélyezi a csatlakozást a teljes tartománynév alapján és IP-címtartományok Ehelyett meg kell adni, használja ezeket a beállításokat:
+Ha nem engedélyezi a kapcsolatot a teljes tartománynév alapján, és kell toospecify IP-címtartományok Ehelyett használja az alábbi beállításokat:
 
-* Az összes cél összekötő kimenő hozzáférés engedélyezése.
-* Az összekötő kimenő hozzáférést nyújtson [Azure datacenter IP-címtartományok](https://www.microsoft.com/en-gb/download/details.aspx?id=41653). Használatával a Azure datacenter IP-címtartománylista ellenőrző, hogy hetente kell frissíteni. Győződjön meg arról, hogy a hozzáférési szabályok megfelelően vannak-e frissíti a folyamat bevezetni kell.
+* Hello összekötő kimenő hozzá lehessen férni tooall célhelyre.
+* Hozzáférést hello összekötő kimenő túl[Azure datacenter IP-címtartományok](https://www.microsoft.com/en-gb/download/details.aspx?id=41653). hello challenge hello Azure datacenter IP-címtartománylista használatával, hogy hetente kell frissíteni. Egy folyamatot, hogy a hozzáférési szabályok megfelelően vannak-e frissíti hely tooensure tooput van szüksége.
 
 #### <a name="proxy-authentication"></a>A proxy hitelesítése
 
-A proxy hitelesítése jelenleg nem támogatott. Az aktuális javasoljuk, hogy az összekötő a Internet célhelyre névtelen hozzáférés engedélyezése.
+A proxy hitelesítése jelenleg nem támogatott. Az aktuális ajánlott megoldás tooallow hello összekötő névtelen hozzáférés toohello Internet célok.
 
 #### <a name="proxy-ports"></a>Proxy portok
 
-Az összekötő lehetővé teszi a kimenő SSL-alapú kapcsolatok KAPCSOLATI módszer használatával. Ez a módszer lényegében állít be egy alagúton, a kimenő proxyn keresztül. Engedélyezi a 443-as és a 80-as portra tunneling a proxykiszolgáló konfigurálása.
+hello összekötő lehetővé teszi a kimenő SSL-alapú kapcsolatok hello KAPCSOLATI módszer használatával. Ez a módszer lényegében állít be egy alagúton hello kimenő proxyn keresztül. Hello proxy server tooallow tooports 443-as és a 80-as bújtatás konfigurálása.
 
 >[!NOTE]
->A Service Bus a HTTPS-KAPCSOLATON keresztül futtatása 443-as portot használja. Azonban az alapértelmezés szerint a Service Bus kísérletet tett a közvetlen TCP-kapcsolatok, és csak akkor, ha közvetlen kapcsolatot sikertelen visszaáll HTTPS.
+>A Service Bus a HTTPS-KAPCSOLATON keresztül futtatása 443-as portot használja. Azonban az alapértelmezés szerint a Service Bus kísérletet tett a közvetlen TCP-kapcsolatok, és visszaáll tooHTTPS csak akkor, ha közvetlen kapcsolatot sikertelen.
 
-Győződjön meg arról, hogy a Service Bus-forgalom is zajlik a kimenő proxykiszolgálón keresztül, győződjön meg arról, hogy az összekötő nem közvetlenül csatlakozni az Azure-szolgáltatások 9350 9352 és 5671 portok.
+Service Bus forgalom is zajlik hello kimenő proxykiszolgálón keresztül hello, győződjön meg arról, hogy hello összekötő közvetlenül nem lehet kapcsolódni a toohello tooensure Azure szolgáltatások 9350 9352 és 5671 portok.
 
 #### <a name="ssl-inspection"></a>SSL-ellenőrzést
-Ne használjon SSL-ellenőrzést az összekötő-forgalom esetén, mert az összekötő forgalom problémákat okoz.
+Ne használjon SSL-ellenőrzést hello összekötő forgalmat, mert hello összekötő forgalom problémákat okoz.
 
 ## <a name="troubleshoot-connector-proxy-problems-and-service-connectivity-issues"></a>Összekötő proxy problémák és a szolgáltatás kapcsolódási problémák elhárítása
-Most már megtekintheti az összes forgalom a proxyn keresztül történő továbbítására. Ha problémába ütközik, a következő hibaelhárítási információk segítségül szolgálhat.
+Most már megtekintheti az összes forgalom hello proxyn keresztül történő továbbítására. Ha problémába ütközik, a következő hibaelhárítási információk hello segítségül szolgálhat.
 
-A legjobb azonosítása és összekötő csatlakozási problémák módja lehet az összekötő szolgáltatás hálózati rögzítőeszközt végrehajtani az összekötő-szolgáltatás indításakor. Ez nagyobb terhet jelenthetnek, gyors tippek az rögzítésével és hálózati nyomkövetés szűréshez tehát vizsgáljuk meg.
+legjobb módja tooidentify hello és összekötő kapcsolatok problémák tootake hello összekötő szolgáltatás indítása közben hello összekötő szolgáltatás egy hálózati adatváltozások rögzítése. Ez nagyobb terhet jelenthetnek, gyors tippek az rögzítésével és hálózati nyomkövetés szűréshez tehát vizsgáljuk meg.
 
-A felügyeleti eszköz az Ön által választott használható. Ez a cikk alkalmazásában Microsoft Network Monitor 3.4 használtuk. Is [töltse le a Microsoft](https://www.microsoft.com/download/details.aspx?id=4865).
+A kiválasztott eszköz figyelési hello is használhatja. Ez a cikk hello célokra Microsoft Network Monitor 3.4 használtuk. Is [töltse le a Microsoft](https://www.microsoft.com/download/details.aspx?id=4865).
 
-A példák és szűrőket, amelyek a következő szakaszokban használjuk csak az adott hálózati figyelő, de bármely eszköz alkalmazhatja ezeket az alapelveket.
+hello példák és szűrőket, amelyek a következő részekben hello használjuk adott tooNetwork figyelő, de hello alapelvek lehet alkalmazott tooany elemző eszközt.
 
 ### <a name="take-a-capture-by-using-network-monitor"></a>Tegye meg a rögzítés a Hálózatfigyelővel
 
-A Rögzítés indítása:
+a rögzítési toostart:
 
 1. Nyissa meg a hálózati figyelő, és kattintson a **új rögzítése**.
-2. Kattintson a **Start** gombra.
+2. Kattintson a hello **Start** gombra.
 
    ![Hálózati figyelő ablak](./media/application-proxy-working-with-proxy-servers/network-capture.png)
 
-Miután elkészült egy rögzítési, kattintson a **leállítása** gombra kell végződnie.
+A rögzítési befejezése után kattintson a hello **leállítása** gomb tooend azt.
 
 ### <a name="take-a-capture-of-connector-traffic"></a>Az összekötő forgalom rögzítés igénybe
 
-A kezdeti hibaelhárítási, hajtsa végre az alábbi lépéseket:
+A kezdeti hibaelhárítási, hajtsa végre a lépéseket követve hello:
 
-1. A "Services.msc" parancsot állítsa le az Azure AD alkalmazásproxy-összekötő szolgáltatást.
-2. Indítsa el a hálózati rögzítési.
-3. Indítsa el az Azure AD alkalmazásproxy-összekötő szolgáltatást.
-4. Állítsa le a hálózati rögzítést.
+1. A "Services.msc" parancsot hello Azure AD alkalmazásproxy-összekötő szolgáltatás leállítása.
+2. Indítsa el a hello hálózati rögzítési.
+3. Hello Azure AD alkalmazásproxy-összekötő szolgáltatás elindítása.
+4. Állítsa le a hello hálózati rögzítést.
 
    ![A "Services.msc" parancsot az Azure AD alkalmazásproxy-összekötő szolgáltatás](./media/application-proxy-working-with-proxy-servers/services-local.png)
 
-### <a name="look-at-the-requests-from-the-connector-to-the-proxy-server"></a>Tekintse meg a kérelmeket az összekötőről érkező a proxykiszolgálóhoz
+### <a name="look-at-hello-requests-from-hello-connector-toohello-proxy-server"></a>Nézze meg hello kérelmek hello összekötő toohello proxykiszolgáló
 
-Most, hogy van hálózati rögzítőeszközt, készen áll az szűrése. A kulcsot, a nyomkövetés megnézi a rögzítés szűrése van ismertetése.
+Most, hogy van hálózati rögzítőeszközt, most készen áll a toofilter azt. hello kulcs toolooking: hello nyomkövetési van megértése, hogyan toofilter hello rögzítése.
 
-Egy szűrő értéke (ahol a 8080-as azt a szolgáltatás proxyport):
+Egy szűrő értéke (ahol a 8080-as azt hello szolgáltatás proxyport):
 
 **(http-alapú. - Vagy HTTP-kérelem. Válasz) és tcp.port==8080**
 
-Ha a szűrőt a adja meg a **szűrő megjelenítése** ablakot, és válassza ki **alkalmaz**, a rögzített forgalom megadott szűrő alapján szűri.
+Ha ez a szűrő ír hello **szűrő megjelenítése** ablakot, és válassza ki **alkalmaz**, rögzített hello forgalom hello szűrő alapján szűri.
 
-Az előző szűrő csak a HTTP-kérések és válaszok jeleníti meg a proxykiszolgáló port és a. Az összekötő indítás, ha az összekötő egy proxykiszolgáló használatára van konfigurálva a szűrő megjelenítése volna például ehhez hasonló:
+hello előző szűrő látható az ebben az esetben hello HTTP-kérések és válaszok hello proxy portja és a. Hello összekötő esetén konfigurált toouse proxykiszolgálón connector indítási, az alábbihoz hasonló hello szűrő volna megjelenítése:
 
  ![Szűrt HTTP-kérések és válaszok példa listája](./media/application-proxy-working-with-proxy-servers/http-requests.png)
 
-Mostantól kifejezetten keres a CONNECT-kérelmeket, amelyek megjelenítik a proxy-kiszolgálóval folytatott kommunikációhoz. Sikeres, akkor egy HTTP-OK (200-as) választ kapott.
+Mostantól kifejezetten keresett hello csatlakozás igényel, amely megjelenítése hello proxy-kiszolgálóval folytatott kommunikációhoz. Sikeres, akkor egy HTTP-OK (200-as) választ kapott.
 
-Ha megjelenik a többi válaszkódnál 407 vagy 502-es, például a proxy hitelesítést igénylő vagy nem engedélyezi a forgalom valamilyen más okból. Ezen a ponton bevonása, akik a proxy server támogatási csoportjához.
+Ha megjelenik a többi válaszkódnál, mint a 407 vagy 502-es, hello proxy hitelesítést igénylő vagy nem így bármilyen más okból hello forgalmat. Ezen a ponton bevonása, akik a proxy server támogatási csoportjához.
 
 ### <a name="identify-failed-tcp-connection-attempts"></a>Sikertelen TCP-kapcsolati kísérletek azonosítása
 
-A többi gyakori forgatókönyv, előfordulhat, hogy érdeklődik akkor, ha az összekötő közvetlenül csatlakozni próbál, de ez nem működik.
+hello egyéb gyakori forgatókönyv, előfordulhat, hogy érdeklődik esetén hello összekötő próbál tooconnect közvetlenül, de ez nem működik.
 
-Egy másik hálózati figyelő szűrő, amellyel könnyedén azonosíthatja a probléma a következő:
+Van egy másik hálózati figyelő szűrő, amely segít tooeasily, ez a probléma meghatározásához:
 
 **tulajdonság. TCPSynRetransmit**
 
-SZIN csomagot küldött egy TCP-kapcsolatot létesíteni az első csomag. Ez a csomag a válasz nem ad vissza, ha a szinkronizálás a mi reattempted van. Az előző szűrő segítségével bármely újraküldött SYNs láthatja. Ezután ellenőrizheti, hogy ezek SYNs megfelelnek-e a connector kapcsolatos forgalommal.
+A szinkronizálás a mi csomag érték hello első csomag tooestablish TCP-kapcsolatot. Ha a csomag nem ad vissza a választ, hello SZIN reattempted van. Szűrő toosee megelőző hello bármely újraküldött SYNs használható. Ezután ellenőrizheti, hogy ezek SYNs megfelelnek-e tooany összekötő kapcsolatos forgalom.
 
-A következő példa bemutatja a Service Bus-portra 9352 sikertelen kapcsolódási kísérlet:
+hello alábbi példa bemutatja a sikertelen kapcsolódás tooService Bus port 9352:
 
  ![Példa egy válasz sikertelen a rendszer](./media/application-proxy-working-with-proxy-servers/failed-connection-attempt.png)
 
-Ha például az előző választ, az összekötő megpróbál közvetlenül az Azure Service Bus szolgáltatással való kommunikációra. Ha várhatóan az Azure-szolgáltatásokhoz való közvetlen kapcsolat az összekötőt, ezt a választ, hogy rendelkezik-e a hálózati vagy probléma egyértelmű jelzése.
+Ha például a válasz megelőző hello, hello összekötő megpróbál közvetlenül az Azure Service Bus szolgáltatás hello toocommunicate. Ha a várt hello összekötő toomake közvetlen kapcsolatokon keresztül toohello Azure szolgáltatások, ezt a választ az, hogy rendelkezik-e a hálózati vagy probléma egyértelmű jelzése.
 
 >[!NOTE]
->A proxykiszolgáló használatára van konfigurálva, a válasz jelentheti, hogy a Service Bus kísérel meg a közvetlen TCP-kapcsolat HTTPS-KAPCSOLATON keresztüli kapcsolatot próbált átváltás előtt.
+>Ha konfigurált toouse proxykiszolgáló, ez a válasz jelentheti, hogy a Service Bus kísérel meg előtt váltás tooattempting a kapcsolat HTTPS-KAPCSOLATON keresztül a közvetlen TCP-kapcsolat.
 >
 
-A hálózati nyomkövetés elemzésének nincs mindenki számára. De mi a helyzet a hálózattal kapcsolatos gyors adatok hasznos eszköze lehet.
+A hálózati nyomkövetés elemzésének nincs mindenki számára. Azonban a legértékesebb eszköz tooget gyors információ a hálózati jelenít meg.
 
-Ha továbbra is az összekötő csatlakozási problémák kihívást jelent, hozzon létre a jegyet a támogatási csapat. A csapatunk segítségére a további hibaelhárításhoz.
+Ha Ön most folytatja, az összekötő csatlakozási problémák toostruggle, hozzon létre egy jegyet a támogatási csapat. hello csapatunk segítségére a további hibaelhárításhoz.
 
 Az alkalmazásproxy-összekötő hibák feloldására vonatkozó információkért lásd: [alkalmazásproxy hibaelhárítása](https://azure.microsoft.com/documentation/articles/active-directory-application-proxy-troubleshoot).
 
 ## <a name="next-steps"></a>Következő lépések
 
 [Az Azure AD-alkalmazásproxy összekötők ismertetése](application-proxy-understand-connectors.md)<br>
-[Csendes telepítése az Azure AD alkalmazásproxy-összekötő](active-directory-application-proxy-silent-installation.md)
+[Hogyan a toosilently hello Azure AD alkalmazásproxy-összekötő telepítése](active-directory-application-proxy-silent-installation.md)

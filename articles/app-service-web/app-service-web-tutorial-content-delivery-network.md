@@ -1,6 +1,6 @@
 ---
-title: "A CDN hozzáadása az Azure App Service |} Microsoft Docs"
-description: "Ha hozzáad egy tartalomkézbesítési hálózatot (CDN-t) egy Azure App Service szolgáltatáshoz, a statikus fájlok gyorsítótárazását és továbbítását világszerte az ügyfeleihez közeli kiszolgálókról végezheti."
+title: a CDN tooan Azure App Service aaaAdd |} Microsoft Docs
+description: "Adja hozzá a Content Delivery Network (CDN) tooan Azure App Service toocache, és Bezárás tooyour ügyfelek hello világ biztosításához a statikus fájlok a kiszolgálókról."
 services: app-service\web
 author: syntaxc4
 ms.author: cfowler
@@ -10,17 +10,17 @@ ms.service: app-service-web
 manager: erikre
 ms.workload: web
 ms.custom: mvc
-ms.openlocfilehash: 257b75d01f3904661c1a188a2d53ffcb74f48f06
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 88b7fd884517279064472b804a6d1dc2921cbd24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-content-delivery-network-cdn-to-an-azure-app-service"></a>Content Delivery Network (CDN) hozzáadása Azure App Service platformon
+# <a name="add-a-content-delivery-network-cdn-tooan-azure-app-service"></a>Adja hozzá a Content Delivery Network (CDN) tooan Azure App Service
 
-Az [Azure Content Delivery Network (CDN)](../cdn/cdn-overview.md) a statikus webtartalmakat stratégiailag kiválasztott helyeken gyorsítótárazza, így maximális átviteli sebességgel tudja kézbesíteni a tartalmakat a felhasználók számára. A CDN ezzel együtt csökkenti a kiszolgálók terhelését a webappban. Ez az oktatóanyag bemutatja, hogyan adható hozzá az Azure CDN [a webappokhoz az Azure App Service szolgáltatásban](app-service-web-overview.md). 
+[Az Azure Content Delivery Network (CDN)](../cdn/cdn-overview.md) gyorsítótárazza a statikus webtartalmakat stratégiailag kiválasztott helyeken tooprovide maximális átviteli sebesség tartalom toousers kézbesítéséhez. hello CDN is csökkenti a kiszolgáló terhelését a webalkalmazásban. Ez az oktatóanyag bemutatja, hogyan tooadd Azure CDN tooa [az Azure App Service webalkalmazás](app-service-web-overview.md). 
 
-Íme a mintaként szolgáló statikus HTML-webhely kezdőlapja, amelyet használni fog:
+Íme hello kezdőlap hello minta statikus HTML hely fog dolgozni:
 
 ![Mintaalkalmazás kezdőlapja](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page.png)
 
@@ -29,63 +29,63 @@ Ismertetett témák:
 > [!div class="checklist"]
 > * CDN-végpont létrehozása.
 > * Gyorsítótárazott objektumok frissítése.
-> * Gyorsítótárazott verziók felügyelete lekérdezési karakterláncok használatával.
-> * Egyéni tartomány használata a CDN-végponthoz.
+> * Használjon lekérdezési karakterláncok gyorsítótárazott toocontrol verziók.
+> * Használja az egyéni tartománynév hello CDN-végponthoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az oktatóanyag elvégzéséhez:
+toocomplete Ez az oktatóanyag:
 
 - [A Git telepítése](https://git-scm.com/)
 - [Az Azure CLI 2.0 telepítése](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="create-the-web-app"></a>A webapp létrehozása
+## <a name="create-hello-web-app"></a>Hello webalkalmazás létrehozása
 
-A web app, akivel együtt dolgozik lesz létrehozásához kövesse a [statikus HTML gyors üzembe helyezés](app-service-web-get-started-html.md) keresztül a **keresse meg az alkalmazás** lépés.
+toocreate hello webes alkalmazás is együttműködik, hajtsa végre hello [statikus HTML gyors üzembe helyezés](app-service-web-get-started-html.md) keresztül hello **Tallózás toohello app** lépés.
 
 ### <a name="have-a-custom-domain-ready"></a>Rendelkezésre álló egyéni tartománynév
 
-Az egyéni tartomány lépés az oktatóanyag elvégzéséhez szüksége saját egyéni tartományt, és a tartomány szolgáltató (például a GoDaddy) a DNS-beállításjegyzék rendelkezik hozzáféréssel. Például a `contoso.com` és a `www.contoso.com` DNS-bejegyzéseinek hozzáadásához hozzá kell férnie a `contoso.com` gyökértartomány DNS-beállításainak konfigurációjához.
+toocomplete hello egyéni tartománynév lépéssel ebben az oktatóanyagban a tooown az egyéni tartománynév kell, és hozzáférést tooyour DNS beállításjegyzék rendelkezik a tartomány-szolgáltató (például a GoDaddy). Például tooadd DNS-bejegyzéseket `contoso.com` és `www.contoso.com`, rendelkeznie kell hozzáféréssel tooconfigure hello DNS-beállításainak hello `contoso.com` gyökértartomány.
 
-Ha még nem rendelkezik tartománynévvel, az [App Service-tartományokkal foglalkozó oktatóanyagban](custom-dns-web-site-buydomains-web-app.md) foglaltak szerint vásárolhat egy tartományt az Azure Portal használatával. 
+Ha még nem rendelkezik egy tartomány nevét, fontolja meg a következő hello [App Service tartomány oktatóanyag](custom-dns-web-site-buydomains-web-app.md) egy tartomány használatával toopurchase hello Azure-portálon. 
 
-## <a name="log-in-to-the-azure-portal"></a>Bejelentkezés az Azure Portalra
+## <a name="log-in-toohello-azure-portal"></a>Jelentkezzen be toohello Azure-portálon
 
-Nyisson meg egy böngészőt, és keresse fel az [Azure Portalt](https://portal.azure.com).
+Nyisson meg egy böngészőt, és keresse meg a toohello [Azure-portálon](https://portal.azure.com).
 
 ## <a name="create-a-cdn-profile-and-endpoint"></a>CDN-profil és -végpont létrehozása
 
-A bal oldali navigációs felületen válassza az **App Services** lehetőséget, majd válassza ki a [statikus HTML gyorsútmutató](app-service-web-get-started-html.md) segítségével létrehozott alkalmazást.
+A bal oldali navigációs hello, válassza ki **alkalmazásszolgáltatások**, majd válassza ki a hello hello alkalmazást [statikus HTML gyors üzembe helyezés](app-service-web-get-started-html.md).
 
-![Az App Service alkalmazás kiválasztása a portálon](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
+![Válassza ki az App Service alkalmazás hello portálon](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
 
-Az **App Service** lap **Beállítások** területén válassza a **Hálózatkezelés > Az Azure CDN konfigurálása az alkalmazáshoz** lehetőséget.
+A hello **App Service** lap hello **beállítások** szakaszban jelölje be **hálózati > konfigurálása Azure CDN szolgáltatás használata az alkalmazás**.
 
-![A CDN kiválasztása a portálon](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
+![Válassza ki a CDN hello portálon](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
 
-Az **Azure Content Delivery Network** lapon adja meg az **Új végpont** beállításait az alábbi táblának megfelelően.
+A hello **Azure Content Delivery Network** lapján adja meg a hello **új végpont** beállításokat hello táblázatban megadottak szerint.
 
-![Profil és végpont létrehozása a portálon](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
+![Hello portálon profil és -végpont létrehozása](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
 
 | Beállítás | Ajánlott érték | Leírás |
 | ------- | --------------- | ----------- |
-| **CDN-profil** | myCDNProfile | Válassza ki **hozzon létre új** a CDN-profil létrehozásához. A CDN-profil ugyanabba a tarifacsomagba tartozó CDN-végpontok gyűjteménye. |
-| **Tarifacsomag** | Akamai Standard | A [tarifacsomag](../cdn/cdn-overview.md#azure-cdn-features) határozza meg a szolgáltatót és az elérhető szolgáltatásokat. Ebben az oktatóanyagban Standard Akamai használunk. |
-| **CDN-végpont neve** | Bármely egyedi név az azureedge.net tartományban | A gyorsítótárazott erőforrások a *\<végpont_neve>.azureedge.net* tartományban érhetőek el.
+| **CDN-profil** | myCDNProfile | Válassza ki **hozzon létre új** toocreate a CDN-profil. A CDN-profil hello a CDN-végpontok gyűjteménye azonos IP-címek. |
+| **Tarifacsomag** | Akamai Standard | Hello [tarifacsomag](../cdn/cdn-overview.md#azure-cdn-features) hello szolgáltató és elérhető funkciókkal határozza meg. Ebben az oktatóanyagban Standard Akamai használunk. |
+| **CDN-végpont neve** | Hello azureedge.net tartomány egyedi nevek | A gyorsítótárazott erőforrások hello tartományban  *\<endpointname >. azureedge.net*.
 
 Kattintson a **Létrehozás** gombra.
 
-Az Azure létrehozza a profilt és a végpontot. Az új végpont megjelenik ugyanezen a lapon a **Végpontok** listában, és a kiosztása után **Fut** állapotra vált.
+Azure hello-profil és -végpont létrehozása hello új végpont megjelenik hello **végpontok** listájából hello ugyanazon az oldalon, és ha ki van építve hello állapota **futtató**.
 
 ![Új végpont a listában](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint-in-list.png)
 
-### <a name="test-the-cdn-endpoint"></a>A CDN-végpont tesztelése
+### <a name="test-hello-cdn-endpoint"></a>Teszt hello CDN-végpont
 
 A Verizon tarifacsomag kiválasztása esetén a végpontok propagálása körülbelül 90 percet vesz igénybe. Az Akamai esetében a terjesztés csak néhány percig tart
 
-Ugyanehhez az alkalmazáshoz tartozik egy `index.html` fájl, valamint *css*, *img* és *js* mappák is, amelyek egyéb statikus objektumokat tartalmaznak. Az összes fájl tartalmának elérési útjai megegyezik a CDN-végponton. Például a következő két URL egyaránt a *bootstrap.css* fájlra mutat a *css* mappában:
+hello mintaalkalmazás rendelkezik egy `index.html` fájl és *css*, *img*, és *js* egyéb statikus eszközök tartalmazó mappákat. a tartalom elérési az alábbi fájlokat hello hello CDN-végpont hello azonos. Például mindkét következő URL-címek hello hozzáférési hello *bootstrap.css* hello fájlban *css* mappába:
 
 ```
 http://<appname>.azurewebsites.net/css/bootstrap.css
@@ -95,7 +95,7 @@ http://<appname>.azurewebsites.net/css/bootstrap.css
 http://<endpointname>.azureedge.net/css/bootstrap.css
 ```
 
-Nyissa meg egy böngészőt, és a következő URL-címe:
+Keresse meg a böngésző toohello a következő URL-címe:
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -103,36 +103,36 @@ http://<endpointname>.azureedge.net/index.html
 
 ![A mintaalkalmazás CDN által szolgáltatott kezdőlapja](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page-cdn.png)
 
- Azure-webalkalmazás a korábban futtatott ugyanazon az oldalon láthatja. Az Azure CDN fogadta a származási web app eszközök, és van szolgál a a CDN-végpont
+ Láthatja, hogy futtatta-e korábban az Azure-webalkalmazás lapon azonos hello. Az Azure CDN fogadta hello származási web app eszközök, és van szolgál a hello CDN-végpont
 
-Annak érdekében, hogy a CDN gyorsítótárazza a lapot, frissítse azt. Néha két kérés is szükséges egyazon objektumra vonatkozóan, hogy a CDN gyorsítótárazza a kért tartalmat.
+hogy ezen a lapon tárolja a CDN, frissítési hello lap hello tooensure. Két kéri a hello azonos eszköz néha szükség hello CDN toocache hello lekért tartalom.
 
 Az Azure CDN-profilok és -végpontok létrehozásával kapcsolatos további információkért lásd: [Az Azure CDN használatának első lépései](../cdn/cdn-create-new-endpoint.md).
 
-## <a name="purge-the-cdn"></a>A CDN végleges törlése
+## <a name="purge-hello-cdn"></a>Hello CDN kiürítése
 
-A CDN rendszeres időközönként frissíti az erőforrásait a forrásként szolgáló webappból az élettartam (TTL) konfigurációja alapján. Az alapértelmezett élettartam érték hét nap.
+hello CDN hello származási webalkalmazás hello--élettartama (TTL) konfigurációja alapján erőforrását rendszeresen frissülnek. hello alapértelmezett élettartam érték hét nap.
 
-Esetenként az élettartam lejárta előtt is szükséges lehet a CDN frissítése – például amikor frissített tartalmat telepít a webappba. A frissítés indításához manuálisan törölheti a CDN-erőforrásokat. 
+Néha szükség lehet toorefresh hello CDN előtt hello TTL lejárata – például frissített tartalom toohello webes alkalmazás központi telepítésekor. tootrigger frissítését, manuálisan törölheti hello CDN erőforrásokat. 
 
-Az oktatóanyag jelen szakaszában egy módosítást fog telepíteni a webappba, és törli a CDN-t, hogy az frissítse a gyorsítótárát.
+Ebben a szakaszban hello oktatóanyag módosítása toohello webalkalmazás üzembe helyezése, és hello CDN tootrigger hello CDN toorefresh a gyorsítótár kiürítése.
 
-### <a name="deploy-a-change-to-the-web-app"></a>Módosítás telepítése a webappba
+### <a name="deploy-a-change-toohello-web-app"></a>Változás toohello webalkalmazás üzembe helyezése
 
-Nyissa meg az `index.html` fájlt, és adja hozzá a „- V2” utótagot a H1 fejléchez, ahogy az az alábbi példában látható: 
+Nyissa meg hello `index.html` fájlt, és "-V2" toohello H1 címsor, ahogy az alábbi példa hello: 
 
 ```
 <h1>Azure App Service - Sample Static HTML Site - V2</h1>
 ```
 
-Véglegesítse a módosítást, és telepítse a webappba.
+A módosítás véglegesítése, és telepítse azt toohello webalkalmazás.
 
 ```bash
 git commit -am "version 2"
 git push azure master
 ```
 
-Miután befejeződött a telepítés, a böngészőben nyissa meg a webapp URL-címét, és láthatja a módosított tartalmat.
+Központi telepítés befejezése után a Tallózás toohello webes alkalmazás URL-CÍMÉT, és tekintse meg a hello módosítása.
 
 ```
 http://<appname>.azurewebsites.net/index.html
@@ -140,7 +140,7 @@ http://<appname>.azurewebsites.net/index.html
 
 ![V2 a webapp címében](media/app-service-web-tutorial-content-delivery-network/v2-in-web-app-title.png)
 
-Ha a böngészőben megnyitja a kezdőlap CDN-végponti URL-címét, láthatja, hogy a módosítás még nem jelent meg, mivel a CDN-ben gyorsítótárazott verzió még nem járt le. 
+Keresse meg a toohello CDN-végpont URL-címe hello kezdőlapjára, és nem jelenik meg a hello módosítani, mert a gyorsítótárazott verzió hello hello CDN még a még nem járt le. 
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -148,35 +148,35 @@ http://<endpointname>.azureedge.net/index.html
 
 ![A V2 nem jelenik meg a CDN-beli címben](media/app-service-web-tutorial-content-delivery-network/no-v2-in-cdn-title.png)
 
-### <a name="purge-the-cdn-in-the-portal"></a>A CDN törlése a portálon
+### <a name="purge-hello-cdn-in-hello-portal"></a>Hello CDN hello portálon kiürítése
 
-Ahhoz, hogy a CDN frissítse a gyorsítótárazott verziót, törölje a CDN-t.
+tootrigger hello CDN tooupdate a gyorsítótárazott verzió, hello CDN kiürítése.
 
-A portál bal oldali navigációs felületén válassza az **Erőforráscsoportok** elemet, majd válassza ki a webapphoz létrehozott erőforráscsoportot (myResourceGroup).
+Válassza ki a portál bal oldali navigációs hello, **erőforráscsoportok**, majd válassza ki a webalkalmazás (contoso.com) létrehozott erőforráscsoport hello.
 
 ![Erőforráscsoport kiválasztása](media/app-service-web-tutorial-content-delivery-network/portal-select-group.png)
 
-Az erőforrások listájában válassza ki a CDN-végpontot.
+Az erőforrások listájához hello válassza ki a CDN-végpontot.
 
 ![Végpont kiválasztása](media/app-service-web-tutorial-content-delivery-network/portal-select-endpoint.png)
 
-A **Végpont** lap tetején kattintson a **Végleges törlés** gombra.
+Hello hello tetején **végpont** kattintson **kiürítése**.
 
 ![Végleges törlés kiválasztva](media/app-service-web-tutorial-content-delivery-network/portal-select-purge.png)
 
-Adja meg a törölni kívánt tartalmak elérési útjait. Megadhat egy teljes elérési útvonalat egy adott fájl törléséhez, vagy egy részleges útvonalat egy adott mappa teljes tartalmának törléséhez és frissítéséhez. Mivel az `index.html` fájlt módosította, mindenképp ez legyen az egyik útvonal.
+Adja meg a tartalomelérési út hello toopurge kívánja. A fájl teljes elérési útja toopurge át egyetlen fájl vagy egy elérési utat szegmens toopurge, és frissítse egy mappát teljes tartalmával. Mivel módosította `index.html`, győződjön meg arról, hogy a hello elérési utak egyike.
 
-A lap alján kattintson a **Végleges törlés** gombra.
+Hello hello lap alsó részén, jelölje ki a **kiürítése**.
 
 ![Oldal végleges törlése](media/app-service-web-tutorial-content-delivery-network/app-service-web-purge-cdn.png)
 
-### <a name="verify-that-the-cdn-is-updated"></a>A CDN frissítésének ellenőrzése
+### <a name="verify-that-hello-cdn-is-updated"></a>Győződjön meg arról, hogy hello CDN frissül.
 
-Várjon, amíg a végleges törlési kérés feldolgozása befejeződik. Ez általában néhány percet vesz igénybe. Az aktuális állapot megtekintéséhez válassza a harang ikont a lap tetején. 
+Várjon, amíg hello kiürítési kérés befejezze a feldolgozást, általában néhány percig. toosee hello aktuális állapotát, jelölje be hello harang ikonra hello oldal hello tetején. 
 
 ![Törlési értesítés](media/app-service-web-tutorial-content-delivery-network/portal-purge-notification.png)
 
-Böngészőben nyissa meg az `index.html` CDN-végponti URL-címét, és láthatja, hogy a kezdőlap címéhez hozzáadott V2 megjelent. Ez jelzi, hogy a CDN gyorsítótára frissítve lett.
+Keresse meg a toohello CDN végponti URL-Címének `index.html`, és ekkor megjelenik a hello toohello címét hozzáadta hello kezdőlapján V2. Ez azt jelenti, hogy hello CDN gyorsítótár frissítése.
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -186,23 +186,23 @@ http://<endpointname>.azureedge.net/index.html
 
 További információkért lásd az [Azure CDN-végpontok végleges törléséről](../cdn/cdn-purge-endpoint.md) szóló cikket. 
 
-## <a name="use-query-strings-to-version-content"></a>Tartalmak verziószámozása lekérdezési karakterláncok használatával
+## <a name="use-query-strings-tooversion-content"></a>Lekérdezési karakterláncok tooversion tartalom használata
 
-Az Azure CDN az alábbi gyorsítótárazási lehetőségeket kínálja:
+hello Azure CDN alábbi gyorsítótárazási viselkedés beállítások hello kínálja:
 
 * Lekérdezési karakterláncok figyelmen kívül hagyása
 * Lekérdezési karakterláncok gyorsítótárazásának megkerülése
 * Minden egyedi URL gyorsítótárazása 
 
-Az első érték az alapértelmezett, ami azt jelenti, hogy egy eszköz, függetlenül a lekérdezési karakterlánc az URL-cím csak egy gyorsítótárazott verzió. 
+először hello ezek hello alapértelmezett, ami azt jelenti, hogy egy eszköz függetlenül hello lekérdezési karakterlánc hello URL-cím csak egy gyorsítótárazott verzió van. 
 
-Az oktatóanyag ezen szakaszában a gyorsítótárazás működésének módosításával minden egyedi URL-címet gyorsítótárazni fog.
+Ebben a szakaszban hello oktatóanyag módosítja hello viselkedés toocache minden egyedi URL-cím gyorsítótárazása.
 
-### <a name="change-the-cache-behavior"></a>A gyorsítótárazás működésének módosítása
+### <a name="change-hello-cache-behavior"></a>Gyorsítótár-viselkedést hello módosítása
 
-Az Azure Portal **CDN-végpont** lapján válassza a **Gyorsítótár** lehetőséget.
+Az Azure-portálon hello **CDN-végpont** lapon jelölje be **gyorsítótár**.
 
-Válassza a **Minden egyedi URL-cím gyorsítótárazása** lehetőséget a **Lekérdezési karakterláncok gyorsítótárazásának működése** legördülő menüben.
+Válassza ki **minden egyedi URL-cím gyorsítótárazása** a hello **lekérdezési sztringek gyorsítótárazásának** legördülő listából.
 
 Kattintson a **Mentés** gombra.
 
@@ -210,24 +210,24 @@ Kattintson a **Mentés** gombra.
 
 ### <a name="verify-that-unique-urls-are-cached-separately"></a>Az egyedi URL-címek külön gyorsítótárazásának ellenőrzése
 
-Egy böngészőben nyissa meg a kezdőlapot a CDN-végponton, de használjon egy lekérdezési karakterláncot is: 
+Egy böngészőben nyissa meg a kezdőlapján toohello hello CDN-végpont, de közé tartozik a lekérdezési karakterlánc: 
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=1
 ```
 
-A CDN a webapp aktuális tartalmát adja vissza, aminek a fejlécében szerepel a „V2” utótag. 
+hello CDN hello aktuális webes alkalmazás tartalmát, amelyet "2" hello fejléc tartalmazza adja vissza. 
 
-Annak érdekében, hogy a CDN gyorsítótárazza a lapot, frissítse azt. 
+hogy ezen a lapon tárolja a CDN, frissítési hello lap hello tooensure. 
 
-Nyissa meg az `index.html` fájlt, módosítsa a „V2”-t „V3”-ra, majd telepítse a módosítást. 
+Nyissa meg `index.html` túl módosítsa a "2" és "V3", valamint hello. 
 
 ```bash
 git commit -am "version 3"
 git push azure master
 ```
 
-Böngészőben nyissa meg a CDN-végponti URL-címet egy új lekérdezési karakterlánccal, például a következővel: `q=2`. A CDN lekéri az aktuális `index.html` fájlt, és megjelenik a „V3” utótag.  Ha azonban a `q=1` lekérdezési karakterlánccal nyitja meg a CDN-végpontot, a „V2” utótag látható.
+Egy böngészőben nyissa meg toohello CDN végponti URL-cím új lekérdezési karakterláncot, mint `q=2`. hello CDN lekérdezi hello aktuális `index.html` fájlt, és megjeleníti a "V3".  De ha manuálisan lép toohello CDN-végpont a hello `q=1` lekérdezési karakterlánc, lásd a "2".
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=2
@@ -244,49 +244,49 @@ http://<endpointname>.azureedge.net/index.html?q=1
 A kimeneti jeleníti meg, hogy minden egyes lekérdezési karakterlánc eltérően kell-e kezelni:
 
 * q = 1 használt előtt, így a gyorsítótárazott tartalom (V2) ad vissza.
-* q = 2 egy új, ezért a legújabb web app tartalom letöltésének és (V3) adott vissza.
+* q = 2 egy új, így hello legújabb web app tartalom letöltésének és (V3) adott vissza.
 
 További információkért lásd: [Az Azure CDN gyorsítótárazási viselkedésének vezérlése lekérdezési karakterláncokkal](../cdn/cdn-query-string.md).
 
-## <a name="map-a-custom-domain-to-a-cdn-endpoint"></a>Egyéni tartomány leképezése egy CDN-végpontra
+## <a name="map-a-custom-domain-tooa-cdn-endpoint"></a>Az egyéni tartomány tooa CDN-végpont leképezése
 
-Az egyéni tartományt a CDN-végpontra egy CNAME-rekord létrehozásával képezheti le. A CNAME-rekord egy DNS-szolgáltatás, amellyel egy forrástartomány leképezhető egy céltartományra. Például leképezheti a `cdn.contoso.com` vagy a `static.contoso.com` tartományt a `contoso.azureedge.net` tartományra.
+Az egyéni tartomány tooyour CDN-végpont hozzon létre egy CNAME rekordot kell rendelni. Egy olyan CNAME rekordot a DNS szolgáltatás, amely leképezi a forrás tartományi tooa cél tartomány. Például, hogy le lehet képezni `cdn.contoso.com` vagy `static.contoso.com` túl`contoso.azureedge.net`.
 
-Ha nem rendelkezik egyéni tartománnyal, az [App Service-tartományokkal foglalkozó oktatóanyagban](custom-dns-web-site-buydomains-web-app.md) foglaltak szerint vásárolhat egyet az Azure Portal használatával. 
+Ha egyéni tartományt nem rendelkezik, fontolja meg hello [App Service tartomány oktatóanyag](custom-dns-web-site-buydomains-web-app.md) egy tartomány használatával toopurchase hello Azure-portálon. 
 
-### <a name="find-the-hostname-to-use-with-the-cname"></a>A CNAME-rekordhoz használandó gazdagépnév keresése
+### <a name="find-hello-hostname-toouse-with-hello-cname"></a>A hello CNAME hello állomásnév toouse keresése
 
-Az Azure Portal **Végpont** lapján ellenőrizze, hogy a bal oldali navigációs felületen az **Áttekintés** lehetőség van kiválasztva, majd válassza a **+ Egyéni tartomány** gombot a lap tetején.
+A hello Azure-portálon **végpont** lapon, győződjön meg arról, hogy **áttekintése** van kiválasztva a bal oldali navigációs, és jelölje ki hello hello **+ egyéni tartomány** hello oldal hello tetején gombra.
 
 ![Egyéni tartomány hozzáadása kiválasztva](media/app-service-web-tutorial-content-delivery-network/portal-select-add-domain.png)
 
-Az **Egyéni tartomány hozzáadása** lapon látható a CNAME rekord létrehozásához használandó végpont gazdagépneve. A gazdagépnév CDN-végponti URL-címből van származtatva: **&lt;VégpontNeve>.azureedge.net**. 
+A hello **hozzá egyéni tartományt** lapon látni hello végpont állomás neve toouse a CNAME rekord létrehozásával. hello állomásnevet a CDN-végpont URL-címe van származtatva:  **&lt;EndpointName >. azureedge.net**. 
 
 ![Tartomány hozzáadása lap](media/app-service-web-tutorial-content-delivery-network/portal-add-domain.png)
 
-### <a name="configure-the-cname-with-your-domain-registrar"></a>A CNAME konfigurálása a tartományregisztrálóval
+### <a name="configure-hello-cname-with-your-domain-registrar"></a>Hello CNAME REKORDOT a tartományregisztrálónál konfigurálása
 
-Lépjen a tartományregisztráló webhelyére, és keresse meg a DNS-rekordok létrehozására szolgáló felületet. Ezt a **Tartománynév**, **DNS**, **Névkiszolgáló kezelése** vagy hasonló területen találja.
+Keresse meg a tooyour tartomány regisztráló webhelyén, és keresse meg a DNS-rekordok létrehozásához hello szakaszt. Ezt a **Tartománynév**, **DNS**, **Névkiszolgáló kezelése** vagy hasonló területen találja.
 
-Keresse meg a CNAME-rekordok kezelésére szolgáló felületet. Ehhez esetleg a különleges beállítások lapjára kell lépnie, és ott a CNAME, Alias vagy Altartományok kifejezést kell keresnie.
+Hello szakaszban található CNAME kezeléséhez. Valószínűleg toogo tooan speciális beállításai oldal és CNAME, az Alias vagy a altartományok hello szavakat keresi.
 
-Hozzon létre egy CNAME rekordot, amely leképezhető a kiválasztott altartomány (például **statikus** vagy **cdn**) számára a **végpont állomásnév** korábban a portál látható. 
+Hozzon létre egy CNAME rekordot, amely leképezhető a kiválasztott altartomány (például **statikus** vagy **cdn**) toohello **végpont állomásnév** korábbi hello portal látható. 
 
-### <a name="enter-the-custom-domain-in-azure"></a>Az egyéni tartománynév megadása az Azure-ban
+### <a name="enter-hello-custom-domain-in-azure"></a>Adja meg az egyéni tartomány hello az Azure-ban
 
-Lépjen vissza az **Egyéni tartomány hozzáadása** lapra, és adja meg az egyéni tartományt az altartománnyal együtt a párbeszédpanelen. Adja meg például a következőt: `cdn.contoso.com`.   
+Térjen vissza a toohello **hozzá egyéni tartományt** lapon, és adja meg az egyéni tartomány, hello altartomány, beleértve a hello párbeszédpanelen. Adja meg például a következőt: `cdn.contoso.com`.   
    
-Az Azure ellenőrzi, hogy a megadott tartománynév esetében létezik-e a CNAME-rekord. Ha a CNAME helyes, az egyéni tartomány érvényesítve lesz.
+Azure ellenőrzi, hogy létezik-e hello CNAME rekord megadott hello tartománynév. Ha hello CNAME helyességéről, az egyéni tartomány érvényességét.
 
-Időbe telhet, amíg megtörténik a CNAME-rekord névkiszolgálókon való propagálása az interneten. Ha a tartomány nincs érvényesítve azonnal, várjon néhány percet, és próbálkozzon újra.
+Hello CNAME rekord toopropagate tooname kiszolgálók hello Internet időt is igénybe vehet. Ha a tartomány nincs érvényesítve azonnal, várjon néhány percet, és próbálkozzon újra.
 
-### <a name="test-the-custom-domain"></a>Az egyéni tartomány tesztelése
+### <a name="test-hello-custom-domain"></a>Teszt hello egyéni tartományt
 
-Egy böngészőben nyissa meg az `index.html` fájlt az egyéni tartomány (például a `cdn.contoso.com/index.html`) használatával annak ellenőrzéséhez, hogy az eredmény ugyanaz, mintha közvetlenül az `<endpointname>azureedge.net/index.html` helyre lépett volna.
+Egy böngészőben nyissa meg a toohello `index.html` fájlt az egyéni tartomány (például `cdn.contoso.com/index.html`), amely hello eredmény tooverify hello azonos, amikor módba közvetlenül túl`<endpointname>azureedge.net/index.html`.
 
 ![Mintaalkalmazás egyéni tartományi URL-címet használó kezdőlapja](media/app-service-web-tutorial-content-delivery-network/home-page-custom-domain.png)
 
-További információkért lásd: [Azure CDN-tartalom leképezése egyéni tartományra](../cdn/cdn-map-content-to-custom-domain.md)
+További információkért lásd: [tartalom tooa egyéni térkép Azure CDN-tartomány](../cdn/cdn-map-content-to-custom-domain.md).
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
@@ -297,10 +297,10 @@ Hogy mit tudott:
 > [!div class="checklist"]
 > * CDN-végpont létrehozása.
 > * Gyorsítótárazott objektumok frissítése.
-> * Gyorsítótárazott verziók felügyelete lekérdezési karakterláncok használatával.
-> * Egyéni tartomány használata a CDN-végponthoz.
+> * Használjon lekérdezési karakterláncok gyorsítótárazott toocontrol verziók.
+> * Használja az egyéni tartománynév hello CDN-végponthoz.
 
-Útmutató: a következő cikkekben CDN teljesítményének optimalizálásához:
+Megtudhatja, hogyan toooptimize CDN teljesítmény hello a következő cikkek:
 
 > [!div class="nextstepaction"]
 > [A teljesítmény javítása a fájlok tömörítésével az Azure CDN-ben](../cdn/cdn-improve-performance.md)

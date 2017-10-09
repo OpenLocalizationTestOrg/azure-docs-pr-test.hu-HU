@@ -26,7 +26,7 @@
 ### [Áttekintés](active-directory-authentication-scenarios.md#web-application-to-web-api)
 ### [ASP.NET](active-directory-devquickstarts-webapi-dotnet.md)
 ### [NodeJS](active-directory-devquickstarts-webapi-nodejs.md)
-## Szolgáltatások közötti
+## Szolgáltatás tooService
 ### [Áttekintés](active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)
 ### [.NET](active-directory-code-samples.md#server-or-daemon-application-to-web-api)
 ### [OAuth 2.0-ügyfél hitelesítő adatai](active-directory-protocols-oauth-service-to-service.md)
@@ -59,7 +59,7 @@
 ### [Ismerkedés a Visual Studio kapcsolódó szolgáltatásaival](vs-active-directory-dotnet-getting-started.md)
 ### [Hiba a hitelesítés észlelésekor](vs-active-directory-error.md)
 ### [Bevezetés a WebApi használatába](vs-active-directory-webapi-getting-started.md)
-### [Mi történt a webes API-projektemmel?](vs-active-directory-webapi-what-happened.md)
+### [Milyen történt toomy webes API-projekt](vs-active-directory-webapi-what-happened.md)
 ## [Windows Server ADFS](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/overview/ad-fs-scenarios-for-developers)
 # Referencia
 ## [Kódminták](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory)
@@ -69,7 +69,7 @@
 ## [Hitelesítési protokollok](active-directory-authentication-protocols.md)
 ### [OpenID Connect](active-directory-protocols-openid-connect-code.md)
 ### [Oauth](active-directory-protocols-oauth-code.md)
-### [Szolgáltatások közötti hívások](active-directory-protocols-oauth-service-to-service.md)
+### [Tooservice hívások](active-directory-protocols-oauth-service-to-service.md)
 ### [Meghatalmazásos folyamat](active-directory-protocols-oauth-on-behalf-of.md)
 ### [Támogatott token- és jogcímtípusok](active-directory-token-and-claims.md)
 ### [Aláírókulcs-váltás](active-directory-signing-key-rollover.md)

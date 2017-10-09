@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: A helyszíni Active Directory és az Azure Active Directory-kiépítés automatikus felhasználói Workday konfigurálása |} Microsoft Docs"
-description: "Útmutató a Workday használandó adatforrás azonosító adatok az Active Directory és az Azure Active Directory."
+description: "Megtudhatja, hogyan toouse Workday Active Directory és az Azure Active Directory azonosító adatok forrásaként."
 services: active-directory
 author: asmalser-msft
 documentationcenter: na
@@ -13,77 +13,77 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/26/2017
 ms.author: asmalser
-ms.openlocfilehash: f9cc94ca1fc44d10af19debab49435b265bf6e7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d4eb3237b8fe7614606c58b39fbefcb44f4060fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configure-workday-for-automatic-user-provisioning-with-on-premises-active-directory-and-azure-active-directory"></a>Oktatóanyag: A helyszíni Active Directory és az Azure Active Directory-kiépítés automatikus felhasználói Workday konfigurálása
-Ez az oktatóanyag célja a lépéseket kell elvégeznie rendszerbe való importálás érdekében személyek a WORKDAY-ből Active Directoryból és az Azure Active Directory, az egyes attribútumok Workday választható visszaírási mutatjuk be. 
+hello Ez az oktatóanyag célja meg a szükséges tooperform tooimport személyek a WORKDAY-ből az Active Directory és az Azure Active Directoryban, néhány attribútumok tooWorkday választható visszaírása lépéseket hello tooshow. 
 
 
 
 ## <a name="overview"></a>Áttekintés
 
-A [kiépítése szolgáltatáshoz Azure Active Directory-felhasználó](active-directory-saas-app-provisioning.md) integrálható a [Workday emberi erőforrások API](https://community.workday.com/sites/default/files/file-hosting/productionapi/Human_Resources/v21.1/Get_Workers.html) ahhoz, hogy a felhasználói fiókok kiépítéséhez. Az Azure AD használja ezt a kapcsolatot a következő felhasználó munkafolyamatok kiépítés engedélyezése:
+Hello [kiépítése szolgáltatáshoz Azure Active Directory-felhasználó](active-directory-saas-app-provisioning.md) hello integrálható [Workday emberi erőforrások API](https://community.workday.com/sites/default/files/file-hosting/productionapi/Human_Resources/v21.1/Get_Workers.html) a rendezés tooprovision felhasználói fiókokat. Az Azure AD a következő üzembe helyezési munkafolyamatok felhasználói kapcsolat tooenable hello használja:
 
-* **Az Active Directory felhasználók kiépítés** -kijelölt felhasználócsoportokhoz a WORKDAY-ből egy vagy több Active Directory-erdővel történő szinkronizálása. 
+* **Kiépítés felhasználók tooActive Directory** -kijelölt felhasználócsoportokhoz a WORKDAY-ből egy vagy több Active Directory-erdővel történő szinkronizálása. 
 
-* **Kiépítés csak felhőalapú Azure Active Directory felhasználók** -megtalálhatók az Active Directory és az Azure Active Directory hibrid felhasználók létesíthetők az utóbbi használatával történő [AAD-csatlakozás](connect/active-directory-aadconnect.md). Azonban felhasználók, akik csak felhőalapú telepíthető közvetlenül a WORKDAY-ből az Azure Active Directory szolgáltatás kiépítését az Azure AD-felhasználó használata.
+* **Csak felhőalapú felhasználók tooAzure Active Directory-kiépítés** -megtalálhatók az Active Directory és az Azure Active Directory hibrid felhasználók létesíthetők hello ez utóbbi használatával történő [AAD-csatlakozás](connect/active-directory-aadconnect.md). Azonban a felhasználók, akik csak felhőalapú telepíthető közvetlenül a WORKDAY-ből tooAzure Active Directory használatával hello szolgáltatás kiépítését az Azure AD-felhasználó.
 
-* **Az e-mailek visszaírási Workday-címek** -szolgáltatás kiépítését az Azure AD-felhasználó akkor írási ki az Azure AD felhasználói attribútumok vissza a Workday, például az e-mail cím.
+* **Az e-mailek visszaírási címek tooWorkday** -szolgáltatás kiépítését hello Azure AD-felhasználó lehet írni a kijelölt Azure AD felhasználói attribútumok hátsó tooWorkday, például az üdvözlő e-mail címet.
 
 ### <a name="scenarios-covered"></a>Ismertetett forgatókönyvek
 
-A Workday felhasználó, az Azure AD-felhasználó létesítési szolgáltatás által támogatott munkafolyamatok kiépítése lehetővé teszi, hogy a következő emberi erőforrások és identitás életciklus felügyeleti forgatókönyvek automatizálását:
+hello Workday felhasználói szolgáltatás kiépítését hello Azure AD-felhasználó által támogatott munkafolyamatok kiépítése lehetővé teszi, hogy az emberi erőforrások és identitás életciklus-kezelési forgatókönyveket a következő hello automatizálását:
 
-* **Új alkalmazottak felvétele** – Ha egy új alkalmazott Workday, megjelenik egy felhasználói fiókot automatikusan létrejönnek az Active Directory, Azure Active Directoryban, és opcionálisan Office 365 és [más SaaS-alkalmazásokhoz az Azure AD által támogatott](active-directory-saas-app-provisioning.md), az írási hátsó Workday e-mail címet.
+* **Új alkalmazottak felvétele** – Ha egy új alkalmazott tooWorkday, megjelenik egy felhasználói fiókot automatikusan létrejönnek az Active Directory, Azure Active Directoryban, és opcionálisan Office 365 és [más Azure AD által támogatott SaaS-alkalmazásokhoz ](active-directory-saas-app-provisioning.md), hátsó hello e-mail cím tooWorkday írható.
 
 * **Alkalmazott attribútum és profil frissítések** – amikor egy alkalmazott bejegyzés frissül a Workday (például a nevét, címét, vagy manager), a felhasználói fiók automatikusan frissül az Active Directory, Azure Active Directoryban, és opcionálisan Office 365 és [más SaaS-alkalmazásokhoz az Azure AD által támogatott](active-directory-saas-app-provisioning.md).
 
 * **Alkalmazott végződnek** – Ha egy alkalmazott a rendszer megszakítja a munkanapok, a felhasználói fiók automatikusan le van tiltva az Active Directory, Azure Active Directoryban, és opcionálisan Office 365 és [más SaaS-alkalmazásokhoz az Azure AD által támogatott](active-directory-saas-app-provisioning.md).
 
-* **Alkalmazott újra bízza** – Ha egy alkalmazott van rehired a munkanapok, a régi fiókot automatikusan újra aktiválni és újra létrehozni (attól függően, hogy igény szerint), hogy az Active Directory, Azure Active Directoryban, és opcionálisan Office 365 és [más SaaS-alkalmazásokhoz az Azure AD által támogatott](active-directory-saas-app-provisioning.md).
+* **Alkalmazott újra bízza** – Ha egy alkalmazott van rehired a munkanapok, a régi fiókot automatikusan aktiválhatók vagy újra kiosztott (rendelkezésére) tooActive Directory, Azure Active Directoryban, és opcionálisan az Office 365 és [más SaaS-alkalmazásokhoz az Azure AD által támogatott](active-directory-saas-app-provisioning.md).
 
 
 ## <a name="planning-your-solution"></a>A megoldás tervezése
 
-A Workday-integrációs megkezdése előtt ellenőrizze az alábbi előfeltételek teljesülését, és az aktuális Active Directory-architektúra és felhasználói követelmények létrehozását az Azure Active Directory által biztosított solution(s) felel meg a következő útmutatás olvasható.
+A Workday-integrációs megkezdése előtt ellenőrizze az alábbi és olvasási hello következő útmutatás hello Előfeltételek az aktuális Active Directory-architektúra és a felhasználói és a kiépítés hello Azure Active által biztosított solution(s) toomatch Könyvtár.
 
 ### <a name="prerequisites"></a>Előfeltételek
 
-Ebben az oktatóanyagban leírt forgatókönyv feltételezi, hogy már rendelkezik a következő elemek:
+Ebben az oktatóanyagban leírt hello forgatókönyv feltételezi, hogy már rendelkezik a következő elemek hello:
 
 * Egy érvényes Azure AD Premium P1 előfizetés globális rendszergazdai jogosultságokkal
 * A Workday megvalósítási bérlő tesztelése és integrációs célokra
-* Tesztelési célokra alkalmazott adatok tesztelésére Workday-integrációs rendszer felhasználót kell létrehozni, és módosíthatja a rendszergazdai jogosultságokkal
-* A felhasználók átadása, az Active Directory, 2012 vagy újabb Windows-szolgáltatást futtató, tartományhoz csatlakoztatott kiszolgálóra pedig szükséges a gazdagépre a [helyszíni szinkronizálási ügynök](https://go.microsoft.com/fwlink/?linkid=847801)
+* Workday toocreate a rendszer integrációs felhasználó rendszergazdai jogosultságokkal, és ellenőrizze módosítások tootest alkalmazott adatok tesztelési célra
+* A felhasználók tooActive Directory átadásához, 2012 vagy újabb Windows-szolgáltatást futtató, tartományhoz csatlakoztatott kiszolgálóra szükség toohost hello [helyszíni szinkronizálási ügynök](https://go.microsoft.com/fwlink/?linkid=847801)
 * [Az Azure AD Connect](connect/active-directory-aadconnect.md) szinkronizálásához Active Directory és az Azure AD között
 
 > [!NOTE]
-> Ha az Azure AD-bérlő található Európa, tekintse át a [ismert problémák](#known-issues) az alábbi szakasz.
+> Ha az Azure AD-bérlő található Európa, tekintse át hello [ismert problémák](#known-issues) az alábbi szakasz.
 
 
 ### <a name="solution-architecture"></a>Megoldás architektúrája
 
-Az Azure AD kiépítési összekötők megoldásához kiépítés és életciklus Identitáskezelés a WORKDAY-ből az Active Directory, az Azure AD SaaS-alkalmazásokhoz, és túl széles skáláját biztosítja. Milyen funkciókkal fogja használni, és hogyan lehet beállítani a megoldás attól függően, hogy a szervezet környezet és a követelmények változnak. Első lépésként számát a következő jelen, és a szervezetben telepített készlete érvénybe:
+Az Azure AD széles választéka segítségével megoldani, telepítését és az identitások életciklus-felügyeletének a Workday tooActive Directory, az Azure AD SaaS-alkalmazásokhoz, vagy azon kívül összekötők toohelp kiépítés biztosít. Milyen funkciókkal fogja használni, és a szervezet környezet és hogyan lehet beállítani hello megoldás függenek. Első lépésként hány hello következő jelen, és a szervezetben telepített készlete érvénybe:
 
 * Hány Active Directory-erdők használatban vannak?
 * Hány Active Directory-tartományok használatban vannak?
 * Hány Active Directory szervezeti egységben (OU) használatban vannak?
 * Használatban vannak, hogy hány Azure Active Directory-bérlő?
-* Vannak-e felhasználók, akik ki kell építeni az Active Directory és az Azure Active Directoryban (pl. "hibrid" felhasználók) is?
-* Vannak-e felhasználók, akik ki kell építeni az Azure Active Directory, de nem Active Directory (pl. "csak felhőalapú" felhasználók)?
-* Felhasználói e-mail címeket kell Workday visszaírását?
+* Vannak-e felhasználók, akik kiépített toobe tooboth Active Directory és az Azure Active Directory (pl. "hibrid" felhasználók)?
+* Vannak-e felhasználók, akik kiépített toobe tooAzure Active Directory, de nem Active Directory (pl. "csak felhőalapú" felhasználók)?
+* Szükség van visszaírását tooWorkday toobe felhasználó e-mail címéhez?
 
-Ha ezekre a kérdésekre adott válaszok, tervezze meg a Workday kiépítése a központi telepítés az alábbi útmutatást követve.
+Válaszok toothese kérdése van, ha a központi telepítés alábbi hello útmutató az alábbi általi kiosztás Workday is tervezhet.
 
 #### <a name="using-provisioning-connector-apps"></a>Üzembe helyezési összekötő-alkalmazások használata
 
 Az Azure Active Directory előzetesen beépített létesítési összekötők támogatja a Workday és sok más SaaS-alkalmazásokhoz. 
 
-Üzembe helyezési egyetlen összekötőt felületeihez egyetlen forrásai rendszer API-val, és lehetővé teszi a kiépítési adatokat egyetlen rendszeren való. A legtöbb létesítési összekötők, amely támogatja az Azure AD egyetlen forrás és cél rendszer (pl. Azure AD-be a ServiceNow), majd telepítő egyszerűen adja hozzá az alkalmazást a szóban forgó közötti lehet az Azure AD-alkalmazásgyűjtemény (pl. ServiceNow). 
+Üzembe helyezési egyetlen összekötőt kapcsolódási pontok hello API egyetlen forrásai rendszert, és lehetővé teszi a kiépítési adatokat tooa egyetlen célrendszeren. A legtöbb létesítési összekötők, amely támogatja az Azure AD a egyetlen forrás és cél rendszer (pl. az Azure AD tooServiceNow), majd származhatnak telepítő hello alkalmazás felvételével a szóban forgó hello Azure AD-alkalmazásgyűjtemény (pl. ServiceNow). 
 
 Üzembe helyezési connector-példány és az app-példányok közötti-az-egyhez kapcsolat áll fenn az Azure ad-ben:
 
@@ -92,7 +92,7 @@ Az Azure Active Directory előzetesen beépített létesítési összekötők t�
 | Az Azure AD-bérlő | SaaS-alkalmazáshoz |
 
 
-Munkanapok és Active Directory használata, ha van azonban több forrás és cél rendszer figyelembe kell venni:
+Munkanapok és Active Directory használata, ha van azonban több forrás és cél rendszerek toobe figyelembe venni:
 
 | A forráskiszolgálón rendszer | Célrendszer | Megjegyzések |
 | ---------- | ---------- | ---------- |
@@ -101,72 +101,72 @@ Munkanapok és Active Directory használata, ha van azonban több forrás és c�
 | Active Directory-erdőben | Az Azure AD-bérlő | Ez a folyamat végzi el az AAD-csatlakozás még ma |
 | Az Azure AD-bérlő | Munkanapok | Az e-mail címek visszaírásához. |
 
-Lehetővé teszi a több munkafolyamat több forrás és cél rendszerre, az Azure AD biztosít több üzembe helyezési összekötő alkalmazást, az Azure AD-alkalmazásgyűjtemény is hozzáadhat:
+toofacilitate ezek több munkafolyamatok toomultiple forrása és célja a rendszerek, az Azure AD biztosít több üzembe helyezési összekötő alkalmazások hello Azure AD-alkalmazásgyűjtemény is hozzáadhat:
 
 ![Az AAD-Alkalmazásgyűjtemény](./media/active-directory-saas-workday-inbound-tutorial/WD_Gallery.PNG)
 
-* **Az Active Directory kiépítésére WORKDAY** – az alkalmazás lehetővé teszi a felhasználói fiók kiépítése a WORKDAY-ből egyetlen Active Directory-erdőre. Ha több erdővel rendelkezik, az alkalmazás egy példányát minden egyes Active Directory erdőhöz kell kiépíteni az Azure AD-alkalmazásgyűjtemény is hozzáadhat.
+* **Directory kiépítés WORKDAY tooActive** – az alkalmazás lehetővé teszi felhasználói fiók kiépítése a Workday tooa egyetlen Active Directory-erdőben. Ha több erdővel rendelkezik, az alkalmazás egy példánya hello Azure AD-alkalmazásgyűjtemény minden Active Directory-erdőben való tooprovision van szüksége a is hozzáadhat.
 
-* **A Azure AD-létesítési WORKDAY** – AAD Connect pedig az eszköz, amellyel szinkronizálja az Active Directory-felhasználók az Azure Active Directory, az alkalmazás lehetővé teszi egyetlen Azure Active Directory-bérlő a WORKDAY-ből csak felhőalapú felhasználók kiépítése használható.
+* **WORKDAY tooAzure AD kiépítési** -közben AAD-csatlakozás hello eszközt, hogy által használt toosynchronize Active Directory felhasználók tooAzure Active Directory, az alkalmazás lehet használt toofacilitate csak felhőalapú felhasználók Workday tooa egyetlen kiépítése Az Azure Active Directory-bérlő.
 
-* **WORKDAY visszaírási** – az alkalmazás lehetővé teszi a felhasználó e-mail címet az Azure Active Directoryból a Workday visszaírása.
+* **WORKDAY visszaírási** – az alkalmazás lehetővé teszi a felhasználó e-mail címét az Azure Active Directory tooWorkday visszaírása.
 
 > [!TIP]
-> A rendszeres "Workday" alkalmazás beállítása az egyszeri bejelentkezés Workday és az Azure Active Directory közötti szolgál. 
+> hello rendszeres "Workday" alkalmazás beállítása az egyszeri bejelentkezés Workday és az Azure Active Directory közötti szolgál. 
 
-Állítsa be, és ezen különleges létesítési összekötő alkalmazások konfigurálása az ebben az oktatóanyagban fennmaradó részében tárgysora. A környezetben lévő bérlők kell azokat, és hogy hány Active Directory-erdők és az Azure AD rendszerek mely alkalmazások konfigurációjától függ.
+Hogyan tooset össze, és speciális konfigurálásukkal összekötő alkalmazások ebben az oktatóanyagban szakasza fennmaradó hello hello tárgya. Mely alkalmazásokat úgy dönt, hogy a tooconfigure függ, hogy melyik rendszereken kell tooprovision, és hogy hány Active Directory-erdők és az Azure AD bérlők vannak a környezetében.
 
 ![Áttekintés](./media/active-directory-saas-workday-inbound-tutorial/WD_Overview.PNG)
 
 ## <a name="configure-a-system-integration-user-in-workday"></a>A rendszer integrációs felhasználó Workday konfigurálása
-A Workday létesítési összekötők közös követelményt igényelnek-e kapcsolódni a Workday emberi erőforrások API a Workday rendszer integrációs fiók hitelesítő adatait. Ez a szakasz ismerteti, hogyan hozhat létre integráló rendszerfiók a Workday.
+Üzembe helyezési összekötők összes hello Workday közös követelményt, ezek a hitelesítő adatok megkövetelése a Workday rendszer integrációs fiók tooconnect toohello Workday emberi erőforrások API. Ez a szakasz ismerteti, hogyan a rendszer integráló toocreate Workday fiókként.
 
 > [!NOTE]
-> Ez az eljárás kihagyásával a Workday globális rendszergazdai fiókját használja a rendszer integrációs fiók lehetőség. Előfordulhat, hogy jól működnek az bemutatók, de az üzemi környezetek nem ajánlott.
+> Lehetséges toobypass ezt az eljárást, és inkább rendszerfiókként hello integráció a Workday globális rendszergazdai fiókját. Előfordulhat, hogy jól működnek az bemutatók, de az üzemi környezetek nem ajánlott.
 
 ### <a name="create-an-integration-system-user"></a>Integrációs rendszer felhasználó létrehozása
 
-**Integrációs rendszer felhasználó létrehozása:**
+**toocreate integrációs rendszer felhasználó:**
 
-1. Jelentkezzen be arra a Workday-bérlői rendszergazdai fiók használatával. Az a **Workday munkaterület**, adja meg létrehozni a felhasználót a keresési mezőbe, és kattintson a **integrációs rendszer felhasználó létrehozása**. 
+1. Jelentkezzen be arra a Workday-bérlői rendszergazdai fiók használatával. A hello **Workday munkaterület**, adja meg létrehozni a felhasználót hello keresési mezőbe, és kattintson a **integrációs rendszer felhasználó létrehozása**. 
    
     ![A felhasználó létrehozása](./media/active-directory-saas-workday-inbound-tutorial/IC750979.png "a felhasználó létrehozása")
-2. Fejezze be a **integrációs rendszer felhasználó létrehozása** feladatot úgy, hogy megadja a felhasználónevet és jelszót egy új integrációs rendszer felhasználó.  
- * Hagyja a **új jelszó szükséges a következő bejelentkezési a** beállítás nincs bejelölve, mert a felhasználó fog naplózása programozott módon. 
- * Hagyja a **munkamenet időkorlátja percben** az alapértelmezett érték 0, amely megakadályozza, hogy a felhasználói munkamenet időtúllépés miatt idő előtt. 
+2. Teljes hello **integrációs rendszer felhasználó létrehozása** feladatot úgy, hogy megadja a felhasználónevet és jelszót egy új integrációs rendszer felhasználó.  
+ * Hagyja hello **új jelszó szükséges a következő bejelentkezési a** beállítás nincs bejelölve, mert a felhasználó fog naplózása programozott módon. 
+ * Hagyja hello **munkamenet időkorlátja percben** az alapértelmezett érték 0, amely megakadályozza, hogy hello felhasználói munkamenet időtúllépés miatt idő előtt. 
    
     ![Hozzon létre rendszer-felhasználói integrációs](./media/active-directory-saas-workday-inbound-tutorial/IC750980.png "integrációs rendszer felhasználó létrehozása")
 
 ### <a name="create-a-security-group"></a>Biztonsági csoport létrehozása
-Hozzon létre egy korlátozás nélküli integrációs rendszerbiztonsági csoport, és rendelje hozzá a felhasználó kell.
+Egy korlátozás nélküli integrációs rendszerbiztonsági csoport toocreate kell, és rendelje hozzá a hello felhasználói tooit.
 
-**Biztonsági csoport létrehozása:**
+**a biztonsági csoport toocreate:**
 
-1. Írja be a keresőmezőbe hozzon létre biztonsági csoportot, és kattintson a **biztonsági csoport létrehozása**. 
+1. Adjon meg biztonsági csoport létrehozása hello keresési mezőbe, és kattintson a **biztonsági csoport létrehozása**. 
    
     ![CreateSecurity csoport](./media/active-directory-saas-workday-inbound-tutorial/IC750981.png "CreateSecurity csoport")
-2. Fejezze be a **biztonsági csoport létrehozása** feladat.  
-3. Integráció rendszerbiztonsági csoport kiválasztása – a korlátozás nélküli a **típus a központjaként biztonsági csoport** legördülő menüből.
-4. Hozzon létre egy biztonsági csoportot, amelyhez tagokat a rendszer explicit módon hozzáadja. 
+2. Teljes hello **biztonsági csoport létrehozása** feladat.  
+3. Integráció rendszerbiztonsági csoport kiválasztása – nem korlátozott a hello **típus a központjaként biztonsági csoport** legördülő menüből.
+4. Hozzon létre egy biztonsági csoport toowhich tagokat a rendszer explicit módon hozzáadja. 
    
     ![CreateSecurity csoport](./media/active-directory-saas-workday-inbound-tutorial/IC750982.png "CreateSecurity csoport")
 
-### <a name="assign-the-integration-system-user-to-the-security-group"></a>Az integráció rendszer felhasználó hozzárendelése a biztonsági csoport
+### <a name="assign-hello-integration-system-user-toohello-security-group"></a>Hello integrációs felhasználói toohello rendszerbiztonsági csoport hozzárendelése
 
-**Az integráció rendszer felhasználó hozzárendelése:**
+**tooassign hello integrációs rendszer felhasználó:**
 
-1. Adja meg a biztonsági csoport szerkesztése a keresési mezőbe, és kattintson **biztonsági csoport szerkesztése**. 
+1. Adja meg a biztonsági csoport szerkesztése hello keresési mezőbe, és kattintson **biztonsági csoport szerkesztése**. 
    
     ![Biztonsági csoport szerkesztése](./media/active-directory-saas-workday-inbound-tutorial/IC750983.png "biztonsági csoport szerkesztése")
-2. Keresse meg, és válassza ki az új integrációs biztonsági csoport neve. 
+2. Keresse meg, és válassza ki a hello új integrációs biztonsági csoport neve. 
    
     ![Biztonsági csoport szerkesztése](./media/active-directory-saas-workday-inbound-tutorial/IC750984.png "biztonsági csoport szerkesztése")
-3. Az új integrációs rendszer felhasználó hozzáadása az új biztonsági csoportot. 
+3. Hello új integrációs rendszer felhasználói toohello új biztonsági csoport hozzáadása. 
    
     ![Rendszerbiztonsági csoport](./media/active-directory-saas-workday-inbound-tutorial/IC750985.png "rendszerbiztonsági csoport")  
 
 ### <a name="configure-security-group-options"></a>Biztonsági csoport beállítások konfigurálása
-Ebben a lépésben megadta az új biztonsági csoport engedélyeinek **beolvasása** és **Put** műveleteket végez a következő tartományi biztonsági házirend által felügyelt objektumok:
+Ebben a lépésben engedélyt kell adnia toohello új biztonsági csoport a **beolvasása** és **Put** műveleteket a következő tartomány biztonsági házirendek hello által biztonságossá tett hello objektumok:
 
 * Külső fiók
 * Adatok: Nyilvános dolgozó jelentések
@@ -174,33 +174,33 @@ Ebben a lépésben megadta az új biztonsági csoport engedélyeinek **beolvasá
 * Adatok: Aktuális személyzeti információk
 * Adatok: Üzleti cím munkavégző profil
 
-**Biztonsági csoport beállítások konfigurálása:**
+**tooconfigure biztonsági csoport beállításai:**
 
-1. Adja meg a tartomány biztonsági házirendeket a keresési mezőbe, és kattintson a hivatkozásra **tartományi biztonsági házirendek funkcionális terület**.  
+1. Adja meg a tartomány biztonsági házirendek hello keresési mezőbe, és kattintson a hivatkozásra hello **tartományi biztonsági házirendek funkcionális terület**.  
    
     ![Tartományi biztonsági házirendek](./media/active-directory-saas-workday-inbound-tutorial/IC750986.png "tartományi biztonsági házirendek")  
-2. Keresse meg a rendszer, és válassza a **rendszer** funkcionális területét.  Kattintson az **OK** gombra.  
+2. Keresse meg a rendszer, és jelölje be hello **rendszer** funkcionális területét.  Kattintson az **OK** gombra.  
    
     ![Tartományi biztonsági házirendek](./media/active-directory-saas-workday-inbound-tutorial/IC750987.png "tartományi biztonsági házirendek")  
-3. A funkcionális területen biztonsági szabályzatok listájában bontsa ki a **biztonsági felügyelet** válassza ki a tartomány biztonsági házirendje **külső fiók létrehozását**.  
+3. Biztonsági házirendeket a rendszer funkcionális területen hello hello listájában bontsa ki **biztonsági felügyelet** válassza ki a hello tartomány biztonsági házirendje **külső fiók létrehozását**.  
    
     ![Tartományi biztonsági házirendek](./media/active-directory-saas-workday-inbound-tutorial/IC750988.png "tartományi biztonsági házirendek")  
-4. Kattintson a **engedélyeinek szerkesztése**, majd a a **engedélyek módosítása**párbeszédpanel lap, az új biztonsági csoportot hozzáadni a biztonsági csoportok listájának **beolvasása** és **Put** integrációs engedélyek. 
+4. Kattintson a **engedélyek módosítása**, majd a hello **engedélyek módosítása**párbeszédpanel lapján hello új biztonsági csoport toohello listát vesznek fel a biztonsági csoportok **beolvasása** és **Put** integrációs engedélyeket. 
    
     ![Engedélyek szerkesztése](./media/active-directory-saas-workday-inbound-tutorial/IC750989.png "engedélyek szerkesztése")  
-5. Ismételje meg a működési területek kiválasztására szolgáló képernyő térjen vissza a fenti 1. lépés:, és ezúttal, keressen a személyzettel, válassza ki a **funkcionális területen személyzeti** kattintson **OK**.
+5. Ismételje meg a működési területek kiválasztásának tooreturn toohello képernyője felett 1. lépés:, és ezúttal, keressen a személyzettel, válassza ki a hello **funkcionális területen személyzeti** kattintson **OK**.
    
     ![Tartományi biztonsági házirendek](./media/active-directory-saas-workday-inbound-tutorial/IC750990.png "tartományi biztonsági házirendek")  
-6. A személyzeti funkcionális területen biztonsági szabályzatok listájában bontsa ki a **adatok: személyzeti** és minden egyes biztonsági házirendek fennmaradó megismétli a fenti 4:
+6. Biztonsági házirendek hello személyzeti funkcionális területen hello listájában bontsa ki **adatok: személyzeti** és minden egyes biztonsági házirendek fennmaradó megismétli a fenti 4:
 
    * Adatok: Nyilvános dolgozó jelentések
    * Adatok: Minden helyzetben
    * Adatok: Aktuális személyzeti információk
    * Adatok: Üzleti cím munkavégző profil
    
-7. 1. lépés megismétlésével, a fenti való visszatéréshez kiválasztására szolgáló képernyő működési területek, és ez alkalommal keressen **elérhetőségi adatait**, jelölje ki a személyzeti funkcionális területet, és kattintson a **OK**.
+7. Ismételje meg az 1, tooreturn toohello képernyője kiválasztásával működési területek felett, és ezúttal keresve **elérhetőségi adatait**, hello személyzeti funkcionális területen válassza ki, és kattintson a **OK**.
 
-8.  A személyzeti funkcionális területen biztonsági szabályzatok listájában bontsa ki a **adatok: munkahelyi elérhetőségi adatait**, és a biztonsági házirendek az alábbi megismétli a fenti 4:
+8.  Hello hello személyzeti funkcionális területen biztonsági házirendek listájában bontsa ki **adatok: munkahelyi elérhetőségi adatait**, és ismételje meg a fenti 4 hello biztonsági házirendek az alábbi:
 
     * Adatok: A munkahelyi E-mail
 
@@ -208,54 +208,54 @@ Ebben a lépésben megadta az új biztonsági csoport engedélyeinek **beolvasá
     
 ### <a name="activate-security-policy-changes"></a>Aktiválja a biztonsági házirend módosításai
 
-**Biztonsági házirend módosításai aktiválása:**
+**tooactivate biztonságiszabályzat-változásokat:**
 
-1. Adja meg a keresőmezőbe aktiválása, és kattintson a hivatkozásra **aktiválása függőben lévő Biztonságiszabályzat-változásokat**. 
+1. Adja meg aktiválása hello keresési mezőbe, és kattintson a hivatkozásra hello **aktiválása függő biztonsági házirend módosításának**. 
    
     ![Aktiválása](./media/active-directory-saas-workday-inbound-tutorial/IC750992.png "aktiválása") 
-2. A függőben lévő biztonsági módosítások aktiválása feladat megkezdéséhez adjon meg egy megjegyzést a naplózási célokra, és kattintson a **OK**. 
+2. Függőben lévő biztonsági módosítások aktiválása adjon meg egy megjegyzést a naplózási célokra feladat, és kattintson a kezdő hello **OK**. 
    
     ![Függőben lévő biztonsági aktiválása](./media/active-directory-saas-workday-inbound-tutorial/IC750993.png "függőben lévő biztonsági aktiválása")   
-3. Elvégezni a feladatot a következő képernyőn, a jelölőnégyzet bejelölésével **megerősítése**, és kattintson a **OK**. 
+3. A következő képernyőn hello hello jelölőnégyzet bejelölésével teljes hello feladat **megerősítése**, és kattintson a **OK**. 
    
     ![Függőben lévő biztonsági aktiválása](./media/active-directory-saas-workday-inbound-tutorial/IC750994.png "függőben lévő biztonsági aktiválása")  
 
-## <a name="configuring-user-provisioning-from-workday-to-active-directory"></a>A felhasználók átadása a WORKDAY-ből az Active Directory konfigurálása
-Kövesse ezeket az utasításokat a WORKDAY-ből minden Active Directory-erdőbe történő igénylő kiépítés felhasználói fiók beállítása.
+## <a name="configuring-user-provisioning-from-workday-tooactive-directory"></a>A felhasználók átadása a Workday tooActive Directory konfigurálása
+Hajtsa végre az ezen utasításokat tooconfigure felhasználói fiók történő átadása Workday tooeach történő igénylő Active Directory-erdőben.
 
-### <a name="part-1-adding-the-provisioning-connector-app-and-creating-the-connection-to-workday"></a>1. lépés: Az üzembe helyezési összekötő alkalmazás hozzáadása, és a Workday kapcsolat létrehozása
+### <a name="part-1-adding-hello-provisioning-connector-app-and-creating-hello-connection-tooworkday"></a>1. rész: Hello létesítési összekötő alkalmazás hozzáadása és hello kapcsolat tooWorkday létrehozása
 
-**Az Active Directory kiépítésére konfigurálása a Workday:**
+**tooconfigure Workday tooActive Directory kiépítés:**
 
-1.  Ugrás a <https://portal.azure.com>
+1.  Nyissa meg túl<https://portal.azure.com>
 
-2.  Válassza ki a bal oldali navigációs sáv **Azure Active Directoryban**
+2.  Hello bal oldali navigációs sávon, válassza ki a **Azure Active Directoryban**
 
 3.  Válassza ki **vállalati alkalmazások**, majd **összes alkalmazás**.
 
-4.  Válassza ki **alkalmazás hozzáadása**, és válassza ki a **összes** kategóriát.
+4.  Válassza ki **alkalmazás hozzáadása**, és jelölje be hello **összes** kategóriát.
 
-5.  Keresse meg **Workday kiépítés az Active Directory**, és adja hozzá az alkalmazás a gyűjteményből.
+5.  Keresse meg **Workday kiépítés tooActive Directory**, és adja hozzá az alkalmazás hello gyűjteményből.
 
-6.  Az alkalmazás hozzáadása és az alkalmazás részletei képernyőn látható, jelölje be az után **kiépítés**
+6.  Alkalmazás hozzáadása után hello és hello alkalmazás részletei képernyőn megjelenik, jelölje be **kiépítés**
 
-7.  Módosítsa a **kiépítés** **mód** való **automatikus**
+7.  Változás hello **kiépítési** **mód** túl**automatikus**
 
-8.  Fejezze be a **rendszergazdai hitelesítő adataival** szakasz az alábbiak szerint:
+8.  Teljes hello **rendszergazdai hitelesítő adataival** szakasz az alábbiak szerint:
 
-   * **Rendszergazda felhasználóneve** – adja meg a Workday-integrációs rendszerfiók felhasználóneve fűzött bérlői tartománynévvel. **Hasonlóan kell kinéznie:username@contoso4**
+   * **Rendszergazda felhasználóneve** – adja meg a hello Workday-integrációs rendszerfiók, hello felhasználóneve hello bérlői tartománynévvel lesz hozzáfűzve. **Hasonlóan kell kinéznie:username@contoso4**
 
-   * **Rendszergazdai jelszó –** adja meg a jelszót a Workday-integrációs rendszer fiók
+   * **Rendszergazdai jelszó –** hello jelszó megadni a Workday-integrációs rendszerfiók hello
 
-   * **A bérlői URL-cím –** adja meg az URL-címet a Workday web services végpontnak a bérlő számára. Hasonlóan kell kinéznie: https://wd3-impl-services1.workday.com/ccx/service/contoso4, ahol contoso4 helyére a megfelelő bérlő neve és wd3-impl cseréli azokat a megfelelő környezet karakterlánc.
+   * **A bérlői URL-cím –** hello URL-cím toohello Workday web services végpontjánál megadása a bérlő. Hasonlóan kell kinéznie: https://wd3-impl-services1.workday.com/ccx/service/contoso4, ahol contoso4 helyére a megfelelő bérlő neve és wd3-impl hello megfelelő környezet karakterlánc helyére.
 
-   * **Az Active Directory Erdőfelderítési -** a "Name" Active Directory-erdő, amelyet a Get-ADForest powershell-parancsmag segítségével. Ez általában egy olyan karakterlánc, például: *contoso.com*
+   * **Az Active Directory Erdőfelderítési -** az Active Directory-erdőben, a "Name" hello, amelyet a Get-ADForest hello powershell-parancsmag segítségével. Ez általában egy olyan karakterlánc, például: *contoso.com*
 
-   * **Active Directory-tároló -** adja meg a tároló karakterláncot, amely tartalmazza az összes felhasználót az Active Directory-erdőben. Példa: *OU általános jogú felhasználók, OU = = Users, DC = contoso, DC = test*
+   * **Active Directory-tároló -** megadása hello tároló, amely tartalmazza az összes felhasználót az Active Directory-erdőben. Példa: *OU általános jogú felhasználók, OU = = Users, DC = contoso, DC = test*
 
    * **E-mailben értesítést –** meg e-mail címét, és jelölje be az "e-mail küldési hiba esetén" jelölőnégyzetet.
 
-   * Kattintson a **kapcsolat tesztelése** gombra. Ha a kapcsolat ellenőrzése sikeres, kattintson a **mentése** gombra az oldal tetején. Ha nem sikerül, ellenőrizze, hogy a Workday hitelesítő adatok érvényesek-e a Workday. 
+   * Kattintson a hello **kapcsolat tesztelése** gombra. Ha hello kapcsolat ellenőrzése sikeres, kattintson a hello **mentése** hello felső gombra. Ha nem sikerül, ellenőrizze, hogy hello Workday hitelesítő adatok érvényesek-e a Workday. 
 
 ![Azure Portal](./media/active-directory-saas-workday-inbound-tutorial/WD_1.PNG)
 
@@ -263,11 +263,11 @@ Kövesse ezeket az utasításokat a WORKDAY-ből minden Active Directory-erdőbe
 
 Ebben a szakaszban konfigurál, hogy felhasználói adatáramlás a WORKDAY-ből az Active Directory.
 
-1.  A kiépítés lapon a **hozzárendelések**, kattintson a **Workday dolgozók szinkronizálása OnPremises**.
+1.  A hello kiépítés lapon a **hozzárendelések**, kattintson a **szinkronizálása Workday munkavállalók tooOnPremises**.
 
-2.  Az a **forrás objektum hatóköre** mezőjét, kiválaszthatja, melyik felhasználócsoportokhoz a Workday Active Directory, az alkalmazott szűrőket Attribútumalapú meghatározásával üzembe helyezéséhez hatókörében kell lennie. Az alapértelmezett hatóköre "minden felhasználó a Workday". Példa szűrők:
+2.  A hello **forrás objektum hatóköre** mezőjét, kiválaszthatja, mely a Workday felhasználócsoportokhoz tooAD, kialakítási Attribútumalapú szűrők csoportja meghatározásával hatókörében kell lennie. hello alapértelmezett hatóköre "minden felhasználó a Workday". Példa szűrők:
 
-   * Példa: Hatókör felhasználók munkavégző azonosítók 1000000 és 2000000 között
+   * Példa: Hatókör toousers Worker-azonosítók 1000000 és 2000000 között
 
       * Attribútum: WorkerID
 
@@ -281,28 +281,28 @@ Ebben a szakaszban konfigurál, hogy felhasználói adatáramlás a WORKDAY-ből
 
       * Operátort: Nem NULL
 
-3.  Az a **cél objektum műveletek** mezőjét, szűrheti az globálisan, milyen műveleteket kell elvégezni az Active Directory használata engedélyezett. **Hozzon létre** és **frissítés** leggyakoribb.
+3.  A hello **cél objektum műveletek** mezőjét, globálisan végezhet milyen műveletek végre Active Directory toobe engedélyezettek. **Hozzon létre** és **frissítés** leggyakoribb.
 
-4.  Az a **attribútum-hozzárendelések** szakaszban meghatározhatja egyes Workday attribútumok az Active Directory-attribútumok hozzárendelését.
+4.  A hello **attribútum-hozzárendelések** szakaszban attribútumok hozzárendelését tooActive könyvtárattribútumokat egyes Workday definiálhat.
 
-5. Kattintson az egy meglévő címtárattribútum-leképezésben frissíti a **új leképezés hozzáadása** hozzáadása új leképezéseket a képernyő alján. Az egyes címtárattribútum-leképezésben támogatja ezeket a tulajdonságokat:
+5. Kattintson a egy meglévő attribútum leképezési tooupdate vagy **új leképezés hozzáadása** hello képernyő tooadd új leképezéseket hello alján. Az egyes címtárattribútum-leképezésben támogatja ezeket a tulajdonságokat:
 
       * **Leképezés típusa**
 
-         * **Közvetlen** – a Workday attribútum értéke ír az AD attribútum, módosítások nélküli
+         * **Közvetlen** – hello hello Workday attribútum toohello AD attribútum értékének, módosítások nélküli írási műveletek
 
-         * **Állandó** -statikus, állandó karakterlánc-érték írni az AD-attribútum
+         * **Állandó** -statikus, állandó karakterlánc-érték írni hello AD attribútum
 
-         * **Kifejezés** – lehetővé teszi egy egyéni érték írható AD attribútum egy vagy több Workday-attribútumok alapján. [További információk: Ez a cikk a kifejezések](active-directory-saas-writing-expressions-for-attribute-mappings.md).
+         * **Kifejezés** – lehetővé teszi a toowrite egy egyéni értéket hello AD attribútum egy vagy több Workday-attribútumok alapján. [További információk: Ez a cikk a kifejezések](active-directory-saas-writing-expressions-for-attribute-mappings.md).
 
-      * **Adatforrás-attribútum** -a felhasználói attribútum a WORKDAY-ből.
+      * **Adatforrás-attribútum** -hello felhasználói attribútum a WORKDAY-ből.
 
-      * **Alapértelmezett érték** – nem kötelező. A forrásattribútum nem üres érték tartozik, ha a leképezés fog kiírni, ez az érték helyett.
-            Általános beállítások mellett akkor hagyja üresen a mezőt.
+      * **Alapértelmezett érték** – nem kötelező. Hello adatforrás-attribútum értéke üres, ha hello leképezési fog kiírni, ez az érték helyett.
+            Leggyakoribb beállítás tooleave ebben üres.
 
-      * **Cél attribútumának** – a felhasználói attribútum az Active Directoryban.
+      * **Cél attribútumának** – hello felhasználói attribútum az Active Directoryban.
 
-      * **Ezzel az attribútummal objektumok megfelelő** – függetlenül attól, ez a leképezés használjon egyedi azonosítására a felhasználók Workday és az Active Directory között. Ez általában be van állítva a munkavégző mezőt a Workday, amelyhez általában van rendelve egy, az Active Directory Alkalmazottazonosító attribútumok.
+      * **Egyezik ezzel az attribútummal objektumok** – függetlenül attól, ez a leképezés használandó toouniquely azonosítsa azokat a felhasználókat a Workday és az Active Directory között. Ez általában be van állítva az munkavégző Azonosítót tartalmazó mezőt a Workday, amely általában van hozzárendelve egy hello Alkalmazottazonosító attribútumok az Active Directoryban.
 
       * **Megfelelő sorrend** – több egyező attribútumok állítható be. Ha több, kiértékelésük, ez a mező által megadott sorrendben. Amint a program egyezést talál, további megfelelő attribútumok kiértékelése.
 
@@ -312,15 +312,15 @@ Ebben a szakaszban konfigurál, hogy felhasználói adatáramlás a WORKDAY-ből
 
          * **Csak létrehozásakor** – Ez a leképezés csak a felhasználó létrehozási műveletek alkalmazása
 
-6. A hozzárendelések mentéséhez kattintson **mentése** attribútum leképezési szakasz elején.
+6. toosave a leképezései kattintson **mentése** attribútum leképezési szakasz hello tetején.
 
 ![Azure Portal](./media/active-directory-saas-workday-inbound-tutorial/WD_2.PNG)
 
 **Az alábbiakban néhány példa néhány gyakori kifejezésekkel a Workday és az Active Directory közötti attribútum-leképezésekhez**
 
--   A kifejezés, amely leképezhető a parentDistinguishedName AD attribútum kiépítése a felhasználót, hogy egy adott szervezeti egység egy vagy több Workday-forrás attribútum használható. Ebben a példában a város adataikat függően különböző szervezeti felhasználók helyezi a Workday.
+-   hello kifejezés, amely leképezhető toohello parentDistinguishedName AD attribútum használt tooprovision egy adott szervezeti egység alapján egy vagy több Workday forrás attribútum felhasználói tooa lehet. Ebben a példában a város adataikat függően különböző szervezeti felhasználók helyezi a Workday.
 
--   A kifejezés, amely a userPrincipalName AD attribútum van leképezve, hozzon létre egy egyszerű firstName.LastName@contoso.com. A váltja fel érvénytelen különleges karaktereket is.
+-   hello kifejezés, amely leképezhető toohello userPrincipalName AD attribútum hozzon létre egy egyszerű firstName.LastName@contoso.com. A váltja fel érvénytelen különleges karaktereket is.
 
 -   [Nincs a dokumentáció itt kifejezések írása](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 
@@ -353,13 +353,13 @@ Ebben a szakaszban konfigurál, hogy felhasználói adatáramlás a WORKDAY-ből
 | **Join("@",Replace(Replace(Replace(Replace(Replace(Replace(Replace( Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace( Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Join(".", [FirstName], [LastName]), , "([Øø])", , "oe", , ), , "[Ææ]", , "ae", , ), , "([äãàâãåáąÄÃÀÂÃÅÁĄA])", , "a", , ), , "([B])", , "b", , ), , "([CçčćÇČĆ])", , "c", , ), , "([ďĎD])", , "d", , ), , "([ëèéêęěËÈÉÊĘĚE])", , "e", , ), , "([F])", , "f", , ), , "([G])", , "g", , ), , "([H])", , "h", , ), , "([ïîìíÏÎÌÍI])", , "i", , ), , "([J])", , "j", , ), , "([K])", , "k", , ), , "([ľłŁĽL])", , "l", , ), , "([M])" ,, "m",), "([ñńňÑŃŇN])", "n",), "([öòőõôóÖÒŐÕÔÓO])", "o",), "([P])", "p",), "([Q])", "q",), "([řŘR])", "r",), "([ßšśŠŚS])", "s",), "([TŤť])", "t",), "([üùûúůűÜÙÛÚŮŰU])", "u",), "([V])", "v",), "([w" karakter]), "w",), "([ýÿýŸÝY])", "y",), "([źžżŹŽŻZ])", "z",), "",,, "",), "contoso.com")**   | UserPrincipalName     |     | Hozzon létre + frissítése                                                   
 | **Kapcsoló (\[település\], "OU általános jogú felhasználók, OU = felhasználók, OU = alapértelmezett, OU = helyek, DC = contoso, DC = = com", "Dallas", "OU általános jogú felhasználók, OU = felhasználók, OU = Dallas, OU = helyek, DC = contoso, DC = = com", "Austin", "OU általános jogú felhasználók, OU = felhasználók, OU = Austin, OU = helyek, DC = contoso, DC = = com", "Seattle", "OU általános jogú felhasználók, OU = felhasználók, OU = budapesti, OU = helyek, DC = contoso, DC = = com", "Londoni", "OU = általános jogú felhasználók Szervezeti egység felhasználók, OU = London, OU = helyek, DC = contoso, DC = = com ")**  | parentDistinguishedName     |     |  Hozzon létre + frissítése |
   
-### <a name="part-3-configure-the-on-premises-synchronization-agent"></a>3. lépés: A helyszíni-szinkronizálási ügynök konfigurálása
+### <a name="part-3-configure-hello-on-premises-synchronization-agent"></a>3. rész: Hello helyszíni szinkronizálási ügynök konfigurálása
 
-Ahhoz, hogy a helyszíni Active Directory kiépíteni, az ügynök az Active Directory-erdő desire egy tartományhoz csatlakozó kiszolgálón telepítenie kell. Tartományi rendszergazda (vagy a vállalati rendszergazdai) hitelesítő adatokra van szükség a művelet elvégzéséhez.
+A sorrend tooprovision tooActive címtár a helyszínen az ügynök hello desire Active Directory-erdőt egy tartományhoz csatlakozó kiszolgálón telepítenie kell. Hitelesítő adatok szükségesek a hello eljárással tartományi rendszergazda (vagy vállalati rendszergazdai).
 
-**[Letöltheti a helyszíni-szinkronizálási ügynök Itt](https://go.microsoft.com/fwlink/?linkid=847801)**
+**[Letöltheti a hello helyszíni szinkronizálási ügynök Itt](https://go.microsoft.com/fwlink/?linkid=847801)**
 
-Ügynök telepítése után futtassa az alábbi Powershell-parancsok a környezetnek az ügynök konfigurálása.
+Ügynök telepítése után futtassa az alábbi tooconfigure hello ügynök a környezetnek hello Powershell parancsokat.
 
 **A parancs #1**
 
@@ -371,7 +371,7 @@ Ahhoz, hogy a helyszíni Active Directory kiépíteni, az ügynök az Active Dir
 
 > Adja hozzá ADSyncAgentActiveDirectoryConfiguration
 
-* Bemenet: "Könyvtárnév", adja meg az Active Directory-erdőben neve részben megadott \#2
+* Bemenet: "Könyvtárnév", adja meg hello AD-erdő neve, részben megadott \#2
 * Bemenet: Rendszergazda felhasználónevét és jelszavát, az Active Directory-erdő
 
 **A parancs #3**
@@ -408,82 +408,82 @@ Ahhoz, hogy a helyszíni Active Directory kiépíteni, az ügynök az Active Dir
 
 > a net start aadsyncagent
 
-### <a name="part-4-start-the-service"></a>4. lépés: A szolgáltatás indítása
-1-3 részből befejezése után megkezdheti a létesítési szolgáltatás vissza az Azure felügyeleti portálon.
+### <a name="part-4-start-hello-service"></a>4. lépés: Start hello szolgáltatás
+1-3 részből befejezése után újra hello Azure felügyeleti portálon a szolgáltatás kiépítését hello is elindítható.
 
-1.  Az a **kiépítési** lapján állítsa be a **kiépítési állapot** való **a**.
+1.  A hello **kiépítési** lap, a set hello **kiépítési állapot** való **a**.
 
 2. Kattintson a **Save** (Mentés) gombra.
 
-3. Elindítja a kezdeti szinkronizálás, ami eltarthat, attól függően, hogy hány felhasználó szerepelnek a Workday óra változó számú.
+3. Hello kezdeti szinkronizálás, ami eltarthat, attól függően, hogy hány felhasználó szerepelnek a Workday óra változó számú elindítja.
 
-4. Egyes szinkronizálási esemény, például milyen felhasználók Workday kívül olvassa el, és majd később hozzáadott és Active Directory, a frissített tekintheti meg a **naplók** fülre. **[Olvassa el a felügyeleti naplók az üzembe helyezési jelentéskészítés – útmutató részletes utasításokat olvashat](active-directory-saas-provisioning-reporting.md)**
+4. Egyes szinkronizálási események például a felhasználók Workday kívül olvas, és később hozzáadott vagy frissített tooActive Directory, majd lehet megtekinteni a hello **naplók** fülre. **[Lásd: hello kiépítés részletes információkra van szüksége a hogyan tooread hello auditnaplókat jelentéskészítési útmutató](active-directory-saas-provisioning-reporting.md)**
 
-5.  A Windows alkalmazásnaplóban az ügynökszámítógépen jeleníti meg az ügynök keresztül végrehajtani minden műveletnél.
+5.  hello Windows alkalmazásnaplót a hello ügynökszámítógépet hello ügynök keresztül végrehajtani minden műveletnél jeleníti meg.
 
 6. Fejeződött be, akkor fog kiírni, összefoglaló jelentést a **kiépítési** lapon, a lent látható módon.
 
 ![Azure Portal](./media/active-directory-saas-workday-inbound-tutorial/WD_3.PNG)
 
 
-## <a name="configuring-user-provisioning-to-azure-active-directory"></a>A felhasználók átadása az Azure Active Directory konfigurálása
-Hogyan konfigurálja a kiépítése az Azure Active Directoryba a kiépítési követelményeknek, ahogy az az alábbi táblázat függ.
+## <a name="configuring-user-provisioning-tooazure-active-directory"></a>Felhasználók átadásához tooAzure Active Directory konfigurálása
+Hogyan konfigurálja az Active Directory létesítési tooAzure hello az alábbi táblázat a kiépítési követelményektől függ.
 
 | Forgatókönyv | Megoldás |
 | -------- | -------- |
-| **A felhasználóknak kell kell létrehozni, hogy az Active Directory és az Azure AD** | Használjon  **[AAD-csatlakozás](connect/active-directory-aadconnect.md)** |
-| **Felhasználók szükség lesz az Active Directory csak** | Használjon  **[AAD-csatlakozás](connect/active-directory-aadconnect.md)** |
-| **Felhasználók ki kell építeni az Azure AD csak (csak felhőalapú)** | Használja a **Workday az Azure Active Directory kiépítésére** alkalmazás az app-katalógus |
+| **Kiépített toobe tooActive Directory és az Azure AD a felhasználóknak kell** | Használjon  **[AAD-csatlakozás](connect/active-directory-aadconnect.md)** |
+| **Felhasználók kell kiépített toobe tooActive Directory csak** | Használjon  **[AAD-csatlakozás](connect/active-directory-aadconnect.md)** |
+| **A felhasználóknak kell kiépített toobe tooAzure AD csak (csak felhő)** | Használjon hello **Workday tooAzure Active Directory-kiépítés** hello alkalmazásgyűjtemény alkalmazás |
 
-Az Azure AD Connect beállításával kapcsolatos útmutatásért lásd: a [Azure AD Connect dokumentációját](connect/active-directory-aadconnect.md).
+Az Azure AD Connect beállításával kapcsolatos útmutatásért lásd: hello [Azure AD Connect dokumentációját](connect/active-directory-aadconnect.md).
 
-A következő szakaszok ismertetik a beállítás csak felhőalapú felhasználók Workday és az Azure AD közötti kapcsolat.
+a következő szakaszok hello tooprovision csak felhőalapú felhasználók Workday és az Azure AD közötti kapcsolat beállításának ismertetik.
 
 > [!IMPORTANT]
-> Ha csak felhőalapú ki kell építeni az Azure AD-felhasználó, és nem a helyszíni Active Directory csak az alábbi eljárást követve.
+> Csak akkor hajtsa végre hello kövesse az alábbi eljárást, ha kizárólag felhőalapú felhasználót kell kiépített toobe tooAzure AD, és nem a helyszíni Active Directory.
 
-### <a name="part-1-adding-the-azure-ad-provisioning-connector-app-and-creating-the-connection-to-workday"></a>1. lépés: Az Azure AD létesítési összekötő alkalmazás hozzáadása, és a Workday kapcsolat létrehozása
+### <a name="part-1-adding-hello-azure-ad-provisioning-connector-app-and-creating-hello-connection-tooworkday"></a>1. rész: Hello Azure AD-létesítési összekötő alkalmazás hozzáadása és hello kapcsolat tooWorkday létrehozása
 
-**Munkanapok konfigurálása az Azure Active Directory kiépítésére, csak felhőalapú felhasználók számára:**
+**tooconfigure Workday tooAzure Active Directory-kiépítés csak felhőalapú felhasználók számára:**
 
-1.  Ugrás a <https://portal.azure.com>.
+1.  Nyissa meg túl<https://portal.azure.com>.
 
-2.  Válassza ki a bal oldali navigációs sáv **Azure Active Directoryban**
+2.  Hello bal oldali navigációs sávon, válassza ki a **Azure Active Directoryban**
 
 3.  Válassza ki **vállalati alkalmazások**, majd **összes alkalmazás**.
 
-4.  Válassza ki **alkalmazás hozzáadása**, majd válassza ki a **összes** kategóriát.
+4.  Válassza ki **alkalmazás hozzáadása**, majd válassza ki a hello **összes** kategóriát.
 
-5.  Keresse meg **az Azure AD kiépítésére Workday**, és adja hozzá az alkalmazás a gyűjteményből.
+5.  Keresse meg **Workday tooAzure AD kiépítés**, és adja hozzá az alkalmazás hello gyűjteményből.
 
-6.  Az alkalmazás hozzáadása és az alkalmazás részletei képernyőn látható, jelölje be az után **kiépítés**
+6.  Alkalmazás hozzáadása után hello és hello alkalmazás részletei képernyőn megjelenik, jelölje be **kiépítés**
 
-7.  Módosítsa a **kiépítés** **mód** való **automatikus**
+7.  Változás hello **kiépítési** **mód** túl**automatikus**
 
-8.  Fejezze be a **rendszergazdai hitelesítő adataival** szakasz az alábbiak szerint:
+8.  Teljes hello **rendszergazdai hitelesítő adataival** szakasz az alábbiak szerint:
 
-   * **Rendszergazda felhasználóneve** – adja meg a Workday-integrációs rendszerfiók felhasználóneve fűzött bérlői tartománynévvel. Hasonlóan kell kinéznie:username@contoso4
+   * **Rendszergazda felhasználóneve** – adja meg a hello Workday-integrációs rendszerfiók, hello felhasználóneve hello bérlői tartománynévvel lesz hozzáfűzve. Hasonlóan kell kinéznie:username@contoso4
 
-   * **Rendszergazdai jelszó –** adja meg a jelszót a Workday-integrációs rendszer fiók
+   * **Rendszergazdai jelszó –** hello jelszó megadni a Workday-integrációs rendszerfiók hello
 
-   * **A bérlői URL-cím –** adja meg az URL-címet a Workday web services végpontnak a bérlő számára. Hasonlóan kell kinéznie: https://wd3-impl-services1.workday.com/ccx/service/contoso4, ahol contoso4 helyére a megfelelő bérlő neve és wd3-impl cseréli a megfelelő környezet karakterlánc (ha szükséges).
+   * **A bérlői URL-cím –** hello URL-cím toohello Workday web services végpontjánál megadása a bérlő. Hasonlóan kell kinéznie: https://wd3-impl-services1.workday.com/ccx/service/contoso4, ahol contoso4 helyére a megfelelő bérlő neve és wd3-impl cseréli hello megfelelő környezet karakterlánc (ha szükséges).
 
    * **E-mailben értesítést –** meg e-mail címét, és jelölje be az "e-mail küldési hiba esetén" jelölőnégyzetet.
 
-   * Kattintson a **kapcsolat tesztelése** gombra.
+   * Kattintson a hello **kapcsolat tesztelése** gombra.
 
-   * Ha a kapcsolat ellenőrzése sikeres, kattintson a **mentése** gombra az oldal tetején. Ha nem sikerül, ellenőrizze, hogy a Workday URL-cím és a hitelesítő adatok érvényesek a Workday.
+   * Ha hello kapcsolat ellenőrzése sikeres, kattintson a hello **mentése** hello felső gombra. Ha nem sikerül, ellenőrizze, hogy hello Workday URL-címet, és hitelesítő adatok érvényesek a Workday.
 
 
 ### <a name="part-2-configure-attribute-mappings"></a>2. lépés: Konfigurálja a attribútum-leképezésekhez 
 
 Ebben a szakaszban konfigurál, hogyan felhasználói adatáramlás a WORKDAY-ből az Azure Active Directory csak felhőalapú felhasználók számára.
 
-1.  A kiépítés lapon a **hozzárendelések**, kattintson a **munkavállalók szinkronizálása az Azure AD**.
+1.  A hello kiépítés lapon a **hozzárendelések**, kattintson a **szinkronizálása munkavállalók tooAzure AD**.
 
-2.   Az a **forrás objektum hatóköre** mezőjét, kiválaszthatja, mely a Workday felhasználócsoportokhoz üzembe helyezéséhez az Azure AD Attribútumalapú szűrők csoportja meghatározásával hatókörében kell lennie. Az alapértelmezett hatóköre "minden felhasználó a Workday". Példa szűrők:
+2.   A hello **forrás objektum hatóköre** mezőjét, kiválaszthatja, mely a Workday felhasználócsoportokhoz tooAzure AD, kialakítási Attribútumalapú szűrők csoportja meghatározásával hatókörében kell lennie. hello alapértelmezett hatóköre "minden felhasználó a Workday". Példa szűrők:
 
-   * Példa: Hatókör felhasználók munkavégző azonosítók 1000000 és 2000000 között
+   * Példa: Hatókör toousers Worker-azonosítók 1000000 és 2000000 között
 
       * Attribútum: WorkerID
 
@@ -497,28 +497,28 @@ Ebben a szakaszban konfigurál, hogyan felhasználói adatáramlás a WORKDAY-b�
 
       * Operátort: Nem NULL
 
-3.  Az a **cél objektum műveletek** mezőjét, szűrheti az globálisan, milyen műveleteket kell elvégezni az Azure AD használata engedélyezett. **Hozzon létre** és **frissítés** leggyakoribb.
+3.  A hello **cél objektum műveletek** globálisan végezhet milyen műveletek használata engedélyezett az Azure AD végre toobe mezőjét. **Hozzon létre** és **frissítés** leggyakoribb.
 
-4.  Az a **attribútum-hozzárendelések** szakaszban meghatározhatja egyes Workday attribútumok az Active Directory-attribútumok hozzárendelését.
+4.  A hello **attribútum-hozzárendelések** szakaszban attribútumok hozzárendelését tooActive könyvtárattribútumokat egyes Workday definiálhat.
 
-5. Kattintson az egy meglévő címtárattribútum-leképezésben frissíti a **új leképezés hozzáadása** hozzáadása új leképezéseket a képernyő alján. Az egyes címtárattribútum-leképezésben támogatja ezeket a tulajdonságokat:
+5. Kattintson a egy meglévő attribútum leképezési tooupdate vagy **új leképezés hozzáadása** hello képernyő tooadd új leképezéseket hello alján. Az egyes címtárattribútum-leképezésben támogatja ezeket a tulajdonságokat:
 
    * **Leképezés típusa**
 
-      * **Közvetlen** – a Workday attribútum értéke ír az AD attribútum, módosítások nélküli
+      * **Közvetlen** – hello hello Workday attribútum toohello AD attribútum értékének, módosítások nélküli írási műveletek
 
-      * **Állandó** -statikus, állandó karakterlánc-érték írni az AD-attribútum
+      * **Állandó** -statikus, állandó karakterlánc-érték írni hello AD attribútum
 
-      * **Kifejezés** – lehetővé teszi egy egyéni érték írható AD attribútum egy vagy több Workday-attribútumok alapján. [További információk: Ez a cikk a kifejezések](active-directory-saas-writing-expressions-for-attribute-mappings.md).
+      * **Kifejezés** – lehetővé teszi a toowrite egy egyéni értéket hello AD attribútum egy vagy több Workday-attribútumok alapján. [További információk: Ez a cikk a kifejezések](active-directory-saas-writing-expressions-for-attribute-mappings.md).
 
-   * **Adatforrás-attribútum** -a felhasználói attribútum a WORKDAY-ből.
+   * **Adatforrás-attribútum** -hello felhasználói attribútum a WORKDAY-ből.
 
-   * **Alapértelmezett érték** – nem kötelező. A forrásattribútum nem üres érték tartozik, ha a leképezés fog kiírni, ez az érték helyett.
-            Általános beállítások mellett akkor hagyja üresen a mezőt.
+   * **Alapértelmezett érték** – nem kötelező. Hello adatforrás-attribútum értéke üres, ha hello leképezési fog kiírni, ez az érték helyett.
+            Leggyakoribb beállítás tooleave ebben üres.
 
-   * **Cél attribútumának** – a felhasználói attribútum az Azure ad-ben.
+   * **Cél attribútumának** – hello felhasználói attribútum az Azure ad-ben.
 
-   * **Ezzel az attribútummal objektumok megfelelő** – függetlenül attól, ez a leképezés használjon egyedi azonosítására a felhasználók Workday és az Azure AD között. Ez általában be van állítva az munkavégző Azonosítót tartalmazó mezőt a Workday, amely általában hozzárendelve az alkalmazottak az ID attribútum (új), vagy a bővítmény attribútum az Azure ad-ben.
+   * **Egyezik ezzel az attribútummal objektumok** – függetlenül attól, ez a leképezés használandó toouniquely azonosítsa azokat a felhasználókat a Workday és az Azure AD között. Ez általában be van állítva az munkavégző Azonosítót tartalmazó mezőt a Workday, amely általában hozzárendelve hello alkalmazott ID attribútum (új), vagy a bővítmény attribútum az Azure ad-ben.
 
    * **Megfelelő sorrend** – több egyező attribútumok állítható be. Ha több, kiértékelésük, ez a mező által megadott sorrendben. Amint a program egyezést talál, további megfelelő attribútumok kiértékelése.
 
@@ -528,54 +528,54 @@ Ebben a szakaszban konfigurál, hogyan felhasználói adatáramlás a WORKDAY-b�
 
      * **Csak létrehozásakor** – Ez a leképezés csak a felhasználó létrehozási műveletek alkalmazása
 
-6. A hozzárendelések mentéséhez kattintson **mentése** attribútum leképezési szakasz elején.
+6. toosave a leképezései kattintson **mentése** attribútum leképezési szakasz hello tetején.
 
-### <a name="part-3-start-the-service"></a>3. lépés: A szolgáltatás indítása
-1-2 részek elvégzése után, megkezdheti a létesítési szolgáltatás.
+### <a name="part-3-start-hello-service"></a>3. rész: Start hello szolgáltatás
+1-2 részek elvégzése után, megkezdheti a hello szolgáltatás kiépítését.
 
-1.  Az a **kiépítési** lapján állítsa be a **kiépítési állapot** való **a**.
+1.  A hello **kiépítési** lap, a set hello **kiépítési állapot** való **a**.
 
 2. Kattintson a **Save** (Mentés) gombra.
 
-3. Elindítja a kezdeti szinkronizálás, ami eltarthat, attól függően, hogy hány felhasználó szerepelnek a Workday óra változó számú.
+3. Hello kezdeti szinkronizálás, ami eltarthat, attól függően, hogy hány felhasználó szerepelnek a Workday óra változó számú elindítja.
 
-4. Az egyes szinkronizálási események lehet megtekinteni a **naplók** fülre. **[Olvassa el a felügyeleti naplók az üzembe helyezési jelentéskészítés – útmutató részletes utasításokat olvashat](active-directory-saas-provisioning-reporting.md)**
+4. Egyes szinkronizálási események tekinthető hello **naplók** fülre. **[Lásd: hello kiépítés részletes információkra van szüksége a hogyan tooread hello auditnaplókat jelentéskészítési útmutató](active-directory-saas-provisioning-reporting.md)**
 
 5. Fejeződött be, akkor fog kiírni, összefoglaló jelentést a **kiépítési** lapon, a lent látható módon.
 
 
-## <a name="configuring-writeback-of-email-addresses-to-workday"></a>Az e-mail címet a Workday visszaírási konfigurálásával
-Kövesse az alábbi utasításokat a felhasználó e-mail címet az Azure Active Directoryból a Workday visszaírása konfigurálásához.
+## <a name="configuring-writeback-of-email-addresses-tooworkday"></a>Az e-mail címek tooWorkday visszaírási konfigurálásával
+Hajtsa végre a felhasználó e-mail címéhez utasításokat tooconfigure visszaírása az Azure Active Directory tooWorkday.
 
-### <a name="part-1-adding-the-provisioning-connector-app-and-creating-the-connection-to-workday"></a>1. lépés: Az üzembe helyezési összekötő alkalmazás hozzáadása, és a Workday kapcsolat létrehozása
+### <a name="part-1-adding-hello-provisioning-connector-app-and-creating-hello-connection-tooworkday"></a>1. rész: Hello létesítési összekötő alkalmazás hozzáadása és hello kapcsolat tooWorkday létrehozása
 
-**Az Active Directory kiépítésére konfigurálása a Workday:**
+**tooconfigure Workday tooActive Directory kiépítés:**
 
-1.  Ugrás a <https://portal.azure.com>
+1.  Nyissa meg túl<https://portal.azure.com>
 
-2.  Válassza ki a bal oldali navigációs sáv **Azure Active Directoryban**
+2.  Hello bal oldali navigációs sávon, válassza ki a **Azure Active Directoryban**
 
 3.  Válassza ki **vállalati alkalmazások**, majd **összes alkalmazás**.
 
-4.  Válassza ki **alkalmazás hozzáadása**, majd jelölje be a **összes** kategóriát.
+4.  Válassza ki **alkalmazás hozzáadása**, majd jelölje be hello **összes** kategóriát.
 
-5.  Keresse meg **Workday visszaírási**, és adja hozzá az alkalmazás a gyűjteményből.
+5.  Keresse meg **Workday visszaírási**, és adja hozzá az alkalmazás hello gyűjteményből.
 
-6.  Az alkalmazás hozzáadása és az alkalmazás részletei képernyőn látható, jelölje be az után **kiépítés**
+6.  Alkalmazás hozzáadása után hello és hello alkalmazás részletei képernyőn megjelenik, jelölje be **kiépítés**
 
-7.  Módosítsa a **kiépítés** **mód** való **automatikus**
+7.  Változás hello **kiépítési** **mód** túl**automatikus**
 
-8.  Fejezze be a **rendszergazdai hitelesítő adataival** szakasz az alábbiak szerint:
+8.  Teljes hello **rendszergazdai hitelesítő adataival** szakasz az alábbiak szerint:
 
-   * **Rendszergazda felhasználóneve** – adja meg a Workday-integrációs rendszerfiók felhasználóneve fűzött bérlői tartománynévvel. Hasonlóan kell kinéznie:username@contoso4
+   * **Rendszergazda felhasználóneve** – adja meg a hello Workday-integrációs rendszerfiók, hello felhasználóneve hello bérlői tartománynévvel lesz hozzáfűzve. Hasonlóan kell kinéznie:username@contoso4
 
-   * **Rendszergazdai jelszó –** adja meg a jelszót a Workday-integrációs rendszer fiók
+   * **Rendszergazdai jelszó –** hello jelszó megadni a Workday-integrációs rendszerfiók hello
 
-   * **A bérlői URL-cím –** adja meg az URL-címet a Workday web services végpontnak a bérlő számára. Hasonlóan kell kinéznie: https://wd3-impl-services1.workday.com/ccx/service/contoso4, ahol contoso4 helyére a megfelelő bérlő neve és wd3-impl cseréli a megfelelő környezet karakterlánc (ha szükséges).
+   * **A bérlői URL-cím –** hello URL-cím toohello Workday web services végpontjánál megadása a bérlő. Hasonlóan kell kinéznie: https://wd3-impl-services1.workday.com/ccx/service/contoso4, ahol contoso4 helyére a megfelelő bérlő neve és wd3-impl cseréli hello megfelelő környezet karakterlánc (ha szükséges).
 
    * **E-mailben értesítést –** meg e-mail címét, és jelölje be az "e-mail küldési hiba esetén" jelölőnégyzetet.
 
-   * Kattintson a **kapcsolat tesztelése** gombra. Ha a kapcsolat ellenőrzése sikeres, kattintson a **mentése** gombra az oldal tetején. Ha nem sikerül, ellenőrizze, hogy a Workday URL-cím és a hitelesítő adatok érvényesek a Workday.
+   * Kattintson a hello **kapcsolat tesztelése** gombra. Ha hello kapcsolat ellenőrzése sikeres, kattintson a hello **mentése** hello felső gombra. Ha nem sikerül, ellenőrizze, hogy hello Workday URL-címet, és hitelesítő adatok érvényesek a Workday.
 
 
 ### <a name="part-2-configure-attribute-mappings"></a>2. lépés: Konfigurálja a attribútum-leképezésekhez 
@@ -583,36 +583,36 @@ Kövesse az alábbi utasításokat a felhasználó e-mail címet az Azure Active
 
 Ebben a szakaszban konfigurál, hogy felhasználói adatáramlás a WORKDAY-ből az Active Directory.
 
-1.  A kiépítés lapon a **hozzárendelések**, kattintson a **szinkronizálás Azure AD-felhasználók Workday**.
+1.  A hello kiépítés lapon a **hozzárendelések**, kattintson a **szinkronizálása Azure Active Directory-felhasználók tooWorkday**.
 
-2.  Az a **forrás objektum hatóköre** mezőjét, igény szerint szűrheti az Azure Active Directory mely felhasználócsoportokhoz kell rendelkeznie az e-mail címmel visszaírását Workday. Az alapértelmezett hatóköre "az Azure AD-minden felhasználó". 
+2.  A hello **forrás objektum hatóköre** mezőjét, igény szerint szűrheti az Azure Active Directory mely felhasználócsoportokhoz kell rendelkeznie az e-mail címmel visszaírását tooWorkday. hello alapértelmezett hatóköre "az Azure AD-minden felhasználó". 
 
-3.  Az a **attribútum-hozzárendelések** szakaszban meghatározhatja egyes Workday attribútumok az Active Directory-attribútumok hozzárendelését. Alapértelmezés szerint az e-mail cím társítás van. Azonban a hozzá tartozó azonosító frissíteni kell, hogy a Workday a megfelelő bejegyzések az Azure AD-ben olyan felhasználókkal vesse össze. Egy népszerű egyező módja, hogy szinkronizálja a Workday munkavégző vagy extensionAttribute1-15 alkalmazott azonosítója az Azure ad-ben, majd ezt az attribútumot az Azure AD vissza a Workday felhasználók kereséséhez.
+3.  A hello **attribútum-hozzárendelések** szakaszban attribútumok hozzárendelését tooActive könyvtárattribútumokat egyes Workday definiálhat. Nincs hello e-mail cím alapértelmezés szerint a leképezéseket. Azonban az Azonosítóval egyező hello kell lennie az frissített toomatch felhasználók a Workday a megfelelő bejegyzések az Azure AD-ben. Egy népszerű megfelelő metódus toosynchronize hello Workday dolgozó azonosítója vagy alkalmazott tooextensionAttribute1 – 15 azonosító az Azure ad-ben, és használja ezt az attribútumot az Azure AD toomatch felhasználók újra a Workday.
 
-4.  A hozzárendelések mentéséhez kattintson **mentése** attribútum leképezési szakasz elején.
+4.  toosave a leképezései kattintson **mentése** hello attribútum leképezési szakasz hello tetején.
 
-### <a name="part-3-start-the-service"></a>3. lépés: A szolgáltatás indítása
-1-2 részek elvégzése után, megkezdheti a létesítési szolgáltatás.
+### <a name="part-3-start-hello-service"></a>3. rész: Start hello szolgáltatás
+1-2 részek elvégzése után, megkezdheti a hello szolgáltatás kiépítését.
 
-1.  Az a **kiépítési** lapján állítsa be a **kiépítési állapot** való **a**.
+1.  A hello **kiépítési** lap, a set hello **kiépítési állapot** való **a**.
 
 2. Kattintson a **Save** (Mentés) gombra.
 
-3. Elindítja a kezdeti szinkronizálás, ami eltarthat, attól függően, hogy hány felhasználó szerepelnek a Workday óra változó számú.
+3. Hello kezdeti szinkronizálás, ami eltarthat, attól függően, hogy hány felhasználó szerepelnek a Workday óra változó számú elindítja.
 
-4. Az egyes szinkronizálási események lehet megtekinteni a **naplók** fülre. **[Olvassa el a felügyeleti naplók az üzembe helyezési jelentéskészítés – útmutató részletes utasításokat olvashat](active-directory-saas-provisioning-reporting.md)**
+4. Egyes szinkronizálási események tekinthető hello **naplók** fülre. **[Lásd: hello kiépítés részletes információkra van szüksége a hogyan tooread hello auditnaplókat jelentéskészítési útmutató](active-directory-saas-provisioning-reporting.md)**
 
 5. Fejeződött be, akkor fog kiírni, összefoglaló jelentést a **kiépítési** lapon, a lent látható módon.
 
 ## <a name="known-issues"></a>Ismert problémák
 
-* **A naplók az Európai nyelv** – mivel a jelen technikai előzetes kiadás, nincs ismert problémái a [naplók](active-directory-saas-provisioning-reporting.md) nem jelenik meg a Workday-összekötő alkalmazások a [Azure-portálon](https://portal.azure.com) Ha az Azure AD-bérlő Európai adatközpontban található. Egy javítást alkalmaztunk a probléma azonnali. Ellenőrizze, hogy a lemezterület ismét a közeljövőben a frissítéseket. 
+* **A naplók az Európai nyelv** – Ez a technical preview kiadásában hello, nem egy ismert probléma az hello [naplók](active-directory-saas-provisioning-reporting.md) hello Workday összekötő alkalmazások nem jelennek meg hello [Azure-portálon](https://portal.azure.com) Ha hello Azure AD bérlő Európai adatközpontban található. Egy javítást alkalmaztunk a probléma azonnali. Ellenőrizze, hogy ezen a helyen, újra a jövőbeli frissítések közelében hello. 
 
 ## <a name="additional-resources"></a>További források
 * [Oktatóanyag: Az egyszeri bejelentkezés közötti Workday és az Azure Active Directory konfigurálása](active-directory-saas-workday-tutorial.md)
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 ## <a name="next-steps"></a>Következő lépések
 
-* [Ismerje meg, tekintse át a naplók és jelentések készítése a kiépítés tevékenység](https://docs.microsoft.com/azure/active-directory/active-directory-saas-provisioning-reporting)
+* [Ismerje meg, hogy miként naplózza az tooreview és jelentések készítése a kiépítés tevékenység](https://docs.microsoft.com/azure/active-directory/active-directory-saas-provisioning-reporting)

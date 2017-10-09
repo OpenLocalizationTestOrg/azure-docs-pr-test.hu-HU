@@ -1,6 +1,6 @@
 ---
-title: "Az Azure Active Directory hitelesítési Kódtárai |} Microsoft Docs"
-description: "Az Azure AD Authentication Library (ADAL) lehetővé teszi az ügyfél alkalmazásfejlesztők számára könnyedén hitelesítheti a felhasználókat a felhőalapú vagy helyszíni Active Directory (AD) és majd a védelmét biztosító API-hívások hozzáférési tokenek beszerzése érdekében."
+title: "Active Directory hitelesítési Kódtárai aaaAzure |} Microsoft Docs"
+description: "hello Azure AD Authentication Library (ADAL) lehetővé teszi, hogy ügyfél alkalmazásfejlesztők tooeasily felhasználók toocloud hitelesítéséhez vagy a helyszíni Active Directory (AD), és majd a védelmét biztosító API-hívások hozzáférési tokenek beszerzése érdekében."
 services: active-directory
 documentationcenter: 
 author: bryanla
@@ -15,20 +15,20 @@ ms.workload: identity
 ms.date: 08/02/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: 9cf8ca88c9df4082590b18acd5c4a87a91bb1afd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 20fae18807ef03463ab1bc218e5f3548b5bd5717
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-authentication-libraries"></a>Az Azure Active Directory hitelesítési Kódtárai
-Az Azure Active Directory Authentication Library (ADAL) lehetővé teszi az alkalmazásfejlesztők ügyfél könnyen a felhőbe a felhasználók hitelesítéséhez a helyszíni Active Directory (AD), illetve az API-hívásokban biztonságához hozzáférési tokenek beszerzése érdekében. ADAL hitelesítési egyszerűbbé teszi a fejlesztők funkciók révén, mint:
+hello Azure Active Directory Authentication Library (ADAL) lehetővé teszi, hogy ügyfél alkalmazás fejlesztők tooeasily felhasználók toocloud hitelesítéséhez a helyszíni Active Directory (AD), illetve az API-hívásokban biztonságához hozzáférési tokenek beszerzése érdekében. ADAL hitelesítési egyszerűbbé teszi a fejlesztők funkciók révén, mint:
  - aszinkron metódushívások támogatása
  - a konfigurálható jogkivonatok gyorsítótárát, hogy a tárolók hozzáférési jogkivonatok és frissítési jogkivonatok
  - automatikus token frissítés, ha az előző lejár, és egy frissítési jogkivonat érhető el
  - és további
  
-Kezelnek összetettségét többségét, ADAL segít az üzleti logika fejlesztők helyezi a hangsúlyt, és könnyen biztonságos erőforrások, anélkül, hogy a biztonsági szakértő.
+Legtöbb hello összetettségi kezelnek, ADAL segít az üzleti logika fejlesztők helyezi a hangsúlyt, és könnyen biztonságos erőforrások, anélkül, hogy a biztonsági szakértő.
 
 Adal-t a különböző platformok érhető el.
 
@@ -44,7 +44,7 @@ Adal-t a különböző platformok érhető el.
 | .NET ügyfél, a Windows áruház, Windows Phone 8.1 |ADAL .NET v2 |[NuGet](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/2.28.4) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/releases/tag/v2.28.4) | [Egy asztali alkalmazás](https://github.com/AzureADQuickStarts/NativeClient-DotNet/releases/tag/v2.X) | | 
 | JavaScript |ADAL.js |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-js) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-js) |[Egyetlen alkalmazás](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi) | |
 | iOS, macOS |ADAL |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-objc/releases) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-objc) |[iOS-alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-ios) | [Referencia](https://cocoapods.org/pods/ADAL)|
-| Android |ADAL |[A központi tárházban](http://search.maven.org/remotecontent?filepath=com/microsoft/aad/adal/) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-android) |[Android-alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-android) | [JavaDocs](http://javadoc.io/doc/com.microsoft.aad/adal/)|
+| Android |ADAL |[hello központi tárházban](http://search.maven.org/remotecontent?filepath=com/microsoft/aad/adal/) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-android) |[Android-alkalmazás](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-android) | [JavaDocs](http://javadoc.io/doc/com.microsoft.aad/adal/)|
 | Node.js |ADAL |[npm](https://www.npmjs.com/package/adal-node) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-nodejs) | | |
 | Java |ADAL4J |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) |[Java webalkalmazások](https://docs.microsoft.com/azure/active-directory/active-directory-devquickstarts-webapp-java) | |
 | Python |ADAL |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-python) |[GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-python) | | |
@@ -67,20 +67,20 @@ Az alábbiakban a három gyakori forgatókönyvek, amelyben az adal-t távoli er
 
 ### <a name="authenticating-users-of-a-native-client-application-running-on-a-device"></a>Az eszközön futó natív ügyfélalkalmazás a felhasználók hitelesítéséhez 
 
-Ebben a forgatókönyvben egy fejlesztő rendelkezik WPF ügyfélalkalmazás, amelyet a távoli Azure Active Directory, például a webes API-k által védett erőforrások eléréséhez. Ezután a Azure-előfizetéssel rendelkezik, tudja, hogyan lehet meghívni az alsóbb rétegbeli webes API-t, és ismeri az Azure AD-bérlő a webes API-t használó. Ennek eredményeképpen használhat adal-t az Azure ad-vel, teljes delegálás, a felhasználói hitelesítés az adal-ra vagy explicit módon a felhasználói hitelesítő adatok kezelése hitelesítésének elősegítésére. ADAL teszi könnyen hitelesíteni a felhasználót, egy hozzáférési jogkivonatot, és a frissítési jogkivonat beszerzése az Azure AD és a hozzáférési jogkivonat segítségével ellenőrizze mindent lekér a webes API-hoz.
+Ebben a forgatókönyvben egy fejlesztő WPF ügyfélalkalmazás, az Azure AD, például a webes API-k által biztosított távoli erőforráshoz tooaccess igénylő rendelkezik. Ezután Azure-előfizetéssel rendelkezik, tudja, hogyan tooinvoke hello alsóbb rétegbeli webes API-t, és ismeri hello Azure AD-bérlő hello webes API-t használ. Ennek eredményeképpen használhat ADAL toofacilitate-hitelesítés az Azure ad-vel, teljesen delegálása hello hitelesítési élmény tooADAL vagy explicit módon a felhasználó hitelesítő adatainak kezelése. ADAL teszi, hogy könnyen tooauthenticate hello felhasználó, egy hozzáférési jogkivonatot, és a frissítési jogkivonat beszerzése az Azure AD, és aztán hello access token toomake kérelmek toohello webes API.
 
-Azt mutatja be ezt a forgatókönyvet az Azure AD hitelesítési kódminta, lásd: [natív ügyfél WPF alkalmazás webes API](https://github.com/azureadsamples/nativeclient-dotnet).
+Azt mutatja be ezt a forgatókönyvet hitelesítési tooAzure AD kódminta, lásd: [natív ügyfélalkalmazás WPF tooWeb API](https://github.com/azureadsamples/nativeclient-dotnet).
 
 ### <a name="authenticating-a-confidential-client-application-running-on-a-web-server"></a>A webkiszolgálón futó bizalmas ügyfélalkalmazás hitelesítése
 
-Ebben a forgatókönyvben egy fejlesztő rendelkezik olyan kiszolgálóra, amely az Azure AD, például egy webes API által biztosított távoli erőforráshoz hozzáférésre van szüksége a futó alkalmazást. Ezután a Azure-előfizetéssel rendelkezik, tudja, hogyan lehet meghívni az alárendelt szolgáltatás, és ismeri az Azure AD-bérlő a webes API-t használ. Ennek eredményeképpen ADAL használhat explicit módon kezeli az alkalmazás hitelesítő adatait az Azure AD hitelesítési elősegítése érdekében. ADAL teszi könnyen jogkivonatot beolvasni az Azure AD az alkalmazás ügyfél-hitelesítő adatok használatával, és, hogy a jogkivonat segítségével ellenőrizze mindent lekér a webes API-hoz. Adal-t is kezeli, gyorsítótárazás, és szükség szerint megújítása azt a hozzáférési jogkivonat élettartamát kezelése. Azt mutatja be, ebben a forgatókönyvben kódminta, lásd: [démon console Application webes API](https://github.com/AzureADSamples/Daemon-DotNet).
+Ebben a forgatókönyvben egy fejlesztő rendelkezik egy Azure AD, például egy webes API által biztosított távoli erőforráshoz, amelyet a tooaccess kiszolgálón futó alkalmazást. Ezután a Azure-előfizetéssel rendelkezik, tudja, hogyan tooinvoke hello alárendelt szolgáltatás, és ismeri a hello Azure AD bérlő hello webes API-t használ. Ennek eredményeképpen használhat ADAL toofacilitate-hitelesítés az Azure ad-val explicit módon kezelnek hello alkalmazás hitelesítő adatait. ADAL teszi könnyen tooretrieve Azure ad-jogkivonat hello alkalmazás ügyfél-hitelesítő adatok használatával, majd a token toomake kérelmek toohello web API. ADAL is hello hello élettartama kezelése leírók hozzáférési tokent, gyorsítótárazás, és szükség szerint megújítása azt. Azt mutatja be, ebben a forgatókönyvben kódminta, lásd: [démon console Application tooWeb API](https://github.com/AzureADSamples/Daemon-DotNet).
 
 ### <a name="authenticating-a-confidential-client-application-running-on-a-server-on-behalf-of-a-user"></a>Egy felhasználó nevében a kiszolgálón futó bizalmas ügyfélalkalmazás hitelesítése 
 
-Ebben a forgatókönyvben egy fejlesztő rendelkezik olyan kiszolgálóra, amely az Azure AD, például egy webes API által biztosított távoli erőforráshoz hozzáférésre van szüksége a futó alkalmazást. A kérelem is kell adni egy Azure AD-felhasználó nevében. Ezután a Azure-előfizetéssel rendelkezik, tudja, hogyan lehet meghívni az alsóbb rétegbeli webes API-t, és ismeri az Azure AD bérlői a szolgáltatás által használt. A webalkalmazásnak a felhasználó hitelesítését követően az alkalmazás az Azure AD kérheti le az engedélyezési kód a felhasználó számára. A webes alkalmazás segítségével ADAL szerezze be a hozzáférési tokent, és a frissítési token engedélyezési kódot és az ügyfél hitelesítő adatok használatával az Azure ad-alkalmazáshoz kapcsolódó egy felhasználó nevében. Ha a webes alkalmazás a hozzáférési jogkivonat rendelkezik, akkor meghívhatja a webes API-t, mindaddig, amíg a jogkivonat lejár. A jogkivonat lejár, a webes alkalmazás adal-t a frissítés használatával új tokenre jogkivonatának beszerzéséhez korábban fogadott segítségével. Azt mutatja be, ebben a forgatókönyvben kódminta, lásd: [Web API webes API-t natív ügyfelet](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof).
+Ebben a forgatókönyvben egy fejlesztő rendelkezik egy Azure AD, például egy webes API által biztosított távoli erőforráshoz, amelyet a tooaccess kiszolgálón futó alkalmazást. hello kérelem kell egy Azure AD-felhasználó nevében végrehajtott toobe. Ezután a Azure-előfizetéssel rendelkezik, tudja, hogyan tooinvoke hello alsóbb rétegbeli webes API-t, és ismeri a hello Azure AD bérlő hello szolgáltatás használja. Ha hello felhasználó hitelesített toohello webalkalmazás, az hello alkalmazás érheti el az Azure AD egy hello felhasználó hitelesítési kódját. hello webalkalmazás használható ADAL tooobtain egy hozzáférési és frissítési jogkivonatot egy hello engedélyezési kódot és az ügyfél hitelesítő adatokkal az Azure AD hello alkalmazáshoz rendelt felhasználó nevében. Miután hello webalkalmazás hello access token birtokában van, akkor meghívhatja hello webes API, amíg hello jogkivonat lejár. Amikor hello-token érvényessége lejár, a hello webalkalmazás használhatja ADAL tooget egy új hozzáférési jogkivonat korábban fogadott hello frissítési jogkivonat használatával. Azt mutatja be, ebben a forgatókönyvben kódminta, lásd: [natív ügyfél tooWeb API tooWeb API](https://github.com/Azure-Samples/active-directory-dotnet-webapi-onbehalfof).
 
 ## <a name="see-also"></a>Lásd még:
 
-- [Az Azure Active Directory fejlesztői útmutatója](active-directory-developers-guide.md)
+- [hello Azure Active Directory fejlesztői útmutatója](active-directory-developers-guide.md)
 - [Az Azure Active directory hitelesítési forgatókönyvei](active-directory-authentication-scenarios.md)
 - [Az Azure Active Directory-Kódminták](active-directory-code-samples.md)

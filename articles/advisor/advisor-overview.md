@@ -1,6 +1,6 @@
 ---
-title: "Bevezetés az Azure Advisor |} Microsoft Docs"
-description: "Azure Advisor segítségével optimalizálhatja az Azure-környezetekhez."
+title: az Advisor aaaIntroduction tooAzure |} Microsoft Docs
+description: "Az Azure központi telepítéseket használ, Azure Advisor toooptimize."
 services: advisor
 documentationcenter: NA
 author: kumudd
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/16/2016
 ms.author: kumud
-ms.openlocfilehash: 35678142550f9f887562f311a5e7d9516495cf53
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5d796fc06366221efdb6f1bda39ab3fb676abfd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-advisor"></a>Bevezetés az Azure Advisor
+# <a name="introduction-tooazure-advisor"></a>Bevezetés tooAzure Advisor
 
-Tudnivalók az Azure Advisor és annak főbb funkcióiról, és gyakran feltett kérdésekre adott válaszok.
+Információ az Azure Advisor és annak főbb funkcióiról, és választ toofrequently kérdések.
 
 ## <a name="what-is-advisor"></a>Mi az az Advisor?
-Az Advisor egy személyre szabott felhő tanácsadó, amelynek segítségével hajtsa végre az ajánlott eljárások az Azure-környezetekhez optimalizálása érdekében. Az erőforrás-konfigurációhoz és használat telemetriai adatai elemzi, és az, amelyek javítják a költséghatékonyság, a teljesítmény, a magas rendelkezésre állású és az Azure-erőforrások biztonsági megoldások javasolja.
+Az Advisor, amelynek segítségével személyre szabott felhő tanácsadó kövesse az ajánlott eljárások toooptimize az Azure-környezetekhez. Az erőforrás-konfigurációhoz és használat telemetriai adatai elemzi, és az megoldások, amelyek segítségével javíthatja hello költséghatékonyság, a teljesítmény, a magas rendelkezésre állású és az Azure-erőforrások biztonsági javasolja.
 
 Az Advisor szolgáltatásban a következőket teheti:
 * Szerezze be a proaktív, hajtható végre, és személyre szabott ajánlott eljárások a. 
-* A teljes Azure csökkentése érdekében lehetőségek meghatározása teljesítmény, biztonsági és az erőforrások magas rendelkezésre állás javítása televíziózással töltenek.
+* Hello teljesítmény, a biztonsági és a magas rendelkezésre állás, az erőforrások javítása a teljes Azure töltött lehetőségek tooreduce meghatározása.
 * A javasolt műveletek beágyazott javaslatok beszerzése.
 
-Az Advisor keresztül érheti el a [Azure-portálon](https://aka.ms/azureadvisordashboard). Jelentkezzen be a [portal](https://portal.azure.com), jelölje be **Tallózás**, majd görgessen a **Azure Advisor**. Az Advisor irányítópulton megjelenített személyre szabott javaslatok a kiválasztott előfizetéshez. 
+Az Advisor hello érheti el [Azure-portálon](https://aka.ms/azureadvisordashboard). Jelentkezzen be toohello [portal](https://portal.azure.com), jelölje be **Tallózás**, majd görgessen túl**Azure Advisor**. hello Advisor irányítópulton megjelenített személyre szabott javaslatok a kiválasztott előfizetéshez. 
 
-A javaslatok négy kategóriába oszthatók: 
+hello javaslatok négy kategóriába oszthatók: 
 
-* **Magas rendelkezésre állású**: Győződjön meg arról, az üzleti szempontból kritikus fontosságú alkalmazások folytonosságának javításához. További információkért lásd: [Advisor magas rendelkezésre állású javaslatok](advisor-high-availability-recommendations.md).
+* **Magas rendelkezésre állású**: tooensure és az üzleti szempontból kritikus fontosságú alkalmazások hello folytonosságának javításához. További információkért lásd: [Advisor magas rendelkezésre állású javaslatok](advisor-high-availability-recommendations.md).
 
-* **Biztonsági**: veszélyek és biztonsági problémák vezethet biztonsági rések észlelése. További információkért lásd: [Advisor biztonsági javaslatok](advisor-security-recommendations.md).
+* **Biztonsági**: toodetect fenyegetések és biztonsági rések toosecurity megszegése vezethet. További információkért lásd: [Advisor biztonsági javaslatok](advisor-security-recommendations.md).
 
-* **Teljesítmény**: az alkalmazások a sebesség növelése érdekében. További információkért lásd: [Advisor teljesítmény javaslatok](advisor-performance-recommendations.md).
+* **Teljesítmény**: az alkalmazások tooimprove hello sebességét. További információkért lásd: [Advisor teljesítmény javaslatok](advisor-performance-recommendations.md).
 
-* **Költség**: optimalizálása és a teljes Azure televíziózással töltenek. További információkért lásd: [Advisor költség javaslatok](advisor-cost-recommendations.md).
+* **Költség**: toooptimize, ami csökkenti az általános Azure televíziózással töltenek. További információkért lásd: [Advisor költség javaslatok](advisor-cost-recommendations.md).
 
   ![Az Advisor javaslat típusok](./media/advisor-overview/advisor-all-tab-examples.png)
 
 > [!NOTE]
-> Advisor-javaslatokra szeretne használni, először *az előfizetés regisztrálása* az Advisor szolgáltatásban. Egy előfizetés regisztrálva amikor egy *előfizetés tulajdonosának* elindítja az Advisor irányítópulton, és rákattint a **javaslatok beszerzése** gombra. Ez egy *egyszeri művelet*. Az előfizetés regisztrálása után érheti el, az Advisor-javaslatokra *tulajdonos*, *közreműködő*, vagy *olvasó* előfizetés, egy erőforráscsoport vagy egy adott erőforrás.
+> Advisor-javaslatokra tooaccess, először *az előfizetés regisztrálása* az Advisor szolgáltatásban. Egy előfizetés regisztrálva amikor egy *előfizetés tulajdonosának* elindítja az Advisor-irányítópult és az kattintással hello hello **javaslatok beszerzése** gombra. Ez egy *egyszeri művelet*. Hello előfizetés regisztrálása után érheti el, az Advisor-javaslatokra *tulajdonos*, *közreműködő*, vagy *olvasó* -előfizetéssel, egy erőforráscsoport vagy egy adott erőforrás.
 
-Kattintson a javaslatra kattintva olvashat azokról bővebben. Lehetőség előnyeit, vagy hárítsa el a problémát a végrehajtható műveletek is olvashat. 
+További információk a javaslat toolearn gombra. Is megismerheti műveletek, hogy hajtsa végre a tootake előnyeit, lehetőséget, vagy hárítsa el a problémát. 
 
-Az Advisor ezekre vonatkozó javaslatokat beágyazott műveletek vagy dokumentáció hivatkozásokat. Egy beágyazott művelet végigvezeti Önt egy "az interaktív felhasználói út" végrehajtásához. Dokumentáció hivatkozásra kattintva megtudhatja a dokumentáció, és ismerteti, hogyan lehet manuálisan valósítja meg a műveletet. 
+Az Advisor ezekre vonatkozó javaslatokat beágyazott műveletek vagy dokumentáció hivatkozásokat. Egy beágyazott művelet végigvezeti Önt egy "az interaktív felhasználói út" tooimplement azt. Dokumentáció hivatkozásra kattintva megtudhatja a toodocumentation, amely leírja, hogyan toomanually megvalósítása hello művelet. 
 
-Az Advisor óránként frissíti a javaslatokat. Ha nem szeretné azonnal intézkedhet ajánlása, emlékeztet, hogy egy adott időszakra vonatkozóan, vagy zárja be azt. 
+Az Advisor óránként frissíti a javaslatokat. Ha azonnali beavatkozásra tootake ajánlása, emlékeztet, hogy egy adott időszakra vonatkozóan, vagy zárja be azt. 
 
 ## <a name="frequently-asked-questions"></a>Gyakori kérdések
 
 ### <a name="how-do-i-access-advisor"></a>Hogyan érhetem el az Advisor?
-Az Advisor keresztül érheti el a [Azure-portálon](https://aka.ms/azureadvisordashboard). Jelentkezzen be a [portal](https://portal.azure.com), jelölje be **Tallózás**, majd görgessen a **Azure Advisor**. Az Advisor irányítópulton megjelenített személyre szabott javaslatok a kiválasztott előfizetéshez. 
+Az Advisor hello érheti el [Azure-portálon](https://aka.ms/azureadvisordashboard). Jelentkezzen be toohello [portal](https://portal.azure.com), jelölje be **Tallózás**, majd görgessen túl**Azure Advisor**. hello Advisor irányítópulton megjelenített személyre szabott javaslatok a kiválasztott előfizetéshez. 
 
-Javaslatokat biztosít a virtuális gép erőforráspaneljének keresztül is megtekintheti. Válassza ki a virtuális gépet, és görgessen a menü javaslatokat biztosít. 
+Advisor-javaslatokra hello virtuális gép erőforráspaneljének keresztül is megtekintheti. Válassza ki a virtuális gépet, és görgessen a tooAdvisor javaslatok hello menüben. 
 
-### <a name="what-permissions-do-i-need-to-access-advisor"></a>Milyen engedélyekkel Advisor elérésére van?
+### <a name="what-permissions-do-i-need-tooaccess-advisor"></a>Engedélyek mire van szükségem az tooaccess Advisor?
 
-Advisor-javaslatokra szeretne használni, először *az előfizetés regisztrálása* az Advisor szolgáltatásban. Egy előfizetés regisztrálva amikor egy *előfizetés tulajdonosának* elindítja az Advisor irányítópulton, és rákattint a **javaslatok beszerzése** gombra. Ez egy *egyszeri művelet*. Az előfizetés regisztrálása után érheti el, az Advisor-javaslatokra *tulajdonos*, *közreműködő*, vagy *olvasó* előfizetés, egy erőforráscsoport vagy egy adott erőforrás.
+Advisor-javaslatokra tooaccess, először *az előfizetés regisztrálása* az Advisor szolgáltatásban. Egy előfizetés regisztrálva amikor egy *előfizetés tulajdonosának* elindítja az Advisor-irányítópult és az kattintással hello hello **javaslatok beszerzése** gombra. Ez egy *egyszeri művelet*. Hello előfizetés regisztrálása után érheti el, az Advisor-javaslatokra *tulajdonos*, *közreműködő*, vagy *olvasó* -előfizetéssel, egy erőforráscsoport vagy egy adott erőforrás.
 
 ### <a name="how-often-are-advisor-recommendations-updated"></a>Milyen gyakran történik az Advisor-javaslatokra frissíteni?
 
@@ -76,11 +76,11 @@ Az Advisor virtuális gépek rendelkezésre állási készletek, alkalmazásátj
 
 ### <a name="can-i-snooze-or-dismiss-a-recommendation"></a>Emlékeztet vagy hagyja figyelmen kívül az ajánlás?
 
-Emlékeztet, vagy hagyja figyelmen kívül az ajánlás olyan környezetekben, kattintson a **emlékeztet** gombra vagy hivatkozásra. Megadhat egy időtartamot időszak vagy select **soha** elvetni a javaslat.
+toosnooze vagy elvetésére vonatkozó ajánlást, kattintson a hello **emlékeztet** gombra vagy hivatkozásra. Megadhat egy időtartamot időszak vagy select **soha** toodismiss hello javaslat.
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az Advisor-javaslatokra kapcsolatos további információkért lásd:
+További információ az Advisor-javaslatokra toolearn lásd:
 
 * [Bevezetés az Advisor használatába](advisor-get-started.md)
 * [Magas rendelkezésre állású javaslatokat biztosít](advisor-high-availability-recommendations.md)

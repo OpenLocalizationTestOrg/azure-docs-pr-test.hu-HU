@@ -1,5 +1,5 @@
 ---
-title: "Az Azure AD v2 Android első lépések – tesztelése |} Microsoft Docs"
+title: "aaaAzure AD v2 Android bevezetés - teszt |} Microsoft Docs"
 description: "Android-alkalmazás hogyan szereznie egy hozzáférési jogkivonatot és hívható meg Microsoft Graph API-val vagy a hozzáférési jogkivonatok az Azure Active Directory v2 végpont igénylő API-k"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,33 +15,33 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 6df64f4820f8409bd8897d5ac24f81bffeeef102
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 499f32b46fd44cca0e52179bced49b311135d8de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 ## <a name="test-your-code"></a>Tesztelheti a kódját
 
-1. Az eszköz/emulátor telepíteni a kódot.
-2. Ha elkészült, teszteléséhez, a Microsoft Azure Active Directory (szervezeti fiók) vagy a Microsoft Account (live.com, outlook.com) fiókkal való bejelentkezéshez használt. 
+1. A kód tooyour/emulátor eszköz telepítése.
+2. Amikor készen áll a tootest, használja a Microsoft Azure Active Directory (szervezeti fiók) vagy a Microsoft Account (live.com, outlook.com) fiók toosign a. 
 
 ![A minta képernyőkép](media/active-directory-mobileanddesktopapp-android-test/mainwindow.png)
 <br/><br/>
 ![Bejelentkezés](media/active-directory-mobileanddesktopapp-android-test/usernameandpassword.png)
 
 ### <a name="consent"></a>Hozzájárulás
-Az első alkalommal a felhasználó bejelentkezik az alkalmazáshoz fog jelenni számukra hasonló hozzájárulási képernyő a alatt, ahol azok kell explicit módon fogadja el: 
+hello első alkalommal a felhasználó bejelentkezik tooyour alkalmazás, azok számára jelenik meg a hozzájárulási képernyő hasonló toohello az alábbi, ahol tooexplicitly, fogadja el: 
 
 ![Hozzájárulás](media/active-directory-mobileanddesktopapp-android-test/androidconsent.png)
 
 
 ### <a name="expected-results"></a>Kívánt eredmény elérése érdekében
-Az eredmények Microsoft Graph API hívása a "me" kell megtekintéséhez az beszerzése a felhasználói profil – https://graph.microsoft.com/v1.0/me használt végpontnak. Általános Microsoft Graph-végpontok listáját lásd: a [cikk](https://developer.microsoft.com/graph/docs#common-microsoft-graph-queries).
+Megjelenik egy hívás tooMicrosoft Graph API hello eredménye "me" végpont használt tootooobtain hello felhasználói profil – https://graph.microsoft.com/v1.0/me. Általános Microsoft Graph-végpontok listáját lásd: a [cikk](https://developer.microsoft.com/graph/docs#common-microsoft-graph-queries).
 
 <!--start-collapse-->
 ### <a name="more-information-about-scopes-and-delegated-permissions"></a>További információ a hatókörök és delegált jogosultságokkal sikeresen telepítették
 
-A Microsoft Graph API megköveteli a `user.read` hatókörrel, hogy a felhasználói profil olvasása. Minden egyes a regisztrációs portál regisztrált alkalmazás alapértelmezés szerint automatikusan megjelenik az ebben a hatókörben. Néhány más Microsoft Graph API, továbbá egyéni API-k, a háttér-kiszolgáló további hatókörökkel lehet szükség. Például a Microsoft Graph-hatóköre `Calendars.Read` listát a felhasználók naptáraiban szükséges. A felhasználó naptár kontextusban az alkalmazás eléréséhez, hozzá kell adnia a `Calendars.Read` jogosultságot a az alkalmazás regisztrációs adatait, majd adja hozzá a `Calendars.Read` a hatókör a `acquireTokenSilentAsync` hívható meg. A felhasználó kérheti további hozzájárulásokat azoktól a hatókörök számának növelésével.
+hello Microsoft Graph API szükséges hello `user.read` tooread hello profil hatókörének. Minden egyes a regisztrációs portál regisztrált alkalmazás alapértelmezés szerint automatikusan megjelenik az ebben a hatókörben. Néhány más Microsoft Graph API, továbbá egyéni API-k, a háttér-kiszolgáló további hatókörökkel lehet szükség. Például a Microsoft Graph-hatókör hello `Calendars.Read` van szükség toolist hello felhasználók naptáraiban. Sorrendben tooaccess hello kontextusban az alkalmazás felhasználó naptár, tooadd hello kell `Calendars.Read` delegált engedéllyel toohello alkalmazás regisztrációs adatait, és adja meg az hello `Calendars.Read` hatókör toohello `acquireTokenSilentAsync` hívható meg. hello felhasználói további hozzájárulásokat azoktól hello hatókörök számának növelésével kérheti.
 
 <!--end-collapse-->

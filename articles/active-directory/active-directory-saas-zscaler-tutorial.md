@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált Zscaler |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és Zscaler között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és Zscaler között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,110 +13,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2017
 ms.author: jeedes
-ms.openlocfilehash: 73c81691b68ee820e1d905a17b4f2ab6b6ceb5fd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e2894534f5d6711fd6af618cd699fa5837b5bf26
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-zscaler"></a>Oktatóanyag: Azure Active Directoryval integrált Zscaler
 
-Ebben az oktatóanyagban elsajátíthatja Zscaler integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate Zscaler az Azure Active Directoryval (Azure AD).
 
-Zscaler integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Zscaler integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a Zscaler hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan beolvasása bejelentkezett Zscaler (egyszeri bejelentkezés) számára a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooZscaler rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooZscaler (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs Zscaler, a következőkre van szükség:
+az Azure AD integrálása Zscaler tooconfigure, kell a következő elemek hello:
 
 - Az Azure AD szolgáltatásra
 - Egy Zscaler egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből Zscaler hozzáadása
+1. Hello gyűjteményből Zscaler hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-zscaler-from-the-gallery"></a>A gyűjteményből Zscaler hozzáadása
-Az Azure AD integrálása a Zscaler konfigurálásához kell hozzáadnia Zscaler a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-zscaler-from-hello-gallery"></a>Hello gyűjteményből Zscaler hozzáadása
+tooconfigure hello integrációja Zscaler az Azure AD-be, meg kell tooadd Zscaler hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből Zscaler hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd Zscaler hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **Zscaler**.
+4. Hello keresési mezőbe, írja be a **Zscaler**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscaler-tutorial/tutorial_zscaler_search.png)
 
-5. Az eredmények panelen válassza ki a **Zscaler**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **Zscaler**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscaler-tutorial/tutorial_zscaler_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD egyszeri bejelentkezéshez "Britta Simon" nevű tesztfelhasználó alapján Zscaler.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó Zscaler a felhasználó Azure AD-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a Zscaler közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello megfelelőjére felhasználó Zscaler tooa felhasználó az Azure ad-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó hello Zscaler közötti kapcsolat kapcsolatot kell létrehozni toobe.
 
-Zscaler, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+Zscaler, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést a Zscaler tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés Zscaler-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Proxybeállítások konfigurálása](#configuring-proxy-settings)**  – a Proxybeállítások konfigurálása az Internet Explorerben
-3. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-4. **[Zscaler tesztfelhasználó létrehozása](#creating-a-zscaler-test-user)**  - való Britta Simon valami Zscaler, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-5. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-6. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Proxybeállítások konfigurálása](#configuring-proxy-settings)**  -tooconfigure hello proxybeállítások az Internet Explorerben
+3. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+4. **[Zscaler tesztfelhasználó létrehozása](#creating-a-zscaler-test-user)**  -toohave egy megfelelője a Britta Simon a Zscaler, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+5. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+6. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az Zscaler alkalmazásban.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és konfigurálása egyszeri bejelentkezéshez az Zscaler alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés Zscaler, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezést a Zscaler, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **Zscaler** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **Zscaler** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscaler-tutorial/tutorial_zscaler_samlbase.png)
 
-3. Az a **Zscaler tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **Zscaler tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscaler-tutorial/tutorial_zscaler_url.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:`https://<companyname>.zsclaer.net`
+    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:`https://<companyname>.zsclaer.net`
 
     > [!NOTE] 
-    > Ez az érték nincs valós. Frissítse ezt az értéket a tényleges bejelentkezési URL-címet. Ügyfél [Zscaler ügyfél-támogatási csoport](https://www.zscaler.com/company/contact) lekérni ezt az értéket. 
+    > Ez az érték nincs valós. Frissítse ezt az értéket hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [Zscaler ügyfél-támogatási csoport](https://www.zscaler.com/company/contact) tooget ezt az értéket. 
 
-4. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscaler-tutorial/tutorial_zscaler_certificate.png) 
 
@@ -124,13 +124,13 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscaler-tutorial/tutorial_general_400.png)
 
-6. A a **Zscaler konfigurációs** kattintson **konfigurálása Zscaler** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+6. A hello **Zscaler konfigurációs** kattintson **konfigurálása Zscaler** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscaler-tutorial/tutorial_zscaler_configure.png) 
 
-7. Egy másik webes böngészőablakban jelentkezzen be a ZScaler vállalati webhely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen tooyour ZScaler vállalati hely rendszergazdaként.
 
-8. Kattintson a felső menüben **felügyeleti**.
+8. Hello hello felső menüben kattintson a **felügyeleti**.
    
     ![Felügyeleti](./media/active-directory-saas-zscaler-tutorial/ic800206.png "felügyeleti")
 
@@ -138,7 +138,7 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
             
     ![Felhasználók & hitelesítés kezelése](./media/active-directory-saas-zscaler-tutorial/ic800207.png "felhasználók & hitelesítés kezelése")
 
-10. Az a **hitelesítési beállítások kiválasztása a szervezet** területen tegye a következőket:   
+10. A hello **hitelesítési beállítások kiválasztása a szervezet** csoportjában hajtsa végre az alábbi lépésekkel hello:   
                 
     ![Hitelesítési](./media/active-directory-saas-zscaler-tutorial/ic800208.png "hitelesítés")
    
@@ -146,19 +146,19 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     b. Kattintson a **paramétereinek a konfigurálása SAML-alapú egyszeri bejelentkezés**.
 
-11. Az a **konfigurálása SAML-alapú egyszeri bejelentkezés paraméterek** párbeszédpanel lapon hajtsa végre az alábbi lépéseket, és kattintson **kész**
+11. A hello **konfigurálása SAML-alapú egyszeri bejelentkezés paraméterek** párbeszédpanel lapon hajtsa végre az alábbi lépésekkel hello, és kattintson a **kész**
 
     ![Egyszeri bejelentkezés](./media/active-directory-saas-zscaler-tutorial/ic800209.png "egyszeri bejelentkezés")
     
-    a. Beillesztés a **SAML-alapú egyszeri bejelentkezési URL-címe** értéket, amely az Azure-portálról másolta a **, amelyhez a hitelesítéshez a felhasználóknak legyenek elküldve az SAML-portál URL-címe** szövegmező.
+    a. Beillesztés hello **SAML-alapú egyszeri bejelentkezési URL-címe** értéket, amely akkor másolta, az Azure-portálon hello hello **hello SAML Portal toowhich felhasználók URL-CÍMÉT a hitelesítéshez küldött** szövegmező.
     
-    b. Az a **attribútumot a bejelentkezési nevet tartalmazó** szövegmezőhöz típus **NameID**.
+    b. A hello **attribútumot a bejelentkezési nevet tartalmazó** szövegmezőhöz típus **NameID**.
     
-    c. A letöltött tanúsítvány feltöltése, kattintson a **Zscaler pem**.
+    c. tooupload a letöltött tanúsítvány kattintson **Zscaler pem**.
     
     d. Válassza ki **SAML-alapú automatikus-kiépítés engedélyezése**.
 
-12. Az a **felhasználói hitelesítés beállítása** párbeszédpanel lapon, a következő lépésekkel:
+12. A hello **felhasználói hitelesítés beállítása** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
 
     ![Felügyeleti](./media/active-directory-saas-zscaler-tutorial/ic800210.png "felügyeleti")
     
@@ -167,79 +167,79 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
     b. Kattintson a **aktiválásához**.
 
 ## <a name="configuring-proxy-settings"></a>Proxybeállítások konfigurálása
-### <a name="to-configure-the-proxy-settings-in-internet-explorer"></a>A Proxybeállítások konfigurálása az Internet Explorerben
+### <a name="tooconfigure-hello-proxy-settings-in-internet-explorer"></a>az Internet Explorer tooconfigure hello proxykiszolgáló beállításai
 
 1. Start **Internet Explorer**.
 
-2. Válassza ki **Internetbeállítások** a a **eszközök** menü megnyitása a **Internetbeállítások** párbeszédpanel.   
+2. Válassza ki **Internetbeállítások** a hello **eszközök** menü megnyitása hello **Internetbeállítások** párbeszédpanel.   
     
      ![Internetbeállítások](./media/active-directory-saas-zscaler-tutorial/ic769492.png "Internetbeállítások")
 
-3. Kattintson a **kapcsolatok** fülre.   
+3. Kattintson a hello **kapcsolatok** fülre.   
   
      ![Kapcsolatok](./media/active-directory-saas-zscaler-tutorial/ic769493.png "kapcsolatok")
 
-4. Kattintson a **LAN-beállítások** megnyitásához a **LAN-beállítások** párbeszédpanel.
+4. Kattintson a **LAN-beállítások** tooopen hello **LAN-beállítások** párbeszédpanel.
 
-5. A Proxy server területen tegye a következőket:   
+5. A Proxy server szakasz hello hajtsa végre a lépéseket követve hello:   
    
     ![Proxykiszolgáló](./media/active-directory-saas-zscaler-tutorial/ic769494.png "proxykiszolgáló")
 
     a. Válassza ki **proxykiszolgálót használni a helyi hálózaton**.
 
-    b. Írja be a címet szövegmező **gateway.zscaler.net**.
+    b. Hello cím szövegmezőben, írja be a **gateway.zscaler.net**.
 
-    c. Írja be a Port szövegmező **80**.
+    c. Hello Port szövegmezőben, írja be a **80**.
 
     d. Válassza ki **proxykiszolgáló kihagyása helyi címek esetén**.
 
-    e. Kattintson a **OK** bezárásához a **helyi hálózati (LAN) beállításai** párbeszédpanel.
+    e. Kattintson a **OK** tooclose hello **helyi hálózati (LAN) beállításai** párbeszédpanel.
 
-6. Kattintson a **OK** bezárásához a **Internetbeállítások** párbeszédpanel.
+6. Kattintson a **OK** tooclose hello **Internetbeállítások** párbeszédpanel.
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscaler-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscaler-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscaler-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-zscaler-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-zscaler-test-user"></a>Zscaler tesztfelhasználó létrehozása
 
-Ahhoz, hogy az Azure AD-felhasználók ZScaler bejelentkezni, akkor ki kell építenie ZScaler.  
-ZScaler, ha egy kézi tevékenység.
+az Azure AD tooenable felhasználók toolog tooZScaler, a kiépített tooZScaler kell lenniük.  
+ZScaler hello esetben egy kézi tevékenység.
 
-### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>Adja meg a felhasználók átadása, hajtsa végre az alábbi lépéseket:
+### <a name="tooconfigure-user-provisioning-perform-hello-following-steps"></a>tooconfigure felhasználók átadásához, hajtsa végre a lépéseket követve hello:
 
-1. Jelentkezzen be a **Zscaler** bérlő.
+1. Jelentkezzen be tooyour **Zscaler** bérlő.
 
 2. Kattintson a **felügyeleti**.   
    
@@ -249,38 +249,38 @@ ZScaler, ha egy kézi tevékenység.
         
      ![Adja hozzá](./media/active-directory-saas-zscaler-tutorial/ic781036.png "hozzáadása")
 
-4. Az a **felhasználók** lapra, majd **Hozzáadás**.
+4. A hello **felhasználók** lapra, majd **Hozzáadás**.
       
     ![Adja hozzá](./media/active-directory-saas-zscaler-tutorial/ic781037.png "hozzáadása")
 
-5. A felhasználó hozzáadása a szakaszban a következő lépésekkel:
+5. A felhasználó hozzáadása szakasz hello hajtsa végre a lépéseket követve hello:
         
     ![Felhasználó hozzáadása](./media/active-directory-saas-zscaler-tutorial/ic781038.png "felhasználó hozzáadása")
    
-    a. Típus a **UserID**, **felhasználó megjelenített neve**, **jelszó**, **jelszó megerősítése**, majd válassza ki **csoportok**és a **részleg** egy érvényes AAD-fióknevet, amelyet kiépítését.
+    a. Típus hello **UserID**, **felhasználó megjelenített neve**, **jelszó**, **jelszó megerősítése**, majd válassza ki **csoportok**és hello **részleg** tooprovision kívánt fiók érvényes aad-ben.
 
     b. Kattintson a **Save** (Mentés) gombra.
 
 > [!NOTE]
-> Bármely más ZScaler felhasználói fiók létrehozása eszközök vagy rendelkezés AAD felhasználói fiókokhoz ZScaler által nyújtott API-k.
+> Bármely más ZScaler felhasználói fiók létrehozása eszközök vagy ZScaler tooprovision által nyújtott API-k AAD felhasználói fiókokat.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés Zscaler Azure egyszeri bejelentkezéshez használandó.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooZscaler megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése Zscaler, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooZscaler, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **Zscaler**.
+2. Hello alkalmazások listában válassza ki a **Zscaler**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-zscaler-tutorial/tutorial_zscaler_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -288,7 +288,7 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -296,14 +296,14 @@ Ebben a szakaszban engedélyezze Britta Simon által biztosított hozzáférés 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Ha a hozzáférési panelen Zscaler csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az Zscaler alkalmazására.
-A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Ha a hozzáférési Panel hello hello Zscaler csempe gombra kattint, automatikusan bejelentkezett tooyour Zscaler alkalmazás szerezheti be.
+További információ a hozzáférési Panel hello: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

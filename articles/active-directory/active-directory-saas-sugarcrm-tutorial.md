@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált cukor CRM |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és cukor CRM között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és cukor CRM között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,113 +13,113 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: jeedes
-ms.openlocfilehash: c27aef24e859522b8001ecb747906abdca14d87a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 108d2f8125e410743ee7bc48883a1d0b00602615
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-sugar-crm"></a>Oktatóanyag: Azure Active Directoryval integrált cukor CRM
 
-Ebben az oktatóanyagban elsajátíthatja cukor CRM integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate cukor CRM, Azure Active Directory (Azure AD).
 
-Cukor CRM integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+Cukor CRM integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Szabályozhatja az Azure AD, aki hozzáfér a cukor CRM-hez
-- Az Azure AD-fiókok a engedélyezheti a felhasználóknak, hogy automatikusan lekérni bejelentkezett a cukor CRM-hez (egyszeri bejelentkezés)
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooSugar CRM rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooSugar CRM (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Azure AD-integráció konfigurálása a cukor CRM, a következő elemeket kell:
+tooconfigure cukor CRM az Azure AD integrálása, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
 - Egy cukor CRM egyszeri bejelentkezés engedélyezve van az előfizetés
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. A gyűjteményből cukor CRM hozzáadása
+1. Hello gyűjteményből cukor CRM hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-sugar-crm-from-the-gallery"></a>A gyűjteményből cukor CRM hozzáadása
-Az Azure AD integrálása a cukor CRM konfigurálásához kell hozzáadnia cukor CRM a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-sugar-crm-from-hello-gallery"></a>Hello gyűjteményből cukor CRM hozzáadása
+tooconfigure hello integrációs cukor CRM az Azure AD-be, meg kell tooadd cukor CRM hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből cukor CRM hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd cukor CRM hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **cukor CRM**.
+4. Hello keresési mezőbe, írja be a **cukor CRM**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_sugarcrm_search.png)
 
-5. Az eredmények panelen válassza ki a **cukor CRM**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **cukor CRM**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_sugarcrm_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, konfigurálás és tesztelés az Azure AD az egyszeri bejelentkezés cukor CRM "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD meg kell tudja, hogy mi a párjukhoz felhasználó cukor CRM a felhasználó Azure AD-ben. Ez azt jelenti egy Azure AD-felhasználó és a kapcsolódó felhasználó a cukor CRM közötti kapcsolat kapcsolatot kell létrehozni.
+Az egyszeri bejelentkezés toowork az Azure AD kell tooknow milyen hello tartozó felhasználói cukor CRM tooa felhasználó az Azure ad-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználói hello cukor CRM közötti kapcsolat kapcsolatot kell toobe létrejött.
 
-A cukor CRM, rendelje az értékét a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+A cukor CRM rendelje hello hello értékét **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést a cukor CRM tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés cukor CRM-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[Cukor CRM tesztfelhasználó létrehozása](#creating-a-sugar-crm-test-user)**  - való egy megfelelője a Britta Simon cukor CRM-hez, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[Cukor CRM tesztfelhasználó létrehozása](#creating-a-sugar-crm-test-user)**  -toohave egy megfelelője a Britta Simon a csatolt toohello az Azure AD felhasználói ábrázolása cukor CRM-ben.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és konfigurálása egyszeri bejelentkezéshez az cukor CRM alkalmazásban.
+Ebben a szakaszban az Azure AD az egyszeri bejelentkezés az Azure-portálon hello engedélyezése és konfigurálása egyszeri bejelentkezéshez az cukor CRM alkalmazásban.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés cukor CRM, hajtsa végre az alábbi lépéseket:**
+**az Azure AD tooconfigure egyszeri bejelentkezés cukor CRM, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **cukor CRM** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **cukor CRM** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_sugarcrm_samlbase.png)
 
-3. Az a **cukor CRM tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **cukor CRM tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_sugarcrm_url.png)
 
-    Az a **bejelentkezési URL-cím** szövegmező, adja meg a következő minta használatával URL-címe:
+    A hello **bejelentkezési URL-cím** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:
     | |
     |--|
     | `https://<companyname>.sugarondemand.com` |
     | `https://<companyname>.trial.sugarcrm` |
 
     > [!NOTE] 
-    > Az érték nincs valós. Frissítse az értéket a tényleges bejelentkezési URL-címet. Ügyfél [cukor CRM ügyfél-támogatási csoport](https://support.sugarcrm.com/) az értéket be kell olvasni. 
+    > hello érték nincs valós. Frissítés hello értékének hello tényleges bejelentkezési URL-CÍMÉT. Ügyfél [cukor CRM ügyfél-támogatási csoport](https://support.sugarcrm.com/) tooget hello érték. 
  
-4. A a **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a tanúsítványfájlt, a számítógépen.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **tanúsítvány (Base64)** , és mentse a hello tanúsítványfájlt a számítógépen.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_sugarcrm_certificate.png) 
 
@@ -127,17 +127,17 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_general_400.png)
 
-6. A a **cukor CRM konfigurációs** kattintson **konfigurálása cukor CRM** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+6. A hello **cukor CRM konfigurációs** kattintson **cukor CRM konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_sugarcrm_configure.png) 
 
-7. Egy másik webes böngészőablakban jelentkezzen be a cukor CRM vállalati webhely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen tooyour cukor CRM vállalati hely rendszergazdaként.
 
-8. Ugrás a **Admin**.
+8. Nyissa meg túl**Admin**.
    
     ![Felügyeleti](./media/active-directory-saas-sugarcrm-tutorial/ic795888.png "rendszergazda")
 
-9. Az a **felügyeleti** kattintson **jelszókezelés**.
+9. A hello **felügyeleti** kattintson **jelszókezelés**.
    
     ![Felügyeleti](./media/active-directory-saas-sugarcrm-tutorial/ic795889.png "felügyeleti")
 
@@ -145,112 +145,112 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
    
     ![Felügyeleti](./media/active-directory-saas-sugarcrm-tutorial/ic795890.png "felügyeleti")
 
-11. Az a **SAML-alapú hitelesítés** területen tegye a következőket:
+11. A hello **SAML-alapú hitelesítés** csoportjában hajtsa végre az alábbi lépésekkel hello:
    
     ![SAML-alapú hitelesítés](./media/active-directory-saas-sugarcrm-tutorial/ic795891.png "SAML-alapú hitelesítés")  
  
-    a. A a **bejelentkezési URL-cím** szövegmezőhöz illessze be az értékét **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálon másolta.
+    a. A hello **bejelentkezési URL-cím** szövegmezőhöz Beillesztés hello értékének **SAML-alapú egyszeri bejelentkezési URL-címe**, amely Azure-portálon másolta.
   
-    b. A a **SLO URL-cím** szövegmezőhöz illessze be az értékét **Sign-Out URL-cím**, amely az Azure-portálon másolta.
+    b. A hello **SLO URL-cím** szövegmezőhöz Beillesztés hello értékének **Sign-Out URL-cím**, amely Azure-portálon másolta.
   
-    c. Nyissa meg a base-64 kódolású tanúsítvány a Jegyzettömbben, annak tartalmának másolása a vágólapra és illessze be a teljes tanúsítványt **X.509 tanúsítvány** szövegmező.
+    c. Nyissa meg a base-64 kódolású tanúsítvány a Jegyzettömbben, másolása hello a vágólapra tartalma, és illessze be a teljes tanúsítvány hello **X.509 tanúsítvány** szövegmező.
   
     d. Kattintson a **Save** (Mentés) gombra.
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-sugarcrm-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-sugarcrm-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-sugarcrm-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-sugarcrm-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-sugar-crm-test-user"></a>Cukor CRM tesztfelhasználó létrehozása
 
-Ahhoz, hogy az Azure AD-felhasználók cukor CRM bejelentkezni, akkor ki kell építenie a cukor CRM-hez.
+Rendelés tooenable az Azure AD felhasználók toolog a tooSugar CRM kiosztott tooSugar CRM kell lennie.
 
-Cukor CRM, ha egy kézi tevékenység.
+Cukor CRM hello esetben egy kézi tevékenység.
 
-**Felhasználói fiók létrehozásához hajtsa végre az alábbi lépéseket:**
+**tooprovision egy felhasználói fiókot, hajtsa végre a következő lépéseket hello:**
 
-1. Jelentkezzen be a **cukor CRM** vállalati hely rendszergazdaként.
+1. Jelentkezzen be tooyour **cukor CRM** vállalati hely rendszergazdaként.
 
-2. Ugrás a **Admin**.
+2. Nyissa meg túl**Admin**.
    
     ![Felügyeleti](./media/active-directory-saas-sugarcrm-tutorial/ic795888.png "rendszergazda")
 
-3. Az a **felügyeleti** kattintson **felhasználókezelés**.
+3. A hello **felügyeleti** kattintson **felhasználókezelés**.
    
     ![Felügyeleti](./media/active-directory-saas-sugarcrm-tutorial/ic795893.png "felügyeleti")
 
-4. Ugrás a **felhasználók \> új felhasználó létrehozása**.
+4. Nyissa meg túl**felhasználók \> új felhasználó létrehozása**.
    
     ![Új felhasználó létrehozása](./media/active-directory-saas-sugarcrm-tutorial/ic795894.png "új felhasználó létrehozása")
 
-5. Az a **felhasználói profil** lapra, hajtsa végre a következő lépéseket:
+5. A hello **felhasználói profil** lapra, hajtsa végre az alábbi lépésekkel hello:
    
     ![Új felhasználó](./media/active-directory-saas-sugarcrm-tutorial/ic795895.png "új felhasználó")
 
-    a. Típus a **felhasználónév**, **Vezetéknév**, és **e-mail cím** a kapcsolódó szövegmezők be egy érvényes Azure Active Directory felhasználó.
+    a. Típus hello **felhasználónév**, **Vezetéknév**, és **e-mail cím** hello be egy érvényes Azure Active Directory felhasználó kapcsolatos szövegmezőből.
   
 6. Mint **állapot**, jelölje be **aktív**.
 
-7. A jelszó lapon hajtsa végre a következő lépéseket:
+7. Hello jelszó lapon hajtsa végre a lépéseket követve hello:
    
     ![Új felhasználó](./media/active-directory-saas-sugarcrm-tutorial/ic795896.png "új felhasználó")
 
-    a. A kapcsolódó szövegmezőbe írja be a jelszót.
+    a. Írja be a jelszót hello hello be kapcsolódó szövegmező.
 
     b. Kattintson a **Save** (Mentés) gombra.
 
 >[!NOTE]
->Bármely más cukor CRM felhasználói fiók létrehozása eszközök, vagy rendelkezés AAD felhasználói fiókokhoz cukor CRM által nyújtott API-k. 
+>Bármely más cukor CRM felhasználói fiók létrehozása eszközök vagy cukor CRM tooprovision által nyújtott API-k AAD felhasználói fiókokat. 
 > 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban Britta Simon használandó által biztosított hozzáférés cukor CRM, Azure egyszeri bejelentkezés engedélyezése.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooSugar CRM megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése cukor CRM, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooSugar CRM, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **cukor CRM**.
+2. Hello alkalmazások listában válassza ki a **cukor CRM**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-sugarcrm-tutorial/tutorial_sugarcrm_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -258,7 +258,7 @@ Ebben a szakaszban Britta Simon használandó által biztosított hozzáférés 
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -266,13 +266,13 @@ Ebben a szakaszban Britta Simon használandó által biztosított hozzáférés 
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ez a szakasz célja tesztelése az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen.
+hello ebben a szakaszban célja tootest az egyszeri bejelentkezés konfigurációs használatával hello a hozzáférési Panel.
 
-Ha a hozzáférési panelen cukor CRM csempére kattint, akkor kell beolvasása automatikusan bejelentkezett az cukor CRM-alkalmazás.
+Ha hello cukor CRM csempe a hozzáférési Panel hello gombra kattint, kapja meg automatikusan bejelentkezett tooyour cukor CRM-alkalmazás.
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 

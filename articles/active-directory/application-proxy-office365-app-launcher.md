@@ -1,6 +1,6 @@
 ---
-title: "Közzétett alkalmazások egyéni kezdőlapját beállítása az Azure AD-alkalmazásproxy használatával |} Microsoft Docs"
-description: "Ismerteti az alapvető tudnivalók az Azure AD-alkalmazásproxy-összekötő"
+title: "közzétett alkalmazások az Azure AD-alkalmazásproxy használatával egyéni kezdőlapját aaaSet |} Microsoft Docs"
+description: "Magában foglalja az hello alapvető tudnivalók az Azure AD-alkalmazásproxy-összekötő"
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,85 +15,85 @@ ms.date: 08/17/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 9069166259265f5d2b43043b75039e239f397f6c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5bb695e904d285c3b440520f107c7bf63ba5cac9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-a-custom-home-page-for-published-apps-by-using-azure-ad-application-proxy"></a>Közzétett alkalmazások egyéni kezdőlapját beállítása az Azure AD-alkalmazásproxy használatával
 
-A cikk ismerteti a felhasználók számára egy egyéni kezdőlap közvetlen alkalmazások konfigurálása. Amikor közzétesz egy alkalmazást az alkalmazásproxy, be kell állítani egy belső URL-Címeket de időnként nem a lapon, a felhasználók először kell megjelennie. Egy egyéni kezdőlap beállításáról, hogy a felhasználók Ugrás a jobb oldalon, az alkalmazások az Azure Active Directory-hozzáférési panelre vagy az Office 365 alkalmazás indító elérésekor.
+Ez a cikk azt ismerteti, hogyan tooconfigure alkalmazások toodirect felhasználók tooa egyéni kezdőlapján. Amikor közzétesz egy alkalmazást a Proxy, egy belső URL-Címének beállítása, de egyes esetekben a rendszer hello lapot a felhasználók először kell megjelennie. Egy egyéni kezdőlap beállításáról, hogy a felhasználók toohello jobb oldal nyissa meg a hello Azure Active Directory hozzáférési Panel vagy Office 365 hello alkalmazás indító hello alkalmazások elérésekor.
 
-Amikor a felhasználók indítsa el az alkalmazást, azokat a legfelső szintű tartomány URL-címet a közzétett alkalmazás alapértelmezés szerint van irányítva. Általában be van állítva az kezdőlapja a kezdőlap URL-CÍMÉT. Az Azure AD PowerShell modul segítségével egyéni kezdőlap URL-címek megadása, ha azt szeretné, hogy a felhasználók számára az alkalmazáson belül egy adott lap meg. 
+Amikor felhasználók hello alkalmazást, akkor még útmutatása alapján alapértelmezett toohello legfelső szintű tartomány URL-hello közzétett alkalmazást. általában be van állítva az hello kezdőlapja hello kezdőlap URL-CÍMÉT. Hello Azure AD PowerShell modul toodefine egyéni kezdőlap URL-címek használja, ha azt szeretné, hogy app felhasználók tooland hello alkalmazáson belül egy adott oldalon. 
 
 Példa:
-- A vállalati hálózaton belüli felhasználók Ugrás *https://ExpenseApp/login/login.aspx* jelentkezzen be, és az alkalmazás eléréséhez.
-- Mivel más eszközök, például alkalmazásproxy a mappaszerkezet legfelső szintjén hozzáférésre van szüksége a lemezképeket, tesz közzé az alkalmazást *https://ExpenseApp* az belső URL-címet.
-- Az alapértelmezett külső URL-címe *https://ExpenseApp-contoso.msappproxy.net*, amely nem veszi a felhasználókat, hogy a bejelentkezési oldalon.  
-- Állítsa be *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* az kezdőlap URL-címet kell biztosítani a felhasználóknak zökkenőmentes élményt. 
+- A vállalati hálózaton belüli felhasználók nyissa meg túl*https://ExpenseApp/login/login.aspx* a toosign és az alkalmazás eléréséhez.
+- Mivel más eszközök, például, hogy az alkalmazásproxy kell hello felső szintjén hello mappaszerkezet tooaccess képek, hello alkalmazás közzététele *https://ExpenseApp* hello belső URL-cím szerint.
+- külső URL-cím alapértelmezett hello *https://ExpenseApp-contoso.msappproxy.net*, amely nem veszi a felhasználók toohello bejelentkezési oldalán.  
+- Állítsa be *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* , hello kezdőlap URL-cím toogive a felhasználók zökkenőmentes élményt. 
 
 >[!NOTE]
->Amikor a felhasználók hozzáférést adhat közzétett alkalmazások, az alkalmazások jelennek meg a [Azure AD hozzáférési Panel](active-directory-saas-access-panel-introduction.md) és a [Office 365 alkalmazás indító](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).
+>Amikor a felhasználók hozzáférést toopublished alkalmazásokat adni, hello jelennek meg a hello alkalmazások [Azure AD hozzáférési Panel](active-directory-saas-access-panel-introduction.md) és hello [Office 365 alkalmazás indító](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).
 
 ## <a name="before-you-start"></a>Előkészületek
 
-Mielőtt a kezdőlap URL-Címének beállításához vegye figyelembe az alábbi követelményeknek:
+Hello kezdőlap URL-Címének beállítása előtt tartsa szem előtt tartva hello követelményeknek:
 
-* Győződjön meg arról, hogy a megadott elérési út egy altartomány elérési útját a legfelső szintű tartomány URL-CÍMÉT.
+* Győződjön meg arról, hogy hello megadott elérési út egy altartomány elérési utat az hello legfelső szintű tartomány URL-cím.
 
-  Ha a legfelső szintű tartományi URL-CÍMÉT, például https://apps.contoso.com/app1/, a kezdőlap URL-címet, konfigurálnia kell kezdődnie https://apps.contoso.com/app1/.
+  Ha hello gyökértartomány URL-CÍMÉT, például https://apps.contoso.com/app1/, hello kezdőlap URL-címet meg kell kezdődnie https://apps.contoso.com/app1/.
 
-* Ha módosítja a közzétett alkalmazáshoz, a módosítás lehet, hogy állítsa vissza a kezdőlap URL-címet. Ha a jövőben frissíti az alkalmazás, inkább újbóli ellenőrzéséhez és, ha szükséges, frissítse a kezdőlap URL-címe.
+* Ha olyan módosítást toohello közzétett alkalmazás, hello módosítása előfordulhat, hogy alaphelyzetbe hello értékének hello kezdőlap URL-CÍMÉT. A jövőbeli hello hello alkalmazás frissítésekor kell újbóli ellenőrzéséhez és, ha szükséges, frissítse a hello kezdőlap URL-címe.
 
-## <a name="change-the-home-page-in-the-azure-portal"></a>Módosítsa a kezdőlap, az Azure-portálon
+## <a name="change-hello-home-page-in-hello-azure-portal"></a>Hello kezdőlap módosítása a hello Azure-portálon
 
-1. Jelentkezzen be az [Azure Portal](https://portal.azure.com) felületére rendszergazdaként.
-2. Navigáljon a **Azure Active Directory** > **App regisztrációk** , és válassza ki az alkalmazást a listából. 
-3. Válassza ki **tulajdonságok** beállításai közül.
-4. Frissítés a **Kezdőlap** mező az új elérési úttal. 
+1. Jelentkezzen be toohello [Azure-portálon](https://portal.azure.com) rendszergazdaként.
+2. Keresse meg a túl**Azure Active Directory** > **App regisztrációk** , és válassza ki az alkalmazás hello listáról. 
+3. Válassza ki **tulajdonságok** hello beállításai közül.
+4. Frissítés hello **Kezdőlap** mező az új elérési úttal. 
 
    ![Új kezdőlap URL-Címének megadása](./media/application-proxy-office365-app-launcher/homepage.png)
 
 5. Válassza ki **mentése**
 
-## <a name="change-the-home-page-with-powershell"></a>Módosítsa a kezdőlap a PowerShell használatával
+## <a name="change-hello-home-page-with-powershell"></a>Hello kezdőlap módosítása a Powershellel
 
-### <a name="install-the-azure-ad-powershell-module"></a>Az Azure AD PowerShell modul telepítése
+### <a name="install-hello-azure-ad-powershell-module"></a>Hello Azure AD PowerShell modul telepítése
 
-Mielőtt egy egyéni kezdőlap URL-Címének megadása PowerShell segítségével, telepítse az Azure AD PowerShell modult. A csomagot a programot letöltheti a [PowerShell-galériában](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), amely használja, a Graph API-végpont. 
+Egy egyéni kezdőlap URL-Címének megadása PowerShell segítségével, előtt telepítse az hello Azure AD PowerShell modult. Hello csomag letölthető hello [PowerShell-galériában](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), mely által használt hello Graph API-végpont. 
 
-A csomag telepítéséhez kövesse az alábbi lépéseket:
+tooinstall hello csomag, kövesse az alábbi lépéseket:
 
-1. Nyissa meg a standard PowerShell-ablakot, és futtassa a következő parancsot:
+1. Nyissa meg a standard PowerShell-ablakot, és futtassa a parancsot a következő hello:
 
     ```
      Install-Module -Name AzureAD
     ```
-    Ha a parancs fut, a nem rendszergazda, használja a `-scope currentuser` lehetőséget.
-2. Válassza ki a telepítés során **Y** Nuget.org két csomagok telepítését. Mindkét csomagot szükség. 
+    Ha hello parancsot futtatja, a nem rendszergazda, akkor hello `-scope currentuser` lehetőséget.
+2. Hello a telepítés során válassza **Y** tooinstall két Nuget.org a csomagokat. Mindkét csomagot szükség. 
 
-### <a name="find-the-objectid-of-the-app"></a>Az alkalmazás ObjectID keresése
+### <a name="find-hello-objectid-of-hello-app"></a>Hello ObjectID hello alkalmazás keresése
 
-Szerezze be az alkalmazás ObjectID, majd keresse meg az alkalmazás által a kezdőlap.
+Hello ObjectID hello alkalmazás beszerzése, és keressen a hello alkalmazás által a kezdőlap.
 
-1. Nyissa meg a Powershellt, és importálja az Azure AD-modullal.
+1. Nyissa meg a Powershellt, és az Azure AD hello modul importálásához.
 
     ```
     Import-Module AzureAD
     ```
 
-2. Jelentkezzen be az Azure AD-modullal a bérlői rendszergazda felhasználóként.
+2. Jelentkezzen be toohello az Azure AD-modullal hello bérlői rendszergazdaként.
 
     ```
     Connect-AzureAD
     ```
-3. Megkeresheti az alkalmazást, a kezdőlap URL-címe alapján. Az URL-címet az található a portál a **Azure Active Directory** > **vállalati alkalmazások** > **összes alkalmazás**. Ez a példa *sharepoint-iddemo*.
+3. A kezdőlap URL-címe alapján hello alkalmazás megkereséséhez. Hello URL-címet az található hello portal túl címen**Azure Active Directory** > **vállalati alkalmazások** > **összes alkalmazás**. Ez a példa *sharepoint-iddemo*.
 
     ```
     Get-AzureADApplication | where { $_.Homepage -like “sharepoint-iddemo” } | fl DisplayName, Homepage, ObjectID
     ```
-4. Az itt látható egy hasonló eredményt kapja meg. Másolja a ObjectID globálisan egyedi Azonosítót a következő szakaszban található.
+4. Amely hasonló toohello itt látható egy eredményt kapja meg. Másolja a hello ObjectID GUID toouse hello a következő szakaszban.
 
     ```
     DisplayName : SharePoint
@@ -101,44 +101,44 @@ Szerezze be az alkalmazás ObjectID, majd keresse meg az alkalmazás által a ke
     ObjectId    : 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4
     ```
 
-### <a name="update-the-home-page-url"></a>A kezdőlap URL-Címének frissítése
+### <a name="update-hello-home-page-url"></a>Hello kezdőlap URL-Címének frissítése
 
-A ugyanazon PowerShell-modul az 1. lépésben használt hajtsa végre a következő lépéseket:
+1. lépésben használt ugyanazon PowerShell-modul hello elvégezni hello a következő lépéseket:
 
-1. Győződjön meg arról, hogy rendelkezik a megfelelő alkalmazást, és cserélje le *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* rendelkező, az előző lépésben másolt objektumazonosító.
+1. Győződjön meg arról, hogy rendelkezik-e hello javítsa ki az alkalmazást, és cserélje le *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* a hello ObjectID hello az előző lépésben másolt.
 
     ```
     Get-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4.
     ```
 
- Most, hogy az alkalmazás megerősítését készen áll a kezdőlap, az alábbiak szerint frissítse.
+ Most, hogy hello app megerősítését most készen áll a tooupdate hello kezdőlap, az alábbiak szerint.
 
-2. Hozzon létre egy üres alkalmazásobjektum ahhoz, hogy engedélyezni szeretné a módosításokat. Ez a változó a frissíteni kívánt értékeket tartalmazza. Ezt a lépést nem jön létre.
+2. Hozzon létre egy üres alkalmazás objektum toohold, amelyet az toomake hello módosításokat. Ezt a változót, amelyet az tooupdate hello értékeket tartalmazza. Ezt a lépést nem jön létre.
 
     ```
     $appnew = New-Object “Microsoft.Open.AzureAD.Model.Application”
     ```
 
-3. A kezdőlap URL-Címének beállítása a kívánt értékre. Az érték lehet egy altartomány elérési utat a közzétett alkalmazás. Például, ha módosítja a kezdőlap URL-CÍMÉT *https://sharepoint-iddemo.msappproxy.net/* való *https://sharepoint-iddemo.msappproxy.net/hybrid/*, az alkalmazásaik felhasználóit közvetlenül Ugrás az egyéni webhelyre.
+3. Hello kezdőlap URL-cím toohello érték, amelyet állítható be. hello érték lehet egy altartomány hello közzétett alkalmazás elérési útját. Például, ha módosítja hello kezdőlap URL-CÍMÉT *https://sharepoint-iddemo.msappproxy.net/* túl*https://sharepoint-iddemo.msappproxy.net/hybrid/*, az alkalmazásaik felhasználóit lépjen közvetlenül toohello egyéni Kezdőlap.
 
     ```
     $homepage = “https://sharepoint-iddemo.msappproxy.net/hybrid/”
     ```
-4. A frissítéshez a GUID azonosítója (ObjectID) használatával "1. lépés: az alkalmazás ObjectID található."
+4. Ellenőrizze a frissítés hello hello GUID azonosítója (ObjectID) a használatával "1. lépés: keresés hello hello alkalmazás ObjectID."
 
     ```
     Set-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4 -Homepage $homepage
     ```
-5. Győződjön meg arról, hogy sikeres volt-e a módosítást, indítsa újra az alkalmazást.
+5. tooconfirm, hogy hello módosítása sikeres volt, indítsa újra a hello alkalmazást.
 
     ```
     Get-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4
     ```
 
 >[!NOTE]
->Az alkalmazás végzett módosításokat előfordulhat, hogy alaphelyzetbe állítja a kezdőlap URL-CÍMÉT. Ha alaphelyzetbe állítja a kezdőlap URL-CÍMÉT, ismételje meg a 2.
+>Bármely végrehajtott változtatásokat toohello app előfordulhat, hogy alaphelyzetbe hello kezdőlap URL-címe. Ha alaphelyzetbe állítja a kezdőlap URL-CÍMÉT, ismételje meg a 2.
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Az Azure AD alkalmazásproxy SharePoint távoli hozzáférés engedélyezése](application-proxy-enable-remote-access-sharepoint.md)
-- [Alkalmazásproxy engedélyezése az Azure-portálon](active-directory-application-proxy-enable.md)
+- [Távelérés tooSharePoint az Azure AD alkalmazásproxy engedélyezése](application-proxy-enable-remote-access-sharepoint.md)
+- [Alkalmazásproxy engedélyezése az Azure-portálon hello](active-directory-application-proxy-enable.md)

@@ -1,6 +1,6 @@
 ---
-title: "Hozzon létre egy REST API-t az Azure-ban az ASP.NET és az SQL DB |} Microsoft Docs"
-description: "Ez az oktatóanyag útmutatást ad meg, hogy az ASP.NET Web API az Azure-webalkalmazás használ a Visual Studio használatával alkalmazások központi telepítése."
+title: "az Azure-ban az ASP.NET és az SQL-adatbázis egy REST API aaaCreate |} Microsoft Docs"
+description: "Egy oktatóanyag, amely útmutatást ad meg hogyan az alkalmazások által használt toodeploy hello Visual Studio használatával ASP.NET Web API tooan Azure-webalkalmazásban."
 services: app-service\web
 documentationcenter: .net
 author: Rick-Anderson
@@ -15,63 +15,63 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/29/2016
 ms.author: riande
-ms.openlocfilehash: 64c18f2cfabbb7af6ffd89b4c2a9095fca1cf799
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ef45dd1582bfda367e53c39f863164422ad678b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-rest-service-using-aspnet-web-api-and-sql-database-in-azure-app-service"></a>Hozzon létre egy REST-szolgáltatást az ASP.NET Web API és az SQL-adatbázis használata az Azure App Service-ben
-Ez az oktatóanyag bemutatja az ASP.NET webalkalmazás telepítése egy [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) a Visual Studio 2013 vagy Visual Studio 2013 Community Edition webhely közzététele varázsló használatával. 
+Ez az oktatóanyag bemutatja, hogyan toodeploy az ASP.NET web app tooan [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) a Visual Studio 2013 vagy Visual Studio 2013 Community Edition hello webhely közzététele varázsló segítségével. 
 
-Az Azure-fiók szabad megnyithatja, és ha még nem rendelkezik a Visual Studio 2013, az SDK automatikusan telepíti a Visual Studio 2013 Express webes. Ezért nekiláthat teljes mértékben az Azure ingyenes.
+Az Azure-fiók szabad megnyithatja, és ha még nem rendelkezik a Visual Studio 2013, hello SDK automatikusan telepíti a Visual Studio 2013 Express webes. Ezért nekiláthat teljes mértékben az Azure ingyenes.
 
-Ez az oktatóanyag feltételezi, hogy rendelkezik-e nincs előzetes tapasztalata az Azure használatával kapcsolatban. Az oktatóanyag elvégzését be egy egyszerű webalkalmazást és a felhőben futó kell.
+Ez az oktatóanyag feltételezi, hogy rendelkezik-e nincs előzetes tapasztalata az Azure használatával kapcsolatban. Az oktatóanyag elvégzését be egy egyszerű webalkalmazást és hello felhőben futó kell.
 
 Az oktatóanyagból a következőket sajátíthatja el:
 
-* A gép alkalmassá tétele az Azure-alapú fejlesztésre az Azure SDK telepítésével.
-* Hozzon létre egy Visual Studio ASP.NET MVC 5 projektet, és tegye közzé az Azure alkalmazás módjáról.
-* Hogyan lehet Restful API-hívások engedélyezése az ASP.NET Web API segítségével.
-* Hogyan használható az SQL-adatbázis adatok tárolásához Azure-ban.
-* Alkalmazás közzététele – útmutató frissíti az Azure-bA.
+* Hogyan tooenable Azure fejlesztési telepítésével, a gép hello Azure SDK-t.
+* Hogyan toocreate a Visual Studio ASP.NET MVC 5 projektre, és tegye közzé az Azure app tooan.
+* Hogyan toouse hello ASP.NET Web API tooenable Restful API hívásokat.
+* Hogyan toouse egy SQL-adatbázis használati ideje toostore adatok Azure-ban.
+* Hogy hogyan toopublish alkalmazás tooAzure frissíti.
 
-ASP.NET MVC 5 épül, és használja az ADO.NET Entity Framework adatbázis hozzáférés a ismerőslistájába egyszerű webalkalmazás lesz létrehozása. Az alábbi ábrán a kész alkalmazás látható:
+Akkor lesz ASP.NET MVC 5 épülő egyszerű ismerősök listájának webalkalmazás létrehozása a, és használja az ADO.NET Entity Framework hello az adatbázis eléréséhez. a következő ábra azt mutatja be hello hello kérelem befejeződött:
 
 ![Képernyőkép a webhely][intro001]
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
-### <a name="create-the-project"></a>A projekt létrehozása
+### <a name="create-hello-project"></a>Hello projekt létrehozása
 1. Indítsa el a Visual Studio 2013.
-2. Az a **fájl** menüben kattintson **új projekt**.
-3. Az a **új projekt** párbeszédpanelen bontsa ki **Visual C#** válassza **webes** , és válassza **ASP.NET Web Application**. Adjon nevet az alkalmazásnak **ContactManager** kattintson **OK**.
+2. A hello **fájl** menüben kattintson **új projekt**.
+3. A hello **új projekt** párbeszédpanelen bontsa ki **Visual C#** válassza **webes** , és válassza **ASP.NET Web Application**. Hello alkalmazás neve **ContactManager** kattintson **OK**.
    
     ![A New Project (Új projekt) párbeszédpanel](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr4.png)
-4. A a **új ASP.NET-projekt** párbeszédpanelen jelölje ki a **MVC** sablon, a jelölőnégyzet **Web API** , majd **hitelesítés módosítása**.
-5. A **Change Authentication** (Hitelesítés módosítása) párbeszédpanelen kattintson a **No Authentication** (Nincs hitelesítés) elemre, majd az **OK** gombra.
+4. A hello **új ASP.NET projekt** párbeszédpanel megnyitásához, jelölje be hello **MVC** sablon ellenőrzése **Web API** , majd **hitelesítés módosítása**.
+5. A hello **hitelesítés módosítása** párbeszédpanel, kattintson a **nem hitelesítési**, és kattintson a **OK**.
    
     ![Nincs hitelesítés](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/GS13noauth.png)
    
-    A mintaalkalmazás hoz létre, nem kell funkciókra, a felhasználóknak a bejelentkezéshez. Hitelesítési és engedélyezési szolgáltatásokat megvalósításához kapcsolatos információkért lásd: a [lépések](#nextsteps) szakasz Ez az oktatóanyag végén. 
-6. Az a **új ASP.NET projekt** párbeszédpanelen győződjön meg arról, hogy a **a felhőben lévő gazdagéphez** be van jelölve, és kattintson a **OK**.
+    hello mintaalkalmazás hoz létre, nem kell a felhasználók toolog igénylő szolgáltatások. További információ tooimplement hitelesítési és engedélyezési szolgáltatásokat, lásd: hello [lépések](#nextsteps) szakasz hello Ez az oktatóanyag végén. 
+6. A hello **új ASP.NET projekt** párbeszédpanelen győződjön meg arról, hogy hello **gazdagépet a felhő hello** be van jelölve, és kattintson a **OK**.
 
-Ha nem korábban bejelentkezett az Azure-ba, kérni fogja a bejelentkezéshez.
+Ha korábban már nincs bejelentkezve tooAzure, a kért toosign fogja.
 
-1. A konfiguráció varázsló egy egyedi nevet a alapján javasol *ContactManager* (lásd az alábbi képen). Válasszon egy régiót a környéken. Használhat [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") található a legkisebb mértékű késés adatközpont. 
+1. hello konfigurációs varázsló egy egyedi nevet a alapján javasol *ContactManager* (lásd az alábbi képen hello). Válasszon egy régiót a környéken. Használhat [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") toofind hello legalacsonyabb késés adatközpont. 
 2. Ha egy adatbázis-kiszolgálót, mielőtt még nem hozott létre, jelölje be **létrehozása új kiszolgáló**, adjon meg egy adatbázis-felhasználónevet és jelszót.
    
     ![Azure-webhely konfigurálása](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configAz.PNG)
 
-Ha egy adatbázis-kiszolgálót, amelyek segítségével hozzon létre egy új adatbázist. Adatbázis-kiszolgálók értékes erőforrás, és általában létrehozásához több adatbázis ugyanazon a kiszolgálón, tesztelése és fejlesztési helyett az adatbázis egy adatbázis-kiszolgáló létrehozása. Győződjön meg arról, hogy a webhely, az adatbázis ugyanabban a régióban.
+Ha egy adatbázis-kiszolgálót, használja az adott toocreate egy új adatbázist. Adatbázis-kiszolgálók értékes erőforrás, és általában kívánt toocreate hello több adatbázist ugyanarra a kiszolgálóra a tesztelés és fejlesztési létrehozása helyett adatbázis egy adatbázis-kiszolgálókhoz. Gondoskodjon arról, hogy a webhely, az adatbázis hello ugyanabban a régióban.
 
 ![Azure-webhely konfigurálása](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configWithDB.PNG)
 
-### <a name="set-the-page-header-and-footer"></a>Az oldal fejlécében és láblécében beállítása
-1. A **Megoldáskezelőben**, bontsa ki a *Views\Shared* mappa, és nyissa meg a *_Layout.cshtml* fájlt.
+### <a name="set-hello-page-header-and-footer"></a>Hello oldal fejlécében és láblécében beállítása
+1. A **Megoldáskezelőben**, bontsa ki a hello *Views\Shared* mappa és a nyitott hello *_Layout.cshtml* fájlt.
    
     ![A Solution Explorer _Layout.cshtml][newapp004]
-2. Cserélje le a tartalmát a *Views\Shared_Layout.cshtml* fájl a következő kóddal:
+2. Cserélje le a hello hello tartalmát *Views\Shared_Layout.cshtml* hello kód a következő fájlt:
 
         <!DOCTYPE html>
         <html lang="en">
@@ -109,46 +109,46 @@ Ha egy adatbázis-kiszolgálót, amelyek segítségével hozzon létre egy új a
         </body>
         </html>
 
-A fenti kód módosításai az alkalmazás nevére "My ASP.NET alkalmazás" Manager"ügyfél", és eltávolítja a hivatkozásokat **Home**, **kapcsolatos** és **forduljon**.
+hello markup fenti módosítások hello alkalmazás neve a "Saját ASP.NET-alkalmazás" túl Manager "ügyfél", és eltávolítja hello hivatkozások túl**Home**, **kapcsolatos** és **forduljon**.
 
-### <a name="run-the-application-locally"></a>Az alkalmazás helyi futtatása
-1. Az alkalmazás futtatásához nyomja le a Ctrl+F5 billentyűkombinációt.
-   Az alkalmazás kezdőlapját az alapértelmezett böngésző jelenik meg.
-    ![Tennivalók listája kezdőlapjára](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)
+### <a name="run-hello-application-locally"></a>Hello alkalmazás helyileg történő futtatása
+1. Nyomja le a CTRL + F5 toorun hello alkalmazás.
+   hello alkalmazás kezdőlapját hello alapértelmezett böngésző jelenik meg.
+    ![tooDo lista kezdőlap](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)
 
-Ez az összes szükséges most az alkalmazást, amely az Azure-bA telepítésekor létrehozásához. Később fogja hozzáadni adatbázisokkal kapcsolatos funkciók.
+Ez az összes toodo most toocreate hello alkalmazás tooAzure fogja telepíteni kell. Később fogja hozzáadni adatbázisokkal kapcsolatos funkciók.
 
-## <a name="deploy-the-application-to-azure"></a>Az alkalmazás központi telepítése az Azure-ban
-1. A Visual Studióban, kattintson a jobb gombbal a projektre a **Megoldáskezelőben** válassza **közzététel** a helyi menüből.
+## <a name="deploy-hello-application-tooazure"></a>Hello alkalmazás tooAzure telepítése
+1. A Visual Studióban, kattintson a jobb gombbal a hello projekt **Megoldáskezelőben** válassza **közzététel** hello helyi menüből.
    
     ![Tegye közzé ezt a projekt helyi menü][PublishVSSolution]
    
-    A **webhely közzététele** varázsló megnyílik.
+    Hello **webhely közzététele** varázsló megnyílik.
 2. Kattintson a **Publish** (Közzététel) gombra.
 
 ![Beállítások lap](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/pw.png)
 
-A Visual Studio megkezdi a fájlok másolása az Azure-kiszolgálóval. A **kimeneti** ablak mutatja, milyen telepítési műveletek vették és sikeres telepítésről szóló jelentéseket.
+A Visual Studio megkezdi hello eljárást másolásának hello fájlok toohello Azure-kiszolgálóval. Hello **kimeneti** ablak mutatja, milyen telepítési műveletek vették és jelentések hello központi telepítés sikeres befejezését.
 
-1. Az alapértelmezett böngésző automatikusan megnyitja a telepített hely URL-címét.
+1. hello alapértelmezett böngésző automatikusan megnyitja a toohello telepített hello webhely URL-CÍMÉT.
    
-   A létrehozott alkalmazás innentől kezdve fut a felhőben.
+   hello létrehozott alkalmazás innentől kezdve fut hello felhő.
    
-   ![Azure-beli teendőlista kezdőlapjára][rxz2]
+   ![Azure-beli tooDo lista kezdőlap][rxz2]
 
-## <a name="add-a-database-to-the-application"></a>Egy adatbázis hozzáadni az alkalmazáshoz
-Ezt követően frissíteni fogja az MVC alkalmazás hozzáadása megjelenítéséhez és frissítése a névjegyeket és képes tárolni az adatokat adatbázisban. Az alkalmazás használja az Entity Framework létrehozni az adatbázist, és hogy olvassa és frissítse az adatbázis adatai.
+## <a name="add-a-database-toohello-application"></a>Adatbázis toohello alkalmazás felvétele
+A következő lesz frissíti hello MVC alkalmazás tooadd hello képességét toodisplay és ügyfelek frissítése és hello adat tárolása egy adatbázis. hello alkalmazás hello Entity Framework toocreate hello adatbázison és tooread, és frissíti hello adatbázis adatait.
 
-### <a name="add-data-model-classes-for-the-contacts"></a>Adja hozzá a névjegyek adatosztályokat modell
+### <a name="add-data-model-classes-for-hello-contacts"></a>Vegye fel a modell adatosztályokat hello kapcsolattartók
 Hozzon létre egy egyszerű adatmodell kódban megkezdése.
 
-1. A **Megoldáskezelőben**, kattintson a jobb gombbal a Models mappát, kattintson a **hozzáadása**, majd **osztály**.
+1. A **Megoldáskezelőben**, kattintson a jobb gombbal a hello Models mappát, kattintson a **hozzáadása**, majd **osztály**.
    
     ![Modellek mappa helyi menü osztály hozzáadása][adddb001]
-2. Az a **új elem hozzáadása** párbeszédablakban nevezze el az új osztály fájl *Contact.cs*, és kattintson a **Hozzáadás**.
+2. A hello **új elem hozzáadása** párbeszédpanelen osztály fájl új nevét hello *Contact.cs*, és kattintson a **Hozzáadás**.
    
     ![Adja hozzá az új elem párbeszédpanel][adddb002]
-3. Cserélje le a Contacts.cs fájl tartalmát az alábbira.
+3. Cserélje le a következő kód hello hello hello Contacts.cs fájl tartalmát.
    
         using System.Globalization;
         namespace ContactManager.Models
@@ -172,49 +172,49 @@ Hozzon létre egy egyszerű adatmodell kódban megkezdése.
             }
         }
 
-A **forduljon** osztály határozza meg az adatokat, amelyek az egyes partnerek, valamint az elsődleges kulcs, ContactID, az adatbázis által igényelt tárolására. További információ a modellek adatokat kaphat a [lépések](#nextsteps) szakasz Ez az oktatóanyag végén.
+Hello **forduljon** osztály hello adatok, amelyek az egyes partnerek, valamint az elsődleges kulcs, ContactID hello adatbázis által igényelt tárolja azt határozza meg. Adatmodellekről további információt kaphat a hello [lépések](#nextsteps) szakasz hello Ez az oktatóanyag végén.
 
-### <a name="create-web-pages-that-enable-app-users-to-work-with-the-contacts"></a>Hozzon létre, amelyek lehetővé teszik a felhasználók számára a névjegyek együttműködve weblapok
-Az ASP.NET MVC a állványok funkció automatikusan elő tud állítani megvalósító kódot létrehozása, olvasása, frissítése és Törlés (CRUD) műveleteket.
+### <a name="create-web-pages-that-enable-app-users-toowork-with-hello-contacts"></a>Hozzon létre, amelyek lehetővé teszik az alkalmazás felhasználók toowork hello ügyfelekkel weblapok
+hello ASP.NET MVC hello állványok funkció automatikusan elő tud állítani megvalósító kódot létrehozása, olvasása, frissítése és Törlés (CRUD) műveleteket.
 
-## <a name="add-a-controller-and-a-view-for-the-data"></a>Egy tartományvezérlő és az adatok egy nézet hozzáadása
-1. A **Megoldáskezelőben**, bontsa ki a tartományvezérlők mappát.
-2. A projekt felépítéséhez **(Ctrl + Shift + B)**. (Kell létrehozni a projekt állványok mechanizmus használata előtt.) 
-3. Kattintson a jobb gombbal a tartományvezérlők mappát, és kattintson a **Hozzáadás**, és kattintson a **vezérlő**.
+## <a name="add-a-controller-and-a-view-for-hello-data"></a>A vezérlő és egy nézet hello adatok hozzáadása
+1. A **Megoldáskezelőben**, hello tartományvezérlők mappát.
+2. Hello projekt felépítéséhez **(Ctrl + Shift + B)**. (Kell létrehozni hello projekt állványok mechanizmus használata előtt.) 
+3. Kattintson a jobb gombbal a hello, tartományvezérlői mappa, és kattintson a **Hozzáadás**, és kattintson a **vezérlő**.
    
     ![Vezérlő hozzáadása a tartományvezérlők mappa helyi menü][addcode001]
-4. Az a **hozzáadása Scaffold** párbeszédpanelen jelölje ki **MVC-vezérlő nézetekkel, entitás-keretrendszer használatával** kattintson **Hozzáadás**.
+4. A hello **hozzáadása Scaffold** párbeszédpanelen jelölje ki **MVC-vezérlő nézetekkel, entitás-keretrendszer használatával** kattintson **Hozzáadás**.
    
    ![Vezérlő hozzáadása](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rrAC.png)
-5. A vezérlő neve **HomeController**. Válassza ki **forduljon** , a modell osztály. Kattintson a **új adatkörnyezetet** gombra, és fogadja el az alapértelmezett "ContactManager.Models.ContactManagerContext" számára a **új adatkörnyezet-típusának**. Kattintson az **Add** (Hozzáadás) parancsra.
+5. Állítsa be a hello tartományvezérlő neve túl**HomeController**. Válassza ki **forduljon** , a modell osztály. Kattintson a hello **új adatkörnyezetet** gombra, és fogadja el a hello alapértelmezett "ContactManager.Models.ContactManagerContext" hello **új adatkörnyezet-típusának**. Kattintson az **Add** (Hozzáadás) parancsra.
 
-    A párbeszédpanel figyelmezteti: "a nevű fájl HomeController már létezik. Szeretné lecserélni? ". Kattintson a **Yes** (Igen) gombra. A kezdőlap vezérlő hoztak létre az új projekt másolattal azt. Az új kezdőlap tartományvezérlő a ismerőslistájába azt fogja használni.
+    A párbeszédpanel figyelmezteti: "hello nevű fájl HomeController már létezik. Szeretné, hogy tooreplace azt? ". Kattintson a **Yes** (Igen) gombra. Hello kezdőlap hello új projekt hoztak létre vezérlő másolattal azt. Használjuk hello új kezdőlap vezérlő számára a ismerőslistájába.
 
     A Visual Studio létrehozza a vezérlő metódusokhoz és az adatbázis-műveleteknél CRUD nézetek **forduljon** objektumok.
 
-## <a name="enable-migrations-create-the-database-add-sample-data-and-a-data-initializer"></a>Áttelepítések engedélyezése, hozza létre az adatbázist, mintaadatokat és egy adatok inicializáló hozzáadása
-A következő feladat, hogy engedélyezze a [Code First áttelepítést](http://curah.microsoft.com/55220) létrehozott adatok minta alapján szolgáltatás az adatbázis létrehozásához.
+## <a name="enable-migrations-create-hello-database-add-sample-data-and-a-data-initializer"></a>Engedélyezze az áttelepítést, hello adatbázis létrehozása, vegye fel a mintaadatok és egy adatok inicializáló
+hello következő feladata tooenable hello [Code First áttelepítést](http://curah.microsoft.com/55220) rendelés toocreate hello adatbázis funkció alapján létrehozott hello adatmodell.
 
-1. Az a **eszközök** menü **Kódtárcsomag-kezelő** , majd **Csomagkezelő konzol**.
+1. A hello **eszközök** menü **Kódtárcsomag-kezelő** , majd **Csomagkezelő konzol**.
    
     ![Az Eszközök menü Csomagkezelő konzol][addcode008]
-2. Az a **Csomagkezelő konzol** ablak, írja be a következő parancsot:
+2. A hello **Csomagkezelő konzol** ablak, írja be a következő parancs hello:
    
         enable-migrations 
    
-    A **enable-áttelepítések** parancs létrehoz egy *áttelepítések* abban a mappában helyezi a mappára és egy *Configuration.cs* fájlt, amely az áttelepítés konfigurálása szerkesztheti. 
-3. Az a **Csomagkezelő konzol** ablak, írja be a következő parancsot:
+    Hello **enable-áttelepítések** parancs létrehoz egy *áttelepítések* abban a mappában helyezi a mappára és egy *Configuration.cs* fájlt, hogy tooconfigure áttelepítések szerkesztheti. 
+3. A hello **Csomagkezelő konzol** ablak, írja be a következő parancs hello:
    
         add-migration Initial
    
-    A **hozzáadása áttelepítés kezdeti** parancs létrehoz egy osztályt  **&lt;date_stamp&gt;kezdeti** , amely létrehozza az adatbázist. Az első paraméter ( *kezdeti* ) tetszőleges és a név a fájl létrehozásához használt. Megtekintheti az új osztály fájlokat **Megoldáskezelőben**.
+    Hello **hozzáadása áttelepítés kezdeti** parancs létrehoz egy osztályt  **&lt;date_stamp&gt;kezdeti** hello adatbázist hoz létre. az első paraméter hello ( *kezdeti* ) tetszőleges és használt toocreate hello hello fájl neve. Megtekintheti a hello új osztály fájlokat **Megoldáskezelőben**.
    
-    A a **kezdeti** osztály, a **mentése** hoz létre a névjegyek tábla és a **le** (Ha azt szeretné, a korábbi állapotának visszaállítására használt) módszer esik azt.
-4. Nyissa meg a *Migrations\Configuration.cs* fájlt. 
-5. A következő névterek. 
+    A hello **kezdeti** osztály, hello **mentése** hello kapcsolatok táblához és hello hoz létre **le** módszerét (Ha azt szeretné, hogy tooreturn toohello korábbi állapotába) esik az.
+4. Nyissa meg hello *Migrations\Configuration.cs* fájlt. 
+5. Adja hozzá a következő névterek hello. 
    
          using ContactManager.Models;
-6. Cserélje le a *kezdőérték* metódus a következő kóddal:
+6. Cserélje le a hello *kezdőérték* hello kód a következő metódust:
    
         protected override void Seed(ContactManager.Models.ContactManagerContext context)
         {
@@ -272,23 +272,23 @@ A következő feladat, hogy engedélyezze a [Code First áttelepítést](http://
                 );
         }
    
-    A fenti kódot inicializálja a kapcsolattartási adatokat az adatbázisba. Az adatbázis összehangolása a további információkért lásd: [hibakeresés entitás-keretrendszer (EF) adatbázisok](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx).
-7. Az a **Csomagkezelő konzol** adja meg a parancsot:
+    A fenti kódot inicializálja hello adatbázis hello kapcsolattartási adatait. A beültetés hello adatbázis további információkért lásd: [hibakeresés entitás-keretrendszer (EF) adatbázisok](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx).
+7. A hello **Csomagkezelő konzol** hello parancsot írja be:
    
         update-database
    
     ![A Package Manager Console parancsok][addcode009]
    
-    A **adatbázis-frissítés** futtatja az első áttelepítésről, amely létrehozza az adatbázist. Alapértelmezés szerint az adatbázist egy SQL Server Express LocalDB adatbázisban jön létre.
-8. Az alkalmazás futtatásához nyomja le a Ctrl+F5 billentyűkombinációt. 
+    Hello **adatbázis-frissítés** futtatása hello első áttelepítésről, amely hello adatbázist hoz létre. Alapértelmezés szerint hello adatbázis egy SQL Server Express LocalDB adatbázisban jön létre.
+8. Nyomja le a CTRL + F5 toorun hello alkalmazás. 
 
-Az alkalmazás kezdőérték adatainak megjelenítése és szerkesztése, a részletek és a delete hivatkozásokat tartalmaz.
+hello alkalmazás hello adatait mutatja be, Szerkesztés, adatokat és delete hivatkozásokat.
 
 ![Az adatok MVC megtekintése][rxz3]
 
-## <a name="edit-the-view"></a>A nézet szerkesztése
-1. Nyissa meg a *Views\Home\Index.cshtml* fájlt. A következő lépésben azt lecseréli a generált kód kód [jQuery](http://jquery.com/) és [Knockout.js](http://knockoutjs.com/). Az új kódot névjegyek listájának beolvasása a webes API és a JSON és majd a felhasználói felület használatával knockout.js van kötve a kapcsolattartási adatok. További információkért lásd: a [lépések](#nextsteps) szakasz Ez az oktatóanyag végén. 
-2. Cserélje le a fájl tartalmát az alábbira.
+## <a name="edit-hello-view"></a>Hello nézet szerkesztése
+1. Nyissa meg hello *Views\Home\Index.cshtml* fájlt. Hello a következő lépésben azt lecseréli generált hello markup kód [jQuery](http://jquery.com/) és [Knockout.js](http://knockoutjs.com/). Az új kódot hello listájához lekéri a webes API-val, és a JSON és kötések hello forduljon adatok toohello felhasználói felület knockout.js használatával. További információkért lásd: hello [lépések](#nextsteps) szakasz hello Ez az oktatóanyag végén. 
+2. Cserélje le a következő kód hello hello hello fájl tartalmát.
    
         @model IEnumerable<ContactManager.Models.Contact>
         @{
@@ -377,12 +377,12 @@ Az alkalmazás kezdőérték adatainak megjelenítése és szerkesztése, a rés
                 <input type="submit" value="Add" />
             </fieldset>
         </form>
-3. Kattintson a jobb gombbal a tartalmat tartalmazó mappa, és kattintson a **Hozzáadás**, és kattintson a **új elem...** .
+3. Kattintson a jobb gombbal a hello tartalmat tartalmazó mappa, és kattintson a **Hozzáadás**, és kattintson a **új elem...** .
    
     ![Adja hozzá a stíluslap tartalmat tartalmazó mappa helyi menü][addcode005]
-4. Az a **új elem hozzáadása** párbeszédpanelen adja meg a **stílus** jobb felső a keresési mezőbe, és válassza **stíluslap**.
+4. A hello **új elem hozzáadása** párbeszédpanelen adja meg a **stílus** a hello jobb felső keresési mezőbe, és válassza ki **stíluslap**.
     ![Adja hozzá az új elem párbeszédpanel][rxStyle]
-5. A fájl neve *Contacts.css* kattintson **Hozzáadás**. Cserélje le a fájl tartalmát az alábbira.
+5. Nevű hello fájl *Contacts.css* kattintson **Hozzáadás**. Cserélje le a következő kód hello hello hello fájl tartalmát.
    
         .column {
             float: left;
@@ -438,14 +438,14 @@ Az alkalmazás kezdőérték adatainak megjelenítése és szerkesztése, a rés
             text-decoration: none;
         }
    
-    A stíluslap elrendezés, színek és a kapcsolattartási alkalmazással használt stílusok használjuk.
-6. Nyissa meg a *App_Start\BundleConfig.cs* fájlt.
-7. Adja hozzá a következő kódot a [kiejtés](http://knockoutjs.com/index.html "KO") beépülő modul.
+    A stíluslap hello elrendezés, színeit és hello kapcsolattartási manager alkalmazásban használt stílusok használjuk.
+6. Nyissa meg hello *App_Start\BundleConfig.cs* fájlt.
+7. Adja hozzá a következő kód tooregister hello hello [kiejtés](http://knockoutjs.com/index.html "KO") beépülő modul.
    
         bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                     "~/Scripts/knockout-{version}.js"));
-    Ez a minta kiejtés használatával egyszerűbbé teheti a dinamikus JavaScript-kódot, amely kezeli a képernyő-sablonokat.
-8. A tartalom/css bejegyzés regisztrálni a *contacts.css* stíluslap. Módosítsa a következő sort:
+    Ez a minta kiejtés toosimplify dinamikus JavaScript-kódot, amely kezeli a hello képernyő sablonok használatával.
+8. Hello tartalma/css bejegyzés tooregister hello módosítása *contacts.css* stíluslap. A következő sor hello módosítása:
    
                  bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
@@ -456,52 +456,52 @@ Az alkalmazás kezdőérték adatainak megjelenítése és szerkesztése, a rés
                    "~/Content/bootstrap.css",
                    "~/Content/contacts.css",
                    "~/Content/site.css"));
-9. A Package Manager Console kiejtés telepítéséhez a következő parancsot.
+9. Hello Csomagkezelő konzol futtassa a következő parancs tooinstall kiejtés hello.
    
         Install-Package knockoutjs
 
-## <a name="add-a-controller-for-the-web-api-restful-interface"></a>A webes API Restful interfész vezérlő hozzáadása
+## <a name="add-a-controller-for-hello-web-api-restful-interface"></a>Hello webes API Restful interfész vezérlő hozzáadása
 1. A **Megoldáskezelőben**, kattintson a jobb gombbal a tartományvezérlők, és kattintson a **Hozzáadás** , majd **vezérlő...** 
-2. A a **hozzáadása Scaffold** párbeszédpanelen adja meg a **Web API 2-es vezérlőhöz műveletekhez, entitás-keretrendszer használatával** , majd **Hozzáadás**.
+2. A hello **hozzáadása Scaffold** párbeszédpanelen adja meg a **Web API 2-es vezérlőhöz műveletekhez, entitás-keretrendszer használatával** , majd **hozzáadása**.
    
     ![API-vezérlő hozzáadása](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt1.png)
-3. Az a **adja hozzá a tartományvezérlő** párbeszédpanelen adja meg a "ContactsController", a tartományvezérlő neve. "Forduljon (ContactManager.Models)" Válassza ki a **Model class**.  Tartsa meg az alapértelmezett értéket a **adatok környezetben osztály**. 
+3. A hello **vezérlő hozzáadása** párbeszédpanelen adja meg a "ContactsController" a tartományvezérlő neveként. Válassza ki a "Ügyfelet (ContactManager.Models)" a hello **Model class**.  Tartsa hello alapértelmezett értéke hello **adatok környezetben osztály**. 
 4. Kattintson az **Add** (Hozzáadás) parancsra.
 
-### <a name="run-the-application-locally"></a>Az alkalmazás helyi futtatása
-1. Az alkalmazás futtatásához nyomja le a Ctrl+F5 billentyűkombinációt.
+### <a name="run-hello-application-locally"></a>Hello alkalmazás helyileg történő futtatása
+1. Nyomja le a CTRL + F5 toorun hello alkalmazás.
    
     ![Index lap][intro001]
-2. Adja meg a partner, és kattintson a **Hozzáadás**. Az alkalmazás adja vissza a kezdőlapra, és megjeleníti a megadott forduljon.
+2. Adja meg a partner, és kattintson a **Hozzáadás**. hello alkalmazás toohello kezdőlap adja vissza, és megjeleníti a megadott hello forduljon.
    
     ![A lista Tennivaló index lap][addwebapi004]
-3. A böngészőben hozzáfűzése **/api/contacts** URL-címét.
+3. Hello böngészőben hozzáfűzése **/api/contacts** toohello URL-CÍMÉT.
    
-    Az eredményül kapott URL-címet fog hasonlítani http://localhost:1234/api/Contacts címen. A RESTful webes API, hozzáadott a tárolt névjegyek adja vissza. A Firefox és Chrome XML formátumban fogja megjeleníteni az adatokat.
+    hello eredményül kapott URL-címet fog hasonlítani http://localhost:1234/api/Contacts címen. hello RESTful webes API, hozzáadott hello tárolt névjegyek adja vissza. A Firefox és Chrome jelenít meg hello adatot XML formátumban.
    
     ![A lista Tennivaló index lap][rxFFchrome]
 
-    IE kérni fogja megnyitni vagy menteni a névjegyeket.
+    Internet Explorer tooopen kéri, vagy a hello partnerek mentése.
 
     ![Webes API-k mentése párbeszédpanel][addwebapi006]
 
 
-    A visszaadott kapcsolatba lép a Jegyzettömbben vagy a böngésző nyithatja meg.
+    Adott vissza a névjegyeket a Jegyzettömbben vagy a böngésző hello nyithatja meg.
 
     A kimeneti például mobil weblap vagy az alkalmazás egy másik alkalmazás képes használni.
 
     ![Webes API-k mentése párbeszédpanel][addwebapi007]
 
-    **Biztonsági figyelmeztetés**: ezen a ponton az alkalmazás pedig a nem biztonságos téve CSRF támadásnak. Az oktatóanyag későbbi részében megszüntetjük a biztonsági rés. További információ: [akadályozza meg, hogy többhelyes kérelem hamisítására (CSRF) támadások][prevent-csrf-attacks].
+    **Biztonsági figyelmeztetés**: ezen a ponton az alkalmazás nem biztonságos és sebezhető tooCSRF támadás. Hello oktatóanyag későbbi részében megszüntetjük a biztonsági rés. További információ: [akadályozza meg, hogy többhelyes kérelem hamisítására (CSRF) támadások][prevent-csrf-attacks].
 ## <a name="add-xsrf-protection"></a>XSRF védelem hozzáadása
-Webhelyközi kérések hamisítására (más néven XSRF vagy CSRF) webes állomásokon tárolt alkalmazásokhoz, amelyek rosszindulatú webhely befolyásolhatja az ügyfél böngészője, valamint egy webhely, a böngésző által megbízhatónak közötti interakció elleni támadásoknak. Ilyen támadások lehetséges válnak, mert a böngészők által küldött kérelmek automatikusan a hitelesítési tokenek webhely. A kanonikus példája egy hitelesítési cookie-t, például az ASP. NET a az űrlapos hitelesítés jegy. Azonban bármely állandó hitelesítési mechanizmus (például Windows-hitelesítést, a Basic, és így tovább) használó webhelyek célpontja is lehet ilyen támadások.
+Webhelyközi kérések hamisítására (más néven XSRF vagy CSRF) webes állomásokon tárolt alkalmazásokhoz, amelyek rosszindulatú webhely befolyásolhatja hello közötti interakció ügyfél böngészője és egy webhelyet, a böngésző által megbízhatónak elleni támadásoknak. Ilyen támadások lehetséges válnak, mert a böngésző fog küldeni a hitelesítési tokenek automatikusan minden kérelem tooa webhellyel. hello kanonikus példa, hogy egy hitelesítési cookie-t, például az ASP. NET a az űrlapos hitelesítés jegy. Azonban bármely állandó hitelesítési mechanizmus (például Windows-hitelesítést, a Basic, és így tovább) használó webhelyek célpontja is lehet ilyen támadások.
 
-XSRF támadás nem egyezik a adathalász támadások. Adathalász támadások igényelnek az áldozat a beavatkozást. Az egy adathalász támadások rosszindulatú webhely lesz utánozzák a webhely, és az áldozat magát van becsapni a bizalmas adatokat biztosít a támadónak. Az XSRF támadások nincs gyakran párbeszéd az áldozat a szükséges. Ehelyett a támadó a böngésző automatikusan megfelelő cookie-k küld a cél webhely megbízható függő.
+XSRF támadás nem egyezik a adathalász támadások. Adathalász támadások közreműködése a hello áldozata. Az egy adathalász támadások rosszindulatú webhely lesz utánozzák hello célwebhely, és hello áldozata magát van becsapni a bizalmas adatokat toohello támadó biztosítása. Az XSRF támadások nincs gyakran párbeszéd hello áldozata a szükséges. Ehelyett hello támadó hello böngésző automatikusan küldése az összes releváns cookie-k toohello cél webhely megbízható függő.
 
-További információkért lásd: a [biztonsági projekt megnyitása webes alkalmazás](https://www.owasp.org/index.php/Main_Page) (OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\)).
+További információkért lásd: hello [biztonsági projekt megnyitása webes alkalmazás](https://www.owasp.org/index.php/Main_Page) (OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\)).
 
 1. A **Megoldáskezelőben**, jobb **ContactManager** projektre, kattintson **hozzáadása** majd **osztály**.
-2. A fájl neve *ValidateHttpAntiForgeryTokenAttribute.cs* és adja hozzá a következő kódot:
+2. Nevű hello fájl *ValidateHttpAntiForgeryTokenAttribute.cs* , és adja hozzá a következő kód hello:
    
         using System;
         using System.Collections.Generic;
@@ -570,15 +570,15 @@ További információkért lásd: a [biztonsági projekt megnyitása webes alkal
                 }
             }
         }
-3. Adja hozzá a következő *használatával* nyilatkozatot, így a szerződések vezérlő így hozzáférhet a **[ValidateHttpAntiForgeryToken]** attribútum.
+3. Adja hozzá a következő hello *használatával* utasítás toohello szerződések vezérlő így hozzáférés toohello **[ValidateHttpAntiForgeryToken]** attribútum.
    
         using ContactManager.Filters;
-4. Adja hozzá a **[ValidateHttpAntiForgeryToken]** a Post metódus az attribútumot a **ContactsController** XSRF fenyegetésekkel szembeni hatékony védelmét. Hozzáadja a "PutContact", "PostContact" és **DeleteContact** műveletmetódusokhoz.
+4. Adja hozzá a hello **[ValidateHttpAntiForgeryToken]** toohello Post metódus a hello attribútum **ContactsController** tooprotect XSRF fenyegetések elleni védelmét. Toohello "PutContact", "PostContact" lesz hozzáadása és **DeleteContact** műveletmetódusokhoz.
    
         [ValidateHttpAntiForgeryToken]
             public IHttpActionResult PutContact(int id, Contact contact)
             {
-5. Frissítés a *parancsfájlok* szakasza a *Views\Home\Index.cshtml* fájlt a kód segítségével kérheti le a XSRF jogkivonatokat.
+5. Frissítés hello *parancsfájlok* hello szakasza *Views\Home\Index.cshtml* tooinclude kód tooget hello XSRF jogkivonatok fájlt.
    
          @section Scripts {
             @Scripts.Render("~/bundles/knockout")
@@ -633,59 +633,59 @@ További információkért lásd: a [biztonsági projekt megnyitása webes alkal
             </script>
          }
 
-## <a name="publish-the-application-update-to-azure-and-sql-database"></a>A frissítés közzétételéhez Azure és az SQL-adatbázis
-Az alkalmazás közzététele, ismételje meg a korábban követte eljárást.
+## <a name="publish-hello-application-update-tooazure-and-sql-database"></a>Hello alkalmazás frissítés tooAzure és SQL-adatbázis közzététele
+toopublish hello alkalmazás, akkor ismételje meg a korábban követte hello eljárás.
 
-1. A **Megoldáskezelőben**, kattintson a jobb gombbal a projektre, és válassza ki **közzététel**.
+1. A **Megoldáskezelőben**, hello projektben kattintson a jobb gombbal, és válassza ki **közzététel**.
    
     ![Közzététel][rxP]
-2. Kattintson a **Beállítások** fülre.
-3. A **ContactsManagerContext(ContactsManagerContext)**, kattintson a **v** módosítása ikon *távoli kapcsolati karakterlánc* kapcsolattartási adatbázis a kapcsolati karakterlánc módosításait. Kattintson a **ContactDB**.
+2. Kattintson a hello **beállítások** fülre.
+3. A **ContactsManagerContext(ContactsManagerContext)**, hello kattintson **v** ikon toochange *távoli kapcsolati karakterlánc* hello forduljon toohello kapcsolati karakterlánca az adatbázis. Kattintson a **ContactDB**.
    
     ![Beállítások](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt5.png)
-4. Jelölje be a **hajtható végre Code First áttelepítést (fut az alkalmazás indítása)**.
-5. Kattintson a **következő** majd **előzetes**. A Visual Studio a hozzáadott vagy frissített fájlok listáját jeleníti meg.
+4. Hello jelölőnégyzetet a **hajtható végre Code First áttelepítést (fut az alkalmazás indítása)**.
+5. Kattintson a **következő** majd **előzetes**. A Visual Studio hello fájlok hozzáadott vagy frissített listáját jeleníti meg.
 6. Kattintson a **Publish** (Közzététel) gombra.
-   A telepítés befejezése után a böngésző megnyitja az alkalmazás kezdőlapja.
+   Hello központi telepítés befejezése után hello böngésző megnyitja toohello kezdőlap hello alkalmazás.
    
     ![Index lap nincs ügyfelekkel][intro001]
    
-    A Visual Studio közzétételi folyamat automatikusan konfigurálva a kapcsolati karakterlánc az alkalmazott *Web.config* fájlt úgy, hogy az SQL-adatbázis mutasson. Azt is konfigurálni Code First áttelepítést automatikusan az adatbázis frissítése a legújabb verzióra először az alkalmazás telepítése után az adatbázis fér hozzá.
+    Visual Studio hello folyamat automatikusan konfigurált hello kapcsolati karakterlánc közzététele a telepített hello *Web.config* fájl toopoint toohello SQL-adatbázis. Azt is konfigurálni Code First áttelepítést tooautomatically frissítési hello adatbázis toohello legújabb verziója hello első hello alkalmazása hello adatbázis hozzáfér a telepítés után.
    
-    Ez a konfiguráció miatt Code First hozta létre az adatbázist a kód futtatásával a **kezdeti** korábban létrehozott osztályt. Ez ugyanúgy az alkalmazás telepítése után az adatbázis eléréséhez próbált meg először.
-7. Adja meg a forduljon, úgy, ahogy az adatbázis telepítése sikeres volt, hogy helyileg, az alkalmazás futtatásakor.
+    Ez a konfiguráció miatt Code First létrehozott hello adatbázist hello kód futtatásával a hello **kezdeti** korábban létrehozott osztályt. Telepítés után ugyanúgy a hello első alkalommal hello próbált tooaccess hello adatbázis-alkalmazás.
+7. Adja meg a partner helyileg, hello app tooverify adatbázis telepítése sikeresen futtatta hasonló módon.
 
-Ha látja, hogy az elem meg menti, és kapcsolattartási manager lapján jelenik meg, azt jelzi, hogy az adatbázis már tárolt.
+Amikor megjelenik az adott meg hello elem menti, és hello kapcsolattartási manager lapján jelenik meg, tudja, hogy hello adatbázisban lett tárolt.
 
 ![Index lap ügyfelekkel][addwebapi004]
 
-Az alkalmazás most már fut a felhőben, SQL-adatbázis segítségével tárolja az adatokat. Ha befejezte az alkalmazás tesztelése az Azure-ban, törölje azt. Az alkalmazás nyilvános, és nem rendelkezik egy olyan mechanizmus a hozzáférés korlátozásához.
+hello alkalmazás innentől kezdve fut hello felhő, használja az SQL-adatbázis toostore az adatokat. Miután befejezte a hello alkalmazás tesztelése az Azure-ban, törölje azt. hello alkalmazás nyilvános, és nem rendelkezik olyan mechanizmus toolimit hozzáféréssel.
 
 > [!NOTE]
-> Ha az Azure App Service-t az Azure-fiók regisztrálása előtt szeretné kipróbálni, ugorjon [Az Azure App Service kipróbálása](https://azure.microsoft.com/try/app-service/) oldalra. Itt azonnal létrehozhat egy ideiglenes, kezdő szintű webalkalmazást az App Service szolgáltatásban. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
+> Ha azt szeretné, hogy az az Azure-fiók regisztrálása előtt az Azure App Service lépései tooget, nyissa meg túl[App Service kipróbálása](https://azure.microsoft.com/try/app-service/), ahol azonnal létrehozhat egy rövid élettartamú alapszintű webalkalmazást az App Service-ben. Ehhez nincs szükség bankkártyára, és nem jár kötelezettségekkel.
 > 
 > 
 
 ## <a name="next-steps"></a>Következő lépések
-Egy másik adat tárolása az Azure-alkalmazások módja az Azure storage használatához nem relációs adatok tárolási BLOB és táblák formájában nyújt. Az alábbi hivatkozások nyújtanak további információt a Web API, az ASP.NET MVC és a Windows Azure.
+Egy másik módja toostore az Azure-alkalmazások adatai toouse az Azure storage, blobok és táblák hello formájában nem relációs adatok tárolásához. a következő hivatkozások hello nyújtanak további információt a Web API, az ASP.NET MVC és a Windows Azure.
 
 * [Ismerkedés az Entity Framework MVC használatával][EFCodeFirstMVCTutorial]
-* [Bevezetés az ASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
+* [Bevezetés tooASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
 * [Az első ASP.NET Web API](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)
 * [Hibakeresési WAWS](web-sites-dotnet-troubleshoot-visual-studio.md)
 
-Ez az oktatóanyag és a mintaalkalmazás kiírt [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [ @RickAndMSFT ](https://twitter.com/RickAndMSFT)) Tom Dykstra és Barry Dorrans segítséget (Twitter [ @blowdart ](https://twitter.com/blowdart)). 
+Ez az oktatóanyag és hello mintaalkalmazás kiírt [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [ @RickAndMSFT ](https://twitter.com/RickAndMSFT)) Tom Dykstra és Barry Dorrans segítséget (Twitter [ @blowdart ](https://twitter.com/blowdart)). 
 
-Adjon hagyja visszajelzés mi tetszett és mi kíváncsi rá továbbfejlesztett, nem csak az oktatóanyag maga kapcsolatos, hanem a termékekről, amely azt mutatja be. Visszajelzése segít sorrendjének fejlesztései. Folyamatban, különösen szeretné tudni, hogy mennyi érdeklődési automatizálással folyamat konfigurálása és telepítése a tagsági adatbázisokból van. 
+Visszajelzés meghagyása mi tetszett és mi szeretné javítani, nem csak kapcsolatos hello oktatóanyag magát, hanem azt mutatja be, hogy hello termékekre vonatkozó toosee. Visszajelzése segít sorrendjének fejlesztései. Folyamatban, különösen akkor érdekli automatizálással hello folyamat konfigurálása és telepítése hello tagsági adatbázisokból nincs mennyi iránt érdeklődik, keresése. 
 
 ## <a name="whats-changed"></a>A változások
-* Információk a Websites szolgáltatásról az App Service-re való váltásról: [Az Azure App Service és a hatása a meglévő Azure-szolgáltatásokra](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Egy útmutató toohello webhelyek tooApp szolgáltatás változás lásd: [Azure App Service és a hatása a meglévő Azure-szolgáltatások](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- bookmarks -->
 [Add an OAuth Provider]: #addOauth
-[Add Roles to the Membership Database]:#mbrDB
+[Add Roles toohello Membership Database]:#mbrDB
 [Create a Data Deployment Script]:#ppd
-[Update the Membership Database]:#ppd2
+[Update hello Membership Database]:#ppd2
 [setupdbenv]: #bkmk_setupdevenv
 [setupwindowsazureenv]: #bkmk_setupwindowsazure
 [createapplication]: #bkmk_createmvc4app

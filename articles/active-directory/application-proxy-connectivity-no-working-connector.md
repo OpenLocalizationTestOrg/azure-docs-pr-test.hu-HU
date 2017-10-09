@@ -1,6 +1,6 @@
 ---
-title: "Nincs munkacsoport összekötő található az alkalmazásproxy-alkalmazás |} Microsoft Docs"
-description: "Ha nem működik egy összekötő csoportot az alkalmazásba az Azure AD-alkalmazásproxy összekötőjét esetleg felmerülő problémák megoldása"
+title: "Az alkalmazásproxy alkalmazás található aaaNo munkacsoport-összekötő |} Microsoft Docs"
+description: "Ha nem működik az alkalmazás az Azure AD alkalmazásproxy hello összekötő csoportban összekötő esetleg felmerülő problémák megoldása"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,56 +13,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 4945958deedc8a1d9989ff901192c03a5363b4dc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4c4baf296b316db131929c9a7c618fb9960713e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="no-working-connector-group-found-for-an-application-proxy-application"></a>Nem található az alkalmazásproxy alkalmazáshoz működő összekötő csoport
 
-Ez a cikk segít nincs észlelhető a következőnél: az alkalmazásproxy alkalmazás összekötő tapasztalt gyakori problémák megoldásához Azure Active Directory integrált része.
+Ez a cikk segít tooresolve hello gyakori problémákat nincs észlelhető a következőnél: az alkalmazásproxy alkalmazás összekötő tapasztalt, Azure Active Directoryval integrált.
 
 ## <a name="overview-of-steps"></a>A lépések – áttekintés
-Ha nem működő alkalmazás összekötő csoportban összekötő, néhány módon a probléma megoldása:
+Ha nem működő alkalmazás összekötő csoportban összekötő, van néhány módon tooresolve hello problémát:
 
--   Ha nincs összekötők a csoportban található, akkor a következőket teheti:
+-   Ha címterekhez hello csoportban, akkor a következőket teheti:
 
-    -   A megfelelő helyszíni kiszolgálón új összekötő letöltése, és rendelje hozzá ehhez a csoporthoz
+    -   Hello jobb helyszíni kiszolgálón új összekötő letöltése, és rendelje hozzá toothis csoport
 
-    -   Az aktív csatlakozó áthelyezi a csoport
+    -   Az aktív csatlakozó áthelyezi hello csoport
 
--   Ha nincs aktív összekötők a csoportban található, akkor a következőket teheti:
+-   Ha nincs aktív összekötők hello csoportban, akkor a következőket teheti:
 
-    -   Az összekötő nem aktív ok azonosítása és elhárítása
+    -   Az összekötő nem aktív hello OK azonosítása és elhárítása
 
-    -   Az aktív csatlakozó áthelyezi a csoport
+    -   Az aktív csatlakozó áthelyezi hello csoport
 
-Tudjuk, hogy ezek közül a probléma, az alkalmazásban a "Alkalmazásproxy" menü megnyitásához, és nézze meg az összekötő csoport figyelmeztető üzenet. Azt adja meg, hogy a csoport kell legalább egy összekötő (rendelkezik a csoport nincs), vagy nem aktív összekötők rendelkezik (bár valószínűleg inaktív összekötők).
+tooknow, amelyek ezen hello probléma, az alkalmazás hello "Alkalmazásproxy" menü megnyitásához, és tekintse meg hello összekötő csoport figyelmeztető üzenet. Azt adja meg, vagy hello csoport kell legalább egy összekötő (kell hello csoport "nincs"), vagy nem aktív összekötők rendelkezik (bár valószínűleg inaktív összekötők).
 
    ![Az Azure portálon összekötő csoport kijelölése](./media/application-proxy-connectivity-no-working-connector/no-active-connector.png)
 
-Ezen lehetőségek a részletekért lásd: az alábbi megfelelő szakaszához. Ezek mindegyikének azt feltételezi, hogy az összekötő felügyeleti oldalról indítja. Ha a fenti hibaüzenet nézi, ezen a lapon elvégezheti a figyelmeztető üzenet kattintva. Ellenkező esetben ez található címen **Azure Active Directory**a gombra, majd **vállalati alkalmazások**, majd **alkalmazásproxy.**
+Ezen lehetőségek a részletekért lásd: hello megfelelő című részhez. Ezek mindegyikének azt feltételezi, hogy hello összekötő kezelése lap kezdve. Hello hibaüzenet jelenik meg a fenti nézi, ha a hello figyelmeztető üzenet kattintva megnyithatja toothis lap. Ellenkező esetben ez található túl címen**Azure Active Directory**a gombra, majd **vállalati alkalmazások**, majd **alkalmazásproxy.**
 
    ![Összekötő csoportok kezelése az Azure portálon](./media/application-proxy-connectivity-no-working-connector/app-proxy.png)
 
 ## <a name="download-a-new-connector"></a>Új összekötő letöltése
 
-Új összekötő letöltése, használja a "-összekötő letöltése" gombra az oldal tetején.
+toodownload új összekötőt, használja a hello "Összekötő letöltése" gombot hello oldal hello tetején.
 
-Megjegyzés: az összekötő a háttéralkalmazás közvetlen sor a láthatáron a gépen kell telepíteni, és általában helyezkedik el ugyanazon a kiszolgálón, megegyezik az alkalmazáséval. Az összekötő a letöltés után meg kell jelennie az ebben a menüben. Kattintson az összekötő, és a "összekötő csoport" legördülő győződjön meg arról, hogy a megfelelő csoporthoz tartozik. A módosítás mentéséhez.
+Megjegyzés: hello összekötő igények toobe közvetlen toohello a háttéralkalmazás a gépre telepítve, és általában el van helyezve hello hello alkalmazás ugyanarra a kiszolgálóra. A letöltés után hello összekötő meg kell jelennie az ebben a menüben. Kattintson a hello összekötő, és hello "Összekötő csoport" legördülő toomake meg arról, hogy toohello megfelelő csoport tartozik. Hello módosítás mentéséhez.
 
-   ![Az összekötő letöltése az Azure portálról](./media/application-proxy-connectivity-no-working-connector/download-connector.png)
+   ![Hello összekötő letöltését hello Azure portál](./media/application-proxy-connectivity-no-working-connector/download-connector.png)
    
 ## <a name="move-an-active-connector"></a>Helyezze át egy aktív összekötő
 
-Ha az aktív csatlakozó, a csoporthoz kell tartoznia, és a háttér célalkalmazásnak történő sor a láthatáron, áthelyezheti az összekötő a hozzárendelt csoportjához. Ehhez kattintson az összekötőt. "Összekötő csoport" mezőben használja a legördülő listán válassza ki a megfelelő csoportot, és kattintson a Mentés gombra.
+Ha egy aktív összekötő, amely toohello csoporthoz kell tartoznia, és nem sor a láthatáron toohello célalkalmazás háttér, áthelyezheti hello összekötő hozzárendelt hello csoportjához. toodo kattintson hello összekötő. A hello "Összekötő csoport" mezőben hello legördülő tooselect hello megfelelő csoportot, és kattintson a Mentés gombra.
 
 ## <a name="resolve-an-inactive-connector"></a>Hárítsa el az inaktív csatlakozó
 
-Ha a csoportban csak összekötők nem működnek, valószínűleg olyan gépen, amely nem rendelkezik a szükséges portok feloldva.
+Ha hello csak hello csoport összekötők nem működnek, akkor ezeknél valószínűleg olyan gépen, amely nem rendelkezik az összes hello szükséges portok feloldva.
 
-a portok kapcsolatos problémák elhárítása a dokumentum a részletekért tekintse meg a probléma kivizsgálása.
+Lásd: hello portok kapcsolatos problémák elhárítása dokumentumban talál részletes információt a probléma kivizsgálása.
 
 ## <a name="next-steps"></a>Következő lépések
 [Az Azure AD-alkalmazásproxy összekötők ismertetése](application-proxy-understand-connectors.md)

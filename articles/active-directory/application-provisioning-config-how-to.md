@@ -1,6 +1,6 @@
 ---
-title: "A felhasználók átadása egy Azure AD-katalógusában alkalmazás konfigurálása |} Microsoft Docs"
-description: "Gazdag felhasználói fiók kiépítésének és megszüntetésének biztosítása már szerepel az Azure AD Application Gallery alkalmazások gyors konfigurálásához"
+title: "aaaHow tooconfigure felhasználók átadásához tooan az Azure AD-gyűjtemény alkalmazás |} Microsoft Docs"
+description: "Gazdag felhasználói fiók kiépítésének és megszüntetésének biztosítása már szerepel az Azure AD Application Gallery hello tooapplications gyors konfigurálásához"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,42 +13,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 2e38fcb30ea7632339a3ba8815a536872cfcc69e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2c28e59a3ac8f221ed93b2f6b0b1221f7604af23
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-user-provisioning-to-an-azure-ad-gallery-application"></a>A felhasználók átadása egy Azure AD-katalógusában alkalmazás konfigurálása
+# <a name="how-tooconfigure-user-provisioning-tooan-azure-ad-gallery-application"></a>Hogyan tooconfigure felhasználói tooan az Azure AD-gyűjtemény alkalmazás kiépítése
 
-*Felhasználói fiók kiépítése* történő létrehozása, frissítése és/vagy letiltása a felhasználói fiókot rögzíti az alkalmazás helyi felhasználói profil tárolójában van. Legtöbb felhő- és SaaS-alkalmazásokhoz tárolja a felhasználói szerepköröket és engedélyeket a saját helyi felhasználói profil tárolójában, és ilyen felhasználói rekordban a helyi tárolóban levő jelenléte *szükséges* egyszeri bejelentkezést és a hozzáférés működéséhez.
+*Felhasználói fiók kiépítése* hello act létrehozása, frissítése, illetve letiltása a felhasználói fiókot rögzíti az alkalmazás helyi felhasználói profil tárolójában van. A legtöbb felhő- és SaaS-alkalmazásokhoz tárolása hello felhasználók szerepköröket és engedélyeket a saját helyi felhasználói profil tároló, valamint ilyen felhasználói rekordban a helyi tárolóban levő jelenléte *szükséges* az egyszeri bejelentkezés és a hozzáférés toowork.
 
-Az Azure portálon a **kiépítési** egy vállalati alkalmazást jeleníti meg, milyen üzembe helyezési mód támogatja az alkalmazás a bal oldali navigációs panelen lapján. Ez a két értékek egyike lehet:
+Hello Azure-portálon, a hello **kiépítési** egy vállalati alkalmazást jeleníti meg, milyen üzembe helyezési mód támogatja az alkalmazás hello bal oldali navigációs panelen lapján. Ez a két értékek egyike lehet:
 
 ## <a name="configuring-an-application-for-manual-provisioning"></a>Alkalmazások konfigurálása a manuális üzembe helyezéséhez
 
-*Manuális* kiépítés azt jelenti, hogy felhasználói fiókokat kell létrehozni az alkalmazás által biztosított módszerek segítségével manuálisan. Ez azt jelentheti, hogy az alkalmazáshoz egy felügyeleti portálra való bejelentkezéskor, és a webes felhasználói felülete segítségével a felhasználók hozzáadásával. Vagy az sikerült feltölteni egy táblázatot a felhasználói fiók részletes, egy adott alkalmazás által biztosított mechanizmus használatával. Az alkalmazás által biztosított dokumentációt, vagy lépjen kapcsolatba az alkalmazás fejlesztőjének annak meghatározásához, Nyugat-afrikai mechanizmusok érhetők el.
+*Manuális* kiépítés azt jelenti, hogy felhasználói fiókokat kell létrehozni az alkalmazás által biztosított hello módszerek segítségével manuálisan. Ez azt jelentheti, hogy az alkalmazáshoz egy felügyeleti portálra való bejelentkezéskor, és a webes felhasználói felülete segítségével a felhasználók hozzáadásával. Vagy az sikerült feltölteni egy táblázatot a felhasználói fiók részletes, egy adott alkalmazás által biztosított mechanizmus használatával. Dokumentációjában talál hello megadott szerint hello alkalmazást, illetve kapcsolattartási hello alkalmazást fejlesztői toodetermine Nyugat-afrikai mechanizmusok érhetők el.
 
-Ha manuális az egyetlen mód egy adott alkalmazás látható, az azt jelenti, hogy nincs automatikus az Azure AD összekötő kiépítése még létrehozva az alkalmazás. Vagy az azt jelenti, hogy az alkalmazás nem támogatja a működéséhez szükséges felhasználói API szerint az automatikus létesítési összekötő létrehozásához.
+Ha manuális hello egyetlen mód jelenik meg egy adott alkalmazáshoz, az azt jelenti, hogy nincs automatikus az Azure AD összekötő kiépítése még létrehozva hello alkalmazás. Vagy az azt jelenti, hogy hello alkalmazás nem nem támogatási hello működéséhez szükséges felhasználói felügyeleti API mely toobuild követően az automatikus létesítési csatlakozó.
 
-Ha azt szeretné, a megadott alkalmazások automatikus kiépítés támogatás kéréséhez, a kérelem kitöltheti <http://aka.ms/aadapprequest>.
+Ha szeretné, hogy egy adott alkalmazás automatikus kiépítés toorequest támogatása, a kérelem kitöltheti <http://aka.ms/aadapprequest>.
 
 ## <a name="configuring-an-application-for-automatic-provisioning"></a>Alkalmazások konfigurálása az Automatikus kiépítés
 
-*Automatikus* azt jelenti, hogy egy összekötő kiépítése az Azure AD identitáskezelési ehhez az alkalmazáshoz. Az Azure ad-val kiépítése szolgáltatáshoz, és annak működéséről további információkért lásd: [Felhasználókiépítés és -megszüntetés automatizálása a SaaS-alkalmazásokhoz az Azure Active Directoryval](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning).
+*Automatikus* azt jelenti, hogy egy összekötő kiépítése az Azure AD identitáskezelési ehhez az alkalmazáshoz. További információ a hello kiépítése szolgáltatáshoz, és hogyan működik, az Azure AD: [Felhasználókiépítés és -megszüntetés tooSaaS alkalmazásokat az Azure Active Directoryval](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning).
 
-A meghatározott felhasználókhoz és csoportokhoz alkalmazáshoz való kiépítése további információkért lásd: [kezelése a felhasználói fiók kiépítése vállalati alkalmazások](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-manage-provisioning).
+További információ a hogyan tooprovision bizonyos felhasználók és csoportok tooan alkalmazás: [kezelése a felhasználói fiók kiépítése vállalati alkalmazások](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-manage-provisioning).
 
-Engedélyezze és konfigurálja az Automatikus kiépítés tényleges lépéseit az alkalmazástól függően eltérőek.
+hello szükséges tooenable tényleges lépéseket, és állítsa be automatikus kiépítés hello alkalmazástól függően változhat.
 
 >[!NOTE]
->Először meg kell válaszolnia a telepítő az oktatóanyag az alkalmazás üzembe helyezési, és a következő azokat az alkalmazás és az üzembe helyezési kapcsolat létrehozása az Azure AD konfigurálása lépésekkel beállítására vonatkozó keresése. 
+>Először meg kell válaszolnia hello beállítása adott oktatóanyag toosetting be az alkalmazás telepítése, és ezeket a lépéseket tooconfigure következő hello alkalmazás, mind az Azure AD toocreate hello létesítési kapcsolat keresése. 
 >
 >
 
-Alkalmazás oktatóprogramok találhatók [integrálhatja SaaS-alkalmazásokhoz az Azure Active Directoryval kapcsolatos lista a bemutatók](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list).
+Alkalmazás oktatóprogramok találhatók [oktatóanyagok listáját hogyan tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list).
 
-Kiépítés beállítása során figyelembe kell venni egy fontos dolog lehet áttekintése és konfigurálása a attribútum-leképezésekhez és a munkafolyamatok, amelyek meghatározzák, milyen felhasználói (vagy a csoport) tulajdonságok folyamata az Azure AD az alkalmazásnak. Ez magában foglalja a "egyező property" beállítás használható egyedileg azonosíthatja és felel meg a felhasználókat/csoportokat a két rendszer között. További információ a fontos folyamatban.
+Ha kiépítés beállítása tooreview egy fontos tooconsider hello attribútum-leképezésekhez és munkafolyamatok, amelyek meghatározzák, milyen felhasználói (vagy a csoport) tulajdonságok folyamata az Azure AD toohello alkalmazásból és konfigurálása. Ez magában foglalja, hello "egyező tulajdonság" beállítása használt toouniquely kell azonosítani és felel meg a felhasználók/csoportok hello két rendszerek között. További információ a fontos folyamatban.
 
 ## <a name="next-steps"></a>Következő lépések
 [Attribútum-leképezésekhez kiépítés az SaaS-alkalmazásokhoz az Azure Active Directory felhasználói testreszabása](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings)

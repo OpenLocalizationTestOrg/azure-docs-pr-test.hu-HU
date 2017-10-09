@@ -1,6 +1,6 @@
 ---
 title: "Oktatóanyag: Azure Active Directoryval integrált xMatters OnDemand |} Microsoft Docs"
-description: "Megtudhatja, hogyan konfigurálhatja az egyszeri bejelentkezés Azure Active Directory és xMatters OnDemand között."
+description: "Ismerje meg, hogyan tooconfigure egyszeri bejelentkezés Azure Active Directory és xMatters OnDemand között."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,104 +13,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 9bfcb44ed19f167872b3cd9119e2dbdd35c82604
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7cc8f9f0d8cefc8a60b9514027437ced50c66242
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-xmatters-ondemand"></a>Oktatóanyag: Azure Active Directoryval integrált xMatters kötegmérete
 
-Ebben az oktatóanyagban elsajátíthatja xMatters OnDemand integrálása az Azure Active Directory (Azure AD).
+Ebben az oktatóanyagban elsajátíthatja, hogyan toointegrate xMatters OnDemand az Azure Active Directoryval (Azure AD).
 
-XMatters OnDemand integrálása az Azure AD lehetővé teszi a következő előnyöket biztosítja:
+XMatters OnDemand integrálása az Azure AD lehetővé teszi a következő előnyöket hello:
 
-- Megadhatja a xMatters OnDemand hozzáféréssel rendelkező Azure AD-ben
-- Engedélyezheti a felhasználóknak, hogy automatikusan lekérni aláírt a xMatters OnDemand (egyszeri bejelentkezés) a saját Azure AD-fiókok
-- Kezelheti a fiókokat, egy központi helyen – az Azure-portálon
+- Megadhatja a hozzáférés tooxMatters OnDemand rendelkező Azure AD-ben
+- Engedélyezheti a felhasználók tooautomatically get bejelentkezett tooxMatters OnDemand (egyszeri bejelentkezés) a saját Azure AD-fiókok
+- Kezelheti a fiókokat, egy központi helyen - hello Azure-portálon
 
-Ha meg szeretné ismerni az Azure AD SaaS integrálásáról további adatait, tekintse meg [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
+Ha azt szeretné, tooknow az Azure AD SaaS integrálásáról további információkat, lásd: [alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryval](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Konfigurálása az Azure AD-integrációs xMatters OnDemand, a következőkre van szükség:
+tooconfigure xMatters OnDemand az Azure AD integrálása, a következő elemek hello kell:
 
 - Az Azure AD szolgáltatásra
 - Egy OnDemand egyszeri bejelentkezés xMatters előfizetés engedélyezve
 
 > [!NOTE]
-> Ez az oktatóanyag lépéseit teszteléséhez nem ajánlott használata termelési környezetben.
+> tootest hello lépéseit az oktatóanyag, ne használja éles környezetben.
 
-Ebben az oktatóanyagban a lépéseket teszteléséhez kövesse ezeket a javaslatokat:
+Ebben az oktatóanyagban tootest hello lépéseiért ajánlott ezen javaslatok:
 
 - Ne használja az éles környezetben, nem szükséges.
 - Ha még nem rendelkezik az Azure AD próbaverziójának környezetben, egy hónapos próbaverzió kaphat [Itt](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Forgatókönyv leírása
-Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt forgatókönyv két fő építőelemeket áll:
+Ebben az oktatóanyagban tesztelése az Azure AD egyszeri bejelentkezéshez egy tesztkörnyezetben. Ebben az oktatóanyagban leírt hello forgatókönyvben két fő építőelemeket áll:
 
-1. XMatters OnDemand hozzáadása a gyűjteményből
+1. Hello gyűjteményből xMatters OnDemand hozzáadása
 2. És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 
-## <a name="adding-xmatters-ondemand-from-the-gallery"></a>XMatters OnDemand hozzáadása a gyűjteményből
-Az Azure AD integrálása a xMatters OnDemand konfigurálásához kell hozzáadnia xMatters OnDemand a gyűjteményből a felügyelt SaaS-alkalmazások listájára.
+## <a name="adding-xmatters-ondemand-from-hello-gallery"></a>Hello gyűjteményből xMatters OnDemand hozzáadása
+tooconfigure hello integrációja xMatters OnDemand az Azure AD-be, meg kell tooadd xMatters OnDemand hello gyűjtemény tooyour felügyelt SaaS-alkalmazások listája.
 
-**A gyűjteményből xMatters OnDemand hozzáadásához hajtsa végre az alábbi lépéseket:**
+**tooadd xMatters OnDemand hello gyűjteményből, hajtsa végre a lépéseket követve hello:**
 
-1. Az a  **[Azure-portálon](https://portal.azure.com)**, kattintson a bal oldali navigációs panelen **Azure Active Directory** ikonra. 
+1. A hello  **[Azure-portálon](https://portal.azure.com)**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra. 
 
     ![Active Directory][1]
 
-2. Navigáljon a **vállalati alkalmazások**. Ezután lépjen **összes alkalmazás**.
+2. Keresse meg a túl**vállalati alkalmazások**. Keresse meg a túl**összes alkalmazás**.
 
     ![Alkalmazások][2]
     
-3. Új alkalmazás hozzáadásához kattintson **új alkalmazás** párbeszédpanel tetején gombra.
+3. Új alkalmazás tooadd, kattintson a **új alkalmazás** párbeszédpanel tetején hello gombjára.
 
     ![Alkalmazások][3]
 
-4. Írja be a keresőmezőbe, **xMatters OnDemand**.
+4. Hello keresési mezőbe, írja be a **xMatters OnDemand**.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_xmattersondemand_search.png)
 
-5. Az eredmények panelen válassza ki a **xMatters OnDemand**, és kattintson a **Hozzáadás** gombra kattintva vegye fel az alkalmazást.
+5. A hello eredmények panelen válassza ki a **xMatters OnDemand**, és kattintson a **Hozzáadás** tooadd hello alkalmazás gombra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_xmattersondemand_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>És tesztelés az Azure AD konfigurálása egyszeri bejelentkezés
 Ebben a szakaszban, tesztelése és konfigurálása az Azure AD egyszeri bejelentkezést a xMatters OnDemand "Britta Simon" nevű tesztfelhasználó alapján.
 
-Az egyszeri bejelentkezés működéséhez az Azure AD az Azure AD-ben a felhasználó van Ondemanddetection xMatters a párjukhoz felhasználó tudnia kell. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználó a xMatters hivatkozás kapcsolatának OnDemand kell létrehozni.
+Az egyszeri bejelentkezés toowork, az Azure AD kell tooknow milyen hello xMatters OnDemand megfelelőjére felhasználó tooa felhasználó az Azure ad-ben. Ez azt jelenti az Azure AD-felhasználó és a kapcsolódó felhasználói hello xMatters a hivatkozás kapcsolatának OnDemand kell toobe létrejött.
 
-XMatters OnDemand, rendelje hozzá a értékének a **felhasználónév** értékeként Azure AD-ben a **felhasználónév** a hivatkozás kapcsolat létrehozására.
+XMatters OnDemand, rendelje hozzá hello hello értékének **felhasználónév** hello értékeként hello Azure AD-ben **felhasználónév** tooestablish hello hivatkozás kapcsolatban.
 
-Az Azure AD egyszeri bejelentkezést az xMatters OnDemand tesztelése és konfigurálása, hogy végezze el a következő építőelemeket kell:
+tooconfigure és az Azure AD az egyszeri bejelentkezés xMatters OnDemand-teszthez, a következő építőelemeket toocomplete hello szüksége:
 
-1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  – lehetővé teszi a felhasználók a szolgáltatás használatához.
-2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  – az Azure AD egyszeri bejelentkezést a Britta Simon teszteléséhez.
-3. **[XMatters OnDemand tesztfelhasználó létrehozása](#creating-a-xmatters-ondemand-test-user)**  - kell rendelkeznie egy Britta Simon megfelelője a xMatters OnDemand, amely csatolva van a felhasználó az Azure AD-ábrázolását.
-4. **[Az Azure AD-teszt felhasználó hozzárendelése](#assigning-the-azure-ad-test-user)**  - Britta Simon használata az Azure AD az egyszeri bejelentkezés engedélyezése.
-5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  – győződjön meg arról, hogy működik-e a konfiguráció.
+1. **[Az Azure AD az egyszeri bejelentkezés konfigurálása](#configuring-azure-ad-single-sign-on)**  -tooenable a felhasználók toouse ezt a szolgáltatást.
+2. **[Az Azure AD tesztfelhasználó létrehozása](#creating-an-azure-ad-test-user)**  -tootest az Azure AD egyszeri bejelentkezést a Britta Simon.
+3. **[XMatters OnDemand tesztfelhasználó létrehozása](#creating-a-xmatters-ondemand-test-user)**  -toohave Britta Simon egy partner, a xMatters OnDemand, amely a felhasználó csatolt toohello az Azure AD ábrázolása.
+4. **[Hozzárendelése az Azure AD hello tesztfelhasználó](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse az Azure AD egyszeri bejelentkezést.
+5. **[Egyszeri bejelentkezés tesztelése](#testing-single-sign-on)**  -tooverify e hello konfigurációs működik.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Az Azure AD az egyszeri bejelentkezés konfigurálása
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure portálon, és a xMatters OnDemand-alkalmazás az egyszeri bejelentkezés konfigurálása.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezéssel a hello Azure-portálon, és a xMatters OnDemand-alkalmazás az egyszeri bejelentkezés konfigurálása.
 
-**Konfigurálása az Azure AD az egyszeri bejelentkezés xMatters OnDemand, hajtsa végre az alábbi lépéseket:**
+**tooconfigure az Azure AD egyszeri bejelentkezést a xMatters OnDemand, hajtsa végre a lépéseket követve hello:**
 
-1. Az Azure portálon a a **xMatters OnDemand** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
+1. Az Azure portál, a hello hello **xMatters OnDemand** alkalmazás integráció lapján, kattintson a **egyszeri bejelentkezés**.
 
     ![Egyszeri bejelentkezés konfigurálása][4]
 
-2. Az a **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** egyszeri bejelentkezés engedélyezése.
+2. A hello **egyszeri bejelentkezés** párbeszédablakban válassza **mód** , **SAML-alapú bejelentkezés** tooenable egyszeri bejelentkezést.
  
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_xmattersondemand_samlbase.png)
 
-3. Az a **xMatters OnDemand-tartomány és az URL-címek** területen tegye a következőket:
+3. A hello **xMatters OnDemand-tartomány és az URL-címek** csoportjában hajtsa végre az alábbi lépésekkel hello:
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_xmattersondemand_url.png)
     
-    a. Az a **azonosító** szövegmező, adja meg a következő minta használatával URL-címe:   
+    a. A hello **azonosító** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:   
     | |
     |--|
     | `https://<companyname>.au1.xmatters.com.au/`|
@@ -119,7 +119,7 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
     | `https://www.xmatters.com`|
     | `https://<companyname>.xmatters.com.au/`|
 
-    b. Az a **válasz URL-CÍMEN** szövegmező, adja meg a következő minta használatával URL-címe:
+    b. A hello **válasz URL-CÍMEN** szövegmezőhöz URL-címet a következő mintát hello használatával írja be:
     | |
     |--|
     | `https://<companyname>.au1.xmatters.com.au`|
@@ -128,124 +128,124 @@ Ebben a szakaszban az Azure AD egyszeri bejelentkezés engedélyezése az Azure 
     | `https://<companyname>.au1.xmatters.com.au/<instancename>`|
 
     > [!NOTE] 
-    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket a tényleges azonosítója és a válasz URL-CÍMEN. Ügyfél [xMatters OnDemand támogatási csoport](https://www.xmatters.com/company/contact-us/) beolvasni ezeket az értékeket.
+    > Ezek az értékek nincsenek valós. Frissítheti ezeket az értékeket hello tényleges azonosítója és a válasz URL-címmel. Ügyfél [xMatters OnDemand támogatási csoport](https://www.xmatters.com/company/contact-us/) tooget ezeket az értékeket.
 
-4. Az a **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** tanúsítvány helyileg a fájlt, majd mentse **c:\\XMatters OnDemand.cer**.
+4. A hello **SAML-aláíró tanúsítványa** kattintson **Certificate(Base64)** hello fájlt helyben, majd mentse **c:\\XMatters OnDemand.cer**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_xmattersondemand_certificate.png)
     
     > [!IMPORTANT]
-    > A tanúsítvány továbbítani kell a [xMatters OnDemand támogatási csoport](https://www.xmatters.com/company/contact-us/). Az egyszeri bejelentkezés konfigurációs is véglegesítése előtt a xMatters támogatási csoport által feltöltött kell a tanúsítványt. 
+    > Tooforward hello tanúsítvány toohello kell [xMatters OnDemand támogatási csoport](https://www.xmatters.com/company/contact-us/). hello tanúsítványt kell toobe hello xMatters támogatási csoport által feltöltött hello egyszeri bejelentkezés konfigurációs is véglegesítése előtt. 
 
 5. Kattintson a **mentése** gombra.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_general_400.png)
 
-6. A a **xMatters OnDemand konfigurációs** kattintson **xMatters OnDemand konfigurálása** megnyitásához **bejelentkezés konfigurálása** ablak. Másolás a **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a a **rövid összefoglaló szakasz.**
+6. A hello **xMatters OnDemand konfigurációs** kattintson **xMatters OnDemand konfigurálása** tooopen **bejelentkezés konfigurálása** ablak. Másolás hello **Sign-Out URL-címet, a SAML entitás azonosítója és a SAML-alapú egyszeri bejelentkezési URL-címe** a hello **rövid összefoglaló szakasz.**
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_xmattersondemand_configure.png) 
 
-7. Egy másik webes böngészőablakban jelentkezzen be a XMatters OnDemand vállalati webhely rendszergazdaként.
+7. Egy másik webes böngészőablakban jelentkezzen be tooyour XMatters OnDemand vállalati hely rendszergazdaként.
 
-8. A felső eszköztáron kattintson **Admin**, és kattintson a **vállalat adatait** a bal oldali navigációs sávon.
+8. Hello hello felső eszköztárán kattintson **Admin**, és kattintson a **vállalat adatait** hello bal oldali navigációs sávján hello.
    
     ![Felügyeleti](./media/active-directory-saas-xmatters-ondemand-tutorial/IC776795.png "rendszergazda")
 
-9. Az a **SAML-alapú konfigurációs** lapon, a következő lépésekkel:
+9. A hello **SAML-alapú konfigurációs** lapon, hajtsa végre az alábbi lépésekkel hello:
    
     ![SAML-alapú konfigurációs](./media/active-directory-saas-xmatters-ondemand-tutorial/IC776796.png "SAML-konfigurációja")
    
     a. Válassza ki **SAML engedélyezése**.
    
-    b. Beillesztés **SAML Entitásazonosító**, amely az Azure-portálról másolta a **identitás Szolgáltatóazonosító** szövegmező.
+    b. Beillesztés **SAML Entitásazonosító**, amelyek akkor másolta, az Azure-portálon hello hello **identitás Szolgáltatóazonosító** szövegmező.
    
-    c. Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe**, amely az Azure-portálról másolta a **egyszeri bejelentkezési URL-cím** szövegmező.
+    c. Beillesztés **SAML-alapú egyszeri bejelentkezési URL-címe**, amely akkor másolta, az Azure-portálon hello hello **egyszeri bejelentkezési URL-cím** szövegmező.
    
-    d. Beillesztés **Sign-Out URL-cím**, amely az Azure-portálról másolta a **egyetlen kijelentkezési URL-címet** szövegmező.
+    d. Beillesztés **Sign-Out URL-cím**, amely akkor másolta, az Azure-portálon hello hello **egyetlen kijelentkezési URL-címet** szövegmező.
    
-    e. Az oldalon a vállalat adatait a lap tetején kattintson **módosítások mentése**.
+    e. A hello vállalati részleteit megjelenítő oldalra, hello lap tetején kattintson **módosítások mentése**.
     
     ![A vállalati részletek](./media/active-directory-saas-xmatters-ondemand-tutorial/IC776797.png "vállalati részletei")
 
 > [!TIP]
-> Ezek az utasítások belül tömör verziója most el tudja olvasni a [Azure-portálon](https://portal.azure.com), míg az alkalmazás beállításakor!  Ez az alkalmazás a hozzáadása után a **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a **egyszeri bejelentkezés** lapra, és a beágyazott dokumentációja keresztül a **konfigurációs** szakasz alján. További Itt a embedded dokumentációjából szolgáltatásról: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Ezek az utasítások belül hello tömör verziója most olvasható [Azure-portálon](https://portal.azure.com), míg a állítja be az alkalmazás hello!  Ezt az alkalmazást a hello hozzáadása után **Active Directory > Vállalati alkalmazások** egyszerűen kattintson a hello **egyszeri bejelentkezés** lapra, és hozzáférést hello beágyazott keresztül hello dokumentáció  **Konfigurációs** szakasz hello lap alján. További szolgáltatásról hello embedded dokumentációjából itt: [az Azure AD beágyazott dokumentáció]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Az Azure AD tesztfelhasználó létrehozása
-Ez a szakasz célja a tesztfelhasználó létrehozása az Azure portálon Britta Simon nevezik.
+hello ebben a szakaszban célja toocreate hello Britta Simon nevű Azure-portálon a tesztfelhasználó.
 
 ![Az Azure AD-felhasználó létrehozása][100]
 
-**Tesztfelhasználó létrehozása az Azure AD-ban, hajtsa végre az alábbi lépéseket:**
+**az Azure AD-tesztfelhasználó toocreate hello a következő lépéseket hajtsa végre:**
 
-1. Az a **Azure-portálon**, a bal oldali navigációs ablaktábláján kattintson **Azure Active Directory** ikonra.
+1. A hello **Azure-portálon**, a hello bal oldali navigációs panelen, kattintson a **Azure Active Directory** ikonra.
 
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-xmatters-ondemand-tutorial/create_aaduser_01.png) 
 
-2. Azon felhasználók listájának megtekintéséhez keresse fel **felhasználók és csoportok** kattintson **minden felhasználó**.
+2. toodisplay hello azoknak a felhasználóknak, nyissa meg túl**felhasználók és csoportok** kattintson **minden felhasználó**.
     
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-xmatters-ondemand-tutorial/create_aaduser_02.png) 
 
-3. Lehetőségre a **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** párbeszédpanel tetején.
+3. tooopen hello **felhasználói** párbeszédpanel, kattintson a **Hozzáadás** hello felül hello párbeszédpanel.
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-xmatters-ondemand-tutorial/create_aaduser_03.png) 
 
-4. Az a **felhasználói** párbeszédpanel lapon, a következő lépésekkel:
+4. A hello **felhasználói** párbeszédpanel lapon, hajtsa végre az alábbi lépésekkel hello:
  
     ![Az Azure AD tesztfelhasználó létrehozása](./media/active-directory-saas-xmatters-ondemand-tutorial/create_aaduser_04.png) 
 
-    a. Az a **neve** szövegmezőhöz típus **BrittaSimon**.
+    a. A hello **neve** szövegmezőhöz típus **BrittaSimon**.
 
-    b. Az a **felhasználónév** szövegmezőhöz típusa a **e-mail cím** a BrittaSimon.
+    b. A hello **felhasználónév** szövegmezőhöz típus hello **e-mail cím** a BrittaSimon.
 
-    c. Válassza ki **megjelenítése jelszó** írja le a értékének a **jelszó**.
+    c. Válassza ki **megjelenítése jelszó** írja le hello hello értékének **jelszó**.
 
     d. Kattintson a **Create** (Létrehozás) gombra.
  
 ### <a name="creating-a-xmatters-ondemand-test-user"></a>XMatters OnDemand tesztfelhasználó létrehozása
 
-Ahhoz, hogy az Azure AD-felhasználók XMatters OnDemand bejelentkezni, akkor ki kell építenie XMatters OnDemand be. XMatters Ondemanddetection, ha egy kézi tevékenység.
+A sorrend tooenable az Azure AD felhasználók toolog a tooXMatters OnDemand azok kell üzembe XMatters OnDemand be. XMatters OnDemand hello esetben egy kézi tevékenység.
 
-### <a name="to-provision-a-user-accounts-perform-the-following-steps"></a>A felhasználói fiókok létrehozásához hajtsa végre az alábbi lépéseket:
-1. Jelentkezzen be a **XMatters OnDemand** bérlő.
+### <a name="tooprovision-a-user-accounts-perform-hello-following-steps"></a>tooprovision felhasználói fiókok, hajtsa végre hello a következő lépéseket:
+1. Jelentkezzen be tooyour **XMatters OnDemand** bérlő.
 
-2.  Kattintson a **felhasználók** fülre. majd **felhasználó hozzáadása**.
+2.  Kattintson a **felhasználók** lapra, majd kattintson **felhasználó hozzáadása**.
   
     ![Felhasználók](./media/active-directory-saas-xmatters-ondemand-tutorial/IC781048.png "felhasználók")
 
-3. Az a **hozzáadni egy felhasználót** területen tegye a következőket:
+3. A hello **hozzáadni egy felhasználót** csoportjában hajtsa végre az alábbi lépésekkel hello:
    
     ![Felhasználó hozzáadása](./media/active-directory-saas-xmatters-ondemand-tutorial/IC781049.png "felhasználó hozzáadása")
 
     a. Válassza ki **aktív**.
 
-    b. Az a **Felhasználóazonosító** szövegmező, a felhasználó a felhasználói azonosító típusát, például Brittasimon@contoso.com.
+    b. A hello **Felhasználóazonosító** szövegmező, például a felhasználó hello felhasználói azonosítója Brittasimon@contoso.com.
    
-    c. Az a **Keresztnév** szövegmezőhöz Britta például a felhasználó első nevét.
+    c. A hello **Keresztnév** szövegmezőhöz hello felhasználó például Britta első nevét.
 
-    d. Az a **Vezetéknév** szövegmezőhöz típus Simon például a felhasználó vezetékneve.
+    d. A hello **Vezetéknév** szövegmezőhöz hello felhasználó például Simon utolsó típusnév.
     
-    e. Az a **hely** szövegmező, adjon meg egy érvényes Azure érvényes hely rendelkezés kívánt AD-fiókot.
+    e. A hello **hely** szövegmezőhöz Enter hello érvényes hely egy érvényes Azure AD-fiókot szeretne tooprovision.
     
     f. Kattintson a **Save** (Mentés) gombra.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Az Azure AD-teszt felhasználó hozzárendelése
+### <a name="assigning-hello-azure-ad-test-user"></a>Az Azure AD hello tesztfelhasználó hozzárendelése
 
-Ebben a szakaszban engedélyezze Britta Simon Azure egyszeri bejelentkezéshez használandó xMatters OnDemand való hozzáférés biztosítása.
+Ebben a szakaszban a Britta Simon toouse Azure egyszeri bejelentkezés hozzáférés tooxMatters OnDemand megadásával engedélyeznie.
 
 ![Felhasználó hozzárendelése][200] 
 
-**Britta Simon hozzárendelése xMatters OnDemand, hajtsa végre az alábbi lépéseket:**
+**tooassign Britta Simon tooxMatters OnDemand, hajtsa végre a következő lépéseket hello:**
 
-1. Az Azure-portálon, nyissa meg az alkalmazások nézet, majd nyissa meg a könyvtár nézetet, és navigáljon **vállalati alkalmazások** kattintson **összes alkalmazás**.
+1. A hello Azure-portálon, nyissa meg hello alkalmazások megtekintése, és majd toohello könyvtár nézetben keresse meg és nyissa meg túl**vállalati alkalmazások** kattintson **összes alkalmazás**.
 
     ![Felhasználó hozzárendelése][201] 
 
-2. Az alkalmazások listában válassza ki a **xMatters OnDemand**.
+2. Hello alkalmazások listában válassza ki a **xMatters OnDemand**.
 
     ![Egyszeri bejelentkezés konfigurálása](./media/active-directory-saas-xmatters-ondemand-tutorial/tutorial_xmattersondemand_app.png) 
 
-3. A bal oldali menüben kattintson a **felhasználók és csoportok**.
+3. Hello hello bal oldali menüben kattintson a **felhasználók és csoportok**.
 
     ![Felhasználó hozzárendelése][202] 
 
@@ -253,7 +253,7 @@ Ebben a szakaszban engedélyezze Britta Simon Azure egyszeri bejelentkezéshez h
 
     ![Felhasználó hozzárendelése][203]
 
-5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** a felhasználók listában.
+5. A **felhasználók és csoportok** párbeszédablakban válassza **Britta Simon** hello felhasználók listában.
 
 6. Kattintson a **válasszon** gombra **felhasználók és csoportok** párbeszédpanel.
 
@@ -261,14 +261,14 @@ Ebben a szakaszban engedélyezze Britta Simon Azure egyszeri bejelentkezéshez h
     
 ### <a name="testing-single-sign-on"></a>Egyszeri bejelentkezés tesztelése
 
-Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai a hozzáférési panelen tesztelése.
+Ebben a szakaszban az Azure AD egyszeri bejelentkezés beállításai hello hozzáférési Panel segítségével tesztelheti.
 
-Kattintva a xMatters OnDemand csempe a hozzáférési panelen, meg kell beolvasni automatikusan bejelentkezett a xMatters OnDemand alkalmazás számára.
-A hozzáférési Panel kapcsolatos további információkért lásd: [a hozzáférési Panel bemutatása](active-directory-saas-access-panel-introduction.md).
+Hello xMatters OnDemand csempe a hozzáférési Panel hello kattintáskor automatikusan bejelentkezett tooyour xMatters OnDemand alkalmazás szerezheti be.
+A hozzáférési Panel kapcsolatos további információkért lásd: [hozzáférési Panel bemutatása toohello](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>További források
 
-* [Az Azure Active Directoryval SaaS-alkalmazások integrációjával kapcsolatos bemutatók felsorolása](active-directory-saas-tutorial-list.md)
+* [Hogyan kapcsolatos bemutatók felsorolása tooIntegrate SaaS-alkalmazásokhoz az Azure Active Directoryval](active-directory-saas-tutorial-list.md)
 * [Mi az az alkalmazás-hozzáférés és egyszeri bejelentkezés az Azure Active Directoryban?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

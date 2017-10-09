@@ -1,7 +1,7 @@
 ---
-title: "Az Active Directory összevonási szolgáltatások az Azure-ban | Microsoft Docs"
-description: "Ebből a dokumentumból megtanulhatja, hogyan helyezze üzembe az AD FS szolgáltatást az Azure-ban, és biztosítson ezzel magas fokú rendelkezésre állást."
-keywords: "AD FS üzembe helyezése azure-ban, azure adfs üzembe helyezése, azure adfs, azure ad fs, adfs üzembe helyezése, ad fs üzembe helyezése, adfs azure-ban, adfs üzembe helyezése azure-ban, AD FS üzembe helyezése azure-ban, adfs azure, az AD FS bemutatása, Azure, AD FS az Azure-ban, iaas, ADFS, adfs áthelyezése az azure-ba"
+title: "az Azure Directory összevonási szolgáltatások aaaActive |} Microsoft Docs"
+description: "Ez a dokumentum megtudhatja, hogyan toodeploy AD FS az Azure-ban magas elérhetőségét."
+keywords: "az azure AD FS üzembe helyezése, az azure AD FS, az azure AD FS, az azure Active Directory összevonási szolgáltatások telepítése, az AD FS telepítése, központi telepítése az ad fs-ben az AD FS az azure-ban, az azure AD FS telepítése, AD FS üzembe helyezése az azure, az AD FS azure, a bevezetés tooAD FS, Azure, az Azure Active Directory összevonási szolgáltatások iaas, az AD FS, helyezze át az AD FS tooazure"
 services: active-directory
 documentationcenter: 
 author: anandyadavmsft
@@ -16,103 +16,103 @@ ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: anandy; billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ddd29a1230286de8999175498ee793f3b3ea24e2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2c39271f7569b9ce395dce2f53f5ba5a4897b132
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploying-active-directory-federation-services-in-azure"></a>Az Active Directory összevonási szolgáltatások üzembe helyezése az Azure-ban
-Az AD FS egyszerű, mégis biztonságos identitás-összevonást, valamint webes egyszeri bejelentkezési (SSO) funkciókat biztosít. Az Azure AD vagy O365 segítségével megvalósított összevonás lehetővé teszi a felhasználóknak a helyszíni bejelentkezési adatok segítségével történő hitelesítést, valamint a felhőben futó erőforrások elérését. Ezért fontos, hogy magas rendelkezésre állást biztosító AD FS-infrastruktúrát alkalmazzon, amely garantálja a helyszíni és a felhőben lévő erőforrások elérhetőségét. Az AD FS Azure-ban történő üzembe helyezésével minimális erőfeszítéssel kialakíthatja a magas rendelkezésre állást.
+Az AD FS egyszerű, mégis biztonságos identitás-összevonást, valamint webes egyszeri bejelentkezési (SSO) funkciókat biztosít. Az Azure AD összevonási vagy Office 365 lehetővé teszi, hogy a felhasználók tooauthenticate használatával a helyszíni hitelesítő adatok, és a felhő minden erőforrások elérését. Ennek eredményeképpen válik fontos toohave egy magas rendelkezésre állású AD FS infrastruktúra tooensure hozzáférési tooresources mind a helyszíni és felhőben hello. AD FS Azure telepítése segíthet hello magas rendelkezésre állásának eléréséhez szükséges minimális erőfeszítéseket.
 Az AD FS Azure-ban történő üzembe helyezése számos előnnyel jár. Alább ezek közül sorolunk fel néhányat:
 
-* **Magas rendelkezésre állás** – Az Azure rendelkezésre állási csoportok erejével garantálhatja az infrastruktúra magas rendelkezésre állását.
-* **Egyszerű skálázás** – Nagyobb teljesítményre van szüksége? Az Azure-ban mindössze néhány kattintással erősebb gépekre válthat.
-* **Különböző régiók közötti redundancia** – Az Azure Geo Redundancy szolgáltatása globális léptékű magas rendelkezésre állást garantál.
-* **Egyszerű felügyelet** – Az Azure Portal rendkívül könnyen használható felügyeleti funkciói révén az infrastruktúra kezelése kiemelkedően egyszerű és problémamentes feladat. 
+* **Magas rendelkezésre állású** -hello hatványra emelésének Azure rendelkezésre állási csoportokra, és a magas rendelkezésre állású infrastruktúrák biztosítása.
+* **Egyszerű tooScale** – további teljesítmény kell? Könnyen toomore hatékony gépeket áttelepíthet néhány kattintással az Azure-ban
+* **Kereszt-Georedundancia** – az Azure Georedundancia akkor biztos lehet abban, hogy az infrastruktúra nem magas rendelkezésre állású hello földgömb
+* **Egyszerű tooManage** – az infrastruktúra kezelése magas egyszerűsített kezelési lehetőségek az Azure portálon, nagyon egyszerűen és problémamentes 
 
 ## <a name="design-principles"></a>Tervezési alapelvek
 ![Az üzembe helyezés megtervezése](./media/active-directory-aadconnect-azure-adfs/deployment.png)
 
-A fenti diagram az AD FS-infrastruktúra Azure-ban való üzembe helyezéséhez javasolt alapszintű topológiát mutatja be. Alább részletesen is leírjuk a topológia különböző részei mögött álló elveket:
+hello a fenti ábrán hello ajánlott alapszintű topológia toostart központi telepítése az AD FS infrastruktúra Azure-ban. hello alapelvek mögött hello hello topológia különböző összetevői az alábbiak:
 
-* **Tartományvezérlő/ADFS-kiszolgáló**: ha ezernél kevesebb felhasználóval rendelkezik, egyszerűen telepítse az AD FS szerepkört a tartományvezérlőkre. Ha nem szeretné, hogy ez negatív hatással legyen a tartományvezérlők teljesítményére, illetve ha ezernél több felhasználóval rendelkezik, különálló kiszolgálókon helyezze üzembe az AD FS-t.
-* **WAP-kiszolgáló**: a webalkalmazásproxy-kiszolgálókat azért kell üzembe helyeznie, hogy a felhasználók akkor is elérjék az AD FS-t, ha nem a vállalati hálózaton tevékenykednek.
-* **DMZ**: a webalkalmazásoproxy-kiszolgálók a DMZ-be kerülnek, és a rendszer KIZÁRÓLAG TCP/443 hozzáférést engedélyez a DMZ és a belső alhálózat között.
-* **Terheléselosztók**: az AD FS és a webalkalmazásproxy-kiszolgálók magas rendelkezésre állásának garantálása érdekében javasoljuk, hogy az AD FS-kiszolgálókon belső terheléselosztót, míg a webalkalmazásokhoz tartozó proxykiszolgálókon Azure Load Balancert használjon.
-* **Rendelkezésre állási csoportok**: az AD FS üzemelő példánya redundanciájának garantálása érdekében javasoljuk, hogy a hasonló alkalmazások és szolgáltatások működtetésére foglaljon legalább két virtuális gépet rendelkezésre állási csoportba. Így legalább egy virtuális gép mindig elérhető lesz a tervezett vagy nem tervezett karbantartási események esetében is.
-* **Tárfiókok**: javasoljuk, hogy rendelkezzen legalább két tárfiókkal. Ha csupán egyetlen tárfiókot használ, azzal rendszerkritikus meghibásodási pontot hozhat létre, amely ahhoz vezethet, hogy az üzemelő példány nem fog rendelkezésre állni, ha bekövetkezik az a valószínűtlen eset, hogy a tárfiók működése leáll. Azzal, ha két tárfiókot használ, lefedheti mind a két meghibásodási lehetőséget.
-* **Hálózatok szétválasztása**: a webalkalmazásproxy-kiszolgálókat eltérő DMZ-hálózatokban helyezze üzembe. Osszon egy virtuális hálózatot két alhálózatra, majd a webalkalmazásproxy-kiszolgáló(ka)t helyezze üzembe az elszigetelt alhálózatban. Ezt követően egyszerűen megadhatja a hálózati biztonsági csoportok beállításait az egyes alhálózatokra vonatkozóan, és konfigurálhatja, hogy a rendszer csak a szükséges kommunikációt engedélyezze a két alhálózat között. Alább részletes információkat is megtudhat ezzel kapcsolatban az egyes üzemelőpéldány-típusokra vonatkozóan.
+* **Tartományvezérlő/ADFS-kiszolgáló**: ha ezernél kevesebb felhasználóval rendelkezik, egyszerűen telepítse az AD FS szerepkört a tartományvezérlőkre. Ha nem szeretné, hogy a teljesítményre gyakorolt hatás hello olyan tartományvezérlőn, vagy ha több mint 1000 felhasználó rendelkezik, majd telepíteni az AD FS egyazon kiszolgálón.
+* **WAP-kiszolgáló** – szükséges toodeploy webalkalmazás-Proxy kiszolgálók, fontos, hogy a felhasználók hello AD FS, ha azok nincsenek hello vállalati hálózaton is képes elérni.
+* **DMZ**: hello webalkalmazás-Proxy kiszolgálók hello DMZ kerülnek, és csak a TCP/443-as elérését hello DMZ és hello belső alhálózat között.
+* **Terheléselosztók**: tooensure magas rendelkezésre álláshoz az AD FS és a webalkalmazás-Proxy kiszolgálók használatát javasoljuk a belső terheléselosztók AD FS-kiszolgáló és az Azure terheléselosztó a webalkalmazás-Proxy kiszolgálók.
+* **Rendelkezésre állási készletek**: tooprovide redundancia tooyour AD FS üzembe helyezése, javasoljuk, hogy két vagy több virtuális gépek rendelkezésre állási csoport hasonló munkaterhelések csoportosítása. Így legalább egy virtuális gép mindig elérhető lesz a tervezett vagy nem tervezett karbantartási események esetében is.
+* **Storage-fiókok**: toohave két tárfiókok ajánlott. Egyetlen tárfiók vezethet a hibaérzékeny pontok kialakulását toocreation, és nem érhető el, ahol hello tárfiók leáll valószínű esetnél hello telepítési toobecome okozhat. Azzal, ha két tárfiókot használ, lefedheti mind a két meghibásodási lehetőséget.
+* **Hálózatok szétválasztása**: a webalkalmazásproxy-kiszolgálókat eltérő DMZ-hálózatokban helyezze üzembe. Egy virtuális hálózati osztani két alhálózat, és telepítheti a hello webalkalmazás-Proxy kiszolgáló (k) egy elkülönített alhálózat. Egyszerűen konfigurálni hello hálózati biztonsági csoport beállításait az egyes alhálózatokon, és csak szükséges kommunikációt hello két alhálózat között. Alább részletes információkat is megtudhat ezzel kapcsolatban az egyes üzemelőpéldány-típusokra vonatkozóan.
 
-## <a name="steps-to-deploy-ad-fs-in-azure"></a>Az AD FS Azure-ban való üzembe helyezésének lépései
-Az ebben a részben szereplő lépések útmutatást nyújtanak az alábbiakban leírt AD FS-infrastruktúra Azure-ban való üzembe helyezéséhez.
+## <a name="steps-toodeploy-ad-fs-in-azure"></a>Lépéseket toodeploy AD FS az Azure-ban
+Ez a szakasz vázlat hello útmutató toodeploy hello alábbi említett hello lépéseket az AD FS infrastruktúra Azure ábrázolva.
 
-### <a name="1-deploying-the-network"></a>1. A hálózat üzembe helyezése
-Ahogy fent már leírtuk, hozzon létre két, egyetlen virtuális hálózathoz tartozó különböző alhálózatot, vagy két teljesen különálló virtuális hálózatot (VNet). Ebben a cikkben egyetlen virtuális hálózatot hozunk létre, amelyet aztán két alhálózatra bontunk. Jelenleg ez az egyszerűbb megoldás, mivel két önálló virtuális hálózat esetében átjáróra lenne szükség a virtuális hálózatok között a kommunikációhoz.
+### <a name="1-deploying-hello-network"></a>1. Hello hálózati telepítése
+Ahogy fent már leírtuk, hozzon létre két, egyetlen virtuális hálózathoz tartozó különböző alhálózatot, vagy két teljesen különálló virtuális hálózatot (VNet). Ebben a cikkben egyetlen virtuális hálózatot hozunk létre, amelyet aztán két alhálózatra bontunk. Ez a funkció jelenleg egy egyszerűbb módszert, két külön Vnetek való kommunikáció VNet tooVNet átjáró igényel.
 
 **1.1 Virtuális hálózat létrehozása**
 
 ![Virtuális hálózat létrehozása](./media/active-directory-aadconnect-azure-adfs/deploynetwork1.png)
 
-Az Azure Portal webhelyen mindössze ki kell választania a kívánt virtuális hálózatot, amelyet aztán egy alhálózattal együtt akár egyetlen kattintással is üzembe helyezhet. Az INT alhálózat már definiálva van, és készen áll a virtuális gépek fogadására.
-A következő lépés, hogy egy másik alhálózatot vegyünk fel a hálózatba. Ez lesz a DMZ-alhálózat. A DMZ-alhálózat létrehozásához egyszerűen tegye a következőket:
+Hello Azure-portálon, a select virtuális hálózatot, és telepítheti hello virtuális hálózat és egy alhálózat azonnal csupán egyetlen kattintással. INT alhálózati is definiálva van, és hozzá virtuális gépek toobe most már készen áll.
+következő lépés hello tooadd van egy másik alhálózat toohello hálózat, azaz hello DMZ alhálózat. toocreate hello DMZ alhálózati, egyszerűen
 
-* Válassza ki az újonnan létrehozott hálózatot.
-* A Tulajdonságok között válassza az Alhálózat lehetőséget.
-* Az alhálózat paneljén kattintson a Hozzáadás gombra.
-* Az alhálózat létrehozásához adja meg az alhálózat nevét és a címtartományt.
+* Válassza ki az újonnan létrehozott hello hálózati
+* Hello tulajdonságainál jelölje ki az alhálózatot
+* Hello hello alhálózati panelen kattintson a Hozzáadás gomb
+* Adja meg a hello alhálózat nevét és címét terület információk toocreate hello alhálózati
 
 ![Alhálózat](./media/active-directory-aadconnect-azure-adfs/deploynetwork2.png)
 
 ![DMZ-alhálózat](./media/active-directory-aadconnect-azure-adfs/deploynetwork3.png)
 
-**1.2. Hálózati biztonsági csoportok létrehozása**
+**1.2. Hello hálózati biztonsági csoportok létrehozása**
 
-A hálózati biztonsági csoport (NSG) tartalmazza a hozzáférés-vezérlési (ACL) szabályok listáját, amelyek megszabják, hogy milyen típusú hálózati forgalom érhesse el a virtuális hálózatban futó virtuálisgép-példányokat. Az NSG-ket alhálózatokhoz vagy az alhálózaton belüli virtuálisgép-példányokhoz lehet hozzárendelni. Ha az NSG-t hozzárendelik egy alhálózathoz, az ACL-szabályok érvényesek lesznek az alhálózatban lévő összes virtuálisgép-példányra.
-Ebben az útmutatóban két NSG-t fogunk létrehozni: egyet-egyet a belső hálózathoz és a DMZ-hez. Ezek neve rendre NSG_INT, illetve NSG_DMZ lesz.
+Hálózati biztonsági csoport (NSG) tartalmaz, amelyek engedélyezik vagy megtagadják a hálózati forgalom tooyour Virtuálisgép-példány egy virtuális hálózati hozzáférés-vezérlési lista (ACL) szabályok listáját. Az NSG-ket alhálózatokhoz vagy az alhálózaton belüli virtuálisgép-példányokhoz lehet hozzárendelni. Amikor egy NSG-t hozzárendelnek egy alhálózathoz, hello ACL szabályok érvényessé válnak tooall hello Virtuálisgép-példány alhálózaton.
+Ez az útmutató a hello célra létrehozunk két NSG-ket: parancsikonja a belső hálózat és a Szegélyhálózaton. Ezek neve rendre NSG_INT, illetve NSG_DMZ lesz.
 
 ![Az NSG létrehozása](./media/active-directory-aadconnect-azure-adfs/creatensg1.png)
 
-Az NSG létrehozását követően 0 bejövő és 0 kimenő szabály lesz látható. Ha telepítette és működésbe hozta a szerepköröket a megfelelő kiszolgálókon, a kívánt biztonsági szintnek megfelelően állítsa be a bejövő és kimenő forgalomra vonatkozó szabályokat.
+Hello NSG jön létre, után nem lesznek 0 0 és bejövő kimenő szabályok. Miután hello szerepkörök hello megfelelő kiszolgálókon telepített és megfelelően működik, majd hello bejövő és kimenő szabályok lehet kapcsolódni a függően toohello szükséges biztonsági szintjét.
 
 ![Az NSG inicializálása](./media/active-directory-aadconnect-azure-adfs/nsgint1.png)
 
-Az NSG-k létrehozását követően társítsa az NSG_INT csoportot az INT-alhálózathoz, az NSG_DMZ csoportot pedig a DMZ-alhálózathoz. Alább láthatja az ezt bemutató képernyőképet:
+Hello NSG-k létrehozása után NSG_INT társítandó alhálózat INT és NSG_DMZ DMZ alhálózattal. Alább láthatja az ezt bemutató képernyőképet:
 
 ![Az NSG konfigurálása](./media/active-directory-aadconnect-azure-adfs/nsgconfigure1.png)
 
-* Kattintson az Alhálózatok lehetőségre az alhálózatok paneljének megnyitásához.
-* Válassza ki az NSG-hez társítani kívánt alhálózatot. 
+* Kattintson az alhálózatok tooopen hello panel alhálózatok
+* Válassza ki a hello alhálózati tooassociate hello NSG-t a 
 
-A konfigurációt követően az Alhálózatok panelnek a következő módon kell megjelennie:
+Konfigurálást követően az alhálózatok hello panel alatt kell hasonlítania:
 
 ![Alhálózatok panel az NSG társítását követően](./media/active-directory-aadconnect-azure-adfs/nsgconfigure2.png)
 
-**1.3. Kapcsolat létrehozása a helyszíni rendszerrel**
+**1.3. Helyszíni tooon kapcsolat létrehozása**
 
-A tartományvezérlő (DC) Azure-ban való üzembe helyezéséhez kapcsolatot kell kialakítanunk a helyszíni rendszerrel. Az Azure számos kapcsolódási lehetőséget kínál, amelyek segítségével összekötheti a helyszíni és az Azure-infrastruktúrát.
+Fel kell egy kapcsolatot tooon helyszíni rendelés toodeploy hello tartományvezérlőn (DC) az azure-ban. Az Azure kínál különböző kapcsolati lehetőségek tooconnect a helyszíni infrastruktúra tooyour Azure-infrastruktúra.
 
 * Pont–hely kapcsolat
 * Virtuális hálózat, helyek közötti kapcsolat
 * ExpressRoute
 
-Javasoljuk, hogy használja az ExpressRoute megoldást. Az ExpressRoute használatával privát kapcsolatok hozhatók létre az Azure-adatközpontok és a helyszíni vagy a bérelt kiszolgálói környezetben üzemelő infrastruktúra között. Az ExpressRoute-kapcsolatok nem a nyilvános interneten haladnak át. Ezért ezek a kapcsolatok megbízhatóbbak, mint az átlagos internetes kapcsolatok, ráadásul jobb a teljesítményük, rövidebb a válaszidejük, és magasabb fokú biztonságot nyújtanak.
-Habár mi az ExpressRoute használatát javasoljuk, bármelyik kapcsolódási módszert választhatja, ha az jobban megfelel szervezete igényeinek. Ha többet szeretne megtudni az ExpressRoute-ról és az ExpressRoute által kínált különböző kapcsolódási lehetőségekről, olvassa el [Az ExpressRoute technikai áttekintése](https://aka.ms/Azure/ExpressRoute) című cikket.
+Toouse ExpressRoute ajánlott. Az ExpressRoute használatával privát kapcsolatok hozhatók létre az Azure-adatközpontok és a helyszíni vagy a bérelt kiszolgálói környezetben üzemelő infrastruktúra között. Az ExpressRoute-kapcsolatok ne lépje át hello nyilvános internethez. További megbízhatóságát, gyorsabb sebességű, kisebb késések és nagyobb biztonságot nyújtana tipikus kapcsolatok biztosítanak hello interneten keresztül.
+Ajánlott toouse ExpressRoute, amíg úgy is dönthet, a szervezete számára leginkább megfelelő kapcsolódási módszert. További információk az ExpressRoute és hello toolearn különböző kapcsolati lehetőségek használatával ExpressRoute, olvassa el [ExpressRoute műszaki áttekintés](https://aka.ms/Azure/ExpressRoute).
 
 ### <a name="2-create-storage-accounts"></a>2. Tárfiókok létrehozása
-A magas rendelkezésre állás fenntartása érdekében hozzon létre két tárfiókot, így a rendszer elérhetősége sosem egyetlen tárfióktól fog függni. Az egyes rendelkezésre állási csoportokhoz tartozó gépeket ossza két csoportra, majd rendeljen a csoportokhoz egy-egy tárfiókot.
+A sorrend toomaintain magas rendelkezésre állású és egy tárfiók függés elkerüléséhez két storage-fiókok is létrehozhat. Egyes rendelkezésre állási csoport hello gépek felosztani két, majd rendelje hozzá minden csoport külön tárfiókot.
 
 ![Tárfiókok létrehozása](./media/active-directory-aadconnect-azure-adfs/storageaccount1.png)
 
 ### <a name="3-create-availability-sets"></a>3. Rendelkezésre állási csoportok létrehozása
-Hozzon létre egyenként legalább 2 gépet tartalmazó rendelkezésre állási csoportokat a szerepkörök számára (tartományvezérlő/AD FS és WAP). Így a szerepkörök magasabb fokú rendelkezésre állást tudnak garantálni. A rendelkezésre állási csoportok létrehozása előtt határozza meg a következő paramétereket:
+Az egyes szerepkörökhöz (DC/AD FS és WAP) 2 számítógépet minden, a minimális hello tartalmazó rendelkezésre állási csoportok létrehozása. Így a szerepkörök magasabb fokú rendelkezésre állást tudnak garantálni. Létrehozás hello rendelkezésre állási állítja be, de napjainkban hello következő alapvető toodecide:
 
-* **Tartalék tartományok**: az azonos tartalék tartományba tartozó virtuális gépek ugyanazt az áramforrást és fizikai hálózati kapcsolót használják. Javasoljuk, hogy használjon legalább 2 különböző tartalék tartományt. A beállítás alapértelmezett értéke a 3, ennél az üzemelő példánynál meghagyhatja ezt.
-* **Frissítési tartományok**: az azonos frissítési tartományhoz tartozó gépeket a rendszer egyszerre indítja újra a frissítés során. Érdemes legalább 2 különböző frissítési tartományt használni. A beállítás alapértelmezett értéke az 5, ennél az üzemelő példánynál meghagyhatja ezt.
+* **Tartományok fault**: a virtuális gépek hello tartalék tartomány megosztáshoz hello azonos áramforrásról és közös fizikai hálózati kapcsolóval működnek. Javasoljuk, hogy használjon legalább 2 különböző tartalék tartományt. hello alapértelmezett érték 3 és hagyhatja, mivel a központi telepítés hello célra
+* **Tartományok frissítése**: gépek tartozó toohello azonos frissítési tartományban együtt újraindításáig frissítése közben. Azt szeretné, hogy toohave legalább 2 frissítési tartományok. hello alapértelmezett érték 5 és hagyhatja, mivel a központi telepítés hello célra
 
 ![Rendelkezésre állási csoportok](./media/active-directory-aadconnect-azure-adfs/availabilityset1.png)
 
-Hozza létre a következő rendelkezésre állási csoportokat:
+A következő rendelkezésre állási készletek hello létrehozása
 
 | Rendelkezésre állási csoport | Szerepkör | Tartalék tartományok | Frissítési tartományok |
 |:---:|:---:|:---:|:--- |
@@ -120,7 +120,7 @@ Hozza létre a következő rendelkezésre állási csoportokat:
 | contosowapset |WAP |3 |5 |
 
 ### <a name="4-deploy-virtual-machines"></a>4. Virtuális gépek üzembe helyezése
-A következő lépés, hogy üzembe helyezzük a virtuális gépeket, amelyek futtatni fogják az infrastruktúra különböző szerepköreit. Mindegyik rendelkezésre állási csoportban használjon legalább két gépet. Az alapszintű üzemelő példányhoz hozzon létre négy virtuális gépet.
+hello következő lépésre toodeploy virtuális gépeket futtató kiszolgálón hello különböző szerepkörök a infrastruktúrában. Mindegyik rendelkezésre állási csoportban használjon legalább két gépet. Hozzon létre négy virtuális gépek hello alapszintű központi telepítést.
 
 | Gép | Szerepkör | Alhálózat | Rendelkezésre állási csoport | Tárfiók | IP-cím |
 |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -129,116 +129,116 @@ A következő lépés, hogy üzembe helyezzük a virtuális gépeket, amelyek fu
 | contosowap1 |WAP |DMZ |contosowapset |contososac1 |Statikus |
 | contosowap2 |WAP |DMZ |contosowapset |contososac2 |Statikus |
 
-Talán észrevette, hogy egyetlen NSG-t sem adtunk meg. Ez azért történt így, mert az Azure-ban az NSG-ket az alhálózatok szintjén is használhatja. Így az alhálózathoz vagy az NIC-objektumhoz társított különböző NSG-k segítségével az egyes gépek hálózati forgalmát is szabályozhatja. További információk: [Mi az a hálózati biztonsági csoport (NSG)?](https://aka.ms/Azure/NSG).
-Ha Ön kezeli a DNS-t, javasoljuk, hogy statikus IP-címeket használjon. Használhatja az Azure DNS-t is, és a tartomány DNS-rekordjaiban az Azure-beli teljes tartománynevük alapján is hivatkozhat az új gépekre.
-Az üzembe helyezés befejezését követően a virtuális gépek paneljének az alábbihoz hasonlóan kell megjelennie:
+Talán észrevette, hogy egyetlen NSG-t sem adtunk meg. Ennek az az oka azure lehetővé teszi, hogy NSG hello alhálózati szinten. Ezután azt is szabályozhatja a gép hálózati forgalmának hello egyes NSG társított vagy hello alhálózatot, vagy pedig hello NIC objektum használatával. További információk: [Mi az a hálózati biztonsági csoport (NSG)?](https://aka.ms/Azure/NSG).
+Statikus IP-cím akkor ajánlott, ha a kezelt hello DNS. Használja az Azure DNS-ben, és ehelyett hello a tartomány DNS-rekordjait, tekintse meg a toohello új gépek az Azure teljes tartománynevekkel.
+A virtuális gép ablaktábla kell hasonlítania alatt hello központi telepítés befejezése után:
 
 ![Virtuális gépek üzembe helyezve](./media/active-directory-aadconnect-azure-adfs/virtualmachinesdeployed_noadfs.png)
 
-### <a name="5-configuring-the-domain-controller--ad-fs-servers"></a>5. Tartományvezérlő-/AD FS-kiszolgálók konfigurálása
- A bejövő kérések hitelesítéséhez az AD FS-nek kapcsolatban kell állnia a tartományvezérlővel. Javasoljuk, hogy helyezze üzembe az Azure-ban a tartományvezérlő replikáját, mivel ezzel hitelesítés alkalmával elkerülheti a költséges utat az Azure és a helyszíni tartományvezérlő között. A magas rendelkezésre állás kialakítása érdekében javasoljuk, hogy hozzon létre egy legalább 2 tartományvezérlőt tartalmazó rendelkezésre állási csoportot.
+### <a name="5-configuring-hello-domain-controller--ad-fs-servers"></a>5. Konfigurálás hello tartományvezérlő / AD FS-kiszolgáló
+ A sorrend tooauthenticate a bejövő kérelem, az AD FS toocontact hello tartományvezérlő kell. toosave hello költséges út Azure tooon helyszíni tartományvezérlőt a hitelesítéshez, ajánlott toodeploy replika tartományvezérlő hello Azure-ban. Rendelés tooattain a magas rendelkezésre állás, a rendelkezésre állási készlet legalább 2 tartományvezérlők toocreate ajánlott.
 
 | Tartományvezérlő | Szerepkör | Tárfiók |
 |:---:|:---:|:---:|
 | contosodc1 |Replika |contososac1 |
 | contosodc2 |Replika |contososac2 |
 
-* Léptesse elő a két kiszolgálót replika tartományvezérlőnek DNS-sel.
-* Konfigurálja az AD FS-kiszolgálókat: telepítse az AD FS szerepkört a Kiszolgálókezelővel.
+* Két kiszolgáló hello előléptetni replika tartományvezérlőket, DNS-sel
+* Hello AD FS-kiszolgálók konfigurálása hello Kiszolgálókezelővel hello AD FS szerepkör telepítésével.
 
 ### <a name="6-deploying-internal-load-balancer-ilb"></a>6. A belső terheléselosztó (ILB) üzembe helyezése
-**6.1. Az ILB létrehozása**
+**6.1. Hello ILB létrehozása**
 
-ILB üzembe helyezéséhez válassza a Terheléselosztók lehetőséget az Azure Portal webhelyen, majd kattintson a hozzáadás (+) ikonra.
+toodeploy egy ILB, jelölje be a hello Azure-portálon, majd kattintson a terheléselosztó hozzáadása (+).
 
 > [!NOTE]
-> Ha a menüben nem látja a **Terheléselosztók** lehetőséget, kattintson a portálon bal oldalt alul található **Tallózás** gombra, és görgessen lefelé, amíg meg nem látja a **Terheléselosztók** elemet.  Ha megtalálta, kattintson a sárga csillagra. Ezzel a lehetőség bekerül a menübe. Most az új terheléselosztó ikont választva nyissa meg a panelt. Ezen megkezdheti a terheléselosztó konfigurálását.
+> Ha nem látja **Terheléselosztók** a menüben kattintson a **Tallózás** hello hello portál bal alsó, és görgessen, amíg megjelenik **Terheléselosztók**.  Kattintson a hello sárga csillag tooadd azt tooyour menü. Immár hello új ikon tooopen hello panel toobegin terheléselosztó hello terheléselosztó.
 > 
 > 
 
 ![Terheléselosztó tallózása](./media/active-directory-aadconnect-azure-adfs/browseloadbalancer.png)
 
-* **Név**: adjon megfelelő nevet a terheléselosztónak.
-* **Séma**: mivel a terheléselosztót az AD FS-kiszolgálók elé fogja helyezni, és CSAK a belső hálózati kapcsolatok kezelésére fogja használni, válassza a „Belső” lehetőséget.
-* **Virtuális hálózat**: adja meg a virtuális hálózatot, amelyben üzembe szeretné helyezni az AD FS-t.
-* **Alhálózat**: adja meg a belső alhálózatot.
+* **Név**: biztosítják a megfelelő nevet toohello terheléselosztó
+* **Rendszer**: mivel ez a terheléselosztó hello AD FS-kiszolgálók előtt kerülnek, és ez a belső hálózati kapcsolatok csak, válassza ki a "Belső"
+* **Virtuális hálózati**: az AD FS telepítéséhez hello virtuális hálózat választása
+* **Alhálózati**: hello Itt a belső alhálózat kiválasztása
 * **IP-címkiosztás**: statikus
 
 ![Belső terheléselosztó](./media/active-directory-aadconnect-azure-adfs/ilbdeployment1.png)
 
-Miután rákattint a Létrehozás gombra, a rendszer üzembe helyezi az ILB-t. Ezt követően meg kell jelennie a terheléselosztók listájában:
+Miután rákattintott létrehozása és hello ILB van telepítve, kell megjelennie a terheléselosztók hello listája:
 
 ![Terheléselosztók listája az ILB létrehozását követően](./media/active-directory-aadconnect-azure-adfs/ilbdeployment2.png)
 
-A következő lépés a háttérkészlet és a háttérmintavétel beállítása.
+Következő lépés az tooconfigure hello háttérkészlet és hello háttér mintavétel.
 
 **6.2. Az ILB-háttérkészlet konfigurálása**
 
-Válassza ki az újonnan létrehozott ILB-t a Terheléselosztók panelen. Megnyílik a beállítások panelje. 
+Válassza hello Példánynak újonnan létrehozottnak hello Terheléselosztók panelen. Az hello-beállítások panel nyílik meg. 
 
-1. Válasszon a beállítási panelen elérhető háttérkészletek közül.
-2. A Háttérkészlet hozzáadása panelen kattintson a Virtuális gép felvétele lehetőségre.
+1. Válassza ki a háttérkészlet hello-beállítások panelen
+2. Hello hozzá háttér címkészletet panelen, kattintson a virtuális gép hozzáadása
 3. Megjelenik egy panel, amelyen kiválaszthatja a rendelkezésre állási csoportot.
-4. Válassza az AD FS rendelkezésre állási csoportját.
+4. Az AD FS hello rendelkezésre állási csoport kiválasztása
 
 ![Az ILB-háttérkészlet konfigurálása](./media/active-directory-aadconnect-azure-adfs/ilbdeployment3.png)
 
 **6.3. A mintavétel konfigurálása**
 
-Az ILB beállítási paneljén válassza a Mintavételek lehetőséget.
+Jelölje ki mintavételt hello ILB beállítások panelen.
 
 1. Kattintson a Hozzáadás gombra.
-2. Adja meg a mintavétel adatait. a. **Név**: a mintavétel neve. b. **Protokoll**: TCP. c. **Port**: 443 (HTTPS). d. **Időköz**: 5 (alapértelmezett érték) – ez az az időköz, amelynek elteltével az ILB mintavételt végez a gépeken, az „e” háttérkészletben. **Nem kifogástalan állapot küszöbértéke**: 2 (alapértelmezett érték) – ez az a küszöbérték, amely meghatározza, hogy az ILB hány egymást követő mintavételi hiba után deklarálja, hogy a gép nem válaszol. A nem válaszoló gépre a rendszer nem irányít forgalmat.
+2. Adja meg a mintavétel adatait. a. **Név**: a mintavétel neve. b. **Protokoll**: TCP. c. **Port**: 443 (HTTPS). d. **Időköz**: 5 (alapértelmezett érték) – Ez az hello időköz, ahol a ILB mintavételi fog hello háttérkészletét e. hello gépek. **Sérült küszöbérték korlát**: 2 (alapértelmezett val ue) – Ez az egymást követő sikertelen mintavételek elteltével ILB a gép deklarálja a hello háttér címkészletet nem válaszoló és leállíthatja küldési forgalom tooit hello küszöbértéket.
 
 ![Az ILB-mintavétel konfigurálása](./media/active-directory-aadconnect-azure-adfs/ilbdeployment4.png)
 
 **6.4. Terheléselosztási szabályok létrehozása**
 
-A forgalom hatékony elosztása érdekében állítson be terheléselosztási szabályokat az ILB-n. Terheléselosztási szabály létrehozása: 
+A sorrend tooeffectively egyenleg hello forgalom terheléselosztási szabályok hello Példánynak kell konfigurálni. A sorrend toocreate tartozó terheléselosztási szabályok 
 
-1. Az ILB beállítási paneljén válassza a Terheléselosztási szabály lehetőséget.
-2. A Terheléselosztási szabály panelen kattintson a Hozzáadás gombra.
-3. A Minden terheléselosztási szabály panelen: a. **Név**: adja meg a szabály nevét. b. **Protokoll**: válassza a TCP lehetőséget. c. **Port**: 443. d. **Háttérport**: 443. e. **Háttérkészlet**: válassza ki az AD FS-fürthöz korábban létrehozott készletet. f. **Mintavétel**: válassza ki az AD FS-kiszolgálókhoz korábban létrehozott mintavételt.
+1. Válassza ki a terheléselosztási szabály a hello ILB hello beállítások panelről
+2. Kattintson a Hozzáadás hello a terhelés terheléselosztási szabály panel
+3. A Hozzáadás hello betölteni a terheléselosztási szabály panel egy. **Név**: Adja meg a b hello szabály nevét. **Protokoll**: válassza a TCP lehetőséget. c. **Port**: 443. d. **Háttérport**: 443. e. **Háttérkészlet**: hello AD FS fürt korábbi f létrehozott hello készlet kiválasztása. **Mintavételi**: AD FS-kiszolgálók a korábban létrehozott válassza hello mintavétel
 
 ![ILB-terheléselosztási szabályok konfigurálása](./media/active-directory-aadconnect-azure-adfs/ilbdeployment5.png)
 
 **6.5. A DNS frissítése az ILB-vel**
 
-Lépjen be a DNS-kiszolgálóra, és hozzon létre egy CNAME-et az ILB számára. A CNAME az összevonási szolgáltatáshoz tartozzon, az IP-cím pedig mutasson az ILB IP-címére. Ha például az ILB DIP-címe 10.3.0.8, a telepített összevonási szolgáltatás pedig az fs.contoso.com, hozzon létre egy CNAME-et az fs.contoso.com-hoz, és mutasson a 10.3.0.8 címre.
-Ezzel garantálja, hogy az fs.contoso.com-ot érintő kommunikáció eljut az ILB-re, és a megfelelő utat járja be.
+Nyissa meg tooyour DNS-kiszolgáló és a hello ILB egy CNAME rekordot kell létrehoznia. hello CNAME hello ILB toohello IP-címére mutató hello IP-címmel kell hello összevonási szolgáltatás. Ha hello ILB DIP cím 10.3.0.8 és hello összevonási szolgáltatás telepítve például: fs.contoso.com, hozzon létre egy CNAME REKORDOT a too10.3.0.8 mutat: fs.contoso.com.
+Ezzel biztosíthatja, hogy az összes kommunikáció fs.contoso.com végpont mentése hello ILB vonatkozó és a megfelelő irányítsa.
 
-### <a name="7-configuring-the-web-application-proxy-server"></a>7. A webalkalmazásproxy-kiszolgálók konfigurálása
-**7.1. A webalkalmazásproxy-kiszolgálók konfigurálása az AD FS-kiszolgálók elérésére**
+### <a name="7-configuring-hello-web-application-proxy-server"></a>7. Hello webalkalmazás-Proxy kiszolgáló konfigurálása
+**7.1. Hello webalkalmazás-Proxy kiszolgálók tooreach AD FS-kiszolgáló konfigurálása**
 
-Hogy a webalkalmazásproxy-kiszolgálók el tudják érni az ILB mögötti AD FS-kiszolgálókat, hozzon létre egy rekordot a %systemroot%\system32\drivers\etc\hosts könyvtárban az ILB számára. A megkülönböztető név (DN) legyen az összevonási szolgáltatás neve, például fs.contoso.com. IP-címként pedig az ILB IP-címét (a példában 10.3.0.8) adja meg.
+A sorrend tooensure, hogy a webalkalmazás-Proxy kiszolgálók képes tooreach hello AD FS kiszolgálók hello ILB mögött a hello %systemroot%\system32\drivers\etc\hosts hello ILB a rekordot kell létrehozni. Vegye figyelembe, hogy a megkülönböztető név (DN) hello kell hello összevonási szolgáltatás nevét, például: fs.contoso.com. És hello IP bejegyzést kell lennie, amely hello ILB IP-cím (10.3.0.8 hello példában látható módon).
 
-**7.2. A webalkalmazás-proxy szerepkör telepítése**
+**7.2. Hello webalkalmazás-Proxy szerepkör telepítése**
 
-Miután beállította, hogy a webalkalmazásproxy-kiszolgálók képesek legyenek elérni az ILB mögötti AD FS-kiszolgálókat, telepítheti a webalkalmazásproxy-kiszolgálókat. A webalkalmazásproxy-kiszolgálókat nem szükséges csatlakoztatni a tartományhoz. Telepítse a két webalkalmazásproxy-kiszolgálóra a webalkalmazás-proxy szerepköröket. Ehhez válassza a Távelérés szerepkört. A kiszolgálókezelő végigvezeti a WAP telepítésén.
-A WAP üzembe helyezésével kapcsolatos további információkért olvassa el az [Install and Configure the Web Application Proxy Server](https://technet.microsoft.com/library/dn383662.aspx) (A webalkalmazás-proxy kiszolgálók telepítése és konfigurálása) című cikket.
+Miután meggyőződött arról, hogy a webalkalmazás-Proxy kiszolgálók képes tooreach hello AD FS-kiszolgálók ILB mögött, hello webalkalmazás-Proxy kiszolgálók ezután telepítheti. Webalkalmazás-Proxy kiszolgálók nem tartományhoz csatlakoztatott toohello kell lennie. Hello webalkalmazás-Proxy szerepkörök telepítésének hello két webalkalmazás-Proxy kiszolgáló a távelérési szerepkör hello kiválasztásával. a Kiszolgálókezelő hello végigvezeti toocomplete hello WAP telepítés.
+További információt toodeploy WAP, olvassa el a [telepítse és konfigurálja a webalkalmazás-Proxy kiszolgáló hello](https://technet.microsoft.com/library/dn383662.aspx).
 
-### <a name="8--deploying-the-internet-facing-public-load-balancer"></a>8.  Az internetre irányuló (nyilvános) terheléselosztó üzembe helyezése
+### <a name="8--deploying-hello-internet-facing-public-load-balancer"></a>8.  Hello terheléselosztó Internet Facing (nyilvános) telepítése
 **8.1.  Az internetre irányuló (nyilvános) terheléselosztó létrehozása**
 
-Az Azure Portal webhelyen válassza a Terheléselosztók lehetőséget, majd kattintson a Hozzáadás gombra. A Terheléselosztó létrehozása panelen adja meg az alábbi adatokat:
+Válassza ki a terheléselosztók hello Azure-portálon, és kattintson a Hozzáadás. Hello létrehozás terhelés terheléselosztó panelen adja meg a következő információ hello
 
-1. **Név**: a terheléselosztó neve.
+1. **Név**: hello terheléselosztó nevét
 2. **Séma**: Nyilvános – ezzel a beállítással közölheti az Azure-ral, hogy a terheléselosztóhoz nyilvános cím szükséges.
 3. **IP-cím**: hozzon létre új (dinamikus) IP-címet.
 
 ![Internetre irányuló terheléselosztó](./media/active-directory-aadconnect-azure-adfs/elbdeployment1.png)
 
-Az üzembe helyezést követően a terheléselosztó megjelenik a Terheléselosztók listában.
+A központi telepítést követően hello terheléselosztó hello Load Balancer terheléselosztók lista megjelenik.
 
 ![Terheléselosztók listája](./media/active-directory-aadconnect-azure-adfs/elbdeployment2.png)
 
-**8.2. DNS-címke hozzárendelése a nyilvános IP-címhez**
+**8.2. A DNS-címke toohello nyilvános IP-hozzárendelése**
 
-A Terheléselosztók panelen kattintson az újonnan létrehozott terheléselosztó bejegyzésére. Megnyílik a konfigurációs panel. A nyilvános IP-cím DNS-címkéjének beállításához kövesse az alábbi lépéseket:
+Kattintson az újonnan létrehozott hello terhelés terheléselosztó bejegyzést hello terhelés terheléselosztók panel toobring hello panel konfigurációjának mentése. Hajtsa végre az alábbi lépéseket tooconfigure hello DNS-címke hello nyilvános IP-cím:
 
-1. Kattintson a nyilvános IP-címre. Ezzel megnyitja a nyilvános IP-cím beállításait tartalmazó panelt.
+1. Kattintson a hello nyilvános IP-címe. Megnyílik a hello panel hello nyilvános IP-cím és a beállítások
 2. Kattintson a Konfiguráció lehetőségre.
-3. Adja meg a DNS-címkét. Ez lesz a nyilvános, bárhonnan elérhető DNS-címke, például contosofs.westus.cloudapp.azure.com. Felvehet egy bejegyzést az összevonási szolgáltatás külső DNS-e (például fs.contoso.com) számára, amelyet a rendszer a külső terheléselosztó DNS-címkéjéhez rendel (contosofs.westus.cloudapp.azure.com).
+3. Adja meg a DNS-címkét. Ez lesz hello nyilvános DNS-címke, amely bárhonnan, például contosofs.westus.cloudapp.azure.com végezheti el. Hozzáadhat egy bejegyzést a hello külső DNS hello összevonási szolgáltatás (például: fs.contoso.com), amely toohello DNS-címke a hello külső terheléselosztó (contosofs.westus.cloudapp.azure.com).
 
 ![Az internetre irányuló terheléselosztó konfigurálása](./media/active-directory-aadconnect-azure-adfs/elbdeployment3.png) 
 
@@ -246,42 +246,42 @@ A Terheléselosztók panelen kattintson az újonnan létrehozott terheléseloszt
 
 **8.3. Az internetre irányuló (nyilvános) terheléselosztó háttérkészletének konfigurálása** 
 
-Az internetre irányuló (nyilvános) terheléselosztó háttérkészletének a WAP-kiszolgálóknál használt rendelkezésre állási csoportként való beállításához végezze el ugyanazokat a lépéseket, amelyeket a belső terheléselosztó létrehozásakor bemutattunk. Példa: contosowapset.
+Ugyanaz, mint hello belső terheléselosztói, lépések követése hello tooconfigure hello háttérkészlet terheléselosztó Internet Facing (nyilvános), hello rendelkezésre állási beállítása hello WAP-kiszolgálókkal. Példa: contosowapset.
 
 ![Az internetre irányuló terheléselosztó háttérkészletének konfigurálása](./media/active-directory-aadconnect-azure-adfs/elbdeployment5.png)
 
 **8.4. Mintavétel konfigurálása**
 
-A WAP-kiszolgálók háttérkészletéhez tartozó mintavétel konfigurálásához végezze el a belső terheléselosztó konfigurálására vonatkozó lépéseket.
+Ugyanaz, mint konfigurálása hello belső terheléselosztói tooconfigure hello mintavétel hello háttérkészlet WAP-kiszolgálókkal, a lépések hello kövesse.
 
 ![Az internetre irányuló terheléselosztó mintavételének konfigurálása](./media/active-directory-aadconnect-azure-adfs/elbdeployment6.png)
 
 **8.5. Terheléselosztási szabály(ok) létrehozása**
 
-A 443-as TCP-portra vonatkozó terheléselosztási szabályok konfigurálásához végezze el az ILB esetében ismertetett lépéseket.
+Ugyanezek a lépések hasonlóan ILB tooconfigure hello terheléselosztási szabály a TCP 443-as hello kövesse.
 
 ![Az internetre irányuló terheléselosztó terheléselosztási szabályainak konfigurálása](./media/active-directory-aadconnect-azure-adfs/elbdeployment7.png)
 
-### <a name="9-securing-the-network"></a>9. A hálózat biztonságának beállítása
-**9.1. A belső alhálózat biztonságának beállítása**
+### <a name="9-securing-hello-network"></a>9. Hello hálózat védelme
+**9.1. Hello belső alhálózat biztonságossá tétele**
 
-Általánosságban elmondható, hogy a belső alhálózat biztonságának kialakításához a következő szabályok szükségesek (a lenti sorrendben).
+A teljes tooefficiently biztonságos (sorrendben hello az alább felsorolt) a belső alhálózat szabályainak hello szüksége
 
 | Szabály | Leírás | Folyamat |
 |:--- |:--- |:---:|
-| AllowHTTPSFromDMZ |A DMZ felől érkező HTTPS-kommunikáció engedélyezése |Bejövő |
-| DenyInternetOutbound |Tiltja az internet-hozzáférést |Kimenő |
+| AllowHTTPSFromDMZ |Hello HTTPS-kommunikáció engedélyezése a Szegélyhálózaton |Bejövő |
+| DenyInternetOutbound |Nincs hozzáférés toointernet |Kimenő |
 
 ![INT-hozzáférési szabályok (bejövő)](./media/active-directory-aadconnect-azure-adfs/nsg_int.png)
 
 [comment]: <> (![INT-hozzáférési szabályok (bejövő)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png)) [comment]: <> (![INT-hozzáférési szabályok (kimenő)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
 
-**9.2. A DMZ-alhálózat biztonságának beállítása**
+**9.2. Hello DMZ alhálózati biztonságossá tétele**
 
 | Szabály | Leírás | Folyamat |
 |:--- |:--- |:---:|
-| AllowHTTPSFromInternet |Az internet felől a DMZ-be irányuló HTTPS-forgalom engedélyezése |Bejövő |
-| DenyInternetOutbound |A HTTPS-től eltérő típusú forgalom tiltása az internet felé |Kimenő |
+| AllowHTTPSFromInternet |HTTPS engedélyezése az internet toohello DMZ |Bejövő |
+| DenyInternetOutbound |HTTPS toointernet kivételével bármely más le van tiltva |Kimenő |
 
 ![EXT-hozzáférési szabályok (bejövő)](./media/active-directory-aadconnect-azure-adfs/nsg_dmz.png)
 
@@ -292,13 +292,13 @@ A 443-as TCP-portra vonatkozó terheléselosztási szabályok konfigurálásáho
 > 
 > 
 
-### <a name="10-test-the-ad-fs-sign-in"></a>10. Az AD FS-bejelentkezés tesztelése
-Az AD FS legegyszerűbben az IdpInitiatedSignon.aspx oldal segítségével tesztelhető. Ahhoz, hogy ez megvalósítható legyen, engedélyezze az IdpInitiatedSignOn tulajdonságot az AD FS tulajdonságaiban. Az AD FS beállításának ellenőrzéséhez kövesse az alábbi lépéseket:
+### <a name="10-test-hello-ad-fs-sign-in"></a>10. Az AD FS hello bejelentkezés tesztelése
+hello legegyszerűbb módja az AD FS segítségével hello IdpInitiatedSignon.aspx lap el tootest. A sorrend toobe képes toodo, hogy-e szükséges tooenable hello IdpInitiatedSignOn hello AD FS-tulajdonságok. Kövesse az alábbi tooverify hello lépéseket az AD FS beállítására
 
-1. Az engedélyezéshez futtassa az alábbi parancsmagot az AD FS-kiszolgálón a PowerShell segítségével.
+1. Futtatás hello parancsmagot a powershellel, tooset hello AD FS-kiszolgáló alatt azt tooenabled.
    Set-AdfsProperties -EnableIdPInitiatedSignonPage $true 
 2. Egy külső gépről nyissa meg a következő címet: https://adfs.thecloudadvocate.com/adfs/ls/IdpInitiatedSignon.aspx.  
-3. Az AD FS oldalának az alábbi módon kell megjelennie:
+3. AD FS hello oldal megjelenik alá, például:
 
 ![Bejelentkezési lap tesztelése](./media/active-directory-aadconnect-azure-adfs/test1.png)
 
@@ -307,39 +307,39 @@ A sikeres bejelentkezést követően a rendszer az alább látható üzenetet je
 ![Teszt sikeres](./media/active-directory-aadconnect-azure-adfs/test2.png)
 
 ## <a name="template-for-deploying-ad-fs-in-azure"></a>Sablon az AD FS üzembe helyezéséhez az Azure-ban
-A sablon egy 6 gépes beállítást helyez üzembe, 2 a tartományvezérlőkhöz, 2 az AD FS-hez és 2 a WAP-hoz.
+hello sablon egy 6 machine telepítése, 2 egyes tartományvezérlők, az AD FS és WAP telepíti.
 
 [AD FS az Azure Deployment Template-ben](https://github.com/paulomarquesc/adfs-6vms-regular-template-based)
 
-A sablon telepítése közben használhat egy meglévő virtuális hálózatot, vagy létrehozhat egy újat. Alább látható az üzembe helyezés testreszabásához rendelkezésre álló különféle paraméterek listája, a paraméter üzembe helyezési folyamatban való használatának leírásával együtt. 
+A sablon telepítése közben használhat egy meglévő virtuális hálózatot, vagy létrehozhat egy újat. hello hello telepítés testreszabása használható különböző paramétereket az alábbiak hello leírás használati hello paraméter hello telepítési folyamat. 
 
 | Paraméter | Leírás |
 |:--- |:--- |
-| Hely |Az erőforrások üzembe helyezésének régiója, például az USA keleti régiója. |
-| StorageAccountType |A létrehozott tárfiók típusa |
+| Hely |hello régió toodeploy hello erőforrások be, pl. USA keleti régiója. |
+| StorageAccountType |hello típusú hello Storage-fiók létrehozása |
 | VirtualNetworkUsage |Jelzi, hogy új virtuális hálózat lesz-e létrehozva vagy egy meglévő kerül használatra |
-| VirtualNetworkName |A létrehozandó virtuális hálózat neve, kötelező mind meglévő, mind új virtuális hálózat használata esetén |
-| VirtualNetworkResourceGroupName |Megadja az erőforráscsoport nevét, ahol a meglévő virtuális hálózat található. Ha meglevő virtuális hálózatot használ, ez kötelező paraméterré válik, hogy az üzembe helyezés meg tudja találni a meglévő virtuális hálózat azonosítóját |
-| VirtualNetworkAddressRange |Az új virtuális hálózat címtartománya, kötelező ha új virtuális hálózatot hoz létre |
-| InternalSubnetName |A belső alhálózat neve, kötelező mindkét virtuális hálózat használat lehetőség esetén (új vagy meglévő) |
-| InternalSubnetAddressRange |A belső alhálózat címtartománya, ami tartalmazza a tartományvezérlőket és az ADFS-kiszolgálókat, kötelező új virtuális hálózat létrehozásakor. |
-| DMZSubnetAddressRange |A dmz alhálózat címtartománya, ami tartalmazza a Windows alkalmazás proxykiszolgálókat, kötelező új virtuális hálózat létrehozásakor. |
-| DMZSubnetName |A belső alhálózat neve, kötelező mindkét virtuális hálózat használat lehetőség esetén (új vagy meglévő). |
-| ADDC01NICIPAddress |Az első tartományvezérlő belső IP-címe, ez az IP-cím statikusan hozzá lesz rendelve a Tartományvezérlőhöz, valamint valós IP-címnek kell lennie a belső alhálózaton belül |
-| ADDC02NICIPAddress |A második tartományvezérlő belső IP-címe, ez az IP-cím statikusan hozzá lesz rendelve a Tartományvezérlőhöz, valamint valós IP-címnek kell lennie a belső alhálózaton belül |
-| ADFS01NICIPAddress |Az első ADFS-kiszolgáló belső IP-címe, ez az IP-cím statikusan hozzá lesz rendelve a ADFS-kiszolgálóhoz, valamint valós IP-címnek kell lennie a belső alhálózaton belül |
-| ADFS02NICIPAddress |A második ADFS-kiszolgáló belső IP-címe, ez az IP-cím statikusan hozzá lesz rendelve a ADFS-kiszolgálóhoz, valamint valós IP-címnek kell lennie a belső alhálózaton belül |
-| WAP01NICIPAddress |Az első WAP-kiszolgáló belső IP-címe, ez az IP-cím statikusan hozzá lesz rendelve a WAP-kiszolgálóhoz, valamint valós IP-címnek kell lennie a DMZ alhálózaton belül |
-| WAP02NICIPAddress |A második WAP-kiszolgáló belső IP-címe, ez az IP-cím statikusan hozzá lesz rendelve a WAP-kiszolgálóhoz, valamint valós IP-címnek kell lennie a DMZ alhálózaton belül |
-| ADFSLoadBalancerPrivateIPAddress |Az ADFS terheléselosztó belső IP-címe, ez az IP-cím statikusan hozzá lesz rendelve a terheléselosztóhoz, valamint valós IP-címnek kell lennie a belső alhálózaton belül |
+| VirtualNetworkName |hello virtuális hálózati tooCreate, mind a meglévő vagy új virtuális hálózat használata kötelező hello neve |
+| VirtualNetworkResourceGroupName |Hello hello hello már meglévő virtuális hálózatot tartalmazó erőforráscsoport nevét adja meg. Meglévő virtuális hálózat használatával, ez lesz egy kötelező paraméter, így hello telepítési hello azonosító hello meglévő virtuális hálózat található |
+| VirtualNetworkAddressRange |hello címtartományán hello új VNETET, kötelező, ha egy új virtuális hálózat létrehozása |
+| InternalSubnetName |hello belső alhálózat, kötelezően telepítendő mindkét virtuális hálózat használati lehetőség (új vagy meglévő) hello neve |
+| InternalSubnetAddressRange |a címtartomány hello hello belső alhálózat, amely tartalmazza a hello tartományvezérlők és AD FS kiszolgálók, kötelező, ha új virtuális hálózat létrehozása. |
+| DMZSubnetAddressRange |a címtartomány hello hello dmz alhálózat, amely tartalmazza a hello Windows proxy kiszolgálók, kötelező, ha egy új virtuális hálózat létrehozása. |
+| DMZSubnetName |hello neve hello belső alhálózat, kötelezően telepítendő mindkét virtuális hálózat használati (új vagy meglévő) lehetőséget. |
+| ADDC01NICIPAddress |hello belső IP-címet az első tartományvezérlő hello, az IP-cím statikusan rendeli toohello DC és hello belső alhálózaton belüli érvényes IP-címnek kell lennie. |
+| ADDC02NICIPAddress |hello belső IP-címe hello második tartományvezérlő, az IP-cím statikusan rendeli toohello DC és hello belső alhálózaton belüli érvényes IP-címnek kell lennie. |
+| ADFS01NICIPAddress |hello belső IP-cím hello első AD FS kiszolgáló, az IP-cím statikusan rendeli toohello ADFS-kiszolgáló és hello belső alhálózaton belüli érvényes IP-címnek kell lennie. |
+| ADFS02NICIPAddress |hello belső IP-címe hello második ADFS-kiszolgáló, az IP-cím statikusan rendeli toohello ADFS-kiszolgáló és hello belső alhálózaton belüli érvényes IP-címnek kell lennie. |
+| WAP01NICIPAddress |hello belső IP-címe hello első WAP-kiszolgáló, az IP-cím statikusan rendeli toohello WAP-kiszolgáló és hello DMZ alhálózaton belüli érvényes IP-címnek kell lennie. |
+| WAP02NICIPAddress |hello belső IP-címe hello második WAP-kiszolgáló, az IP-cím statikusan rendeli toohello WAP-kiszolgáló és hello DMZ alhálózaton belüli érvényes IP-címnek kell lennie. |
+| ADFSLoadBalancerPrivateIPAddress |hello belső IP-címe az AD FS hello terheléselosztó, az IP-cím statikusan rendeli toohello terheléselosztó és hello belső alhálózaton belüli érvényes IP-címnek kell lennie. |
 | ADDCVMNamePrefix |A tartományvezérlők virtuális gépnév előtagja |
 | ADFSVMNamePrefix |Az ADFS-kiszolgálók virtuális gépnév előtagja |
 | WAPVMNamePrefix |A WAP-kiszolgálók virtuális gépnév előtagja |
-| ADDCVMSize |A tartományvezérlők virtuálisgép-mérete |
-| ADFSVMSize |Az ADFS-kiszolgálók virtuálisgép-mérete |
-| WAPVMSize |A WAP-kiszolgálók virtuálisgép-mérete |
-| AdminUserName |A virtuális gépek helyi rendszergazdájának neve |
-| AdminPassword |A virtuális gépek helyi rendszergazdafiókjának a jelszava |
+| ADDCVMSize |Virtuálisgép-méretet hello hello tartományvezérlők |
+| ADFSVMSize |Virtuálisgép-méretet hello hello AD FS-kiszolgáló |
+| WAPVMSize |Virtuálisgép-méretet hello hello WAP-kiszolgálókkal |
+| AdminUserName |hello neve hello hello virtuális gépek helyi rendszergazda |
+| AdminPassword |helyi rendszergazdai fiók hello hello virtuális gépek hello jelszavát |
 
 ## <a name="additional-resources"></a>További források
 * [Rendelkezésre állási csoportok](https://aka.ms/Azure/Availability) 

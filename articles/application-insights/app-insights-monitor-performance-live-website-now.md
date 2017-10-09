@@ -1,5 +1,5 @@
 ---
-title: "Élő ASP.NET-webapp figyelése az Azure Application Insights segítségével | Microsoft Docs"
+title: "aaaMonitor élő ASP.NET webalkalmazás az Azure Application insights szolgáltatással |} Microsoft Docs"
 description: "Megfigyelheti egy webhely teljesítményét annak ismételt üzembe helyezése nélkül. A helyszíni, valamint a virtuális gépeken, illetve az Azure-ban üzemeltetett ASP.NET-webappokhoz is használható."
 services: application-insights
 documentationcenter: .net
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/05/2017
 ms.author: bwren
-ms.openlocfilehash: d07a0c81f89100c378456bbea8dca1c009cc8d77
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0d53f0a59974f40767fae681bafc4f358d1283a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="instrument-web-apps-at-runtime-with-application-insights"></a>Webalkalmazások futásidejű kialakítása az Application Insights használatával
 
 
-Egy élő webalkalmazást a kód módosítása vagy ismételt telepítése nélkül is kialakíthat az Azure Application Insights használatával. Ha az alkalmazásokat egy helyszíni IIS-kiszolgáló működteti, telepítse az Állapotfigyelőt. Ha Azure-webalkalmazások, illetve egy Azure VM-en futnak, az Azure vezérlőpultján bekapcsolhatja az Application Insights-figyelést. (Külön cikkek érhetők el az [élő J2EE-webalkalmazások](app-insights-java-live.md) és az [Azure Cloud Services](app-insights-cloudservices.md) kialakításáról.) Ehhez [Microsoft Azure](http://azure.com)-előfizetésre van szükség.
+Egy élő webalkalmazását az Azure Application insights szolgáltatással állíthatnak be anélkül, hogy toomodify, vagy telepítse újra a kódot. Ha az alkalmazásokat egy helyszíni IIS-kiszolgáló működteti, telepítse az Állapotfigyelőt. Azure-webalkalmazásokban vagy egy Azure virtuális gép fut, az Application Insights általi figyelés hello Azure Vezérlőpultról válthat. (Külön cikkek érhetők el az [élő J2EE-webalkalmazások](app-insights-java-live.md) és az [Azure Cloud Services](app-insights-cloudservices.md) kialakításáról.) Ehhez [Microsoft Azure](http://azure.com)-előfizetésre van szükség.
 
 ![mintadiagramok](./media/app-insights-monitor-performance-live-website-now/10-intro.png)
 
-Háromféleképpen alkalmazhatja az Application Insights szolgáltatást a .NET-webalkalmazásokra:
+Megválaszthatja három útvonalak tooapply Application Insights tooyour .NET webes alkalmazások:
 
-* **Felépítési idő:** [Adja az Application Insights SDK-t][greenbrown] a webalkalmazás kódjához.
-* **Futási idő:** A webalkalmazását a kiszolgálón, az alábbiakban leírtak szerint, a kód újraépítése és újratelepítése nélkül alakíthatja ki.
-* **Mindkettő:** Az SDK-t beépítheti a webalkalmazás-kódba, és alkalmazhatja a futásidejű bővítményeket is. Így mindkét lehetőség előnyeivel élhet.
+* **Build idő:** [Application Insights SDK hozzáadása hello] [ greenbrown] tooyour webes mintaalkalmazás kódját.
+* **Futási idő:** állíthatnak be a webalkalmazás hello kiszolgálón, az alább ismertetett, újraépítését, és újbóli hello kód nélkül.
+* **Mindkét:** hello SDK összeállítása a webes alkalmazás kódba, és hello futásidejű bővítmények verzióra is érvényes. Hello mindkét lehetőség a leghatékonyabb beolvasása.
 
 Itt található egy összefoglaló az egyes módszerek eredményeiről:
 
@@ -43,19 +43,19 @@ Itt található egy összefoglaló az egyes módszerek eredményeiről:
 | [API egyéni telemetriához][api] |Igen |Nem |
 | [Nyomkövetési napló integrációja](app-insights-asp-net-trace-logs.md) |Igen |Nem |
 | [Lapmegtekintések és felhasználói adatok](app-insights-javascript.md) |Igen |Nem |
-| Szükség van a kód ismételt felépítésére |Igen | Nem |
+| Toorebuild kód szükséges |Igen | Nem |
 
 
 ## <a name="monitor-a-live-azure-web-app"></a>Élő Azure-webapp figyelése
 
-Ha az alkalmazás Azure-webszolgáltatásként fut, a következőképpen kapcsolható be a figyelése:
+Ha az alkalmazás fut-e egy Azure webes szolgáltatás, itt, hogyan tooswitch figyeléséről:
 
-* Válassza az Application Insights szolgáltatást az alkalmazás vezérlőpultján az Azure-ban.
+* Válassza ki az Application Insights Vezérlőpultján hello alkalmazást az Azure-ban.
 
     ![Az Application Insights beállítása egy Azure-webapphoz](./media/app-insights-monitor-performance-live-website-now/azure-web-setup.png)
-* Amikor megnyílik az Application Insights összegző lapja, kattintson a lap alján lévő hivatkozásra a teljes Application Insights-erőforrás megnyitásához.
+* Hello Application Insights összefoglaló lap megnyitása után kattintson a hello hivatkozásra, hello alsó tooopen hello teljes Application Insights-erőforrást.
 
-    ![Az Application Insights elérése kattintással](./media/app-insights-monitor-performance-live-website-now/azure-web-view-more.png)
+    ![Kattintson a tooApplication Insights](./media/app-insights-monitor-performance-live-website-now/azure-web-view-more.png)
 
 [Felhőben és virtuális gépeken futó alkalmazások figyelése](app-insights-azure.md).
 
@@ -69,57 +69,57 @@ Ha engedélyezte az Application Insights szolgáltatást az Azure-ban, felveheti
     Kulcs: `APPINSIGHTS_JAVASCRIPT_ENABLED` 
     
     Érték: `true`
-3. **Mentse** a beállításokat, és **indítsa újra** az alkalmazást.
+3. **Mentés** beállítások hello és **indítsa újra a** az alkalmazást.
 
-Ezzel elhelyezte minden weblapon az Application Insights JavaScript SDK-t.
+Application Insights JavaScript SDK hello van most be a nézetmodellbe, minden weblapon.
 
 ## <a name="monitor-a-live-iis-web-app"></a>Élő IIS-webapp figyelése
 
 Ha az alkalmazás egy IIS-kiszolgálón fut, engedélyezze az Application Insightst az Állapotfigyelő használatával.
 
 1. Az IIS-webkiszolgálón jelentkezzen be rendszergazdai hitelesítő adatokkal.
-2. Ha az Application Insights Állapotfigyelő még nincs telepítve, töltse le és futtassa az [Állapotfigyelő telepítőjét](http://go.microsoft.com/fwlink/?LinkId=506648) (vagy futtassa a [Webplatform-telepítőt](https://www.microsoft.com/web/downloads/platform.aspx), és keresse meg benne az Application Insights Állapotfigyelőt).
-3. Az Állapotfigyelőben válassza ki a megfigyelni kívánt telepített webappot vagy webhelyet. Jelentkezzen be az Azure-beli hitelesítő adataival.
+2. Ha az Application Insights Állapotmonitor nincs telepítve, töltse le, és futtassa a hello [állapotfigyelő telepítő](http://go.microsoft.com/fwlink/?LinkId=506648) (vagy futtassa [Webplatform-telepítő](https://www.microsoft.com/web/downloads/platform.aspx) és a keresési azt az Application Insights állapotot A figyelő).
+3. Állapotmonitorban válassza ki a telepített hello webes alkalmazás vagy webhely, amelyet az toomonitor. Jelentkezzen be az Azure-beli hitelesítő adataival.
 
-    Konfigurálja az erőforrást, amelyben az eredményeket látni szeretné az Application Insights portálon. (Általában az a legjobb megoldás, ha létrehoz egy új erőforrást. Meglévő erőforrást akkor válasszon, ha már rendelkezik [webes tesztekkel][availability] vagy [ügyfélfigyeléssel][client] az alkalmazáshoz.) 
+    Konfigurálja a kívánt toosee hello eredmények hello Application Insights portál hello erőforrás. (Általában, akkor ajánlott toocreate egy új erőforrást. Meglévő erőforrást akkor válasszon, ha már rendelkezik [webes tesztekkel][availability] vagy [ügyfélfigyeléssel][client] az alkalmazáshoz.) 
 
     ![Válasszon egy alkalmazást és egy erőforrást.](./media/app-insights-monitor-performance-live-website-now/appinsights-036-configAIC.png)
 
 4. Indítsa újra az IIS-t.
 
-    ![Válassza az Újraindítás gombot a párbeszédpanel tetején.](./media/app-insights-monitor-performance-live-website-now/appinsights-036-restart.png)
+    ![Válassza ki az újraindítás hello párbeszédpanel hello tetején.](./media/app-insights-monitor-performance-live-website-now/appinsights-036-restart.png)
 
     A webszolgáltatása rövid időre megszakad.
 
 ## <a name="customize-monitoring-options"></a>A megfigyelési beállítások testreszabása
 
-Az Application Insights engedélyezése DLL-eket és az ApplicationInsights.config fájlt adja hozzá a webapphoz. A [.config fájl szerkesztésével](app-insights-configuration-with-applicationinsights-config.md) bizonyos beállítások módosíthatók.
+Az Application Insights engedélyezése hozzáadja a dll-EK és ApplicationInsights.config tooyour webalkalmazás. Is [hello .config fájl szerkesztésével](app-insights-configuration-with-applicationinsights-config.md) toochange hello-beállítások egy része.
 
 ## <a name="when-you-re-publish-your-app-re-enable-application-insights"></a>Az Application Insights ismételt engedélyezése az alkalmazás ismételt közzétételekor
 
-Mielőtt újra közzéteszi az alkalmazást, fontolja [az Application Insights hozzáadását a kódhoz a Visual Studióban][greenbrown]. Ezzel részletesebb telemetriához jut, és egyéni telemetriát is írhat.
+Mielőtt újra közzé az alkalmazást, érdemes lehet [a Visual Studio Application Insights toohello kód felvétele][greenbrown]. Részletes telemetria és hello képességét toowrite egyéni telemetriai adatokat fog kapni.
 
-Ha anélkül szeretné újra közzétenni az alkalmazást, hogy a kódhoz hozzáadná az Application Insightst, vegye figyelembe, hogy az üzembehelyezési folyamat törölheti a DLL-eket és az ApplicationInsights.config fájlt a közzétett webhelyről. Ezért:
+Ha azt szeretné, hogy toore-közzététele az Application Insights toohello kód hozzáadása nélkül, vegye figyelembe, hogy hello telepítési folyamatának törölhetik a hello dll-EK és hello az ApplicationInsights.config webhelyen közzétett. Ezért:
 
 1. Ha szerkesztette az ApplicationInsights.config fájlt, készítsen róla egy másolatot, mielőtt újra közzéteszi az alkalmazást.
 2. Tegye közzé újra az alkalmazást.
-3. Engedélyezze újra az Application Insights-figyelést. (Használja a megfelelő módszert: vagy az Azure-webapp vezérlőpultját, vagy egy IIS-gazdagép Állapotfigyelőjét.)
-4. Állítsa vissza a .config fájlon végrehajtott szerkesztéseket.
+3. Engedélyezze újra az Application Insights-figyelést. (Használjon megfelelő módszert hello: hello Azure web app Vezérlőpult, vagy egy IIS állomáson állapotfigyelő hello.)
+4. Végzett módosításokat végzett hello .config fájl visszaállítása.
 
 
 ## <a name="troubleshooting-runtime-configuration-of-application-insights"></a>Az Application Insights futtatókörnyezet-konfigurációjának hibaelhárítása
 
 ### <a name="cant-connect-no-telemetry"></a>Nem tud csatlakozni? Nem működik a telemetria?
 
-* Nyissa meg [a szükséges kimenő portokat](app-insights-ip-addresses.md#outgoing-ports) a kiszolgálója tűzfalán, hogy az Állapotfigyelő működhessen.
+* Nyissa meg [szükséges kimenő portok hello](app-insights-ip-addresses.md#outgoing-ports) az a kiszolgáló tűzfal tooallow állapotfigyelő toowork.
 
-* Nyissa meg az Állapotfigyelőt, és válassza ki az alkalmazását a bal oldali panelen. Ellenőrizze, hogy vannak-e diagnosztikai üzenetek ehhez az alkalmazáshoz a „Konfigurációs értesítések” szakaszban:
+* Nyissa meg az Állapotfigyelőt, és válassza ki az alkalmazását a bal oldali panelen. Ellenőrizze, hogy van-e az alkalmazás a hello "Konfigurációs értesítések" szakaszhoz diagnosztikai üzeneteket:
 
-  ![A Teljesítmény panel megnyitása a kérelem, a válaszidő, a függőség és egyéb adatok megtekintéséhez](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
-* Ha a kiszolgálón „elégtelen engedélyekkel” kapcsolatos üzenet jelenik meg, próbálja meg a következőt:
-  * Az IIS-kezelőben válassza ki az alkalmazáskészletét, nyissa meg a **Speciális beállítások** elemet, és a **Folyamatmodell** területen jegyezze fel az identitást.
-  * A Számítógép-kezelés vezérlőpulton adja ezt az identitást a Teljesítményfigyelő felhasználói csoporthoz.
-* Ha MMA/SCOM (Systems Center Operations Manager) van telepítve a kiszolgálón, néhány verzió esetében ütközés léphet fel. Távolítsa el az SCOM-ot és az Állapotfigyelőt is, és telepítse újra a legújabb verziókat.
+  ![Nyissa meg a hello teljesítmény panel toosee kérelem, válaszideje, függőség és egyéb adatok](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
+* Hello kiszolgálón Ha "nincs megfelelő engedélye" kapcsolatos egy üzenet jelenik meg, próbálkozzon hello következő:
+  * Az IIS-kezelőben válassza ki az alkalmazáskészletet, nyissa meg a **speciális beállítások**, majd a **folyamatmodell** jegyezze fel hello identitását.
+  * A számítógép-felügyeleti Vezérlőpult adja hozzá az identitás toohello Teljesítményfigyelő felhasználók csoportjába.
+* Ha MMA/SCOM (Systems Center Operations Manager) van telepítve a kiszolgálón, néhány verzió esetében ütközés léphet fel. SCOM és a állapotfigyelő el, majd telepítse újra a hello legújabb verziói.
 * Lásd: [Hibaelhárítás][qna].
 
 ## <a name="system-requirements"></a>Rendszerkövetelmények
@@ -133,14 +133,14 @@ Operációs rendszeri támogatás az Application Insights Állapotfigyelőhöz a
 
 a legújabb szervizcsomaggal és a .NET-keretrendszer 4.5-ös verziójával
 
-Az ügyféloldalon: Windows 7, 8, 8.1 és 10, szintén a .NET-keretrendszer 4.5-ös verziójával
+Hello ügyféloldalon: Windows 7, 8, 8.1 és 10, újra a .NET-keretrendszer 4.5
 
 IIS-támogatás: IIS 7, 7.5, 8, 8.5 (az IIS kötelező)
 
 ## <a name="automation-with-powershell"></a>Automatizálás a PowerShell használatával
 A PowerShell a saját IIS-kiszolgálón való használatával elindíthatja és leállíthatja a figyelést.
 
-Először importálja az Application Insights-modult:
+Először importálni hello Application Insights modult:
 
 `Import-Module 'C:\Program Files\Microsoft Application Insights\Status Monitor\PowerShell\Microsoft.Diagnostics.Agent.StatusMonitor.PowerShell.dll'`
 
@@ -148,28 +148,28 @@ Derítse ki, melyik alkalmazások állnak megfigyelés alatt:
 
 `Get-ApplicationInsightsMonitoringStatus [-Name appName]`
 
-* `-Name` (Választható) A webalkalmazás neve.
-* Megjeleníti mindegyik webalkalmazás (vagy elnevezett alkalmazás) Application Insights figyelési állapotát ezen az IIS-kiszolgálón.
+* `-Name`A webes alkalmazás neve (nem kötelező) hello.
+* Jeleníti meg az IIS-kiszolgálót az Application Insights figyelési állapotát az egyes web app (vagy alkalmazás nevű hello) hello.
 * Az `ApplicationInsightsApplication` elemet adja vissza mindegyik alkalmazáshoz:
 
-  * `SdkState==EnabledAfterDeployment`: Az alkalmazás megfigyelés alatt áll, és a futási időben lett kialakítva, az Állapotfigyelő eszköz vagy a `Start-ApplicationInsightsMonitoring` által.
-  * `SdkState==Disabled`: Az alkalmazás nincs kialakítva az Application Insights szolgáltatáshoz. Vagy soha nem lett kialakítva, vagy a futásidejű figyelés le van tiltva az Állapotfigyelő eszközzel vagy a `Stop-ApplicationInsightsMonitoring` eszközzel.
-  * `SdkState==EnabledByCodeInstrumentation`: Az alkalmazás kialakításakor az SDK a forráskódhoz lett hozzáadva. Az SDK-ja nem frissíthető és nem állítható le.
-  * `SdkVersion` az alkalmazás figyeléséhez használt verziót jeleníti meg.
-  * `LatestAvailableSdkVersion` a NuGet-katalógusban jelenleg elérhető verziót jeleníti meg. Ha az alkalmazást erre a verzióra szeretné frissíteni, használja a következőt: `Update-ApplicationInsightsMonitoring`.
+  * `SdkState==EnabledAfterDeployment`: Figyelt alkalmazás és a futási időben lett tagolva, vagy hello állapotfigyelő eszköz, vagy `Start-ApplicationInsightsMonitoring`.
+  * `SdkState==Disabled`: hello app nem tagolva az Application insights szolgáltatással. Soha ne tagolva volt, vagy futásidejű figyelés le lett tiltva, hello állapotfigyelő eszközzel vagy `Stop-ApplicationInsightsMonitoring`.
+  * `SdkState==EnabledByCodeInstrumentation`: hello alkalmazás lett tagolva hello SDK toohello forráskód hozzáadásával. Az SDK-ja nem frissíthető és nem állítható le.
+  * `SdkVersion`Ez az alkalmazás figyeléséhez használja hello verzióját jelzi.
+  * `LatestAvailableSdkVersion`jelenleg elérhető hello verzió látható hello NuGet gyűjteménye. tooupgrade hello toothis Alkalmazásverzió, használjon `Update-ApplicationInsightsMonitoring`.
 
 `Start-ApplicationInsightsMonitoring -Name appName -InstrumentationKey 00000000-000-000-000-0000000`
 
-* `-Name` Az alkalmazás neve az IIS-ben
-* `-InstrumentationKey` Azon Application Insights-erőforrás kulcsa, ahol az eredményeket meg szeretné jeleníteni.
+* `-Name`az IIS-ben hello alkalmazás hello nevét
+* `-InstrumentationKey`az Application Insights-erőforrás hello eredmények toobe jelenik meg, ahová hello ikey hello.
 * Ez a parancsmag csak olyan alkalmazásokra van hatással, amelyek még nincsenek kialakítva – vagyis amelyek esetében az SdkState==NotInstrumented.
 
-    A parancsmag nincs hatással a már kialakított alkalmazásokra. Nem számít, hogy azok a beépítési időben az SDK a kódhoz adásával, vagy a futásidőben a parancsmag korábbi használatával lettek kialakítva.
+    hello parancsmag nem befolyásolja az alkalmazások, amelyek már tagolva. Nem számít, hello app build időpontban, hello SDK toohello kódrészletet tagolva, és a futási időt egy előző Ez a parancsmag használatával.
 
-    Az alkalmazás kialakításához használt SDK-verzió a kiszolgálóra legutóbb letöltött verzió.
+    hello SDK használt verzió tooinstrument hello alkalmazás áll a legutóbb hello verzió letöltött toothis kiszolgáló.
 
-    A legújabb verzió letöltéséhez használja az Update-ApplicationInsightsVersion parancsot.
-* Siker esetén az `ApplicationInsightsApplication` elemet adja vissza. Sikertelenség esetén nyomkövetést naplóz a stderrben.
+    toodownload hello legújabb verziójára, használja a frissítés-ApplicationInsightsVersion.
+* Siker esetén az `ApplicationInsightsApplication` elemet adja vissza. Ha nem sikerül, egy nyomkövetési toostderr naplózza.
 
           Name                      : Default Web Site/WebApp1
           InstrumentationKey        : 00000000-0000-0000-0000-000000000000
@@ -180,22 +180,22 @@ Derítse ki, melyik alkalmazások állnak megfigyelés alatt:
 
 `Stop-ApplicationInsightsMonitoring [-Name appName | -All]`
 
-* `-Name` Az alkalmazás neve az IIS-ben
+* `-Name`az IIS alkalmazás hello neve
 * `-All` Leállítja minden alkalmazás megfigyelését ezen az IIS-kiszolgálón, amely esetében az `SdkState==EnabledAfterDeployment`
-* Leállítja a megadott alkalmazások megfigyelését, és eltávolítja a kialakítást. Csak olyan alkalmazásokhoz működik, amelyek futásidőben lettek kialakítva az Állapotfigyelés eszközzel vagy a Start-ApplicationInsightsApplication paranccsal. (`SdkState==EnabledAfterDeployment`)
+* Leállítja a figyelést hello adott alkalmazást, és eltávolítja a instrumentation. Az alkalmazásokat, amelyek rendelkeznek lettek tagolva futásidejű az eszköz állapotának monitorozása vagy a Start-ApplicationInsightsApplication hello csak működik. (`SdkState==EnabledAfterDeployment`)
 * Az ApplicationInsightsApplication elemet adja vissza.
 
 `Update-ApplicationInsightsMonitoring -Name appName [-InstrumentationKey "0000000-0000-000-000-0000"`]
 
-* `-Name`: A webalkalmazás neve az IIS-ben.
-* `-InstrumentationKey`(Választható.) Ezzel módosíthatja az erőforrást, amelynek az alkalmazás telemetriája el lesz küldve.
+* `-Name`: az IIS-ben a webes alkalmazás hello nevét.
+* `-InstrumentationKey`(Választható.) Használja a toochange hello erőforrás toowhich hello alkalmazás telemetriai zajlik.
 * Ez a parancsmag:
-  * frissíti az elnevezett alkalmazást a gépre legutóbb letöltött SDK-verzióra. (Csak akkor működik, ha `SdkState==EnabledAfterDeployment`)
-  * Ha megad egy kialakítási kulcsot, újrakonfigurálja az elnevezett alkalmazást, hogy telemetriát küldjön az erőforrásnak ezzel a kulccsal. (Akkor működik, ha `SdkState != Disabled`)
+  * Frissítések hello nevű alkalmazás toohello verziója hello SDK legutóbb letöltött toothis gép. (Csak akkor működik, ha `SdkState==EnabledAfterDeployment`)
+  * Ha megad egy rendszerállapot-kulcsot, nevű alkalmazás hello újra konfigurált toosend telemetriai toohello erőforrás ezzel a kulccsal. (Akkor működik, ha `SdkState != Disabled`)
 
 `Update-ApplicationInsightsVersion`
 
-* letölti a legújabb Application Insights SDK-t a kiszolgálóra.
+* Letölti a legújabb Application Insights SDK toohello server hello.
 
 ## <a name="questions"></a>Kérdések az Állapotfigyelővel kapcsolatban
 
@@ -205,35 +205,35 @@ Egy asztali alkalmazás, amelyet az IIS-webkiszolgálón kell telepítenie. Seg�
 
 ### <a name="when-do-i-use-status-monitor"></a>Mire használhatom az Állapotfigyelőt?
 
-* Bármely, az IIS-kiszolgálón futtatott, akár már futó webalkalmazások beállításához.
-* További telemetria engedélyezéséhez olyan webalkalmazások számára, amelyeket [az Application Insights SDK-val állítottak össze](app-insights-asp-net.md) a fordítás során. 
+* a webalkalmazás, hogy fut az IIS-kiszolgáló - még akkor is, ha már fut. tooinstrument.
+* tooenable további telemetriai adatokat is a web Apps [hello Application Insights SDK-val készült](app-insights-asp-net.md) fordítás során. 
 
 ### <a name="can-i-close-it-after-it-runs"></a>A futtatás után bezárhatom?
 
-Igen. Az alkalmazást a kiválasztott webhelyek beállításának befejezése után be lehet zárni.
+Igen. Ha az rendelkezik tagolva hello webhelyek választja, bezárhatja azt.
 
-Az alkalmazás önmagától nem gyűjt telemetriai adatokat, csupán a webalkalmazásokat konfigurálja, és néhány engedélyt állít be.
+Az alkalmazás önmagától nem gyűjt telemetriai adatokat, Ebben az esetben hello webalkalmazások konfigurálja, és néhány engedélyeket állít be.
 
 ### <a name="what-does-status-monitor-do"></a>Milyen műveleteket hajt végre az Állapotfigyelő?
 
-Ha kiválaszt egy webalkalmazást, amelyet az Állapotfigyelővel szeretne beállítani:
+Ha bejelöli az állapotfigyelő tooinstrument webalkalmazás:
 
-* Letölti és elhelyezi az Application Insights-szerelvényeket és a .config fájlt a webalkalmazás bináris mappájába.
-* Módosítja a `web.config` fájlt az Application Insights HTTP nyomkövetési moduljának hozzáadásához.
-* A függőségi hívások összegyűjtéséhez engedélyezi a CLR-profilkészítést.
+* Letölti és hello Application Insights szerelvények és .config fájl helyezi hello webes alkalmazás bináris fájljainak mappáját.
+* Módosítja a `web.config` tooadd hello Application Insights HTTP követési modul.
+* Lehetővé teszi, hogy a CLR-profilkészítés toocollect függőségi hívások esetében.
 
-### <a name="do-i-need-to-run-status-monitor-whenever-i-update-the-app"></a>Az alkalmazás frissítésekor minden alkalommal futtatnom kell az Állapotfigyelőt?
+### <a name="do-i-need-toorun-status-monitor-whenever-i-update-hello-app"></a>Állapotfigyelő toorun amikor hello alkalmazást frissíteni kell?
 
 Nem, ha az ismételt üzembe helyezés növekményesen történik. 
 
-Ha a közzététel során a „Meglévő fájlok törlése” lehetőséget választja, az Application Insights konfigurálásához újból futtatnia kell az Állapotfigyelőt.
+Ha hello "törölje a meglévő fájlokat" lehetőséget választja a hello folyamat közzétételéhez toore futtatási állapotfigyelő tooconfigure Application Insights kell.
 
 ### <a name="what-telemetry-is-collected"></a>A rendszer milyen telemetriai adatokat gyűjt?
 
 Olyan alkalmazások esetén, amelyeket az Állapotfigyelővel kizárólag futásidőben állít be:
 
 * HTTP-kérések
-* Függőségi hívások
+* Meghívja a toodependencies
 * Kivételek
 * Teljesítményszámlálók
 
@@ -253,16 +253,16 @@ A fordítási során már kiépített alkalmazások esetén:
 
 A telemetriai adatok megtekintése:
 
-* [A metrikák áttekintése](app-insights-metrics-explorer.md) a teljesítmény és a használat figyeléséhez
-* [Események és naplók keresése][diagnostic] a problémák diagnosztizálásához
+* [Megismerkedhet a metrikák](app-insights-metrics-explorer.md) toomonitor teljesítmény- és használati
+* [Keresést az események és a naplók] [ diagnostic] toodiagnose problémák
 * [Elemzések](app-insights-analytics.md) az összetettebb lekérdezésekhez
 * [Irányítópultok létrehozása](app-insights-dashboards.md)
 
 További telemetriai funkciók hozzáadása:
 
-* [Létrehozhat webes teszteket][availability] annak biztosításához, hogy a hely elérhető maradjon.
-* [Webesügyfél-telemetriát adhat hozzá][usage], hogy lássa a weblapkód kivételeit, és nyomkövetési hívásokat szúrhasson be.
-* [Application Insights SDK-t adhat a kódhoz][greenbrown], hogy nyomkövetési és naplóhíváskat szúrhasson be
+* [Webteszt létrehozása] [ availability] toomake meg arról, hogy a hely élő marad.
+* [Adja hozzá a webes ügyfél telemetriai] [ usage] weblap kódot és beszúrása toolet toosee kivételei nyomkövetési hívások.
+* [Application Insights SDK tooyour kódot] [ greenbrown] , hogy helyezze be a nyomkövetést, és jelentkezzen hívások
 
 <!--Link references-->
 

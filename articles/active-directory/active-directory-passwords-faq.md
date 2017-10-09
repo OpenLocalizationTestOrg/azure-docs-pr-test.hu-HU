@@ -16,19 +16,19 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: b3fab99ff9fab5bc67fa70113dc5b06fac775b09
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d04a9efeb3b35421aa605cadb2aa25f656a4d515
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="password-management-frequently-asked-questions"></a>A jelszókezelés gyakran ismételt kérdések
 
-Az alábbiakban néhány gyakori kérdés a jelszó alaphelyzetbe állítása kapcsolódó van.
+a következő hello néhány gyakori kérdés, minden kapcsolódó toopassword alaphelyzetbe.
 
-Ha az Azure AD általános kérdése van, és az önkiszolgáló jelszó alaphelyzetbe állítása, nem megválaszolandó itt, megkérheti a közösségi Ha segítségre van szüksége a a [Azure Ad-fórumok](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WindowsAzureAD). A Közösség tagjai közé tartozik a mérnökök, termék kezelők, MVP és ösztöndíjas informatikai szakemberek számára.
+Ha az Azure AD általános kérdése van, és az önkiszolgáló jelszó alaphelyzetbe állítása, nem megválaszolandó itt, megkérheti hello közösségi Ha segítségre van szüksége a hello [Azure Ad-fórumok](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WindowsAzureAD). Hello Közösség tagjai közé tartozik a mérnökök, termék kezelők, MVP és ösztöndíjas informatikai szakemberek számára.
 
-Ez a GYIK a következő szakaszok oszlik:
+Ez a GYIK a következő szakaszok hello oszlik:
 
 * [**A Jelszóátállítás regisztrációját kapcsolatos kérdések**](#password-reset-registration)
 * [**Jelszó alaphelyzetbe állítása kérdések**](#password-reset)
@@ -39,12 +39,12 @@ Ez a GYIK a következő szakaszok oszlik:
 ## <a name="password-reset-registration"></a>Jelszó-átállítási regisztrációk
 * **K: a felhasználók regisztrálhatják saját jelszó alaphelyzetbe állítása adatokat?**
 
-  > **V:** Igen, mindaddig, amíg engedélyezve van a jelszó alaphelyzetbe állítása, és azok licencét, akkor lépjen a jelszó-átállítási regisztráció portálon, a hitelesítési adataikat regisztrálni http://aka.ms/ssprsetup. A felhasználók is regisztrálhatják a hozzáférési panelre a http://myapps.microsoft.com címen, a profil lapon majd beállítás jelszó-átállítási regisztráció gombra kattintva.
+  > **V:** Igen, mindaddig, amíg engedélyezve van a jelszó alaphelyzetbe állítása, és azok licencét, akkor lépjen toohello jelszó-átállítási regisztráció portálon http://aka.ms/ssprsetup tooregister, a hitelesítési adatokat. A felhasználók is regisztrálhatják által toohello hozzáférési panelre lesz a http://myapps.microsoft.com, hello-profil lapon, és kattintson a hello regisztrálása a jelszó alaphelyzetbe állítása lehetőséget.
   >
   >
 * **K: jelszó alaphelyzetbe állítása adatok is definiálása a felhasználók nevében?**
 
-  > **V:** Igen, akkor az Azure AD Connect, PowerShell, a [Azure-portálon](https://portal.azure.com), vagy az Office felügyeleti portálon. További információkért lásd: a cikk [az Azure AD önkiszolgáló jelszó-változtatási által használt adatok](active-directory-passwords-data.md).
+  > **V:** Igen, akkor az Azure AD Connect PowerShell, hello [Azure-portálon](https://portal.azure.com), vagy hello Office felügyeleti portálon. További információkért lásd: hello cikk [az Azure AD önkiszolgáló jelszó-változtatási által használt adatok](active-directory-passwords-data.md).
   >
   >
 * **K: biztonsági kérdéseket tesz fel a helyszíni adatok szinkronizálása?**
@@ -54,57 +54,57 @@ Ez a GYIK a következő szakaszok oszlik:
   >
 * **K: a felhasználók regisztrálhatják adatokat úgy, hogy más felhasználók nem láthatják ezeket az adatokat?**
 
-  > **V:** Igen, ha a felhasználók regisztrálhatnak az adatokat, és a jelszó-változtatási regisztrációs portálra a Mentés személyes hitelesítési mezőkbe, amelyek csak a globális rendszergazdák és a felhasználó által látható.
+  > **V:** Igen, ha a felhasználók regisztrálhatnak hello jelszó-változtatási regisztrációs portálra a Mentés személyes hitelesítési mezőkbe, amelyek csak a globális rendszergazdák és hello felhasználó által látható adatokat.
     >
     > [!NOTE]
-    > Ha egy **Azure rendszergazdai fiók** regisztrálja a hitelesítéshez használni kívánt telefonszámot is a telepítéskor a mobiltelefon mezőbe, és látható.
+    > Ha egy **Azure rendszergazdai fiók** regisztrálja a hitelesítéshez használni kívánt telefonszámot is gyűjteménytípust hello mobiltelefon mezőbe, és látható.
     >
   >
   >
-* **K: a felhasználók rendelkeznek regisztrálni kell a jelszó alaphelyzetbe állítása használatához?**
+* **K: a felhasználók rendelkeznek toobe regisztrálva a jelszó alaphelyzetbe állítása használatához?**
 
-  > **V:** nem, a nevében elég hitelesítési adatainak megadása esetén felhasználóknak nem kell regisztrálni. Jelszó-átállítási működik, amíg a megfelelően formázott a megfelelő mezőket a könyvtárban tárolt adatokat.
+  > **V:** nem, ha elegendő hitelesítési adatokat definiálja a nevében, felhasználó nem rendelkezik tooregister. Jelszó-átállítási működik, amíg a megfelelően formázott adatok hello megfelelő mezőkben hello könyvtárban tárolja.
   >
   >
-* **K: I szinkronizálása vagy a hitelesítéshez megadott telefonját, a hitelesítési e-mailben vagy alternatív hitelesítéshez megadott telefonját mezők beállítása a felhasználók nevében?**
+* **K: I szinkronizálása vagy hello hitelesítéshez megadott telefonját, hitelesítési E-mail vagy alternatív hitelesítéshez megadott telefonját mezők beállítása a felhasználók nevében?**
 
   > **V:** erre nincs lehetőség ma.
   >
   >
-* **K: hogyan nem a regisztrációs portálon, hogy mely beállítások megjelenítése a felhasználók számára?**
+* **K: hogyan nem hello regisztrációs portálon, hogy mely beállítások tooshow a felhasználók?**
 
-  > **V:** a jelszó-visszaállítási portál csak lehetőségeket mutatja be, hogy a felhasználók számára engedélyezett. Ezek a beállítások a könyvtár konfigurálása lap felhasználói jelszó-visszaállítási házirend szakasza alatt találhatók. Például ez azt jelenti, hogy ha nem engedélyezi a biztonsági kérdéseket, majd felhasználók képesek nem regisztrálja az adott beállítási mód.
+  > **V:** hello jelszó-változtatási regisztrációs portálra csak azt mutatja be, hogy a felhasználók számára engedélyezett beállítások hello. Ezek a beállítások hello a könyvtár konfigurálása lap felhasználói jelszó-visszaállítási házirend szakasza alatt találhatók. Például ez azt jelenti, hogy ha nem engedélyezi a biztonsági kérdéseket, majd felhasználók nem tud tooregister az adott beállítási mód.
   >
   >
 * **Amikor egy felhasználó tekinthető k: regisztrálni?**
 
-  > **V:** regisztrált sspr, amikor regisztrálják azokat A felhasználó akkor tekinthető legalább a **számos módszer alaphelyzetbe kell állítani** beállított a [Azure-portálon](https://portal.azure.com).
+  > **V:** regisztrált sspr, amikor regisztrálják azokat A felhasználó akkor tekinthető legalább hello **módszerek szükséges tooreset száma** hello beállított [Azure-portálon](https://portal.azure.com).
   >
   >
 ## <a name="password-reset"></a>Új jelszó létrehozása
-* **K: mennyi ideig várjon egy e-mailben, SMS vagy telefonhívás fogadása jelszó alaphelyzetbe állítása?**
+* **K: mennyi ideig I várjon tooreceive egy e-mailek, SMS vagy a jelszó alaphelyzetbe állítása a telefonhívás?**
 
-  > **V:** e-mailben, SMS-t, és telefonhívásokat egy perc alatt 5-20 másodperc normál esetben a kell érkeznek.
-    >Ha nem jelenik meg az értesítés a időkereten belül:
+  > **V:** e-mailben, SMS-t, és telefonhívásokat egy perc alatt 5-20 másodperc alatt hello normál esetben kell érkeznek.
+    >Ha nem ez időkereten belül hello értesítés jelenik meg:
         > * Ellenőrizze a Levélszemét mappát.
-        > * Ellenőrizze a vagy e-mail, amelyhez csatlakozik egy várt.
-        > * Ellenőrizze, hogy a címtárban a hitelesítési adatok megfelelően van formázva.
+        > * Ellenőrzése hello vagy e-mail, amelyhez csatlakozik egy várt hello.
+        > * Ellenőrizze, hogy az hello directory hello hitelesítési adatai megfelelően van formázva.
                 >     * Példa: "+ 1 4255551234" vagy "user@contoso.com"
   >
   >
 * **K: jelszó alaphelyzetbe állítása milyen nyelveket támogatja?**
 
-  > **V:** a jelszó-visszaállítási felhasználói felület, SMS-t, és hanghívások honosítva vannak az Office 365-ben támogatott nyelven.
+  > **V:** hello a jelszó alaphelyzetbe állítása felhasználói felület, SMS-t, és hangra vonatkozó hívások honosítva hello ugyanazt az Office 365-ben támogatott nyelvek.
   >
   >
-* **A jelszó alaphelyzetbe állítása élmény részeinek első vállalati arculattal, szervezeti a címtárban branding meg k: tartozó konfigurálása lapon?**
+* **K: milyen hello jelszó alaphelyzetbe állítása élmény részei beolvasása vállalati arculattal, szervezeti a címtárban branding meg tartozó konfigurálása lapon?**
 
-  > **V:** a jelszó-változtatási portál jeleníti meg a szervezeti embléma, és lehetővé teszi az ügyfél konfigurálása a rendszergazda hivatkozás egy egyéni e-mail vagy URL-CÍMRE mutasson. Minden e-mailben küldi el jelszóvisszaállítás tartalmazza a vállalati embléma, a színeket, a neve az e-mail törzsében, és testre szabott neve.
+  > **V:** hello jelszó-változtatási portál jeleníti meg a szervezeti embléma, és lehetővé teszi a tooconfigure hello kérje a rendszergazda kapcsolat toopoint tooa egyéni e-mail vagy URL-címe. Minden e-mailben küldi el jelszóvisszaállítás üdvözlő e-mail törzsét hello a vállalati embléma, a színeket, a nevét tartalmazza, és testre neve.
   >
   >
-* **K: hogyan lehet ismertetni kell a felhasználók visszaállíthassák a jelszavukat önállóan hol találhatnak kapcsolatban?**
+* **K: hogyan lehet tájékoztassa a felhasználókat a where toogo tooreset jelszavukat?**
 
-  > **V:** küldhet a felhasználók https://passwordreset.microsoftonline.com közvetlenül, vagy utasíthatja őket, kattintson a **nem tudja elérni a fiókot hivatkozás** bármely munkahelyi vagy iskolai bejelentkezési lapján található. A felhasználók számára könnyen hozzáférhető helyen is közzéteheti ezeket a hivatkozásokat.
+  > **V:** is elküldheti a felhasználók toohttps://passwordreset.microsoftonline.com közvetlenül, vagy utasíthatja őket tooclick hello **nem tudja elérni a fiókot hivatkozás** bármely munkahelyi vagy iskolai bejelentkezési lapján található. Egy hely könnyen hozzáférhető tooyour felhasználók is közzéteheti ezeket a hivatkozásokat.
   >
   >
 * **K: használhatok ezen a lapon egy mobileszközről?**
@@ -119,7 +119,7 @@ Ez a GYIK a következő szakaszok oszlik:
   >
 * **K: hogyan integrálhatók a jelszó alaphelyzetbe állítása közvetlenül a saját felhasználói asztali bejelentkezés során tapasztal élmény?**
 
-  > **V:** Ha az Azure AD Premium felhasználóinál, telepítse a Microsoft Identity Manager további költségek nélkül, és ez a követelmény teljesítéséhez a helyszíni jelszó alaphelyzetbe állítása megoldás üzembe helyezéséhez.
+  > **V:** Ha az Azure AD Premium ügyfél egy, a Microsoft Identity Manager további költségek nélkül telepítheti és hello helyszíni jelszó alaphelyzetbe állítása megoldás toomeet telepíteni ezt a követelményt.
   >
   >
 * **K: beállítása a különböző területi beállításokhoz különböző biztonsági kérdést?**
@@ -127,9 +127,9 @@ Ez a GYIK a következő szakaszok oszlik:
   > **V:** erre nincs lehetőség ma.
   >
   >
-* **K: hogyan több kérdést azt a állíthatja be a biztonsági kérdések hitelesítési lehetőséget?**
+* **K: hogyan több kérdést azt konfigurálható hello biztonsági kérdések hitelesítési lehetőséget?**
 
-  > **V:** legfeljebb 20 egyéni biztonsági kérdéseket is beállíthat a [Azure-portálon](https://portal.azure.com).
+  > **V:** meg too20 egyéni biztonsági kérdéseket a hello konfigurálható [Azure-portálon](https://portal.azure.com).
   >
   >
 * **K: mennyi ideig lehet, hogy a biztonsági kérdések kell?**
@@ -137,105 +137,105 @@ Ez a GYIK a következő szakaszok oszlik:
   > **V:** biztonsági kérdések 3 és 200 karakter közötti lehet.
   >
   >
-* **K: mennyi ideig biztonsági kérdésekre adott válaszok lehet?**
+* **K: mennyi ideig toosecurity kérdésekre adott válaszok lehet?**
 
-  > **V:** válaszok 3-40 karakter hosszú lehet.
+  > **V:** válaszok 3 too40 karakter hosszú lehet.
   >
   >
-* **K: ismétlődő válaszokat ad a biztonsági kérdésekre elutasított vannak?**
+* **K: ismétlődő válaszokat toosecurity kérdések utasítja el?**
 
-  > **V:** Igen, azt utasítsa el az ismétlődő válaszokat ad a biztonsági kérdésekre.
+  > **V:** Igen, azt utasítsa el az ismétlődő válaszokat toosecurity kérdéseket.
   >
   >
-* **K: Előfordulhat, hogy a felhasználó regisztrálása a ugyanazt biztonsági kérdésre adott egynél többször?**
+* **K: Előfordulhat, hogy a felhasználó regisztrálása hello ugyanazt biztonsági kérdés egynél többször?**
 
   > **V:** nem, miután a felhasználó regisztrál egy adott kérdést, előfordulhat, hogy nem regisztrálják az adott kérdést, még egyszer.
   >
   >
-* **K: van lehetőség a minimális addig, amíg a regisztráció biztonsági kérdések, és alaphelyzetbe állítja?**
+* **K: az azt a biztonsági kérdések regisztrációs és alaphelyzetbe állítása a minimális korlát lehetséges tooset?**
 
   > **V:** Igen, egy korlát a regisztrációs és egy másik alaphelyzetbe állítása a állítható be. lehet, hogy 3-5 biztonsági kérdések regisztrációjához szükséges, és lehet, hogy 3-5 alaphelyzetbe állítása szükséges.
   >
   >
-* **K:, ha a felhasználó regisztrálva van a több maximális kérdések alaphelyzetbe kell állítani, hogyan vannak a biztonsági kérdések kijelölt alaphelyzetbe állítása során?**
+* **Kérdés: Ha egy felhasználó több hello maximális kérdések szükséges tooreset regisztrálva van, hogy miként kell a biztonsági kérdések kijelölni alaphelyzetbe állítása során?**
 
-  > **V:** N biztonsági kérdések véletlenszerűen kiválasztott felhasználó regisztrálva van, ahol N az kérdések száma kívül a **alaphelyzetbe kell állítani kérdések számát**. Például ha egy felhasználó rendelkezik-e regisztrálva 5 biztonsági kérdéseit, de csak 3 szükséges alaphelyzetbe állítása, az 5 3 véletlenszerűen és jelenik meg a következő alaphelyzetbe állítása. Ha a felhasználó élvezheti a kérdésekre adott válaszai nem megfelelő, a tanúsítványkiválasztási folyamat nem szűnik meg kérdés beütés megelőzése érdekében.
+  > **V:** N biztonsági kérdések véletlenszerűen kiválasztott kívül hello teljes száma a felhasználói kérdések regisztrálva van, ahol N az hello **kérdések szükséges tooreset száma**. Például ha egy felhasználó rendelkezik-e regisztrálva 5 biztonsági kérdéseit, de csak 3 szükséges tooreset, hello 5 3 véletlenszerűen és jelenik meg a következő alaphelyzetbe állítása. Hello felhasználó élvezheti hello válaszok toohello kérdések helytelen, ha a hello tanúsítványkiválasztási folyamat tooprevent kérdés beütés jelentkezik.
   >
   >
 * **K: el azt, hogy felhasználók jelszó-változtatási rövid időn belül időn belül többször próbálnak?**
 
-  > **V:** Igen, vannak beépítve a jelszó alaphelyzetbe állítása visszaélés elleni védelme érdekében biztonsági funkciók. Előfordulhat, hogy a felhasználók csak megpróbálják 5 jelszó alaphelyzetbe állítása kísérletek 24 óra alatt zárolása előtt egy órán belül. Felhasználók csak próbálkozzon 5 alkalommal 24 óra alatt zárolása előtt egy órán belül egy telefonszámot érvényesítéséhez. A felhasználók csak lehet, hogy megpróbálják egy egyetlen hitelesítési módszer 24 óra alatt zárolása előtt egy órán belül 5 alkalommal.
+  > **V:** Igen, vannak beépítve a jelszó alaphelyzetbe állítása tooprotect visszaélés elleni funkciókat. Előfordulhat, hogy a felhasználók csak megpróbálják 5 jelszó alaphelyzetbe állítása kísérletek 24 óra alatt zárolása előtt egy órán belül. A felhasználók előfordulhat, hogy csak megpróbálják toovalidate telefonszám 5-ször 24 óra alatt zárolása előtt egy órán belül. A felhasználók csak lehet, hogy megpróbálják egy egyetlen hitelesítési módszer 24 óra alatt zárolása előtt egy órán belül 5 alkalommal.
   >
   >
-* **K:, hogy mennyi ideig érvényesek az e-mailek és SMS egyszer használatos jelszót?**
+* **K:, hogy mennyi ideig érvényesek hello e-mailek és SMS egyszer használatos jelszót?**
 
-  > **V:** a munkamenetek élettartamát, jelszó-visszaállításhoz érték 105 perc. A jelszó-visszaállítási művelet kezdetétől a felhasználó rendelkezik-e jelszavuk 105 perc. Az e-mailek és SMS egyszer használatos jelszót érvénytelenek, ebben az időszakban lejárata után is.
+  > **V:** hello munkamenetek élettartamát, jelszó-visszaállításhoz érték 105 perc. Hello hello kezdetén jelszó-átállítási művelet, hello felhasználó rendelkezik 105 perc tooreset a jelszavát. hello e-mailek és SMS egyszer használatos jelszót érvénytelenek ebben az időszakban lejárata után is.
   >
   >
 
 ## <a name="password-change"></a>A jelszó módosítása
-* **K: hol kell nyissa meg a felhasználók a jelszavuk módosítása?**
+* **K: kell a felhasználók hová toochange jelszavukat?**
 
-  > **V:** felhasználók előfordulhat, hogy módosítsák jelszavukat bárhol akkor jelenik meg a profil kép vagy ikon (felső sarkában, például a [Office 365](https://portal.office.com) vagy [hozzáférési Panel](https://myapps.microsoft.com) észlel. Felhasználók módosíthatja a jelszavukat a a [hozzáférési Panel profilszerkesztési lap](https://account.activedirectory.windowsazure.com/r#/profile). Felhasználók is kérheti a jelszavukat, automatikusan az Azure AD bejelentkezési képernyő, ha a jelszavuk. Végezetül felhasználók előfordulhat, hogy keresse meg a [Azure AD-jelszó módosítása Portal](https://account.activedirectory.windowsazure.com/ChangePassword.aspx) közvetlenül történő jelszavukat.
+  > **V:** felhasználók előfordulhat, hogy módosítsák jelszavukat bárhol akkor jelenik meg a profil kép vagy ikon (a hello jobb felső sarkában, például a [Office 365](https://portal.office.com) vagy [hozzáférési Panel](https://myapps.microsoft.com) észlel. Felhasználók a jelszavuk változhat hello [hozzáférési Panel profilszerkesztési lap](https://account.activedirectory.windowsazure.com/r#/profile). Felhasználók is lehet, hogy az alkalmazás megkéri toochange automatikusan hello Azure AD bejelentkezési képernyő, a jelszavuk jelszavuk. Végezetül, a felhasználók megnyitják toohello előfordulhat, hogy [Azure AD-jelszó módosítása Portal](https://account.activedirectory.windowsazure.com/ChangePassword.aspx) közvetlenül a jelszavuk alapértékekkel toochange.
   >
   >
-* **K: a felhasználók értesítést kaphat az Office portálon helyszíni jelszavukat lejárati?**
+* **K: a felhasználók értesítést kaphat az Office portál hello helyszíni jelszavukat lejárati?**
 
-  > **V:** Ez azért lehetséges ma használata az AD FS utasítások itt: [küldése jelszó házirend jogcímek az AD FS](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/operations/configure-ad-fs-to-send-password-expiry-claims?f=255&MSPPError=-2147217396). Ha a Jelszókivonat-szinkronizálást használ, ez nem lehetséges ma. Ennek oka az, nem azt szinkronizálása a helyszíni jelszóházirendek, ezért nem lehetséges utáni lejárati értesítéseinek feladatait a felhőbe való. Mindkét esetben is lehetőség [értesítse a felhasználókat, amelyeknek a jelszava lejár, a PowerShell használatával](https://social.technet.microsoft.com/wiki/contents/articles/23313.notify-active-directory-users-about-password-expiry-using-powershell.aspx).
+  > **V:** Ez azért lehetséges ma használata az AD FS itt hello utasításokat követve: [küldése jelszó házirend jogcímek az AD FS](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/operations/configure-ad-fs-to-send-password-expiry-claims?f=255&MSPPError=-2147217396). Ha a Jelszókivonat-szinkronizálást használ, ez nem lehetséges ma. Ennek az az oka, hogy szinkronizálja a helyszíni jelszóházirendek, ezért nem lehetséges az USA toopost lejárati értesítések toocloud észlel. Mindkét esetben is lehetőség túl[értesítse a felhasználókat, amelyeknek a jelszavánál tooexpire kerül a PowerShell használatával](https://social.technet.microsoft.com/wiki/contents/articles/23313.notify-active-directory-users-about-password-expiry-using-powershell.aspx).
   >
   >
 
 ## <a name="password-management-reports"></a>Jelszó-kezelési jelentések
-* **K: mennyi ideig tart a jelenik meg a jelszó jelentések adatai?**
+* **K: mennyi időt vesz igénybe az adatok tooshow mentése hello jelszó felügyeleti jelentésekre?**
 
-  > **V:** adatokat meg kell jelennie a jelszó jelentések 5-10 percen belül. Az egyes példányok, azt is tarthat egy órát jelennek meg.
+  > **V:** adatokat meg kell jelennie hello jelszó jelentések 5-10 percen belül. Az egyes példányok tooan óra tooappear igénybe vehet.
   >
   >
-* **K: hogyan szűrheti a jelszó-kezelési jelentések**
+* **K: hogyan végezhet hello jelszó jelentések?**
 
-  > **V:** a kis nagyítóüveg szélsőséges jobb oldalán az oszlopfejléceket, a jelentés felső részén kattintson a jelszó jelentések szűrheti. Ha szeretné gazdagabb szűrés, letöltheti a jelentést az excel és kimutatás létrehozása.
+  > **V:** hello jelszó jelentések hello kis nagyítóüveg toohello jobb hello oszlop címkék hello jelentés hello tetején kattintva szűrheti is. Ha azt szeretné, hogy toodo gazdagabb szűrés, hello jelentés tooexcel letöltheti és kimutatás létrehozása.
   >
   >
-* **K: Mi az az események maximális száma a jelszó jelentések tárolódnak?**
+* **K: Mi az az események maximális száma hello hello jelszó jelentések tárolódnak?**
 
-  > **V:** 75,000 jelszó alaphelyzetbe állítása vagy a jelszó alaphelyzetbe állítása regisztrációs események tárolódnak a jelszó-kezelési jelentések, akár átfedés biztonsági akár 30 napig.  Jelenleg dolgozunk, bontsa ki ezt a számot, hogy további események tartalmazzák.
+  > **V:** be too75, 000 jelszó alaphelyzetbe állítása vagy a jelszó alaphelyzetbe állítása regisztrációs események hello jelszó felügyeleti jelentések, készítsen biztonsági másolatot too30 nap átfedés vannak tárolva.  Dolgozunk ennek tooexpand ez tooinclude további események száma.
   >
   >
-* **K: milyen távolságban vissza a jelszó jelentések Ugrás?**
+* **K: milyen távolságban vissza hello jelszó jelentések Ugrás?**
 
-  > **V:** a jelszókezelés jelentések megjelenítése művelet az elmúlt 30 napban. A lépést Ha ezek az adatok archiválása kell után rendszeresen töltse le a jelentések is mentse őket másik helyen.
+  > **V:** hello jelszókezelés jelentések megjelenítése műveletek hello belül előforduló utolsó 30 nap. A lépést Ha ezek az adatok kell tooarchive meg is letöltheti hello jelentések rendszeres időközönként és mentheti azokat külön.
   >
   >
-* **K: van-e a jelszó jelentések megjeleníthető sorok maximális száma?**
+* **K: van egy hello jelszó jelentések megjeleníthető sorok maximális számát?**
 
-  > **V:** Igen, 75,000 sorok maximális szerepelhet vagy a jelszó jelentések, hogy éppen megtekinthető a felhasználói felületen vagy tölti le.
+  > **V:** Igen, a 75,000 sorok maximális jelenhetnek meg akár hello jelszó jelentések, hogy azok alatt jelennek meg hello felhasználói felületén vagy a letöltött.
   >
   >
-* **K: van egy API-t a jelszó alaphelyzetbe állítása vagy a jelentés adatainak regisztrációs eléréséhez?**
+* **K: van egy API tooaccess hello jelszó alaphelyzetbe állítása vagy a regisztráció jelentési adatot?**
 
-  > **V:** Igen, tekintse meg a következő dokumentációjából megtudhatja, hogyan férhet hozzá a jelszó-változtatási reporting adatfolyam.  [Jelszó alaphelyzetbe állítása programozott módon jelentési események elérése](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent).
+  > **V:** Igen, tekintse meg a hello következő dokumentáció toolearn hogyan férhet hozzá a hello jelszó alaphelyzetbe állítása jelentéskészítési adatfolyamban.  [Ismerje meg, hogyan tooaccess jelszó-átállítási jelentési eseményeket programozott módon](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent).
   >
   >
 
 ## <a name="password-writeback"></a>Jelszóvisszaíró
-* **K: hogyan működik a jelszóvisszaírást a háttérben?**
+* **K: hogyan működik a jelszóvisszaírás hello háttérben?**
 
-  > **V:** lásd [jelszóvisszaírás működése](active-directory-passwords-writeback.md) az annak magyarázatát, mi történik, ha engedélyezi a jelszóvisszaírás, és hogyan adatáramlás rendszeren keresztül vissza a helyszíni környezetbe.
+  > **V:** lásd [jelszóvisszaírás működése](active-directory-passwords-writeback.md) az annak magyarázatát, mi történik, ha engedélyezi a jelszóvisszaírás, és hogyan adatáramlás hello rendszeren keresztül vissza a helyszíni környezetbe.
   >
   >
-* **K: mennyi időt jelszóvisszaírás igénybe működéséhez?  A szinkronizálás késleltetés, például a Jelszókivonat-szinkronizálás van?**
+* **K: mennyi ideig tart a jelszóvisszaírás toowork?  A szinkronizálás késleltetés, például a Jelszókivonat-szinkronizálás van?**
 
-  > **V:** jelszóvisszaírás azonnali. Egy szinkron folyamatot, amely a Jelszókivonat-szinkronizálást alapvetően eltérően működik. A jelszóvisszaírás lehetővé teszi a felhasználóknak a valós idejű visszajelzést a jelszó alaphelyzetbe állítása sikeres vagy módosítsa a műveletet. A jelszó sikeres visszaírása átlagos ideje alatt 500 ms.
+  > **V:** jelszóvisszaírás azonnali. Egy szinkron folyamatot, amely a Jelszókivonat-szinkronizálást alapvetően eltérően működik. A jelszóvisszaírás engedélyezése a felhasználók tooget valós idejű visszajelzést hello sikeres, a jelszó alaphelyzetbe állítása, vagy módosítsa a műveletet. hello átlagos jelszó sikeres visszaírása ideje alatt 500 ms.
   >
   >
 * **K:, ha a helyi fiók le van tiltva, milyen hatással a van a felhő fiókelérést?**
 
-  > **V:** a helyszíni-azonosítója le van tiltva, ha a felhő azonosítója/access is le lesz tiltva a következő szinkronizálás időközönként byt alapértelmezett AAD-csatlakozás keresztül ez az 30 percenként.
+  > **V:** a helyszíni-azonosítója le van tiltva, ha a felhő azonosítója/hozzáférést is le lesz tiltva hello tovább szinkronizálás gyakorisága byt alapértelmezett AAD-csatlakozás keresztül ez az 30 percenként.
   >
   >
-* **K:, ha egy a helyszíni Active Directory jelszóházirend korlátozza a helyi fiók, önkiszolgáló jelszó-Változtatási felel meg a házirend a jelszó módosításakor?**
+* **K:, ha egy a helyszíni Active Directory jelszóházirend korlátozza a helyi fiók, önkiszolgáló jelszó-Változtatási felel meg a házirend hello jelszó módosításakor?**
 
-  > **V:** Igen, önkiszolgáló jelszó-Változtatási alapul, és megfelel a helyszíni AD-jelszóházirendet, beleértve az AD-tartományi jelszóházirend tipikus, valamint a meghatározott részletes jelszóházirendek egy adott felhasználót céloz meg.
+  > **V:** Igen, önkiszolgáló jelszó-Változtatási alapul, és aláveti hello a helyszíni AD-jelszóházirendet, beleértve a tipikus AD tartományi jelszóházirend, valamint bármely meghatározott részletes jelszóházirendek felhasználói tooa céloz.
   >
   >
 * **K: milyen típusú fiókok jelszóvisszaírás működik?**
@@ -250,21 +250,21 @@ Ez a GYIK a következő szakaszok oszlik:
   >
 * **K: az jelszóvisszaírás biztonságos?  Hogyan lehet, hogy I nem fognak első megtámadott?**
 
-  > **V:** Igen, a jelszóvisszaírás biztonságos-e. Olvasható további információ a négy biztonsági réteg alkalmazása a jelszó visszaírási szolgáltatás által megvalósított, tekintse meg a [jelszó visszaírási biztonsági modell](active-directory-passwords-writeback.md#password-writeback-security-model) jelszóvisszaírás működése című szakasza.
+  > **V:** Igen, a jelszóvisszaírás biztonságos-e. További információ a négy hello biztonsági réteg alkalmazása tooread hello jelszó visszaírási szolgáltatás által megvalósított, tekintse meg a hello [jelszó visszaírási biztonsági modell](active-directory-passwords-writeback.md#password-writeback-security-model) jelszóvisszaírás működése című szakasza.
   >
   >
 
 ## <a name="next-steps"></a>Következő lépések
 
-Az alábbi hivatkozásokat követve az Azure AD jelszóátállításáról olvashat további információkat.
+a következő hivatkozások hello adja meg a jelszó alaphelyzetbe állítása, az Azure AD használatával kapcsolatos további információk
 
 * [**Gyors üzembe helyezés**](active-directory-passwords-getting-started.md) – Percek alatt üzembe helyezheti az Azure AD önkiszolgáló jelszókezelőjét. 
 * [**Licencelés**](active-directory-passwords-licensing.md) – Az Azure AD licencelésének konfigurálása.
-* [**Adatok**](active-directory-passwords-data.md) – A szükséges adatok megismerése, és az adatok használata a rendszer jelszókezelésre.
-* [**Bevezetés**](active-directory-passwords-best-practices.md) – Az SSPR funkció tervezése és üzembe helyezése a felhasználók számára az itt található útmutató segítségével.
-* [**Testreszabás**](active-directory-passwords-customize.md) – Az SSPR-felület megjelenésének és működésének testre szabása a cége számára.
+* [**Adatok** ](active-directory-passwords-data.md) - szükséges hello adatok megismeréséhez, és hogyan használja fel azokat a jelszókezelés
+* [**Bevezetés** ](active-directory-passwords-best-practices.md) -megtervezése és telepítése az önkiszolgáló jelszó-Változtatási tooyour felhasználók hello útmutatást itt talál
+* [**Testre szabhatja** ](active-directory-passwords-customize.md) -testreszabása, önkiszolgáló jelszó-Változtatási élményt a vállalata hello hello megjelenését és működését.
 * [**Jelentéskészítés**](active-directory-passwords-reporting.md) – Megtudhatja, mikor és hol érik el a felhasználói az SSPR funkcióit.
 * [**Szabályzat**](active-directory-passwords-policy.md) – Megismerheti és beállíthatja az Azure AD jelszószabályzatait.
 * [**Jelszóvisszaíró**](active-directory-passwords-writeback.md) – Megtudhatja, hogyan használhatja a jelszóvisszaírót a helyszíni címtárával.
-* [**Részletes műszaki bemutatás**](active-directory-passwords-how-it-works.md) – Egy pillantás a függöny mögé, hogy megértse, hogyan is működik.
-* [**Hibaelhárítás**](active-directory-passwords-troubleshoot.md) – Ismerje meg, hogyan oldhat meg általános, az SSPR működése során jelentkező hibákat.
+* [**Műszaki mélyreható** ](active-directory-passwords-how-it-works.md) -mögött hello függöny toounderstand nyissa meg annak működéséről
+* [**Hibaelhárítás** ](active-directory-passwords-troubleshoot.md) -megtudhatja, hogyan tooresolve közös állít ki, hogy az önkiszolgáló jelszó-Változtatási látható

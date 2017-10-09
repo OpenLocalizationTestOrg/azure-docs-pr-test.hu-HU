@@ -1,6 +1,6 @@
 ---
-title: "Korlátozások és ismert problémákat az Azure API Management API importálási |} Microsoft Docs"
-description: "Ismert problémák és korlátozások az Azure API Management használata a nyílt API-t, WSDL vagy WADL formátumú importálási részleteit."
+title: "aaaRestrictions és ismert problémákat Azure API Management API importálása |} Microsoft Docs"
+description: "Ismert problémák és korlátozások az Azure API Management használata hello nyílt API-t, a WSDL vagy a WADL formátumú importálási részleteit."
 services: api-management
 documentationcenter: 
 author: mattfarm
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: apipm
-ms.openlocfilehash: ac799d66b5038c207413086b0fa71239ff2a332f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0bed5ace47de6ccbfbecba25ea6b69c5329de089
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-import-restrictions-and-known-issues"></a>API-importálási korlátozások és ismert problémák
 ## <a name="about-this-list"></a>Ez a lista
-Közben mindent történő esetén győződjön meg arról, hogy importálja az API-t Azure API Management, zökkenőmentes és zökkenőmentes lehetséges, a Microsoft alkalmanként ugyanazok a korlátozások vagy kapcsolatos problémákat jeleznek, amelyek sikeresen importálása előtt kell-e javítani kell. Ez a cikk dokumentálja ezeket, az API formátuma által szervezett.
+Miközben mindent történik, amely az API-t importálása az Azure API Management, zökkenőmentes tooensure és zökkenőmentes lehető, a Microsoft alkalmanként ugyanazok a korlátozások vagy toobe javítása sikeresen importálása előtt kell problémákat azonosítása. Ez a cikk dokumentálja ezek hello importálási formátuma hello API által szervezett.
 
 ## <a name="open-api"></a>Nyissa meg a Swagger/API
-Általában a nyílt API-t dokumentum importálása hibák fordulnak elő, ha győződjön meg arról ellenőrzése -, vagy a-tervező használata az új Azure-portálon (Tervező - előtér - API Specification szerkesztő megnyitása), vagy az egy 3. fél eszköz például <a href="http://www.swagger.io">Swagger Editor</a>.
+Általában a nyílt API-t dokumentum importálása hibák fordulnak elő, ha ellenőrizze, hogy ellenőrzése – hello-tervező használata a hello az új Azure Portal (Tervező - előtér - szerkesztő megnyitása a API Specification), vagy a és a 3. fél eszköz például <a href="http://www.swagger.io"> Swagger Editort</a>.
 
 * **Állomásnév** a host name attribútum szükséges.
 * **Elérési út kiinduló** egy alap elérési útja attribútum szükséges.
 * **Sémák** kérjük, a rendszer tömb. 
 
 ## <a name="wsdl"></a>WSDL
-SOAP áteresztő API-k létrehozása, vagy a SOAP-REST API háttéralkalmazás szolgálhat WSDL fájljait használja.
+WSDL fájlok használt toogenerate SOAP áteresztő API-k, vagy a SOAP-REST API háttéralkalmazás hello szolgál.
 
-* **WSDL** jelenleg nem támogatott API-k ezzel az attribútummal. Az ügyfelek kell az importált elem egyesítése egy dokumentumot.
+* **WSDL** jelenleg nem támogatott API-k ezzel az attribútummal. Az ügyfelek kell importálni hello elem egyesítése egy dokumentumot.
 * **Több alkotórészek üzenetek** jelenleg nem támogatottak.
 * **WCF wsHttpBinding** SOAP-szolgáltatások a Windows Communication Foundation létre kell használnia a basicHttpBinding - wsHttpBinding nem támogatott.
 * **Az MTOM** -szolgáltatások MTOM <em>előfordulhat, hogy</em> működik. Jelenleg nem érhető hivatalos támogatást.
-* **A rekurzió** , amelyek meghatározott rekurzív (pl. Lásd tömbje magukat) használata nem támogatott.
+* **A rekurzió** , amelyek meghatározott rekurzív (pl. Lásd tooan tömbje magukat) használata nem támogatott.
 
 ## <a name="wadl"></a>WADL
 Jelenleg nincsenek ismert WADL importálási problémák.
@@ -77,6 +77,6 @@ Jelenleg nincsenek ismert WADL importálási problémák.
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to create and publish a product]: api-management-howto-add-products.md
-[How to cache operation results in Azure API Management]: api-management-howto-cache.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How toocreate and publish a product]: api-management-howto-add-products.md
+[How toocache operation results in Azure API Management]: api-management-howto-cache.md
